@@ -8,8 +8,8 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
           <p className="text-xs text-gray-600">
             © 2024 V1 @ Michigan |{" "}
-            <a href="mailto:learning@michigan.com" className="hover:underline">
-              learning@michigan.com
+            <a href="mailto:team@v1michigan.com" className="hover:underline">
+              team@v1michigan.com
             </a>
           </p>
           <div className="flex space-x-4">
@@ -19,7 +19,7 @@ export default function Footer() {
             <Link href="https://instagram.com" aria-label="Instagram">
               <Instagram className="h-4 w-4 text-gray-600 hover:text-black" />
             </Link>
-            <Link href="mailto:info@example.com" aria-label="Email">
+            <Link href="mailto:team@v1michigan.com" aria-label="Other" className="h-4 w-4 text-gray-600 hover:text-black">
               <Mail className="h-4 w-4 text-gray-600 hover:text-black" />
             </Link>
           </div>

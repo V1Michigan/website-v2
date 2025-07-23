@@ -24,30 +24,33 @@ export default function LandingPage() {
       <TimelineSection title="Product Studio">
         <ProgramSection
           title="Product Studio"
-          description="Want to build something ambitious but don't know where to start? Product Studio, our flagship pre-idea incubator program is designed to guide you in a holistic journey from concept to creation."
-          imageSrc="/placeholder.svg?height=600&width=1200"
+          description="Want to build something ambitious but don't know where to start? Product Studio, our flagship pre-idea incubator program is designed to guide you in a builder journey from concept to creation."
+          imageSrc="/prod-studio-video.mp4?height=600&width=1200"
           buttonText="See what they have built"
-          buttonLink="/product-studio"
+          buttonLink="https://v1michigan.com/projects"
+          posterSrc="/prod-studio-landing.png"
         />
       </TimelineSection>
 
       <TimelineSection title="Build Blue">
         <ProgramSection
           title="Build Blue"
-          description="In this 6-week building sprint, we provide you with the resources to go from 1 to n. VC connections? Marketing network? Engineering Talent? We have it all."
-          imageSrc="/placeholder.svg?height=600&width=1200"
+          description="In this 8-week building sprint, we provide you with the resources to go from 1 to n. VC connections? Marketing network? Engineering Talent? We have it all."
+          imageSrc="/build-blue-video.mp4?height=600&width=1200"
           buttonText="Learn more"
-          buttonLink="/build-blue"
+          buttonLink="https://v1michigan.com/ship-it"
+          posterSrc="/build-blue-img.png"
         />
       </TimelineSection>
 
       <TimelineSection title="Ship-Its">
         <ProgramSection
           title="Ship-Its"
-          description="Ship-It Sundays are weekly working sessions designed for makers, creators, and innovators. It's an opportunity to build, showcase, and creatively collaborate on projects in a supportive and creative environment."
-          imageSrc="/placeholder.svg?height=600&width=1200"
+          description="Ship-It Sundays are weekly working sessions designed for makers, creators, and innovators. It's an opportunity to build, showcase, and potentially collaborate on projects in a supportive and creative environment."
+          imageSrc="/ship-it-video.mp4?height=600&width=1200"
           buttonText="Learn more"
-          buttonLink="/ship-it"
+          buttonLink="https://v1michigan.com/ship-it"
+          posterSrc="/ship-it-image.png"
         />
       </TimelineSection>
 
@@ -55,9 +58,10 @@ export default function LandingPage() {
         <ProgramSection
           title="Startup Fair"
           description="Do you want to join a rocket-ship startup in the real world? V1 Startup Fair is the only place you need to be."
-          imageSrc="/placeholder.svg?height=600&width=1200"
+          imageSrc="/startup-fair-video.mp4?height=600&width=1200"
           buttonText="Learn more"
-          buttonLink="/startup-fair"
+          buttonLink="https://startupfair.v1michigan.com/"
+          posterSrc="/startup-fair-image.png"
         />
       </TimelineSection>
 

@@ -12,16 +12,16 @@ export default function Header() {
       </div>
 
       <div className="flex items-center justify-end space-x-6">
-        <Link href="/product-studio" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/projects" className="text-sm text-gray-700 hover:text-black">
           Product Studio
         </Link>
-        <Link href="/build-blue" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/ship-it" className="text-sm text-gray-700 hover:text-black">
           Blue Blue
         </Link>
-        <Link href="/ship-it" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/ship-it" className="text-sm text-gray-700 hover:text-black">
           Ship-it
         </Link>
-        <Link href="/startup-fair" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://startupfair.v1michigan.com/" className="text-sm text-gray-700 hover:text-black">
           Startup fair
         </Link>
         <Link href="/project-directory" className="text-sm text-gray-700 hover:text-black">
@@ -32,7 +32,7 @@ export default function Header() {
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
         >
           Connect with us
-          <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+          <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
         </Link>
       </div>
     </nav>
