@@ -38,7 +38,7 @@ export default function LandingPage() {
           description="In this 8-week building sprint, we provide you with the resources to go from 1 to n. VC connections? Marketing network? Engineering Talent? We have it all."
           imageSrc="/build-blue-video.mp4?height=600&width=1200"
           buttonText="Learn more"
-          buttonLink="https://v1michigan.com/ship-it"
+          buttonLink="https://v1michigan.com/events"
           posterSrc="/build-blue-img.png"
         />
       </TimelineSection>

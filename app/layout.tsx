@@ -14,7 +14,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata = {
-  title: "V1 @ Michigan - Student Entrepreneurship",
+  title: "V1 @ Michigan",
   description:
     "V1 is the premier student-run entrepreneurship organization at Michigan dedicated to empowering builders and innovators of tomorrow.",
     generator: 'v0.dev'

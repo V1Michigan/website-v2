@@ -12,17 +12,18 @@ export default function HeroSection() {
           loop
           muted
           playsInline
+          preload="metadata"
           className="rounded-lg object-cover w-full h-full"
           poster="/landing-video-img.png"
         />
         <div className="absolute inset-0 bg-black/20 rounded-lg"></div>
         <div className="absolute bottom-0 left-0 p-6 md:p-8 lg:p-10 text-white">
-          <h1 className="mb-6 md:mb-8 lg:mb-10 text-6xl md:text-7xl lg:text-8xl font-sans font-light">V1 @ Michigan</h1>
-          <p className="max-w-3xl text-m md:text-sm lg:text-base">
+          <h1 className="mb-2 md:mb-8 lg:mb-10 text-4xl md:text-8xl lg:text-9xl font-sans font-light">V1 @ Michigan</h1>
+          <p className="max-w-3xl text-sm md:text-base lg:text-base">
             V1 is the premier builder community at the University of Michigan dedicated to supporting hackers and
             creators every step of the way.
           </p>
-          <div className="mt-6 flex space-x-6 mb-40 md: mb-44 lg: mb-48">
+            <div className="mt-6 flex space-x-6 mb-3 md:mb-24 lg:mb-48">
             <Link href="https://x.com/v1michigan" aria-label="X" className="text-white hover:text-gray-200">
               <img src="./x.png" alt="X" className="h-6 w-6" />
             </Link>

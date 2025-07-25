@@ -15,7 +15,7 @@ export default function Header() {
         <Link href="https://v1michigan.com/projects" className="text-sm text-gray-700 hover:text-black">
           Product Studio
         </Link>
-        <Link href="https://v1michigan.com/ship-it" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/events" className="text-sm text-gray-700 hover:text-black">
           Blue Blue
         </Link>
         <Link href="https://v1michigan.com/ship-it" className="text-sm text-gray-700 hover:text-black">
@@ -24,11 +24,12 @@ export default function Header() {
         <Link href="https://startupfair.v1michigan.com/" className="text-sm text-gray-700 hover:text-black">
           Startup fair
         </Link>
-        <Link href="/project-directory" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/projects" className="text-sm text-gray-700 hover:text-black">
           Project directory
         </Link>
+        {/* change to project dir */}
         <Link
-          href="/contact"
+          href="https://v1michigan.com/join"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
         >
           Connect with us

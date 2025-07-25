@@ -20,15 +20,15 @@ export default function ProgramSection({ title, description, imageSrc, buttonTex
           loop
           muted
           playsInline
-          className="rounded-lg object-cover w-full h-full"
+          preload="metadata"
           poster={posterSrc}
+          className="rounded-lg object-cover w-full h-full"
         >
-          Your browser does not support the video tag.
         </video>
       </div>
 
       <div className="mt-4">
-        <p className="text-sm text-gray-800">{description}</p>
+        <p className="text-base text-gray-800">{description}</p>
 
         <a
           href={buttonLink}

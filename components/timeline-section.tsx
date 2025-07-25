@@ -14,7 +14,7 @@ export default function TimelineSection({ title, children }: TimelineSectionProp
         </div>
 
         <div className="ml-8 md:ml-10">
-          <h2 className="text-xl md:text-2xl font-serif mb-6">{title}</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-light mb-6">{title}</h2>
           {children}
         </div>
       </div>
