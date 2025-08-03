@@ -24,10 +24,6 @@ export default function Header() {
         <Link href="https://startupfair.v1michigan.com/" className="text-sm text-gray-700 hover:text-black">
           Startup fair
         </Link>
-        <Link href="https://v1michigan.com/projects" className="text-sm text-gray-700 hover:text-black">
-          Project directory
-        </Link>
-        {/* change to project dir */}
         <Link
           href="https://v1michigan.com/join"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"

@@ -14,7 +14,7 @@ export default function WhatWeDoSection() {
         title="Build Blue"
         description="Follow __'s journey in shipping __'s at Demo Day."
         imageSrc="/build-blue.jpg?height=160&width=300"
-        href="https://v1michigan.com/ship-it"
+        href="https://v1michigan.com/events"
       />
 
       <ProgramCard

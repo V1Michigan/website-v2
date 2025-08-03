@@ -30,7 +30,7 @@ export default function HeroSection() {
             <Link href="https://www.instagram.com/v1michigan/" aria-label="Instagram" className="text-white hover:text-gray-200">
               <img src="./insta.png" className="h-6 w-6" />
             </Link>
-            <Link href="#" aria-label="Other" className="text-white hover:text-gray-200">
+            <Link href="mailto:team@v1michigan.com" aria-label="Contact" className="text-white hover:text-gray-200">
               <img src="./more.png" className="h-6 w-6" />
             </Link>
           </div>
