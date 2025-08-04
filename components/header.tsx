@@ -21,7 +21,7 @@ export default function Header() {
         <Link href="https://v1michigan.com/ship-it" className="text-sm text-gray-700 hover:text-black">
           Ship-it
         </Link>
-        <Link href="https://startupfair.v1michigan.com/" className="text-sm text-gray-700 hover:text-black">
+        <Link href="startup-fair" className="text-sm text-gray-700 hover:text-black">
           Startup fair
         </Link>
         <Link
