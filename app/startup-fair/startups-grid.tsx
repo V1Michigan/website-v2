@@ -6,42 +6,42 @@ export default function StartupsGrid() {
     {
       name: "Ramp",
       domain: "Finance",
-      image: "/placeholder.svg?height=32&width=32&text=R",
+      image: "/ramp.png?height=32&width=32&text=R",
     },
     {
       name: "Watershed",
       domain: "Climate tech",
-      image: "/placeholder.svg?height=32&width=32&text=W",
+      image: "/watershed.png?height=32&width=32&text=W",
     },
     {
       name: "Courier Health",
       domain: "Patient Care",
-      image: "/placeholder.svg?height=32&width=32&text=CH",
+      image: "/courier.png?height=32&width=32&text=CH",
     },
     {
       name: "Applied Intuition",
       domain: "Mobility AI",
-      image: "/placeholder.svg?height=32&width=32&text=AI",
+      image: "/app-intuition.png?height=32&width=32&text=AI",
     },
     {
       name: "Authentic",
       domain: "Infrastructure",
-      image: "/placeholder.svg?height=32&width=32&text=A",
+      image: "/authentic.png?height=32&width=32&text=A",
     },
     {
       name: "Pylon",
       domain: "B2B Support",
-      image: "/placeholder.svg?height=32&width=32&text=P",
+      image: "/pylon.png?height=32&width=32&text=P",
     },
     {
       name: "Codium",
       domain: "AI Agents",
-      image: "/placeholder.svg?height=32&width=32&text=C",
+      image: "/codeium.png?height=32&width=32&text=C",
     },
     {
-      name: "Luma",
+      name: "Lumos",
       domain: "Autonomy",
-      image: "/placeholder.svg?height=32&width=32&text=L",
+      image: "/lumos.png?height=32&width=32&text=L",
     },
   ]
 
@@ -79,89 +79,82 @@ export default function StartupsGrid() {
   ]
 
   return (
-    <div className="max-w-7xl mx-auto bg-gray-900 min-h-screen text-white relative overflow-hidden">
+    <div className="max-w-7xl mx-auto bg-[#191919] min-h-screen text-white relative overflow-hidden">
       {/* Decorative curved lines */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 800">
-        {/* Top left curve */}
-        <path
-          d="M-50 50 Q100 100 150 200 Q200 300 100 400"
-          stroke="#F59E0B"
-          strokeWidth="2"
-          strokeDasharray="8,8"
-          fill="none"
-          opacity="0.6"
-        />
-
-        {/* Top right curve */}
-        <path
-          d="M350 0 Q400 100 380 200 Q360 300 420 400"
-          stroke="#F59E0B"
-          strokeWidth="2"
-          strokeDasharray="8,8"
-          fill="none"
-          opacity="0.6"
-        />
-
-        {/* Middle right curve */}
-        <path
-          d="M450 300 Q350 350 300 450 Q250 550 350 650"
-          stroke="#F59E0B"
-          strokeWidth="2"
-          strokeDasharray="8,8"
-          fill="none"
-          opacity="0.6"
-        />
-
-        {/* Bottom left curve */}
-        <path
-          d="M-20 600 Q80 650 120 750 Q160 850 60 900"
-          stroke="#F59E0B"
-          strokeWidth="2"
-          strokeDasharray="8,8"
-          fill="none"
-          opacity="0.6"
-        />
-
-        {/* Large circular element */}
-        <circle
-          cx="320"
-          cy="150"
-          r="80"
-          stroke="#F59E0B"
-          strokeWidth="2"
-          strokeDasharray="8,8"
-          fill="none"
-          opacity="0.4"
-        />
+      <svg
+        className="absolute top-0 left-0"
+        width="180"
+        height="280"
+        viewBox="0 0 180 280"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="-20" cy="80" r="198" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
+      </svg>
+      <svg
+        className="absolute top-0 right-0"
+        width="135"
+        height="423"
+        viewBox="0 0 135 423"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="211.5" cy="211.5" r="210.5" stroke="#E5AC61" strokeWidth="2" />
+      </svg>
+      <svg
+        className="absolute top-1/2 right-0 -translate-y-1/2"
+        width="551"
+        height="752"
+        viewBox="0 0 551 752"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="376" cy="376" r="374" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
+      </svg>
+      <svg
+        className="absolute bottom-0 left-0"
+        width="584"
+        height="762"
+        viewBox="0 0 584 762"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="203" cy="381" r="380" stroke="#E5AC61" strokeWidth="2" />
+      </svg>
+      <svg
+        className="absolute bottom-0 right-0"
+        width="267"
+        height="357"
+        viewBox="0 0 267 357"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="178.5" cy="178.5" r="176.5" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
       </svg>
 
       {/* Header */}
       <div className="text-center pt-8 pb-6 relative z-10">
-        <p className="text-sm text-gray-400 mb-6">FALL 2024</p>
-
+        <p className="text-sm text-gray-400 mb-6">FALL 2025</p>
         {/* Stats Section */}
         <div className="flex items-center justify-center space-x-8 mb-8">
           <button className="p-2">
             <ChevronLeft className="w-5 h-5 text-gray-400" />
           </button>
-
           <div className="flex items-center space-x-12">
             <div className="text-center">
-              <div className="text-4xl font-light mb-1">12</div>
+              <div className="text-5xl font-light mb-1">12</div>
               <div className="text-xs text-gray-400">Top startups</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-light mb-1">250+</div>
+              <div className="text-5xl font-light mb-1">250+</div>
               <div className="text-xs text-gray-400">Top students</div>
             </div>
           </div>
-
           <button className="p-2">
             <ChevronRight className="w-5 h-5 text-gray-400" />
           </button>
         </div>
       </div>
-
       {/* Company Grid */}
       <div className="px-4 relative z-10">
         <div className="grid grid-cols-2 gap-4 mb-6">
@@ -169,7 +162,6 @@ export default function StartupsGrid() {
             <StartupCard key={index} image={company.image} name={company.name} domain={company.domain} />
           ))}
         </div>
-
         {/* Placeholder Companies */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           {placeholderCompanies.map((company, index) => (
@@ -182,6 +174,9 @@ export default function StartupsGrid() {
           ))}
         </div>
       </div>
+
+      {/* Bottom gradient overlay */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-100 via-gray-200/20 to-transparent pointer-events-none z-20"></div>
     </div>
   )
 }

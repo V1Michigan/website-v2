@@ -20,18 +20,18 @@ export default function ProjectDirectoryPage() {
     title: "Tech Talks",
     description:
       "Join us for tech talks featuring a variety of leading companies, discussing their latest innovations and industry insights.",
-    image: "/placeholder.svg?height=80&width=120&text=Tech+Talks",
+    image: "/tech-talks.png?height=120&width=160&text=Tech+Talks",
   },
   {
     title: "1:1 Recruiter Chats",
     description:
       "Connect directly with recruiters from top companies for personalized career discussions and opportunities.",
-    image: "/placeholder.svg?height=80&width=120&text=Recruiter+Chats",
+    image: "/recruiters.png?height=120&width=160&text=Recruiter+Chats",
   },
   {
     title: "Interactive Activities",
     description: "Participate in hands-on workshops, coding challenges, and collaborative problem-solving sessions.",
-    image: "/placeholder.svg?height=80&width=120&text=Activities",
+    image: "/acts.png?height=120&width=160&text=Activities",
   },
   ]
 

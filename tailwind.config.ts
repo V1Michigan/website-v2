@@ -59,6 +59,7 @@ const config: Config = {
           ring: "hsl(var(--sidebar-ring))",
         },
         fontFamily: {
+          instrument: ['"Instrument Serif"', 'serif'],
           serif: ["var(--font-serif)", "Georgia", "serif"],
           sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         },
