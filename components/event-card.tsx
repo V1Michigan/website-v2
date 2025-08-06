@@ -8,7 +8,7 @@ interface EventCardProps {
 
 export default function EventCard({ title, description, image }: EventCardProps) {
   return (
-    <div className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg bg-white">
+    <div className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg bg-white max-w-full">
       <div className="flex-shrink-0">
         <Image
           src={image || "/placeholder.svg"}

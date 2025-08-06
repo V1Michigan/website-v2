@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import StartupCard from "./components/startup-card"
+import StartupCard from "../../components/startup-card"
 
 export default function StartupsGrid() {
   const companies = [

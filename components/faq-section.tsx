@@ -1,37 +1,7 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import HeroSection from "@/app/startup-fair/hero-section"
-import StartupsGrid from "./startups-grid"
-import CountdownTimer from "@/components/countdown-timer"
-import EventSections from "@/components/events-sections"
-import FAQSection from "@/components/faq-section"
-import TeamSection from "@/components/team-section"
-
-export default function ProjectDirectoryPage() {
-
-  const events = [
-  {
-    title: "Tech Talks",
-    description:
-      "Attend tech talks on engineering at a startup, founding a company, career advice, and more.",
-    image: "/tech-talks.png?height=120&width=160&text=Tech+Talks",
-  },
-  {
-    title: "1:1 Recruiter Chats",
-    description:
-      "Get the opportunity to be matched with startups for 1:1 chats with recruiters and hiring managers.",
-    image: "/recruiters.png?height=120&width=160&text=Recruiter+Chats",
-  },
-  {
-    title: "Interactive Activities",
-    description: "Participate in hands-on workshops, coding challenges, and collaborative problem-solving sessions.",
-    image: "/acts.png?height=120&width=160&text=Activities",
-  },
-  ]
-
+import { useState } from 'react'
+import FAQItem from './faq-item'
 
 const faqData = [
   {
@@ -64,45 +34,35 @@ const faqData = [
   }
 ]
 
-  const teamMembers = [
-  "/placeholder.svg?height=40&width=40&text=1",
-  "/placeholder.svg?height=40&width=40&text=2",
-  "/placeholder.svg?height=40&width=40&text=3",
-  "/placeholder.svg?height=40&width=40&text=4",
-  "/placeholder.svg?height=40&width=40&text=5",
-  "/placeholder.svg?height=40&width=40&text=6",
-  "/placeholder.svg?height=40&width=40&text=7",
-  ]
+export default function FAQSection() {
+  const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set())
+
+  const toggleItem = (index: number) => {
+    const newExpandedItems = new Set(expandedItems)
+    if (newExpandedItems.has(index)) {
+      newExpandedItems.delete(index)
+    } else {
+      newExpandedItems.add(index)
+    }
+    setExpandedItems(newExpandedItems)
+  }
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
-      <Header />
-      <HeroSection />
-      <StartupsGrid />
-
-      <div className="max-w-7xl mx-auto bg-white min-h-screen">
-      {/* Event Cards Section */}
-      <EventSections events={events} />
-
-      {/* Statistics Section */}
-      <div className="px-6 py-8">
-        <CountdownTimer />
+    <div className="max-w-2xl mx-auto p-6">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+        Frequently Asked Questions
+      </h2>
+      <div className="space-y-3">
+        {faqData.map((faq, index) => (
+          <FAQItem
+            key={index}
+            question={faq.question}
+            answer={faq.answer}
+            isExpanded={expandedItems.has(index)}
+            onToggle={() => toggleItem(index)}
+          />
+        ))}
       </div>
-
-      {/* FAQ Section */}
-      <div className="px-6 py-4">
-        <FAQSection />
-      </div>
-
-      {/* Team Section */}
-      <div className="px-6 py-8">
-        <TeamSection teamMembers={teamMembers} />
-      </div>
-
-
-    </div>
-
-      <Footer />
     </div>
   )
 }
