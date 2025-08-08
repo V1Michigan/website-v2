@@ -7,17 +7,18 @@ interface ProgramSectionProps {
   imageSrc: string
   buttonText: string
   buttonLink: string
+  posterSrc?: string
 }
 
-export default function ProgramSection({ title, description, imageSrc, buttonText, buttonLink }: ProgramSectionProps) {
+export default function ProgramSection({ title, description, imageSrc, buttonText, buttonLink, posterSrc }: ProgramSectionProps) {
   return (
     <div className="overflow-hidden rounded-lg">
       <div className="relative aspect-[16/9] w-full">
         <img
           src={imageSrc}
+          alt={title}
           className="rounded-lg object-cover w-full h-full"
-        >
-        </img>
+        />
       </div>
 
       <div className="mt-4">

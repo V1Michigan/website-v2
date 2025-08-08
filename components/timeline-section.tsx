@@ -1,7 +1,7 @@
 import type React from "react"
 
 interface TimelineSectionProps {
-  title: string
+  title: string | React.ReactNode
   children: React.ReactNode
 }
 

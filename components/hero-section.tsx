@@ -16,7 +16,7 @@ export default function HeroSection() {
         />
         <div className="absolute inset-0 bg-black/20 rounded-lg"></div>
         <div className="absolute bottom-0 left-0 p-6 md:p-8 lg:p-10 text-white">
-          <h1 className="mb-2 md:mb-8 lg:mb-10 text-4xl md:text-8xl lg:text-9xl font-sans font-light">V1 @ Michigan</h1>
+          <h1 className="mb-2 md:mb-8 lg:mb-10 text-4xl md:text-8xl lg:text-9xl font-instrument font-light" style={{ fontFamily: 'var(--font-instrument), "Instrument Serif", serif' }}>V1 @ Michigan</h1>
           <p className="max-w-3xl text-sm md:text-base lg:text-base">
             V1 is the premier builder community at the University of Michigan dedicated to supporting hackers and
             creators every step of the way.
@@ -28,7 +28,7 @@ export default function HeroSection() {
             <Link href="https://www.instagram.com/v1michigan/" aria-label="Instagram" className="text-white hover:text-gray-200">
               <img src="./insta.png" className="h-6 w-6" />
             </Link>
-            <Link href="mailto:team@v1michigan.com" aria-label="Contact" className="text-white hover:text-gray-200">
+            <Link href="https://v1network.substack.com/" aria-label="Contact" className="text-white hover:text-gray-200">
               <img src="./more.png" className="h-6 w-6" />
             </Link>
           </div>
