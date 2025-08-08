@@ -1,11 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import HeroSection from "@/app/startup-fair/hero-section"
 import StartupsGrid from "./startups-grid"
-import CountdownTimer from "@/components/countdown-timer"
 import EventSections from "@/components/events-sections"
 import FAQSection from "@/components/faq-section"
 import TeamSection from "@/components/team-section"
@@ -84,23 +82,17 @@ const faqData = [
       {/* Event Cards Section */}
       <EventSections events={events} />
 
-      {/* Statistics Section */}
-      <div className="px-6 py-8">
-        <CountdownTimer />
-      </div>
-
       {/* FAQ Section */}
       <div className="px-6 py-4">
         <FAQSection />
       </div>
 
-      {/* Team Section */}
+    </div>
+
+       {/* Team Section */}
       <div className="px-6 py-8">
         <TeamSection teamMembers={teamMembers} />
       </div>
-
-
-    </div>
 
       <Footer />
     </div>

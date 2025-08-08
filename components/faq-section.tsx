@@ -49,7 +49,7 @@ export default function FAQSection() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+      <h2 className="text-3xl font-bold font-instrument text-[#444] mb-6 text-center">
         Questions? We Got You.
       </h2>
       <div className="space-y-3">

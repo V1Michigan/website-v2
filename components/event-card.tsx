@@ -19,8 +19,8 @@ export default function EventCard({ title, description, image }: EventCardProps)
         />
       </div>
       <div className="flex-1">
-        <h3 className="text-lg font-medium text-gray-900 mb-1">{title}</h3>
-        <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+        <h3 className="text-xl font-medium font-instrument text-[#444] mb-1">{title}</h3>
+        <p className="text-sm font-inter text-[#444] leading-relaxed">{description}</p>
       </div>
     </div>
   )
