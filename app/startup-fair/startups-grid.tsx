@@ -5,27 +5,27 @@ export default function StartupsGrid() {
   const companies = [
     {
       name: "Ramp",
-      domain: "Finance",
+      domain: "Fintech",
       image: "/ramp.png?height=32&width=32&text=R",
     },
     {
       name: "Watershed",
-      domain: "Climate tech",
+      domain: "ClimateOS",
       image: "/watershed.png?height=32&width=32&text=W",
     },
     {
       name: "Courier Health",
-      domain: "Patient Care",
+      domain: "Patient CRM",
       image: "/courier.png?height=32&width=32&text=CH",
     },
     {
       name: "Applied Intuition",
-      domain: "Mobility AI",
+      domain: "Motion AI",
       image: "/app-intuition.png?height=32&width=32&text=AI",
     },
     {
       name: "Authentic",
-      domain: "Infrastructure",
+      domain: "Insurance",
       image: "/authentic.png?height=32&width=32&text=A",
     },
     {
@@ -134,20 +134,20 @@ export default function StartupsGrid() {
 
       {/* Header */}
       <div className="text-center pt-8 pb-6 relative z-10">
-        <p className="text-sm text-gray-400 mb-6">FALL 2025</p>
+        <p className="text-sm text-[#FEF9F5] font-inter mb-6">FALL 2025</p>
         {/* Stats Section */}
         <div className="flex items-center justify-center space-x-8 mb-8">
           <button className="p-2">
             <ChevronLeft className="w-5 h-5 text-gray-400" />
           </button>
-          <div className="flex items-center space-x-12">
+          <div className="flex items-center justify-center space-x-12">
             <div className="text-center">
-              <div className="text-5xl font-light mb-1">12</div>
-              <div className="text-xs text-gray-400">Top startups</div>
+              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">12</div>
+              <div className="text-xs text-center font-inter font-normal text-[#CEC9C5] leading-normal">Top startups</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-light mb-1">250+</div>
-              <div className="text-xs text-gray-400">Top students</div>
+              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">250+</div>
+              <div className="text-xs text-center font-inter font-normal text-[#CEC9C5] leading-normal">Top students</div>
             </div>
           </div>
           <button className="p-2">
@@ -157,13 +157,13 @@ export default function StartupsGrid() {
       </div>
       {/* Company Grid */}
       <div className="px-4 relative z-10">
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-4 mb-6">
           {companies.map((company, index) => (
             <StartupCard key={index} image={company.image} name={company.name} domain={company.domain} />
           ))}
         </div>
         {/* Placeholder Companies */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-4 mb-6">
           {placeholderCompanies.map((company, index) => (
             <StartupCard
               key={`placeholder-${index}`}

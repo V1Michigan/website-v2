@@ -58,9 +58,6 @@ export default function CountdownTimer({
       const target = actualTargetDate.getTime()
       const difference = target - now
 
-      console.log('Current time:', new Date().toString()) // Debug log
-      console.log('Time difference (ms):', difference) // Debug log
-
       if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24))
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -76,7 +73,6 @@ export default function CountdownTimer({
     // Calculate initial time
     const initialTime = calculateTimeLeft()
     setTimeLeft(initialTime)
-    console.log('Initial time left:', initialTime) // Debug log
 
     // Update every second
     const timer = setInterval(() => {
@@ -120,17 +116,17 @@ export default function CountdownTimer({
       <div className="flex items-center justify-center space-x-8">
         <div className="text-center">
           <div className="text-7xl font-light text-gray-800">{timeUnits[0].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs text-gray-500 mt-1">DAYS</div>
+          <div className="text-xs font-inter text-gray-500 mt-1">DAYS</div>
         </div>
         <div className="w-px h-12 bg-gray-300"></div>
         <div className="text-center">
           <div className="text-7xl font-light text-gray-800">{timeUnits[1].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs text-gray-500 mt-1">HOURS</div>
+          <div className="text-xs font-inter text-gray-500 mt-1">HOURS</div>
         </div>
         <div className="w-px h-12 bg-gray-300"></div>
         <div className="text-center">
-          <div className="text-7xl font-light text-gray-800">{timeUnits[2].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs text-gray-500 mt-1">MINUTES</div>
+          <div className="text-7xl font-light text-gray-800">{timeUnits[3].value.toString().padStart(2, '0')}</div>
+          <div className="text-xs font-inter text-gray-500 mt-1">SECONDS</div>
         </div>
       </div>
     </div>
