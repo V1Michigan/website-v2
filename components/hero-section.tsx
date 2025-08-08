@@ -1,10 +1,8 @@
-import Image from "next/image"
 import Link from "next/link"
-import { Instagram, ListX, Twitter } from "lucide-react"
 
 export default function HeroSection() {
   return (
-    <section className="relative my-4 mx-auto max-w-7xl overflow-hidden rounded-lg px-0">
+    <section className="relative my-4 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-5xl overflow-hidden rounded-lg px-0">
       <div className="relative aspect-[16/9] w-full">
         <video
           src="/landing-video.mp4"

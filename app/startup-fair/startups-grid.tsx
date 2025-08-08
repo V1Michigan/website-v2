@@ -66,23 +66,13 @@ export default function StartupsGrid() {
       domain: "Description",
       image: "/placeholder.svg?height=32&width=32&text=?",
     },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
-    },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
-    },
   ]
 
   return (
     <div className="max-w-7xl mx-auto bg-[#191919] min-h-screen text-white relative overflow-hidden">
       {/* Decorative curved lines */}
       <svg
-        className="absolute top-0 left-0"
+        className="absolute -top-[15%] left-0"
         width="180"
         height="280"
         viewBox="0 0 180 280"
@@ -92,7 +82,7 @@ export default function StartupsGrid() {
         <circle cx="-20" cy="80" r="198" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
       </svg>
       <svg
-        className="absolute top-0 right-0"
+        className="absolute -top-[28%] right-0"
         width="135"
         height="423"
         viewBox="0 0 135 423"
@@ -102,26 +92,27 @@ export default function StartupsGrid() {
         <circle cx="211.5" cy="211.5" r="210.5" stroke="#E5AC61" strokeWidth="2" />
       </svg>
       <svg
-        className="absolute top-1/2 right-0 -translate-y-1/2"
+        className="absolute top-[42%] right-0 -translate-y-1/2"
         width="551"
         height="752"
         viewBox="0 0 551 752"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="376" cy="376" r="374" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
+        <circle cx="376" cy="376" r="235" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
       </svg>
       <svg
-        className="absolute bottom-0 left-0"
+        className="absolute top-[55%] left-0"
         width="584"
         height="762"
         viewBox="0 0 584 762"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="203" cy="381" r="380" stroke="#E5AC61" strokeWidth="2" />
+        <circle cx="203" cy="381" r="320" stroke="#E5AC61" strokeWidth="2" />
       </svg>
-      <svg
+      
+      {/* <svg
         className="absolute bottom-0 right-0"
         width="267"
         height="357"
@@ -130,7 +121,7 @@ export default function StartupsGrid() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <circle cx="178.5" cy="178.5" r="176.5" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
-      </svg>
+      </svg> */}
 
       {/* Header */}
       <div className="text-center pt-8 pb-6 relative z-10">
@@ -157,13 +148,13 @@ export default function StartupsGrid() {
       </div>
       {/* Company Grid */}
       <div className="px-4 relative z-10">
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-4 mb-6">
           {companies.map((company, index) => (
             <StartupCard key={index} image={company.image} name={company.name} domain={company.domain} />
           ))}
         </div>
         {/* Placeholder Companies */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-4 mb-6">
           {placeholderCompanies.map((company, index) => (
             <StartupCard
               key={`placeholder-${index}`}

@@ -7,24 +7,17 @@ interface ProgramSectionProps {
   imageSrc: string
   buttonText: string
   buttonLink: string
-  posterSrc: string
 }
 
-export default function ProgramSection({ title, description, imageSrc, buttonText, buttonLink, posterSrc }: ProgramSectionProps) {
+export default function ProgramSection({ title, description, imageSrc, buttonText, buttonLink }: ProgramSectionProps) {
   return (
     <div className="overflow-hidden rounded-lg">
       <div className="relative aspect-[16/9] w-full">
-        <video
+        <img
           src={imageSrc}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster={posterSrc}
           className="rounded-lg object-cover w-full h-full"
         >
-        </video>
+        </img>
       </div>
 
       <div className="mt-4">
