@@ -1,134 +1,206 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
 interface TimeLeft {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
 }
 
 interface CountdownTimerProps {
-  targetDate?: Date
-  className?: string
+  targetDate?: Date;
+  className?: string;
+  size?: "sm" | "md" | "lg";
+  color?: "dark" | "light";
+  useInstrumentFont?: boolean;
+  shadow?: "none" | "soft";
 }
 
 // Function to get the next October 6th
 function getNextOctober6th(): Date {
-  const now = new Date()
-  const currentYear = now.getFullYear()
+  const now = new Date();
+  const currentYear = now.getFullYear();
 
   // Try this year's October 6th first
-  let targetDate = new Date(currentYear, 9, 6, 9, 0, 0) // Month is 0-indexed, so 9 = October
+  let targetDate = new Date(currentYear, 9, 6, 9, 0, 0); // Month is 0-indexed, so 9 = October
 
   // If this year's October 6th has passed, use next year's
   if (targetDate.getTime() <= now.getTime()) {
-    targetDate = new Date(currentYear + 1, 9, 6, 9, 0, 0)
+    targetDate = new Date(currentYear + 1, 9, 6, 9, 0, 0);
   }
 
-  return targetDate
+  return targetDate;
 }
 
 export default function CountdownTimer({
   targetDate,
-  className = ''
+  className = "",
+  size = "md",
+  color = "dark",
+  useInstrumentFont = false,
+  shadow = "none",
 }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
-  })
-  const [isClient, setIsClient] = useState(false)
-  const [actualTargetDate, setActualTargetDate] = useState<Date | null>(null)
+    seconds: 0,
+  });
+  const [isClient, setIsClient] = useState(false);
+  const [actualTargetDate, setActualTargetDate] = useState<Date | null>(null);
 
   useEffect(() => {
-    setIsClient(true)
-    const target = targetDate || getNextOctober6th()
-    setActualTargetDate(target)
-    console.log('Target date:', target.toString()) // Debug log
-  }, [targetDate])
+    setIsClient(true);
+    const target = targetDate || getNextOctober6th();
+    setActualTargetDate(target);
+  }, [targetDate]);
 
   useEffect(() => {
-    if (!isClient || !actualTargetDate) return
+    if (!isClient || !actualTargetDate) return;
 
     const calculateTimeLeft = (): TimeLeft => {
-      const now = new Date().getTime()
-      const target = actualTargetDate.getTime()
-      const difference = target - now
+      const now = new Date().getTime();
+      const target = actualTargetDate.getTime();
+      const difference = target - now;
 
       if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        return { days, hours, minutes, seconds }
+        return { days, hours, minutes, seconds };
       }
 
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-    }
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    };
 
     // Calculate initial time
-    const initialTime = calculateTimeLeft()
-    setTimeLeft(initialTime)
+    const initialTime = calculateTimeLeft();
+    setTimeLeft(initialTime);
 
     // Update every second
     const timer = setInterval(() => {
-      const newTimeLeft = calculateTimeLeft()
-      setTimeLeft(newTimeLeft)
-    }, 1000)
+      const newTimeLeft = calculateTimeLeft();
+      setTimeLeft(newTimeLeft);
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [actualTargetDate, isClient])
+    return () => clearInterval(timer);
+  }, [actualTargetDate, isClient]);
+
+  // Map sizes
+  const numberSizeClass =
+    size === "lg"
+      ? "text-6xl md:text-7xl"
+      : size === "sm"
+      ? "text-3xl md:text-4xl"
+      : "text-4xl md:text-6xl";
+
+  const labelSizeClass = size === "sm" ? "text-[10px]" : "text-xs";
+  const numberColorClass = color === "light" ? "text-white" : "text-[#444444]";
+  const labelColorClass =
+    color === "light" ? "text-white/85" : "text-[#5a5a5a]";
+  const separatorColorClass =
+    color === "light" ? "bg-white/60" : "bg-[#444444]/40";
+  const numberFontStyle: React.CSSProperties | undefined = useInstrumentFont
+    ? { fontFamily: 'var(--font-instrument), "Instrument Serif", serif' }
+    : undefined;
+  const numberShadowStyle: React.CSSProperties | undefined =
+    shadow === "soft"
+      ? {
+          textShadow:
+            color === "light"
+              ? "0 1px 1px rgba(0,0,0,0.35)"
+              : "0 1px 1px rgba(255,255,255,0.6)",
+        }
+      : undefined;
 
   // Prevent hydration mismatch by showing loading state
   if (!isClient || !actualTargetDate) {
     return (
-      <div className={`flex items-center justify-center space-x-4 ${className}`}>
-        <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
-        </div>
-        <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
-        </div>
-        <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
-        </div>
-        <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
-        </div>
+      <div
+        className={`flex items-center justify-center gap-6 md:gap-8 ${className}`}
+      >
+        <div className="animate-pulse h-10 md:h-12 w-16 md:w-20 bg-gray-200 rounded" />
+        <div className="animate-pulse h-10 md:h-12 w-16 md:w-20 bg-gray-200 rounded" />
+        <div className="animate-pulse h-10 md:h-12 w-16 md:w-20 bg-gray-200 rounded" />
+        <div className="animate-pulse h-10 md:h-12 w-16 md:w-20 bg-gray-200 rounded" />
       </div>
-    )
+    );
   }
 
   const timeUnits = [
-    { value: timeLeft.days, label: 'Days' },
-    { value: timeLeft.hours, label: 'Hours' },
-    { value: timeLeft.minutes, label: 'Minutes' },
-    { value: timeLeft.seconds, label: 'Seconds' }
-  ]
+    { value: timeLeft.days, label: "Days" },
+    { value: timeLeft.hours, label: "Hours" },
+    { value: timeLeft.minutes, label: "Minutes" },
+    { value: timeLeft.seconds, label: "Seconds" },
+  ];
 
   return (
-
-    <div className="px-6 py-8">
-      <div className="flex items-center justify-center space-x-8">
-        <div className="text-center">
-          <div className="text-7xl font-light text-gray-800">{timeUnits[0].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs font-inter text-gray-500 mt-1">DAYS</div>
+    <div className={`px-0 ${className}`}>
+      <div className="flex items-end justify-center gap-6 md:gap-10">
+        <div className="text-center w-16 md:w-20">
+          <div
+            style={{ ...numberFontStyle, ...numberShadowStyle }}
+            className={`tabular-nums ${numberSizeClass} font-light leading-none ${numberColorClass}`}
+          >
+            {timeUnits[0].value.toString().padStart(2, "0")}
+          </div>
+          <div
+            className={`${labelSizeClass} font-inter ${labelColorClass} mt-2 tracking-wide`}
+          >
+            DAYS
+          </div>
         </div>
-        <div className="w-px h-12 bg-gray-300"></div>
-        <div className="text-center">
-          <div className="text-7xl font-light text-gray-800">{timeUnits[1].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs font-inter text-gray-500 mt-1">HOURS</div>
+        <div className={`w-px h-8 md:h-10 ${separatorColorClass}`} />
+        <div className="text-center w-16 md:w-20">
+          <div
+            style={{ ...numberFontStyle, ...numberShadowStyle }}
+            className={`tabular-nums ${numberSizeClass} font-light leading-none ${numberColorClass}`}
+          >
+            {timeUnits[1].value.toString().padStart(2, "0")}
+          </div>
+          <div
+            className={`${labelSizeClass} font-inter ${labelColorClass} mt-2 tracking-wide`}
+          >
+            HOURS
+          </div>
         </div>
-        <div className="w-px h-12 bg-gray-300"></div>
-        <div className="text-center">
-          <div className="text-7xl font-light text-gray-800">{timeUnits[3].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs font-inter text-gray-500 mt-1">SECONDS</div>
+        <div className={`w-px h-8 md:h-10 ${separatorColorClass}`} />
+        <div className="text-center w-16 md:w-20">
+          <div
+            style={{ ...numberFontStyle, ...numberShadowStyle }}
+            className={`tabular-nums ${numberSizeClass} font-light leading-none ${numberColorClass}`}
+          >
+            {timeUnits[2].value.toString().padStart(2, "0")}
+          </div>
+          <div
+            className={`${labelSizeClass} font-inter ${labelColorClass} mt-2 tracking-wide`}
+          >
+            MINUTES
+          </div>
+        </div>
+        <div className={`w-px h-8 md:h-10 ${separatorColorClass}`} />
+        <div className="text-center w-16 md:w-20">
+          <div
+            style={{ ...numberFontStyle, ...numberShadowStyle }}
+            className={`tabular-nums ${numberSizeClass} font-light leading-none ${numberColorClass}`}
+          >
+            {timeUnits[3].value.toString().padStart(2, "0")}
+          </div>
+          <div
+            className={`${labelSizeClass} font-inter ${labelColorClass} mt-2 tracking-wide`}
+          >
+            SECONDS
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

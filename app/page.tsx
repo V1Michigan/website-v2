@@ -1,13 +1,13 @@
-import Header from "@/components/header"
-import HeroSection from "@/components/hero-section"
-import TimelineSection from "@/components/timeline-section"
-import WhatWeDoSection from "@/components/what-we-do-section"
-import ProgramSection from "@/components/program-section"
-import Footer from "@/components/footer"
+import Header from "@/components/header";
+import HeroSection from "@/components/hero-section";
+import TimelineSection from "@/components/timeline-section";
+import WhatWeDoSection from "@/components/what-we-do-section";
+import ProgramSection from "@/components/program-section";
+import Footer from "@/components/footer";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#FEF9F5]">
+    <div className="min-h-screen bg-[#FEF9F5] snap-y snap-mandatory">
       <Header />
       <HeroSection />
 
@@ -63,5 +63,5 @@ export default function LandingPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
