@@ -11,7 +11,7 @@ interface FAQItemProps {
 
 export default function FAQItem({ question, answer, isExpanded = false, onToggle }: FAQItemProps) {
   return (
-    <div className="border border-gray-200 rounded-lg mb-3 bg-white">
+    <div className="border border-gray-200 rounded-lg mb-3 bg-white/80 backdrop-blur-sm">
       <button
         className="flex items-center justify-between w-full text-left p-4 hover:bg-gray-50 transition-colors duration-200"
         onClick={onToggle}

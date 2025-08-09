@@ -86,18 +86,18 @@ export default function CountdownTimer({
   // Prevent hydration mismatch by showing loading state
   if (!isClient || !actualTargetDate) {
     return (
-      <div className={`flex items-center justify-center space-x-4 ${className}`}>
+      <div className={`flex items-center justify-center space-x-2 sm:space-x-3 md:space-x-4 ${className}`}>
         <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
+          <div className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 bg-gray-200 rounded-lg"></div>
         </div>
         <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
+          <div className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 bg-gray-200 rounded-lg"></div>
         </div>
         <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
+          <div className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 bg-gray-200 rounded-lg"></div>
         </div>
         <div className="animate-pulse">
-          <div className="h-20 w-20 bg-gray-200 rounded-lg"></div>
+          <div className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 bg-gray-200 rounded-lg"></div>
         </div>
       </div>
     )
@@ -111,22 +111,26 @@ export default function CountdownTimer({
   ]
 
   return (
-
-    <div className="px-6 py-8">
-      <div className="flex items-center justify-center space-x-8">
+    <div className={`px-0 py-0 ${className}`}>
+      <div className="flex items-center justify-center space-x-2 sm:space-x-3 md:space-x-4">
         <div className="text-center">
-          <div className="text-7xl font-light text-gray-800">{timeUnits[0].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs font-inter text-gray-500 mt-1">DAYS</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-instrument font-normal text-gray-800">{timeUnits[0].value.toString().padStart(2, '0')}</div>
+          <div className="text-xs sm:text-sm font-inter text-gray-500 mt-1">DAYS</div>
         </div>
-        <div className="w-px h-12 bg-gray-300"></div>
+        <div className="w-px h-6 sm:h-8 md:h-10 bg-gray-300"></div>
         <div className="text-center">
-          <div className="text-7xl font-light text-gray-800">{timeUnits[1].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs font-inter text-gray-500 mt-1">HOURS</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-instrument font-normal text-gray-800">{timeUnits[1].value.toString().padStart(2, '0')}</div>
+          <div className="text-xs sm:text-sm font-inter text-gray-500 mt-1">HOURS</div>
         </div>
-        <div className="w-px h-12 bg-gray-300"></div>
+        <div className="w-px h-6 sm:h-8 md:h-10 bg-gray-300"></div>
         <div className="text-center">
-          <div className="text-7xl font-light text-gray-800">{timeUnits[3].value.toString().padStart(2, '0')}</div>
-          <div className="text-xs font-inter text-gray-500 mt-1">SECONDS</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-instrument font-normal text-gray-800">{timeUnits[2].value.toString().padStart(2, '0')}</div>
+          <div className="text-xs sm:text-sm font-inter text-gray-500 mt-1">MINUTES</div>
+        </div>
+        <div className="w-px h-6 sm:h-8 md:h-10 bg-gray-300"></div>
+        <div className="text-center">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-instrument font-normal text-gray-800">{timeUnits[3].value.toString().padStart(2, '0')}</div>
+          <div className="text-xs sm:text-sm font-inter text-gray-500 mt-1">SECONDS</div>
         </div>
       </div>
     </div>

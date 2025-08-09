@@ -73,21 +73,22 @@ const faqData = [
   ]
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen bg-background">
       <Header />
       <HeroSection />
       <StartupsGrid />
 
-      <div className="max-w-7xl mx-auto bg-white min-h-screen">
-      {/* Event Cards Section */}
-      <EventSections events={events} />
+      <div className="w-full bg-background min-h-screen">
+        <div className="max-w-7xl mx-auto">
+          {/* Event Cards Section */}
+          <EventSections events={events} />
 
-      {/* FAQ Section */}
-      <div className="px-6 py-4">
-        <FAQSection />
+          {/* FAQ Section */}
+          <div className="px-6 py-4">
+            <FAQSection />
+          </div>
+        </div>
       </div>
-
-    </div>
 
        {/* Team Section */}
       <div className="px-6 py-8">
