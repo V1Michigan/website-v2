@@ -12,14 +12,14 @@ export default function WhatWeDoSection() {
 
       <ProgramCard
         title="Build Blue"
-        description="A season of startup community events ft. builders, meetups, and demo days."
+        description="Season of community events ft. meetups, demo days, ..."
         imageSrc="/build-blue.jpg?height=160&width=300"
         href="https://v1michigan.com/events"
       />
 
       <ProgramCard
         title="Ship-It"
-        description="A collaborative workspace of engineers, tinkerers, and artists."
+        description="A workspace for engineers, tinkerers, and artists."
         imageSrc="/ship-its.png?height=160&width=300"
         href="https://v1michigan.com/ship-it"
       />
