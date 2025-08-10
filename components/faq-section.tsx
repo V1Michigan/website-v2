@@ -12,7 +12,7 @@ const faqData = [
   {
     question: "When and where is this?",
     answer:
-      "Startup Week takes place over 5 days in downtown San Francisco. The exact dates and venue details will be announced soon. All events will be held at easily accessible locations with public transportation options.",
+      "Startup Week takes place over 5 days in Ann Arbor from September 29 - October 3. Expect a combination of virtual and in-person events!",
   },
   {
     question: "Who is this designed for?",
