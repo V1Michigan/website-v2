@@ -7,28 +7,22 @@ interface ProgramSectionProps {
   imageSrc: string
   buttonText: string
   buttonLink: string
-  posterSrc: string
+  posterSrc?: string
 }
 
 export default function ProgramSection({ title, description, imageSrc, buttonText, buttonLink, posterSrc }: ProgramSectionProps) {
   return (
     <div className="overflow-hidden rounded-lg">
       <div className="relative aspect-[16/9] w-full">
-        <video
+        <img
           src={imageSrc}
-          autoPlay
-          loop
-          muted
-          playsInline
+          alt={title}
           className="rounded-lg object-cover w-full h-full"
-          poster={posterSrc}
-        >
-          Your browser does not support the video tag.
-        </video>
+        />
       </div>
 
       <div className="mt-4">
-        <p className="text-sm text-gray-800">{description}</p>
+        <p className="text-base text-gray-800">{description}</p>
 
         <a
           href={buttonLink}

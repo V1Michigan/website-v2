@@ -58,10 +58,11 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        fontFamily: {
-          serif: ["var(--font-serif)", "Georgia", "serif"],
-          sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        },
+      },
+      fontFamily: {
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        instrument: ["var(--font-instrument)", "serif"],
       },
       borderRadius: {
         lg: "0.75rem",

@@ -13,10 +13,10 @@ export default function Footer() {
             </a>
           </p>
           <div className="flex space-x-4">
-            <Link href="https://twitter.com" aria-label="Twitter">
+            <Link href="https://x.com/v1michigan" aria-label="Twitter">
               <Twitter className="h-4 w-4 text-gray-600 hover:text-black" />
             </Link>
-            <Link href="https://instagram.com" aria-label="Instagram">
+            <Link href="https://www.instagram.com/v1michigan/" aria-label="Instagram">
               <Instagram className="h-4 w-4 text-gray-600 hover:text-black" />
             </Link>
             <Link href="mailto:team@v1michigan.com" aria-label="Other" className="h-4 w-4 text-gray-600 hover:text-black">
