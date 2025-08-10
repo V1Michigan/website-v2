@@ -17,9 +17,9 @@ export default function ProjectDirectoryPage() {
       image: "/tech-talks.png?height=120&width=160&text=Tech+Talks",
     },
     {
-      title: "1:1 Recruiter Chats",
+      title: "1:1 Chats",
       description:
-        "Get the opportunity to be matched with startups for 1:1 chats with recruiters and hiring managers.",
+        "Get the opportunity to be matched with startups for 1:1 chats with founders and recruiters.",
       image: "/recruiters.png?height=120&width=160&text=Recruiter+Chats",
     },
     {
