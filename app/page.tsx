@@ -31,13 +31,23 @@ export default function LandingPage() {
         />
       </TimelineSection>
 
+      <TimelineSection title="Startup Week">
+        <ProgramSection
+          title="Startup Week"
+          description="Do you want to join a rocket-ship startup in the real world? V1 Startup Week is the only place you need to be."
+          imageSrc="/startup-fair-image.png?height=600&width=1200"
+          buttonText="Learn more"
+          buttonLink="/startup-fair"
+        />
+      </TimelineSection>
+
       <TimelineSection title="Build Blue">
         <ProgramSection
           title="Build Blue"
           description="In this 8-week building sprint, we provide you with the resources to go from 1 to n. VC connections? Marketing network? Engineering Talent? We have it all."
           imageSrc="/build-blue-img.png?height=600&width=1200"
           buttonText="Learn more"
-          buttonLink="https://v1michigan.com/events"
+          buttonLink="https://x.com/V1Michigan/status/1902059447024767365"
         />
       </TimelineSection>
 
@@ -46,7 +56,7 @@ export default function LandingPage() {
           title="Ship-Its"
           description="Ship-It Sundays are weekly working sessions designed for makers, creators, and innovators. It's an opportunity to build, showcase, and potentially collaborate on projects in a supportive and creative environment."
           imageSrc="/ship-it-image.png?height=600&width=1200"
-          buttonText="Learn more"
+          buttonText="RSVP to our next ship-it"
           buttonLink="https://v1michigan.com/ship-it"
         />
       </TimelineSection>

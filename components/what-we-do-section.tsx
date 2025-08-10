@@ -9,6 +9,13 @@ export default function WhatWeDoSection() {
         imageSrc="/product-studio.jpg?height=160&width=300"
         href="https://v1michigan.com/projects"
       />
+      
+      <ProgramCard
+        title="Startup Week"
+        description="Where the best startups hire the best talent."
+        imageSrc="/startup-fair.jpg?height=160&width=300"
+        href="/startup-fair"
+      />
 
       <ProgramCard
         title="Build Blue"
@@ -24,12 +31,6 @@ export default function WhatWeDoSection() {
         href="https://v1michigan.com/ship-it"
       />
 
-      <ProgramCard
-        title="Startup Fair"
-        description="Where the best startups hire the best talent."
-        imageSrc="/startup-fair.jpg?height=160&width=300"
-        href="https://startupfair.v1michigan.com/"
-      />
     </div>
   )
 }

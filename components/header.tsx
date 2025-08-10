@@ -36,7 +36,7 @@ export default function Header() {
           Ship-it
         </Link>
         <Link href="startup-fair" className="text-sm text-gray-700 hover:text-black">
-          Startup fair
+          Startup Week
         </Link>
         <Link
           href="https://v1michigan.com/join"
@@ -92,7 +92,7 @@ export default function Header() {
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
-              Startup fair
+              Startup Week
             </Link>
             <Link
               href="https://v1michigan.com/join"
