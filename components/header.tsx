@@ -17,7 +17,7 @@ export default function Header() {
   }
 
   return (
-    <nav className="flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-[#FAF7F2]">
+    <nav className="sticky top-0 z-50 flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-[#FAF7F2]">
       <div className="flex-shrink-0">
         <Link href="/" className="font-medium">
           <Image src="/v1-logo.png" alt="V1 Logo" width={32} height={32} className="h-8 w-auto" />
@@ -64,7 +64,7 @@ export default function Header() {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden">
+        <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden z-40">
           <div className="px-4 py-2 space-y-2">
             <Link
               href="https://v1michigan.com/projects"
