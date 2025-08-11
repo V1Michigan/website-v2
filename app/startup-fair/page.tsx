@@ -31,13 +31,26 @@ export default function ProjectDirectoryPage() {
   ];
 
   const teamMembers = [
-    "/placeholder.svg?height=40&width=40&text=1",
-    "/placeholder.svg?height=40&width=40&text=2",
-    "/placeholder.svg?height=40&width=40&text=3",
-    "/placeholder.svg?height=40&width=40&text=4",
-    "/placeholder.svg?height=40&width=40&text=5",
-    "/placeholder.svg?height=40&width=40&text=6",
-    "/placeholder.svg?height=40&width=40&text=7",
+    {
+      image: "/anant.jpeg",
+      name: "Anant Garg",
+      linkedinUrl: "https://linkedin.com/in/anant-g"
+    },
+    {
+      image: "/maya.jpg",
+      name: "Maya Malik",
+      linkedinUrl: "https://linkedin.com/in/maya-malik-umich/"
+    },
+    {
+      image: "/arhan.jpg",
+      name: "Arhan Kaul",
+      linkedinUrl: "https://linkedin.com/in/arhan-kaul-162884210/"
+    },
+    {
+      image: "/vador.jpg",
+      name: "Mihir Vador",
+      linkedinUrl: "https://linkedin.com/in/mihirvador"
+    }
   ];
 
   return (

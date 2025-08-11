@@ -1,7 +1,13 @@
 import TeamMember from "./team-member"
 
+interface TeamMemberData {
+  image: string
+  name: string
+  linkedinUrl: string
+}
+
 interface TeamSectionProps {
-  teamMembers: string[]
+  teamMembers: TeamMemberData[]
   attribution?: string
 }
 
@@ -10,9 +16,18 @@ export default function TeamSection({
 }: TeamSectionProps) {
   return (
     <div className="px-6 py-8">
-      <div className="flex justify-center space-x-2 mb-4">
+      <h2 className="text-3xl font-bold font-instrument text-[#444] mb-6 text-center">
+        Our Team
+      </h2>
+      <div className="flex justify-center space-x-3 mb-4">
         {teamMembers.map((member, index) => (
-          <TeamMember key={index} image={member} index={index} />
+          <TeamMember 
+            key={index} 
+            image={member.image} 
+            name={member.name}
+            linkedinUrl={member.linkedinUrl}
+            index={index} 
+          />
         ))}
       </div>
 

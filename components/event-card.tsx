@@ -8,10 +8,9 @@ interface EventCardProps {
 
 export default function EventCard({ title, description, image }: EventCardProps) {
   return (
-      <div className="flex flex-col sm:flex-row gap-4 p-4 border border-gray-200 rounded-lg bg-white max-w-full">
-
-      <div className="flex-shrink-0 w-full max-w-[300px]">
-        <div className="relative aspect-[3/2] w-full">
+    <div className="flex flex-col gap-4 p-6 border border-gray-200 rounded-lg bg-white h-full">
+      <div className="flex-shrink-0 w-full">
+        <div className="relative aspect-[4/3] w-full">
           <Image
             src={image || "/placeholder.svg"}
             alt={title}
@@ -20,9 +19,9 @@ export default function EventCard({ title, description, image }: EventCardProps)
           />
         </div>
       </div>
-      <div className="flex-1">
-        <h3 className="text-2xl font-medium font-instrument text-[#444] mb-1">{title}</h3>
-        <p className="text-m font-inter text-[#444] leading-relaxed">{description}</p>
+      <div className="flex-1 flex flex-col">
+        <h3 className="text-xl font-medium font-instrument text-[#444] mb-3">{title}</h3>
+        <p className="text-sm font-inter text-[#444] leading-relaxed flex-1">{description}</p>
       </div>
     </div>
   )

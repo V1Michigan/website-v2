@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
           <p className="text-xs text-gray-600">
-            © 2024 V1 @ Michigan |{" "}
+            © 2025 V1 @ Michigan |{" "}
             <a href="mailto:team@v1michigan.com" className="hover:underline">
               team@v1michigan.com
             </a>
