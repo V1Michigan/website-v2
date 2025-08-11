@@ -54,7 +54,7 @@ export default function HeroSection() {
               <button className="px-4 py-2 sm:px-5 sm:py-2.5 font-inter font-medium text-[#191919] bg-white/80 border border-white/90 rounded-md backdrop-blur-sm shadow-sm transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
                 Apply Now!
               </button>
-              <button className="px-4 py-2 sm:px-5 sm:py-2.5 font-inter font-medium text-white bg-black/40 border border-white/90 rounded-md backdrop-blur-sm shadow-sm transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+              <button className="px-4 py-2 sm:px-5 sm:py-2.5 font-inter font-medium text-white bg-black/40 border border-white/90 rounded-md backdrop-blur-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
                 Learn More
               </button>
             </motion.div>

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Instagram, Twitter, Mail } from "lucide-react"
+import { Instagram, X, Mail } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
           </p>
           <div className="flex space-x-4">
             <Link href="https://x.com/v1michigan" aria-label="Twitter">
-              <Twitter className="h-4 w-4 text-gray-600 hover:text-black" />
+              <X className="h-4 w-4 text-gray-600 hover:text-black" />
             </Link>
             <Link href="https://www.instagram.com/v1michigan/" aria-label="Instagram">
               <Instagram className="h-4 w-4 text-gray-600 hover:text-black" />
