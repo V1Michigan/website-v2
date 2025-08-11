@@ -135,7 +135,7 @@ export default function StartupsGrid() {
         />
       </svg>
       <svg
-        className="absolute top-[42%] right-0 -translate-y-1/2"
+        className="absolute top-[42%] right-0 -translate-y-1/2 "
         width="551"
         height="752"
         viewBox="0 0 551 752"
@@ -152,7 +152,7 @@ export default function StartupsGrid() {
         />
       </svg>
       <svg
-        className="absolute top-[55%] left-0"
+        className="absolute top-[55%] left-0 "
         width="584"
         height="762"
         viewBox="0 0 584 762"
@@ -207,7 +207,7 @@ export default function StartupsGrid() {
       {/* Company Grid */}
       <div className="flex justify-center relative z-10">
         <div className=" min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="max-h-[680px] overflow-hidden">
+          <div className="max-h-[75vh] overflow-hidden">
             <motion.div
               variants={containerVariants}
               initial="hidden"

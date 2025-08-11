@@ -29,7 +29,7 @@ export default function EventsSection({ events }: EventsSectionProps) {
     },
   };
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto p-10">
       <motion.div
         variants={container}
         initial="hidden"

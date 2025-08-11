@@ -73,6 +73,13 @@ export default function Header() {
             >
               Product Studio
             </Link>
+             <Link
+              href="startup-fair"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              Startup Week
+            </Link>
             <Link
               href="https://v1michigan.com/events"
               className="block py-2 text-sm text-gray-700 hover:text-black"
@@ -86,13 +93,6 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Ship-it
-            </Link>
-            <Link
-              href="startup-fair"
-              className="block py-2 text-sm text-gray-700 hover:text-black"
-              onClick={closeMobileMenu}
-            >
-              Startup Week
             </Link>
             <Link
               href="https://v1michigan.com/join"

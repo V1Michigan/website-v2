@@ -61,16 +61,6 @@ export default function LandingPage() {
         />
       </TimelineSection>
 
-      <TimelineSection title="Startup Week">
-        <ProgramSection
-          title="Startup Week"
-          description="Do you want to join a rocket-ship startup in the real world? V1 Startup Week is the only place you need to be."
-          imageSrc="/startup-fair-image.png?height=600&width=1200"
-          buttonText="Learn more"
-          buttonLink="https://startupfair.v1michigan.com/"
-        />
-      </TimelineSection>
-
       <Footer />
     </div>
   );

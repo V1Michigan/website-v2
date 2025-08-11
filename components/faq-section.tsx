@@ -17,12 +17,12 @@ const faqData = [
   {
     question: "Who is this designed for?",
     answer:
-      "Startup Week is designed for early-career professionals, recent graduates, career changers, and anyone interested in the startup ecosystem. Whether you're a developer, designer, product manager, or business professional, you'll find relevant content and networking opportunities.",
-  },
+      "Startup Week is designed for UMich Students and anyone interested in the startup ecosystem. Whether you're a developer, designer, product manager, or business professional, you'll find relevant content and networking opportunities.",
+  }, //UPDATE
   {
     question: "What is V1?",
     answer:
-      "V1 refers to the first version of Startup Week. This inaugural event focuses on connecting talent with innovative startups and providing insights into the startup world through workshops, panels, and networking sessions.",
+      "V1 is the community for ambitious student builders — engineers, artists, designers, founders, scientists, and more. We provide the most driven students with an extraordinary network, exclusive opportunities within startups, and mentorship to grow and achieve great things.",
   },
   {
     question: "How do I prepare?",
@@ -37,7 +37,7 @@ const faqData = [
   {
     question: "Got another question?",
     answer:
-      "We'd love to help! Reach out to us at hello@startupweek.com or follow us on social media for the latest updates. You can also join our community Discord for real-time Q&A with organizers and other participants.",
+      "We'd love to help! Reach out to us at team@v1michigan.com or follow us on social media for the latest updates.",
   },
 ];
 
