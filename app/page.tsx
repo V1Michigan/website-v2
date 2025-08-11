@@ -28,6 +28,7 @@ export default function LandingPage() {
           imageSrc="/prod-studio-landing.png?height=600&width=1200"
           buttonText="See what they have built"
           buttonLink="https://v1michigan.com/projects"
+          priority={true}
         />
       </TimelineSection>
 

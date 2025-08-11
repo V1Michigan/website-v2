@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import CountdownTimer from "@/components/countdown-timer";
 
 export default function HeroSection() {
@@ -68,10 +69,13 @@ export default function HeroSection() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0 overflow-hidden"
         >
-          <img
+          <Image
             src="/excluded.png"
             alt="People networking at startup event"
-            className="w-full h-full object-cover grayscale transform-gpu origin-center scale-150 translate-x-[25%] -translate-y-[1%] md:translate-x-[25%] md:-translate-y-[-6%] "
+            fill
+            className="object-cover grayscale transform-gpu origin-center scale-150 translate-x-[25%] -translate-y-[1%] md:translate-x-[25%] md:-translate-y-[-6%]"
+            sizes="100vw"
+            priority
           />
         </motion.div>
         {/* Decorative SVG Arrows */}

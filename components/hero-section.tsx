@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
@@ -61,34 +62,45 @@ export default function HeroSection() {
               aria-label="X"
               className="text-white hover:text-gray-200"
             >
-              <motion.img
-                whileHover={{ scale: 1.06 }}
-                src="./x.png"
-                alt="X"
-                className="h-6 w-6"
-              />
+              <motion.div whileHover={{ scale: 1.06 }}>
+                <Image
+                  src="/x.png"
+                  alt="X"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                />
+              </motion.div>
             </Link>
             <Link
               href="https://www.instagram.com/v1michigan/"
               aria-label="Instagram"
               className="text-white hover:text-gray-200"
             >
-              <motion.img
-                whileHover={{ scale: 1.06 }}
-                src="./insta.png"
-                className="h-6 w-6"
-              />
+              <motion.div whileHover={{ scale: 1.06 }}>
+                <Image
+                  src="/insta.png"
+                  alt="Instagram"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                />
+              </motion.div>
             </Link>
             <Link
               href="https://v1network.substack.com/"
               aria-label="Contact"
               className="text-white hover:text-gray-200"
             >
-              <motion.img
-                whileHover={{ scale: 1.06 }}
-                src="./more.png"
-                className="h-6 w-6"
-              />
+              <motion.div whileHover={{ scale: 1.06 }}>
+                <Image
+                  src="/more.png"
+                  alt="More"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                />
+              </motion.div>
             </Link>
           </motion.div>
         </div>
