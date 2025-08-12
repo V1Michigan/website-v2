@@ -276,7 +276,7 @@ export default function StartupsGrid() {
 
       {/* Company Grid with animation */}
       <div className="flex justify-center relative z-10">
-        <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
           <div className="max-h-[75vh] overflow-hidden">
             <div className="relative">
               <motion.div
@@ -289,7 +289,7 @@ export default function StartupsGrid() {
                 transition={{ duration: 0.4 }}
                 className="grid grid-cols-4 gap-4 mb-6"
               >
-                {years[pageIndex].companies.map((company, index) => (
+                {years[pageIndex].companies.slice(0,3*4).map((company, index) => (
                   <motion.div key={index} variants={itemVariants}>
                     <StartupCard
                       image={company.image}
@@ -319,7 +319,7 @@ export default function StartupsGrid() {
       </div>
 
       {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-[280px] sm:h-[320px] lg:h-[360px] bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/95 to-transparent pointer-events-none z-30"></div>
+      {/* <div className="absolute bottom-0 left-0 right-0 h-[280px] sm:h-[320px] lg:h-[360px] bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/95 to-transparent pointer-events-none z-30"></div> */}
     </div>
   );
 }

@@ -32,22 +32,22 @@ export default function StartupWeekRootPage() {
 
   const teamMembers = [
     {
-      image: "/anant.jpeg",
+      image: "/headshots/anant.jpeg",
       name: "Anant Garg",
       linkedinUrl: "https://linkedin.com/in/anant-g",
     },
     {
-      image: "/maya.jpg",
+      image: "/headshots/maya.jpg",
       name: "Maya Malik",
       linkedinUrl: "https://linkedin.com/in/maya-malik-umich/",
     },
     {
-      image: "/arhan.jpg",
+      image: "/headshots/arhan.jpg",
       name: "Arhan Kaul",
       linkedinUrl: "https://linkedin.com/in/arhan-kaul-162884210/",
     },
     {
-      image: "/vador.jpg",
+      image: "/headshots/vador.jpg",
       name: "Mihir Vador",
       linkedinUrl: "https://linkedin.com/in/mihirvador",
     },
