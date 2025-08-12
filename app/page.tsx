@@ -1,66 +1,84 @@
-import Header from "@/components/header";
-import HeroSection from "@/components/hero-section";
-import TimelineSection from "@/components/timeline-section";
-import WhatWeDoSection from "@/components/what-we-do-section";
-import ProgramSection from "@/components/program-section";
-import Footer from "@/components/footer";
+"use client";
 
-export default function LandingPage() {
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import HeroSection from "@/components/startup-hero-section";
+import StartupsGrid from "@/components/startups-grid";
+import EventSections from "@/components/events-sections";
+import FAQSection from "@/components/faq-section";
+import TeamSection from "@/components/team-section";
+
+export default function StartupWeekRootPage() {
+  const events = [
+    {
+      title: "Tech Talks",
+      description:
+        "Attend tech talks on engineering at a startup, founding a company, career advice, and more.",
+      image: "/tech-talks.png?height=120&width=160&text=Tech+Talks",
+    },
+    {
+      title: "1:1 Chats",
+      description:
+        "Get the opportunity to be matched with startups for 1:1 chats with founders and recruiters.",
+      image: "/recruiters.png?height=120&width=160&text=Recruiter+Chats",
+    },
+    {
+      title: "Interactive Activities",
+      description:
+        "Participate in hands-on workshops, coding challenges, and collaborative problem-solving sessions.",
+      image: "/acts.png?height=120&width=160&text=Activities",
+    },
+  ];
+
+  const teamMembers = [
+    {
+      image: "/anant.jpeg",
+      name: "Anant Garg",
+      linkedinUrl: "https://linkedin.com/in/anant-g",
+    },
+    {
+      image: "/maya.jpg",
+      name: "Maya Malik",
+      linkedinUrl: "https://linkedin.com/in/maya-malik-umich/",
+    },
+    {
+      image: "/arhan.jpg",
+      name: "Arhan Kaul",
+      linkedinUrl: "https://linkedin.com/in/arhan-kaul-162884210/",
+    },
+    {
+      image: "/vador.jpg",
+      name: "Mihir Vador",
+      linkedinUrl: "https://linkedin.com/in/mihirvador",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#FEF9F5] snap-y snap-mandatory">
+    <div className="min-h-screen bg-[#FAF7F2]">
       <Header />
       <HeroSection />
+      {/* Startups Grid fills viewport (component already uses min-h-screen) */}
+      <StartupsGrid />
 
-      <TimelineSection
-        title={
-          <>
-            What <em>we</em> do.
-          </>
-        }
-      >
-        <WhatWeDoSection />
-      </TimelineSection>
+      <div className="relative max-fill  mx-auto bg-[#FAF7F2]">
+        {/* Subtle fade starting above the section using site background color */}
+        <div className="absolute -top-[80px] left-0 right-0 h-[120px] bg-gradient-to-b from-transparent via-[#FAF7F2]/60 to-[#FAF7F2] pointer-events-none z-40"></div>
+        {/* Event Cards Section */}
+        <EventSections events={events} />
+      </div>
+      {/* FAQ Section - full width */}
+      <section className="w-full mt-10 bg-[#FAF7F2]">
+        <div className="w-full">
+          <FAQSection />
+        </div>
+      </section>
 
-      <TimelineSection title="Product Studio">
-        <ProgramSection
-          title="Product Studio"
-          description="Want to build something ambitious but don't know where to start? Product Studio, our flagship pre-idea incubator program is designed to guide you in a builder journey from concept to creation."
-          imageSrc="/prod-studio-landing.png?height=600&width=1200"
-          buttonText="See what they have built"
-          buttonLink="https://v1michigan.com/projects"
-          priority={true}
-        />
-      </TimelineSection>
-
-      <TimelineSection title="Startup Week">
-        <ProgramSection
-          title="Startup Week"
-          description="Do you want to join a rocket-ship startup in the real world? V1 Startup Week is the only place you need to be."
-          imageSrc="/startup-fair-image.png?height=600&width=1200"
-          buttonText="Learn more"
-          buttonLink="/startup-week"
-        />
-      </TimelineSection>
-
-      <TimelineSection title="Build Blue">
-        <ProgramSection
-          title="Build Blue"
-          description="In this 8-week building sprint, we provide you with the resources to go from 1 to n. VC connections? Marketing network? Engineering Talent? We have it all."
-          imageSrc="/build-blue-img.png?height=600&width=1200"
-          buttonText="Learn more"
-          buttonLink="https://x.com/V1Michigan/status/1902059447024767365"
-        />
-      </TimelineSection>
-
-      <TimelineSection title="Ship-Its">
-        <ProgramSection
-          title="Ship-Its"
-          description="Ship-It Sundays are weekly working sessions designed for makers, creators, and innovators. It's an opportunity to build, showcase, and potentially collaborate on projects in a supportive and creative environment."
-          imageSrc="/ship-it-image.png?height=600&width=1200"
-          buttonText="RSVP to our next ship-it"
-          buttonLink="https://v1michigan.com/ship-it"
-        />
-      </TimelineSection>
+      {/* Team Section - full width */}
+      <section className="w-full bg-[#FAF7F2]">
+        <div className="w-full px-6">
+          <TeamSection teamMembers={teamMembers} />
+        </div>
+      </section>
 
       <Footer />
     </div>

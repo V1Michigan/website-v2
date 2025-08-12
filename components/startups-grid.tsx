@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import StartupCard from "../../components/startup-card";
+import StartupCard from "./startup-card";
 
 export default function StartupsGrid() {
   const companies = [
