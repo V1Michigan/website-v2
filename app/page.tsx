@@ -7,6 +7,7 @@ import StartupsGrid from "@/components/startups-grid";
 import EventSections from "@/components/events-sections";
 import FAQSection from "@/components/faq-section";
 import TeamSection from "@/components/team-section";
+import { PostHogPageView } from "@/components/posthog-provider";
 
 export default function StartupWeekRootPage() {
   const events = [
@@ -55,6 +56,7 @@ export default function StartupWeekRootPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
+      <PostHogPageView />
       <Header />
       <HeroSection />
       {/* Startups Grid fills viewport (component already uses min-h-screen) */}

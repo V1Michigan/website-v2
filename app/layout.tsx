@@ -2,6 +2,7 @@ import type React from "react"
 import "./globals.css"
 import { Inter, Playfair_Display, Instrument_Serif } from "next/font/google"
 import { cn } from "@/lib/utils"
+import { CSPostHogProvider } from "@/components/posthog-provider"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,7 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable, playfair.variable, instrumentSerif.variable)}>
-        {children}
+        <CSPostHogProvider>
+          {children}
+        </CSPostHogProvider>
       </body>
     </html>
   )
