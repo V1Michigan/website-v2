@@ -1,32 +1,30 @@
-import TeamMember from "./team-member"
+import TeamMember from "./team-member";
 
 interface TeamMemberData {
-  image: string
-  name: string
-  linkedinUrl: string
+  image: string;
+  name: string;
+  linkedinUrl: string;
 }
 
 interface TeamSectionProps {
-  teamMembers: TeamMemberData[]
-  attribution?: string
+  teamMembers: TeamMemberData[];
+  attribution?: string;
 }
 
-export default function TeamSection({
-  teamMembers
-}: TeamSectionProps) {
+export default function TeamSection({ teamMembers }: TeamSectionProps) {
   return (
     <div className="px-6 py-8">
       <h2 className="text-3xl font-bold font-instrument text-[#444] mb-6 text-center">
         Our Team
       </h2>
-      <div className="flex justify-center space-x-3 mb-4">
+      <div className="flex justify-center -space-x-3 mb-4">
         {teamMembers.map((member, index) => (
-          <TeamMember 
-            key={index} 
-            image={member.image} 
+          <TeamMember
+            key={index}
+            image={member.image}
             name={member.name}
             linkedinUrl={member.linkedinUrl}
-            index={index} 
+            index={index}
           />
         ))}
       </div>
@@ -39,5 +37,5 @@ export default function TeamSection({
         </div>
       </div> */}
     </div>
-  )
+  );
 }

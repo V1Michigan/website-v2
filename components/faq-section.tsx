@@ -36,8 +36,7 @@ const faqData = [
   },
   {
     question: "Got another question?",
-    answer:
-      "We'd love to help! Reach out to us at v1startupweek@umich.edu.",
+    answer: "We'd love to help! Reach out to us at v1startupweek@umich.edu.",
   },
 ];
 
@@ -49,7 +48,7 @@ export default function FAQSection() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl mx-auto px-4 sm:px-6">
       <h2 className="text-3xl font-bold font-instrument text-[#444] mb-6 text-center">
         Questions? We Got You.
       </h2>
