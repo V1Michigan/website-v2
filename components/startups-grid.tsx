@@ -38,7 +38,7 @@ export default function StartupsGrid() {
       image: "/pylon.png?height=32&width=32&text=P",
     },
     {
-      name: "Codium",
+      name: "Windsurf",
       domain: "AI Agents",
       image: "/codeium.png?height=32&width=32&text=C",
     },
@@ -289,15 +289,17 @@ export default function StartupsGrid() {
                 transition={{ duration: 0.4 }}
                 className="grid grid-cols-4 gap-4 mb-6"
               >
-                {years[pageIndex].companies.slice(0,3*4).map((company, index) => (
-                  <motion.div key={index} variants={itemVariants}>
-                    <StartupCard
-                      image={company.image}
-                      name={company.name}
-                      domain={company.domain}
-                    />
-                  </motion.div>
-                ))}
+                {years[pageIndex].companies
+                  .slice(0, 3 * 4)
+                  .map((company, index) => (
+                    <motion.div key={index} variants={itemVariants}>
+                      <StartupCard
+                        image={company.image}
+                        name={company.name}
+                        domain={company.domain}
+                      />
+                    </motion.div>
+                  ))}
               </motion.div>
 
               {/* Coming Soon Overlay for Fall 2025 */}
