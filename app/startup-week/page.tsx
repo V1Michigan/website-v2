@@ -60,7 +60,7 @@ export default function ProjectDirectoryPage() {
 
       <div className="relative max-fill  mx-auto bg-[#FAF7F2]">
         {/* Subtle fade starting above the section using site background color */}
-        <div className="absolute -top-[80px] left-0 right-0 h-[120px] bg-gradient-to-b from-transparent via-[#FAF7F2]/60 to-[#FAF7F2] pointer-events-none z-40"></div>
+        <div className="absolute -top-[80px] left-0 right-0 h-[120px] pointer-events-none z-40"></div>
         {/* Event Cards Section */}
         <EventSections events={events} />
       </div>
