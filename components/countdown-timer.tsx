@@ -18,20 +18,10 @@ interface CountdownTimerProps {
   shadow?: "none" | "soft";
 }
 
-// Function to get the next October 6th
-function getNextOctober6th(): Date {
-  const now = new Date();
-  const currentYear = now.getFullYear();
-
-  // Try this year's October 6th first
-  let targetDate = new Date(currentYear, 9, 6, 9, 0, 0); // Month is 0-indexed, so 9 = October
-
-  // If this year's October 6th has passed, use next year's
-  if (targetDate.getTime() <= now.getTime()) {
-    targetDate = new Date(currentYear + 1, 9, 6, 9, 0, 0);
-  }
-
-  return targetDate;
+// Function to get September 29th, 2025
+function getStartupWeekDate(): Date {
+  // September 29th, 2025 at 9:00 AM
+  return new Date(2025, 8, 29, 9, 0, 0); // Month is 0-indexed, so 8 = September
 }
 
 export default function CountdownTimer({
@@ -53,7 +43,7 @@ export default function CountdownTimer({
 
   useEffect(() => {
     setIsClient(true);
-    const target = targetDate || getNextOctober6th();
+    const target = targetDate || getStartupWeekDate();
     setActualTargetDate(target);
   }, [targetDate]);
 

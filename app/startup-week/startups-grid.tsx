@@ -10,7 +10,7 @@ export default function StartupsGrid() {
     {
       name: "Ramp",
       domain: "Fintech",
-      image: "/ramp.svg?height=32&width=32&text=R",
+      image: "/ramp.png?height=32&width=32&text=R",
     },
     {
       name: "Watershed",
@@ -25,7 +25,7 @@ export default function StartupsGrid() {
     {
       name: "Applied Intuition",
       domain: "Motion AI",
-      image: "/appliedintuition.svg?height=32&width=32&text=AI",
+      image: "/app-intuition.png?height=32&width=32&text=AI",
     },
     {
       name: "Authentic",
@@ -46,6 +46,36 @@ export default function StartupsGrid() {
       name: "Lumos",
       domain: "Autonomy",
       image: "/lumos.png?height=32&width=32&text=L",
+    },
+    {
+      name: "Pallet",
+      domain: "Logistics",
+      image: "/pallet.png?height=32&width=32&text=P",
+    },
+    {
+      name: "Thatch",
+      domain: "Healthcare",
+      image: "/thatch.png?height=32&width=32&text=T",
+    },
+    {
+      name: "Comulate",
+      domain: "Insurance",
+      image: "/comulate.png?height=32&width=32&text=C",
+    },
+    {
+      name: "Wave RF",
+      domain: "Communication",
+      image: "/waverf.png?height=32&width=32&text=W",
+    },
+    {
+      name: "MeetYourClass",
+      domain: "Social",
+      image: "/meetyourclass.png?height=32&width=32&text=M",
+    },
+    {
+      name: "random",
+      domain: "random",
+      image: "/random.png?height=32&width=32&text=M",
     },
   ];
 
@@ -71,6 +101,13 @@ export default function StartupsGrid() {
       image: "/placeholder.svg?height=32&width=32&text=?",
     },
   ];
+
+  const fall2025PlaceholderCompanies = Array.from({ length: 20 }, () => ({
+    name: "Company",
+    domain: "Description",
+    image: "",
+    isComingSoon: true,
+  }));
 
   const extendedCompanies = [
     ...companies,
@@ -102,7 +139,7 @@ export default function StartupsGrid() {
   };
 
   // 0 = Fall 2024, 1 = Fall 2025
-  const [pageIndex, setPageIndex] = useState(1);
+  const [pageIndex, setPageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
   function paginate(newIndex: number) {
@@ -113,11 +150,11 @@ export default function StartupsGrid() {
 
   const years = [
     { year: "FALL 2024", companies: extendedCompanies },
-    { year: "FALL 2025", companies: extendedCompanies },
+    { year: "FALL 2025", companies: fall2025PlaceholderCompanies },
   ];
 
   return (
-    <div className="w-full bg-[#191919] min-h-screen text-white relative overflow-hidden">
+    <div className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
       <svg
         className="absolute -top-[15%] left-0"
         width="180"
@@ -191,7 +228,9 @@ export default function StartupsGrid() {
       </svg> */}
       <div className="text-center pt-8 pb-6 relative z-10 flex items-center justify-center space-x-8">
         <button
-          className={`p-2 ${pageIndex === 0 ? "opacity-30 cursor-not-allowed" : ""}`}
+          className={`p-2 ${
+            pageIndex === 0 ? "opacity-30 cursor-not-allowed" : ""
+          }`}
           onClick={() => paginate(pageIndex - 1)}
           aria-label="Previous year"
           disabled={pageIndex === 0}
@@ -200,21 +239,33 @@ export default function StartupsGrid() {
         </button>
 
         <div className="flex flex-col items-center">
-          <p className="text-sm text-[#FEF9F5] font-inter mb-2">{years[pageIndex].year}</p>
+          <p className="text-sm text-[#FEF9F5] font-inter mb-2">
+            {years[pageIndex].year}
+          </p>
           <div className="flex items-center justify-center space-x-12 mb-4">
             <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">12</div>
-              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">Top startups</div>
+              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
+                12
+              </div>
+              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
+                Top startups
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">250+</div>
-              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">Top students</div>
+              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
+                250+
+              </div>
+              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
+                Top students
+              </div>
             </div>
           </div>
         </div>
 
         <button
-          className={`p-2 ${pageIndex === 1 ? "opacity-30 cursor-not-allowed" : ""}`}
+          className={`p-2 ${
+            pageIndex === 1 ? "opacity-30 cursor-not-allowed" : ""
+          }`}
           onClick={() => paginate(pageIndex + 1)}
           aria-label="Next year"
           disabled={pageIndex === 1}
@@ -227,26 +278,42 @@ export default function StartupsGrid() {
       <div className="flex justify-center relative z-10">
         <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="max-h-[75vh] overflow-hidden">
-            <motion.div
-              key={pageIndex}
-              custom={direction}
-              variants={containerVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.4 }}
-              className="grid grid-cols-4 gap-4 mb-6"
-            >
-              {years[pageIndex].companies.map((company, index) => (
-                <motion.div key={index} variants={itemVariants}>
-                  <StartupCard
-                    image={company.image}
-                    name={company.name}
-                    domain={company.domain}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
+            <div className="relative">
+              <motion.div
+                key={pageIndex}
+                custom={direction}
+                variants={containerVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-4 gap-4 mb-6"
+              >
+                {years[pageIndex].companies.map((company, index) => (
+                  <motion.div key={index} variants={itemVariants}>
+                    <StartupCard
+                      image={company.image}
+                      name={company.name}
+                      domain={company.domain}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* Coming Soon Overlay for Fall 2025 */}
+              {pageIndex === 1 && (
+                <div className="absolute inset-x-0 top-0 flex justify-center pt-8 pointer-events-none z-10">
+                  <div className="bg-black/70 backdrop-blur-md rounded-2xl px-6 py-4 text-center border border-white/10">
+                    <div className="text-xl sm:text-2xl font-instrument text-[#FEF9F5] mb-1">
+                      Coming Soon
+                    </div>
+                    <div className="text-xs sm:text-sm font-inter text-[#CEC9C5]">
+                      Amazing startups will be announced soon
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

@@ -34,23 +34,23 @@ export default function ProjectDirectoryPage() {
     {
       image: "/anant.jpeg",
       name: "Anant Garg",
-      linkedinUrl: "https://linkedin.com/in/anant-g"
+      linkedinUrl: "https://linkedin.com/in/anant-g",
     },
     {
       image: "/maya.jpg",
       name: "Maya Malik",
-      linkedinUrl: "https://linkedin.com/in/maya-malik-umich/"
+      linkedinUrl: "https://linkedin.com/in/maya-malik-umich/",
     },
     {
       image: "/arhan.jpg",
       name: "Arhan Kaul",
-      linkedinUrl: "https://linkedin.com/in/arhan-kaul-162884210/"
+      linkedinUrl: "https://linkedin.com/in/arhan-kaul-162884210/",
     },
     {
       image: "/vador.jpg",
       name: "Mihir Vador",
-      linkedinUrl: "https://linkedin.com/in/mihirvador"
-    }
+      linkedinUrl: "https://linkedin.com/in/mihirvador",
+    },
   ];
 
   return (

@@ -1,22 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface TeamMemberProps {
-  image: string
-  name: string
-  linkedinUrl: string
-  index: number
+  image: string;
+  name: string;
+  linkedinUrl: string;
+  index: number;
 }
 
-export default function TeamMember({ image, name, linkedinUrl, index }: TeamMemberProps) {
-  const [isHovered, setIsHovered] = useState(false)
+export default function TeamMember({
+  image,
+  name,
+  linkedinUrl,
+  index,
+}: TeamMemberProps) {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
-      className="relative group"
+    <div
+      className="relative group inline-block hover:z-10"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -29,7 +34,7 @@ export default function TeamMember({ image, name, linkedinUrl, index }: TeamMemb
             className="rounded-full object-cover border-2 border-white shadow-sm cursor-pointer"
           />
         </div>
-        
+
         {/* Name tooltip */}
         {isHovered && (
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-md whitespace-nowrap z-50 opacity-90">
@@ -39,5 +44,5 @@ export default function TeamMember({ image, name, linkedinUrl, index }: TeamMemb
         )}
       </Link>
     </div>
-  )
+  );
 }
