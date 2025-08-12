@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import StartupCard from "../../components/startup-card";
@@ -9,7 +10,7 @@ export default function StartupsGrid() {
     {
       name: "Ramp",
       domain: "Fintech",
-      image: "/ramp.png?height=32&width=32&text=R",
+      image: "/ramp.svg?height=32&width=32&text=R",
     },
     {
       name: "Watershed",
@@ -19,17 +20,17 @@ export default function StartupsGrid() {
     {
       name: "Courier Health",
       domain: "Patient CRM",
-      image: "/courier.png?height=32&width=32&text=CH",
+      image: "/courierhealth.png?height=32&width=32&text=CH",
     },
     {
       name: "Applied Intuition",
       domain: "Motion AI",
-      image: "/app-intuition.png?height=32&width=32&text=AI",
+      image: "/appliedintuition.svg?height=32&width=32&text=AI",
     },
     {
       name: "Authentic",
       domain: "Insurance",
-      image: "/authentic.png?height=32&width=32&text=A",
+      image: "/authenticinsurance.png?height=32&width=32&text=A",
     },
     {
       name: "Pylon",
@@ -80,13 +81,15 @@ export default function StartupsGrid() {
   ];
 
   const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.04,
-        delayChildren: 0.1,
-      },
-    },
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: { x: 0, opacity: 1 },
+    exit: (direction: number) => ({
+      x: direction > 0 ? -300 : 300,
+      opacity: 0,
+    }),
   };
 
   const itemVariants = {
@@ -98,9 +101,23 @@ export default function StartupsGrid() {
     },
   };
 
+  // 0 = Fall 2024, 1 = Fall 2025
+  const [pageIndex, setPageIndex] = useState(1);
+  const [direction, setDirection] = useState(0);
+
+  function paginate(newIndex: number) {
+    if (newIndex < 0 || newIndex > 1) return;
+    setDirection(newIndex > pageIndex ? 1 : -1);
+    setPageIndex(newIndex);
+  }
+
+  const years = [
+    { year: "FALL 2024", companies: extendedCompanies },
+    { year: "FALL 2025", companies: extendedCompanies },
+  ];
+
   return (
     <div className="w-full bg-[#191919] min-h-screen text-white relative overflow-hidden">
-      {/* Decorative curved lines */}
       <svg
         className="absolute -top-[15%] left-0"
         width="180"
@@ -172,50 +189,55 @@ export default function StartupsGrid() {
       >
         <circle cx="178.5" cy="178.5" r="176.5" stroke="#E5AC61" strokeWidth="4" strokeDasharray="16 16" />
       </svg> */}
+      <div className="text-center pt-8 pb-6 relative z-10 flex items-center justify-center space-x-8">
+        <button
+          className={`p-2 ${pageIndex === 0 ? "opacity-30 cursor-not-allowed" : ""}`}
+          onClick={() => paginate(pageIndex - 1)}
+          aria-label="Previous year"
+          disabled={pageIndex === 0}
+        >
+          <ChevronLeft className="w-5 h-5 text-gray-400" />
+        </button>
 
-      {/* Header */}
-      <div className="text-center pt-8 pb-6 relative z-10">
-        <p className="text-sm text-[#FEF9F5] font-inter mb-6">FALL 2025</p>
-        {/* Stats Section */}
-        <div className="flex items-center justify-center space-x-8 mb-8">
-          <button className="p-2">
-            <ChevronLeft className="w-5 h-5 text-gray-400" />
-          </button>
-          <div className="flex items-center justify-center space-x-12">
+        <div className="flex flex-col items-center">
+          <p className="text-sm text-[#FEF9F5] font-inter mb-2">{years[pageIndex].year}</p>
+          <div className="flex items-center justify-center space-x-12 mb-4">
             <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                12
-              </div>
-              <div className="text-xs text-center font-inter font-normal text-[#CEC9C5] leading-normal">
-                Top startups
-              </div>
+              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">12</div>
+              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">Top startups</div>
             </div>
             <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                250+
-              </div>
-              <div className="text-xs text-center font-inter font-normal text-[#CEC9C5] leading-normal">
-                Top students
-              </div>
+              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">250+</div>
+              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">Top students</div>
             </div>
           </div>
-          <button className="p-2">
-            <ChevronRight className="w-5 h-5 text-gray-400" />
-          </button>
         </div>
+
+        <button
+          className={`p-2 ${pageIndex === 1 ? "opacity-30 cursor-not-allowed" : ""}`}
+          onClick={() => paginate(pageIndex + 1)}
+          aria-label="Next year"
+          disabled={pageIndex === 1}
+        >
+          <ChevronRight className="w-5 h-5 text-gray-400" />
+        </button>
       </div>
-      {/* Company Grid */}
+
+      {/* Company Grid with animation */}
       <div className="flex justify-center relative z-10">
-        <div className=" min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="max-h-[75vh] overflow-hidden">
             <motion.div
+              key={pageIndex}
+              custom={direction}
               variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.4 }}
               className="grid grid-cols-4 gap-4 mb-6"
             >
-              {extendedCompanies.map((company, index) => (
+              {years[pageIndex].companies.map((company, index) => (
                 <motion.div key={index} variants={itemVariants}>
                   <StartupCard
                     image={company.image}
@@ -229,7 +251,7 @@ export default function StartupsGrid() {
         </div>
       </div>
 
-      {/* Bottom gradient overlay (tighter and sharper) */}
+      {/* Bottom gradient overlay */}
       <div className="absolute bottom-0 left-0 right-0 h-[280px] sm:h-[320px] lg:h-[360px] bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/95 to-transparent pointer-events-none z-30"></div>
     </div>
   );
