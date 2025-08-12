@@ -53,7 +53,7 @@ export default function HeroSection() {
               className="flex justify-center flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
             >
               <a
-                href="https://tally.so/r/w4RdRY"
+                href="https://tally.so/r/mJ4r1R"
                 target="_blank"
                 rel="noopener noreferrer"
               >
