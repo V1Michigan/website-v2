@@ -38,7 +38,7 @@ export default function LandingPage() {
           description="Do you want to join a rocket-ship startup in the real world? V1 Startup Week is the only place you need to be."
           imageSrc="/startup-fair-image.png?height=600&width=1200"
           buttonText="Learn more"
-          buttonLink="/startup-fair"
+          buttonLink="/startup-week"
         />
       </TimelineSection>
 

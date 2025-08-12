@@ -52,9 +52,16 @@ export default function HeroSection() {
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
               className="flex justify-center flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
             >
-              <button className="px-4 py-2 sm:px-5 sm:py-2.5 font-inter font-medium text-[#191919] bg-white/80 border border-white/90 rounded-md backdrop-blur-sm shadow-sm transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
-                Apply Now!
-              </button>
+              <a
+                href="https://tally.so/r/w4RdRY"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="px-4 py-2 sm:px-5 sm:py-2.5 font-inter font-medium text-[#191919] bg-white/80 border border-white/90 rounded-md backdrop-blur-sm shadow-sm transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+                  Apply Now!
+                </button>
+              </a>
+
               <button className="px-4 py-2 sm:px-5 sm:py-2.5 font-inter font-medium text-white bg-black/40 border border-white/90 rounded-md backdrop-blur-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
                 Learn More
               </button>

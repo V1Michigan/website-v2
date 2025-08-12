@@ -2,7 +2,7 @@
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import HeroSection from "@/app/startup-fair/hero-section";
+import HeroSection from "@/app/startup-week/hero-section";
 import StartupsGrid from "./startups-grid";
 import EventSections from "@/components/events-sections";
 import FAQSection from "@/components/faq-section";
