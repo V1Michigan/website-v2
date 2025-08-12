@@ -55,9 +55,10 @@ export default function HeroSection() {
               className="flex justify-center mb-3"
             >
               <a
-                href="https://tally.so/r/w4RdRY"
+                href="https://tally.so/r/mJ4r1R"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-block px-4 py-2 sm:px-5 sm:py-2.5 font-inter font-medium text-[#191919] bg-white/80 border border-white/90 rounded-md backdrop-blur-sm shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/60"
               >
                 <button className="px-8 py-3 sm:px-10 sm:py-3.5 min-w-[200px] sm:min-w-[240px] font-inter font-medium text-[#191919] bg-yellow-400 border border-yellow-400 rounded-md shadow-lg shadow-yellow-400/25 transition-all hover:bg-yellow-300 hover:shadow-yellow-400/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300">
                   Apply Now!
