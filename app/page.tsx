@@ -32,27 +32,25 @@ export default function StartupWeekRootPage() {
   ];
 
   const teamMembers = [
-    {
-      image: "/headshots/anant.jpeg",
-      name: "Anant Garg",
-      linkedinUrl: "https://linkedin.com/in/anant-g",
-    },
-    {
-      image: "/headshots/maya.jpg",
-      name: "Maya Malik",
-      linkedinUrl: "https://linkedin.com/in/maya-malik-umich/",
-    },
-    {
-      image: "/headshots/arhan.jpg",
-      name: "Arhan Kaul",
-      linkedinUrl: "https://linkedin.com/in/arhan-kaul-162884210/",
-    },
-    {
-      image: "/headshots/vador.jpg",
-      name: "Mihir Vador",
-      linkedinUrl: "https://linkedin.com/in/mihirvador",
-    },
+    { image: "/headshots/anant.jpeg", name: "Anant Garg", linkedinUrl: "https://www.linkedin.com/in/anant-g/" },
+    { image: "/headshots/maya.jpg", name: "Maya Malik", linkedinUrl: "https://www.linkedin.com/in/maya-malik-umich/" },
+    { image: "/headshots/arhan.jpg", name: "Arhan Kaul", linkedinUrl: "https://www.linkedin.com/in/arhan-kaul-162884210/" },
+    { image: "/headshots/vador.jpg", name: "Mihir Vador", linkedinUrl: "https://www.linkedin.com/in/mihirvador/" },
+    { image: "/headshots/lance.jpg", name: "Lance Fuchia", linkedinUrl: "https://www.linkedin.com/in/lancefuchia/" },
+    { image: "/headshots/leo.jpg", name: "Leo Liu", linkedinUrl: "https://www.linkedin.com/in/leoliu12/" },
+    { image: "/headshots/toan.jpeg", name: "Toan Bui", linkedinUrl: "https://ww.linkedin.com/in/toanmbui" },
+    { image: "/headshots/diego.png", name: "Diego Paredes", linkedinUrl: "https://www.linkedin.com/diegokaipareades/" },
+    { image: "/headshots/phoenix.png", name: "Phoenix Sheppard", linkedinUrl: "https://www.linkedin.com/in/phoenixsheppard/" },
+    { image: "/headshots/sri.jpeg", name: "Sri MK", linkedinUrl: "https://www.linkedin.com/in/mksriram/" },
+    { image: "/headshots/alison.jpg", name: "Alison Roeda", linkedinUrl: "https://www.linkedin.com/in/alison-roeda/" },
+    { image: "/headshots/amy.jpg", name: "Amy Liu", linkedinUrl: "https://www.linkedin.com/in/amyliiu/" },
+    { image: "/headshots/alexis.jpeg", name: "Alexis Gu", linkedinUrl: "https://www.linkedin.com/in/alexis-gu-7bb77129a/" },
+    { image: "/headshots/joshua.jpg", name: "Joshua Lee", linkedinUrl: "https://www.linkedin.com/in/mildjosh" },
+    { image: "/headshots/casey.jpg", name: "Casey Feng", linkedinUrl: "https://www.linkedin.com/in/caseyfeng" },
+    { image: "/headshots/mihir.jpg", name: "Mihir Arya", linkedinUrl: "https://www.linkedin.com/in/mihir-s-arya/" },
+    { image: "/headshots/daniel.jpeg", name: "Daniel Liu", linkedinUrl: "https://www.linkedin.com/in/daniel-lliu/" }
   ];
+
 
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
