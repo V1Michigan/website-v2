@@ -9,7 +9,7 @@ export default function HeroSection() {
     <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
       <div className="relative aspect-[16/9] w-full">
         <motion.video
-          src="/landing-video.mp4"
+          src="/landing-video-compressed.mp4"
           autoPlay
           loop
           muted
