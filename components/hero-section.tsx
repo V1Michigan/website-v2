@@ -9,7 +9,7 @@ export default function HeroSection() {
     <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
       <div className="relative aspect-[16/9] w-full">
         <motion.video
-          src="/landing-video-compressed.mp4"
+          src="/landing-video-v1.mp4"
           autoPlay
           loop
           muted
@@ -51,7 +51,7 @@ export default function HeroSection() {
             dedicated to supporting hackers and creators every step of the way.
           </motion.p>
           <motion.div
-            className="mt-6 flex space-x-6 mb-3 md:mb-24 lg:mb-48"
+            className="mt-6 flex space-x-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.6 }}

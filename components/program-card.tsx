@@ -18,7 +18,7 @@ export default function ProgramCard({ title, description, imageSrc, href }: Prog
 
         <div
           className="absolute bottom-0 left-0 w-full rounded-b-lg p-2 md:p-3 text-white"
-          style={{ background: "#444444cc" }}
+          style={{ background: "#444444cc", minHeight: "30%" }}
         >
             <h3 className="text-xs md:text-sm font-medium flex items-center">
             {title}

@@ -29,7 +29,7 @@ export default function Header() {
         <Link href="https://v1michigan.com/projects" className="text-sm text-gray-700 hover:text-black">
           Product Studio
         </Link>
-        <Link href="/" className="text-sm text-gray-700 hover:text-black">
+        <Link href="http://startupweek.v1michigan.com/" className="text-sm text-gray-700 hover:text-black">
           Startup Week
         </Link>
         <Link href="https://v1michigan.com/events" className="text-sm text-gray-700 hover:text-black">

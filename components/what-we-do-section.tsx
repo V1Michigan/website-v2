@@ -13,21 +13,21 @@ export default function WhatWeDoSection() {
       <ProgramCard
         title="Startup Week"
         description="Where the best startups hire the best talent."
-        imageSrc="/startup-fair.jpg?height=160&width=300"
-        href="/startup-week"
+        imageSrc="/startup-week.png?height=160&width=300"
+        href="http://startupweek.v1michigan.com/"
       />
 
       <ProgramCard
         title="Build Blue"
         description="Season of community events ft. meetups, demo days, ..."
-        imageSrc="/build-blue.jpg?height=160&width=300"
+        imageSrc="/build-blue-img.JPG?height=160&width=300"
         href="https://v1michigan.com/events"
       />
 
       <ProgramCard
         title="Ship-It"
         description="A workspace for engineers, tinkerers, and artists."
-        imageSrc="/ship-its.png?height=160&width=300"
+        imageSrc="/ship-its-img.JPG?height=160&width=300"
         href="https://v1michigan.com/ship-it"
       />
 
