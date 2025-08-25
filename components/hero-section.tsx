@@ -51,7 +51,7 @@ export default function HeroSection() {
             dedicated to supporting hackers and creators every step of the way.
           </motion.p>
           <motion.div
-            className="mt-6 flex space-x-6 mb-3 md:mb-24 lg:mb-48"
+            className="mt-6 flex space-x-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.6 }}
