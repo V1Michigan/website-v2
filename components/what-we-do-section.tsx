@@ -7,7 +7,7 @@ export default function WhatWeDoSection() {
         title="Product Studio"
         description="Build something you're passionate about in 8 weeks."
         imageSrc="/product-studio.jpg?height=160&width=300"
-        href="https://v1-platform.netlify.app/projects"
+        href="https://v1michigan.com/apply?utm_source=website"
       />
 
       <ProgramCard

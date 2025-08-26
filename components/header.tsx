@@ -36,7 +36,7 @@ export default function Header() {
           href="https://v1-platform.netlify.app/projects"
           className="text-sm text-gray-700 hover:text-black"
         >
-          Product Studio
+          Projects
         </Link>
         <Link
           href="http://startupweek.v1michigan.com/"
@@ -89,7 +89,7 @@ export default function Header() {
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
-              Product Studio
+              Projects
             </Link>
             <Link
               href="/"
