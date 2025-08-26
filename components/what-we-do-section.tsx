@@ -1,4 +1,4 @@
-import ProgramCard from "./program-card"
+import ProgramCard from "./program-card";
 
 export default function WhatWeDoSection() {
   return (
@@ -7,7 +7,7 @@ export default function WhatWeDoSection() {
         title="Product Studio"
         description="Build something you're passionate about in 8 weeks."
         imageSrc="/product-studio.jpg?height=160&width=300"
-        href="https://v1michigan.com/projects"
+        href="https://v1michigan.com/apply?utm_source=website"
       />
 
       <ProgramCard
@@ -30,7 +30,6 @@ export default function WhatWeDoSection() {
         imageSrc="/ship-its-img.JPG?height=160&width=300"
         href="https://v1michigan.com/ship-it"
       />
-
     </div>
-  )
+  );
 }
