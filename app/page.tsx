@@ -27,7 +27,7 @@ export default function LandingPage() {
           description="Want to build something ambitious but don't know where to start? Product Studio, our flagship pre-idea incubator program is designed to guide you in a builder journey from concept to creation."
           imageSrc="/product-studio-img.jpg?height=600&width=1200"
           buttonText="See what they have built"
-          buttonLink="https://v1michigan.com/projects"
+          buttonLink="https://v1-platform.netlify.app/projects"
           priority={true}
         />
       </TimelineSection>
