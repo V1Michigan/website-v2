@@ -1,41 +1,59 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight, Menu, X } from "lucide-react"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false)
-  }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-[#FAF7F2]">
       <div className="flex-shrink-0">
         <Link href="/" className="font-medium">
-          <Image src="/v1-logo.png" alt="V1 Logo" width={32} height={32} className="h-8 w-auto" />
+          <Image
+            src="/v1-logo.png"
+            alt="V1 Logo"
+            width={32}
+            height={32}
+            className="h-8 w-auto"
+          />
         </Link>
       </div>
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center justify-end space-x-6">
-        <Link href="https://v1michigan.com/projects" className="text-sm text-gray-700 hover:text-black">
+        <Link
+          href="https://v1-platform.netlify.app/projects"
+          className="text-sm text-gray-700 hover:text-black"
+        >
           Product Studio
         </Link>
-        <Link href="http://startupweek.v1michigan.com/" className="text-sm text-gray-700 hover:text-black">
+        <Link
+          href="http://startupweek.v1michigan.com/"
+          className="text-sm text-gray-700 hover:text-black"
+        >
           Startup Week
         </Link>
-        <Link href="https://v1michigan.com/events" className="text-sm text-gray-700 hover:text-black">
+        <Link
+          href="https://v1michigan.com/events"
+          className="text-sm text-gray-700 hover:text-black"
+        >
           Build Blue
         </Link>
-        <Link href="https://v1michigan.com/ship-it" className="text-sm text-gray-700 hover:text-black">
+        <Link
+          href="https://v1michigan.com/ship-it"
+          className="text-sm text-gray-700 hover:text-black"
+        >
           Ship-it
         </Link>
         <Link
@@ -67,13 +85,13 @@ export default function Header() {
         <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden z-40">
           <div className="px-4 py-2 space-y-2">
             <Link
-              href="https://v1michigan.com/projects"
+              href="https://v1-platform.netlify.app/projects"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               Product Studio
             </Link>
-             <Link
+            <Link
               href="/"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
@@ -106,5 +124,5 @@ export default function Header() {
         </div>
       )}
     </nav>
-  )
+  );
 }
