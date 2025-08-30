@@ -10,12 +10,12 @@ export default function HeroSection() {
       {/* Promotional Banner */}
       <div className="bg-yellow-400 py-3 px-4 text-center">
         <span className="text-sm font-inter font-bold text-[#191919] leading-normal">
-          Applications for Product Studio's Fall 2025 Batch are live!{" "}
+          Applications for Product Studio's Fall 2025 batch are now open!{" "}
           <a
             href="https://v1michigan.com/apply?utm_source=website"
             className="underline hover:text-yellow-800 transition-colors"
           >
-            apply now!
+            Apply now
           </a>
         </span>
       </div>
