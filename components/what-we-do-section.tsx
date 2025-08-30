@@ -7,7 +7,7 @@ export default function WhatWeDoSection() {
         title="Product Studio"
         description="Build something you're passionate about in 8 weeks."
         imageSrc="/product-studio.jpg?height=160&width=300"
-        href="https://v1michigan.com/projects"
+        href="https://v1michigan.com/apply?utm_source=website"
       />
 
       <ProgramCard
@@ -21,14 +21,14 @@ export default function WhatWeDoSection() {
         title="Build Blue"
         description="Season of community events ft. meetups, demo days, ..."
         imageSrc="/build-blue.jpg?height=160&width=300"
-        href="https://v1michigan.com/events"
+        href="https://v1michigan.com/events?utm_source=website"
       />
 
       <ProgramCard
         title="Ship-It"
         description="A workspace for engineers, tinkerers, and artists."
         imageSrc="/ship-its.png?height=160&width=300"
-        href="https://v1michigan.com/ship-it"
+        href="https://v1michigan.com/ship-it?utm_source=website"
       />
 
     </div>

@@ -26,20 +26,20 @@ export default function Header() {
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center justify-end space-x-6">
-        <Link href="https://v1michigan.com/projects" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/apply?utm_source=website" className="text-sm text-gray-700 hover:text-black">
           Product Studio
         </Link>
         <Link href="/" className="text-sm text-gray-700 hover:text-black">
           Startup Week
         </Link>
-        <Link href="https://v1michigan.com/events" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/events?utm_source=website" className="text-sm text-gray-700 hover:text-black">
           Build Blue
         </Link>
-        <Link href="https://v1michigan.com/ship-it" className="text-sm text-gray-700 hover:text-black">
+        <Link href="https://v1michigan.com/ship-it?utm_source=website" className="text-sm text-gray-700 hover:text-black">
           Ship-it
         </Link>
         <Link
-          href="https://v1michigan.com/join"
+          href="https://v1michigan.com/join?utm_source=website"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
         >
           Join us!
@@ -67,7 +67,7 @@ export default function Header() {
         <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden z-40">
           <div className="px-4 py-2 space-y-2">
             <Link
-              href="https://v1michigan.com/projects"
+              href="https://v1michigan.com/apply?utm_source=website"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
@@ -81,21 +81,21 @@ export default function Header() {
               Startup Week
             </Link>
             <Link
-              href="https://v1michigan.com/events"
+              href="https://v1michigan.com/events?utm_source=website"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               Build Blue
             </Link>
             <Link
-              href="https://v1michigan.com/ship-it"
+              href="https://v1michigan.com/ship-it?utm_source=website"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               Ship-it
             </Link>
             <Link
-              href="https://v1michigan.com/join"
+              href="https://v1michigan.com/join?utm_source=website"
               className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700 mt-2"
               onClick={closeMobileMenu}
             >
