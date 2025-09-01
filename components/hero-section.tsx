@@ -17,6 +17,14 @@ export default function HeroSection() {
           >
             Apply now
           </a>
+          {" ("}
+          <a
+            href="https://v1team.notion.site/Product-Studio-FAQ-20e82307c07d80e78cf4e6aac07a1754"
+            className="underline hover:text-yellow-800 transition-colors"
+          >
+            FAQ
+          </a>
+          {")"}
         </span>
       </div>
 
