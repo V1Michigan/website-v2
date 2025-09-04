@@ -36,8 +36,8 @@ export default function HeroSection() {
               <Image
               src="/yc.png"
               alt="YC Logo"
-              width={48}
-              height={24}
+              width={32}
+              height={32}
               className="inline-block align-middle"
               priority
               />

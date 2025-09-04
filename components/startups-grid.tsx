@@ -149,9 +149,9 @@ export default function StartupsGrid() {
       image: "/rox.jpg?height=32&width=32",
     },
     {
-      name: "Pointer",
-      domain: "User Assistance",
-      image: "/pointer-wordmark.svg?height=32&width=32",
+      name: "Dirac",
+      domain: "Assembly",
+      image: "/dirac.png?height=32&width=32",
     },
     {
       name: "OpenYield",
@@ -164,9 +164,9 @@ export default function StartupsGrid() {
       image: "/fp_logo.png?height=32&width=32",
     },
     {
-      name: "Osmosis",
-      domain: "AI Agents",
-      image: "/osmosis.png?height=32&width=32",
+      name: "Thrive",
+      domain: "Artifical Intelligence",
+      image: "/thrive.jpg?height=32&width=32",
     },
     {
       name: "Wave RF",
@@ -363,7 +363,7 @@ export default function StartupsGrid() {
       {/* Company Grid with animation */}
       <div className="flex justify-center relative z-10">
         <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
-          <div className="max-h-[75vh] overflow-hidden">
+          <div >
             <div className="relative">
               <div className="relative">
                 <motion.div
