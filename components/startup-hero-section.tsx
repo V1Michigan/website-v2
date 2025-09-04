@@ -55,7 +55,7 @@ export default function HeroSection() {
               className="flex justify-center mb-3"
             >
               <a
-                href="https://tally.so/r/mJ4r1R"
+                href="http://v1michigan.com/startup-week/apply?utm_source=site"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block"
