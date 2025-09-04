@@ -57,6 +57,13 @@ export default function Header() {
           Ship-it
         </Link>
         <Link
+          href="https://v1michigan.com/community?utm_source=website"
+          className="inline-flex items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
+        >
+          Join slack!
+          <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+        </Link>
+        <Link
           href="https://v1michigan.com/join"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
         >
@@ -112,6 +119,13 @@ export default function Header() {
             >
               Ship-it
             </Link>
+             <Link
+          href="https://v1michigan.com/community?utm_source=website"
+          className="inline-flex items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c] mt-2"
+        >
+          Join slack!
+          <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+        </Link>
             <Link
               href="https://v1michigan.com/join"
               className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700 mt-2"
