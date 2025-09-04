@@ -120,7 +120,7 @@ export default function StartupsGrid() {
     },
     {
       name: "Pylon",
-      domain: "Technology, Information, and Internet",
+      domain: "Customer Support",
       image: "/pylon.jpeg?height=32&width=32",
     },
     {
@@ -170,7 +170,7 @@ export default function StartupsGrid() {
     },
     {
       name: "Wave RF",
-      domain: "Technology, Information, and Media",
+      domain: "Communication",
       image: "/wave-rf.png?height=32&width=32",
     },
     {
@@ -335,14 +335,16 @@ export default function StartupsGrid() {
                   Top startups
               </div>
             </div>
-            <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                  {pageIndex !== 1 ? "250+" : ""}
-              </div>
-              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
+            {pageIndex !== 1 && (
+              <div className="text-center">
+                <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
+                  250+
+                </div>
+                <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
                   Top students
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
