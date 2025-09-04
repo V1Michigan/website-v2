@@ -34,7 +34,7 @@ export default function StartupsGrid() {
     },
     {
       name: "Pylon",
-      domain: "B2B Support",
+      domain: "Customer Support",
       image: "/pylon.png?height=32&width=32&text=P",
     },
     {
@@ -329,7 +329,7 @@ export default function StartupsGrid() {
           <div className="flex items-center justify-center space-x-12 mb-4">
             <div className="text-center">
               <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-          {pageIndex === 1 ? "16" : "12"}
+          {pageIndex === 1 ? "30+" : "12"}
               </div>
               <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
                   Top startups
@@ -337,7 +337,7 @@ export default function StartupsGrid() {
             </div>
             <div className="text-center">
               <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                  250+
+                  {pageIndex !== 1 ? "250+" : ""}
               </div>
               <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
                   Top students
@@ -357,7 +357,7 @@ export default function StartupsGrid() {
           <ChevronRight className="w-5 h-5 text-gray-400" />
         </button>
       </div>
-
+          
       {/* Company Grid with animation */}
       <div className="flex justify-center relative z-10">
         <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
