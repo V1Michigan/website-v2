@@ -60,7 +60,7 @@ export default function Header() {
           href="https://v1michigan.com/community?utm_source=website"
           className="inline-flex items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
         >
-          Join slack!
+          Join Slack!
           <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
         </Link>
         <Link
@@ -125,7 +125,7 @@ export default function Header() {
               href="https://v1michigan.com/community?utm_source=website"
               className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c] mt-2"
             >
-              Join slack!
+              Join Slack!
               <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
             </Link>
 
