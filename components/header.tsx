@@ -57,6 +57,12 @@ export default function Header() {
           Ship-it
         </Link>
         <Link
+          href="/people"
+          className="text-sm text-gray-700 hover:text-black"
+        >
+          People
+        </Link>
+        <Link
           href="https://v1michigan.com/community?utm_source=website"
           className="inline-flex items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
         >
@@ -118,6 +124,13 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Ship-it
+            </Link>
+            <Link
+              href="/people"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              People
             </Link>
 
         <div className="flex flex-col ">
