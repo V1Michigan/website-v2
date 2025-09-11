@@ -1,0 +1,216 @@
+import type { Person } from "@/types/person";
+
+export const PEOPLE: Person[] = [
+  {
+    id: "mihir-arya",
+    name: "Mihir Arya",
+    role: "Engineer",
+    imageSrc: "/headshots/mihir.jpg",
+    shortBio:
+      "Builder and community organizer helping students ship ambitious projects at Michigan.",
+    fullBio:
+      "Mihir leads V1 @ Michigan, supporting students to build, launch, and join startups. He organizes programs like Product Studio and Startup Week, and connects top builders with mentors and companies.",
+    tags: ["Community", "Product", "Startups", "Michigan"],
+    social: {
+      linkedin: "https://www.linkedin.com/in/mihirarya/",
+      twitter: "https://x.com/V1Michigan",
+      instagram: undefined,
+      calendly: "https://calendly.com/mihir-arya/15min",
+      email: "mihir@example.com",
+    },
+  },
+  {
+    id: "alexis",
+    name: "Alexis",
+    role: "Operator",
+    imageSrc: "/headshots/alexis.jpeg",
+    shortBio: "Student operator focused on building startup ecosystems at Michigan.",
+    fullBio:
+      "Alexis supports V1 initiatives that help students build faster and meet collaborators across engineering, product, and design.",
+    tags: ["Ops", "Community", "Startups"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      twitter: undefined,
+      instagram: undefined,
+      calendly: "https://calendly.com/alexis-v1/15min",
+      email: "alexis@example.com",
+    },
+  },
+  {
+    id: "alison",
+    name: "Alison",
+    role: "Designer",
+    imageSrc: "/headshots/alison.jpg",
+    shortBio: "Product designer passionate about craft and accessible experiences.",
+    fullBio:
+      "Alison partners with student founders to bring ideas to life with thoughtful interaction design and systems thinking.",
+    tags: ["Design", "UX", "UI"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/alison-v1/20min",
+      twitter: "https://twitter.com/",
+      email: "alison@example.com",
+    },
+  },
+  {
+    id: "anant",
+    name: "Anant",
+    role: "ML Engineer",
+    imageSrc: "/headshots/anant.jpeg",
+    shortBio: "Applied ML focused on agents and evaluation.",
+    fullBio:
+      "Anant has built ML systems for research groups and startups, focusing on production reliability and evals.",
+    tags: ["AI", "ML", "Agents"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/anant-v1/15min",
+      twitter: "https://twitter.com/",
+      email: "anant@example.com",
+    },
+  },
+  {
+    id: "amy",
+    name: "Amy",
+    role: "Product Manager",
+    imageSrc: "/headshots/amy.jpg",
+    shortBio: "Builder of zero-to-one student products and communities.",
+    fullBio:
+      "Amy leads cross-functional teams on campus projects and mentors students on research to prototype to launch.",
+    tags: ["Product", "Community"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/amy-v1/30min",
+      email: "amy@example.com",
+    },
+  },
+  {
+    id: "leo",
+    name: "Leo",
+    role: "Backend Engineer",
+    imageSrc: "/headshots/leo.jpg",
+    shortBio: "Infra curious. Shipping services and tools for builders.",
+    fullBio:
+      "Leo has experience with distributed systems, observability, and developer tooling. Loves Rust and Go.",
+    tags: ["Infra", "Backend", "Go", "Rust"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/leo-v1/15min",
+      email: "leo@example.com",
+    },
+  },
+  {
+    id: "meghna",
+    name: "Meghna",
+    role: "Full‑Stack Engineer",
+    imageSrc: "/headshots/meghna.jpeg",
+    shortBio: "Loves elegant UI and fast backends.",
+    fullBio:
+      "Meghna builds user-first products and contributes to open-source web tooling.",
+    tags: ["Full‑Stack", "TypeScript", "React"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/meghna-v1/20min",
+      email: "meghna@example.com",
+    },
+  },
+  {
+    id: "maya",
+    name: "Maya",
+    role: "Data Scientist",
+    imageSrc: "/headshots/maya.jpg",
+    shortBio: "Turning messy data into useful products.",
+    fullBio: "Maya has worked on experimentation, analytics, and recommender systems.",
+    tags: ["Data", "Product"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/maya-v1/15min",
+      email: "maya@example.com",
+    },
+  },
+  {
+    id: "sri",
+    name: "Sri",
+    role: "Mobile Engineer",
+    imageSrc: "/headshots/sri.jpeg",
+    shortBio: "Delights users with smooth native experiences.",
+    fullBio: "Sri ships iOS and Android apps, focusing on reliability and polish.",
+    tags: ["Mobile", "iOS", "Android"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/sri-v1/15min",
+      email: "sri@example.com",
+    },
+  },
+  {
+    id: "pranay",
+    name: "Pranay",
+    role: "Founder",
+    imageSrc: "/headshots/pranay.jpg",
+    shortBio: "Building tools for creators and small businesses.",
+    fullBio: "Pranay enjoys validating ideas quickly and growing zero-to-one products.",
+    tags: ["Founder", "Growth"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/pranay-v1/20min",
+      email: "pranay@example.com",
+    },
+  },
+  {
+    id: "soyeon",
+    name: "Soyeon",
+    role: "Product Designer",
+    imageSrc: "/headshots/soyeon.jpeg",
+    shortBio: "Research-driven designer focused on onboarding and retention.",
+    fullBio: "Soyeon blends qual research with crisp visuals to ship usable flows.",
+    tags: ["Design", "Research"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/soyeon-v1/25min",
+      email: "soyeon@example.com",
+    },
+  },
+  {
+    id: "toan",
+    name: "Toan",
+    role: "Security Engineer",
+    imageSrc: "/headshots/toan.jpeg",
+    shortBio: "Keeps systems safe while enabling fast iteration.",
+    fullBio: "Toan helps teams threat-model and build secure-by-default architectures.",
+    tags: ["Security", "Infra"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/toan-v1/20min",
+      email: "toan@example.com",
+    },
+  },
+  {
+    id: "daniel",
+    name: "Daniel",
+    role: "Robotics Engineer",
+    imageSrc: "/headshots/daniel.jpeg",
+    shortBio: "Autonomy and perception for real-world robots.",
+    fullBio: "Daniel has worked on SLAM, navigation, and low‑level control.",
+    tags: ["Robotics", "Autonomy"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/daniel-v1/30min",
+      email: "daniel@example.com",
+    },
+  },
+  {
+    id: "casey",
+    name: "Casey",
+    role: "Growth & Ops",
+    imageSrc: "/headshots/casey.jpg",
+    shortBio: "Scrappy operator who makes things happen.",
+    fullBio: "Casey has scaled student programs and early‑stage startups.",
+    tags: ["Growth", "Ops"],
+    social: {
+      linkedin: "https://www.linkedin.com",
+      calendly: "https://calendly.com/casey-v1/15min",
+      email: "casey@example.com",
+    },
+  },
+];
+
+
