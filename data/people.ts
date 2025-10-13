@@ -202,7 +202,7 @@ export const PEOPLE: Person[] = [
     },
   },
   {
-    id: "daniel",
+    id: "dlliu@umich.edu",
     name: "Daniel",
     role: "Robotics Engineer",
     imageSrc: "/headshots/daniel.jpeg",

@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Calendar, Linkedin, Twitter, Instagram, Link as LinkIcon, Mail } from "lucide-react";
+import { Calendar, Linkedin, Twitter, Instagram, Link as LinkIcon, Mail, Edit } from "lucide-react";
 import type { Person } from "@/types/person";
+import { useAuth } from "@/components/auth/auth-provider";
 
 interface PersonModalProps {
   person: Person | null;
@@ -13,6 +14,11 @@ interface PersonModalProps {
 }
 
 export default function PersonModal({ person, open, onOpenChange }: PersonModalProps) {
+  const { user } = useAuth();
+  
+  // Check if the current user is viewing their own profile
+  const isOwnProfile = user && person && user.email === person.id;
+  
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl bg-[#FAF7F2]">
@@ -38,6 +44,14 @@ export default function PersonModal({ person, open, onOpenChange }: PersonModalP
                     {t}
                   </span>
                 ))}
+                {isOwnProfile && (
+                  <Link 
+                    href="/people/edit"
+                    className="inline-flex items-center gap-1 text-sm hover:underline bg-blue-600 px-3 py-1 rounded-full font-medium text-white hover:bg-blue-700 transition-colors"
+                  >
+                    <Edit className="h-4 w-4" /> Edit Profile
+                  </Link>
+                )}
               </div>
 
               <div className="mt-4 flex items-center gap-3 text-gray-700">
