@@ -41,16 +41,12 @@ export default function PersonModal({ person, open, onOpenChange }: PersonModalP
               </div>
 
               <div className="mt-4 flex items-center gap-3 text-gray-700">
-                {person.social.calendly && (
-                  <Link href={person.social.calendly} target="_blank" className="inline-flex items-center gap-1 text-sm hover:underline">
-                    <Calendar className="h-4 w-4" /> Meet me
-                  </Link>
-                )}
-                {person.social.email && (
-                  <Link href={`mailto:${person.social.email}`} className="inline-flex items-center gap-1 text-sm hover:underline">
-                    <Mail className="h-4 w-4" /> Email
-                  </Link>
-                )}
+                <Link 
+                  href={`mailto:v1umich@gmail.com?subject=Connection Request for ${person.name}&body=Hi V1 team,%0D%0A%0D%0AI would like to connect with ${person.name} (${person.role}). Saw them on the V1 website and would like to chat. %0D%0A%0D%0APlease help facilitate this connection. %0D%0A%0D%0AThank you!`}
+                  className="inline-flex items-center gap-1 text-sm hover:underline bg-[#E9B872] px-3 py-1 rounded-full font-medium text-gray-800 hover:bg-[#D4A85A] transition-colors"
+                >
+                  <Mail className="h-4 w-4" /> Connect
+                </Link>
                 {person.social.linkedin && (
                   <Link href={person.social.linkedin} target="_blank" aria-label="LinkedIn" className="p-2 text-gray-700 hover:text-gray-900">
                     <Linkedin className="h-4 w-4" />
