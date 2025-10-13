@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter, Playfair_Display, Instrument_Serif } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { CSPostHogProvider } from "@/components/posthog-provider";
+import { AuthProvider } from "@/components/auth/auth-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,7 +45,9 @@ export default function RootLayout({
           instrumentSerif.variable
         )}
       >
-        <CSPostHogProvider>{children}</CSPostHogProvider>
+        <CSPostHogProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </CSPostHogProvider>
       </body>
     </html>
   );
