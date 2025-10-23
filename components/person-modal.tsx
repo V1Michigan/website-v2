@@ -61,22 +61,22 @@ export default function PersonModal({ person, open, onOpenChange }: PersonModalP
                 >
                   <Mail className="h-4 w-4" /> Connect
                 </Link>
-                {person.social.linkedin && (
+                {person.social?.linkedin && (
                   <Link href={person.social.linkedin} target="_blank" aria-label="LinkedIn" className="p-2 text-gray-700 hover:text-gray-900">
                     <Linkedin className="h-4 w-4" />
                   </Link>
                 )}
-                {person.social.twitter && (
+                {person.social?.twitter && (
                   <Link href={person.social.twitter} target="_blank" aria-label="Twitter/X" className="p-2 text-gray-700 hover:text-gray-900">
                     <Twitter className="h-4 w-4" />
                   </Link>
                 )}
-                {person.social.instagram && (
+                {person.social?.instagram && (
                   <Link href={person.social.instagram} target="_blank" aria-label="Instagram" className="p-2 text-gray-700 hover:text-gray-900">
                     <Instagram className="h-4 w-4" />
                   </Link>
                 )}
-                {person.social.website && (
+                {person.social?.website && (
                   <Link href={person.social.website} target="_blank" aria-label="Website" className="p-2 text-gray-700 hover:text-gray-900">
                     <LinkIcon className="h-4 w-4" />
                   </Link>

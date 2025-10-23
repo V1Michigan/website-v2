@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/auth/auth-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -10,15 +10,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { PEOPLE } from "@/data/people";
+import supabase from "@/utils/supabaseClient";
 import type { Person } from "@/types/person";
 
 export default function EditPersonPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user } = useAuth();
   const [person, setPerson] = useState<Person | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [tagsInput, setTagsInput] = useState("");
 
   // Form state
   const [formData, setFormData] = useState({
@@ -38,53 +40,174 @@ export default function EditPersonPage() {
   });
 
   useEffect(() => {
-    if (!user) {
-      router.push("/auth");
-      return;
+    async function checkSessionAndFetch() {
+      // Check if user is authenticated
+      if (!user) {
+        console.log('No user found, redirecting to auth');
+        router.push("/auth");
+        return;
+      }
+
+      // Verify session is still valid
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError || !session) {
+        console.log('Session invalid, redirecting to auth');
+        router.push("/auth");
+        return;
+      }
+
+      const personId = searchParams?.get('id');
+      if (!personId) {
+        console.log('No person ID found, redirecting to people');
+        router.push("/people");
+        return;
+      }
+
+      // Check if user is trying to edit their own profile
+      if (session.user.id !== personId) {
+        console.log('User trying to edit someone else\'s profile, redirecting to people');
+        router.push("/people");
+        return;
+      }
+
+      async function fetchPerson() {
+        try {
+          const { data, error } = await supabase
+            .from('v1-people')
+            .select('*')
+            .eq('id', personId)
+            .single();
+
+          if (error) {
+            console.error('Error fetching person:', error.message);
+            router.push("/people");
+            return;
+          }
+
+          if (!data) {
+            console.log('Person not found, redirecting to people');
+            router.push("/people");
+            return;
+          }
+
+        // Map database fields to Person interface
+        const mappedPerson: Person = {
+          id: data.id,
+          name: data.name,
+          role: data.role,
+          imageSrc: data['image-path'] || data.imageSrc || "/placeholder.svg",
+          shortBio: data['short-bio'] || data.shortBio || "",
+          fullBio: data['full-bio'] || data.fullBio || "",
+          tags: data.tags || [],
+          social: {
+            linkedin: data.linkedin || "",
+            twitter: data.twitter || "",
+            instagram: data.instagram || "",
+            website: data.website || "",
+            email: data.email || "",
+          },
+        };
+
+        setPerson(mappedPerson);
+        setFormData({
+          name: mappedPerson.name,
+          role: mappedPerson.role,
+          imageSrc: mappedPerson.imageSrc,
+          shortBio: mappedPerson.shortBio,
+          fullBio: mappedPerson.fullBio,
+          tags: mappedPerson.tags,
+          social: {
+            linkedin: mappedPerson.social.linkedin || "",
+            twitter: mappedPerson.social.twitter || "",
+            instagram: mappedPerson.social.instagram || "",
+            website: mappedPerson.social.website || "",
+            email: mappedPerson.social.email || "",
+          },
+        });
+        setTagsInput(mappedPerson.tags.join(", "));
+      } catch (error) {
+        console.error('Error fetching person:', error);
+        router.push("/people");
+      } finally {
+        setLoading(false);
+      }
     }
 
-    // Find the person by the logged-in user's email
-    const foundPerson = PEOPLE.find(p => p.id === user.email);
-    if (!foundPerson) {
-      router.push("/people");
-      return;
+      fetchPerson();
     }
 
-    setPerson(foundPerson);
-    setFormData({
-      name: foundPerson.name,
-      role: foundPerson.role,
-      imageSrc: foundPerson.imageSrc,
-      shortBio: foundPerson.shortBio,
-      fullBio: foundPerson.fullBio,
-      tags: foundPerson.tags,
-      social: {
-        linkedin: foundPerson.social.linkedin || "",
-        twitter: foundPerson.social.twitter || "",
-        instagram: foundPerson.social.instagram || "",
-        website: foundPerson.social.website || "",
-        email: foundPerson.social.email || "",
-      },
-    });
-    setLoading(false);
-  }, [user, router]);
+    checkSessionAndFetch();
+  }, [user, router, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
     
-    // Here you would typically save to a database
-    // For now, we'll just show a success message
-    alert("Profile updated successfully! (Note: This is a demo - changes aren't persisted)");
-    
-    setSaving(false);
-    router.push("/people");
+    try {
+      // Verify session is still valid before submitting
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError || !session) {
+        alert("Your session has expired. Please log in again.");
+        router.push("/auth");
+        return;
+      }
+
+      const personId = searchParams.get('id');
+      if (!personId) {
+        alert("Error: Person ID not found");
+        setSaving(false);
+        return;
+      }
+
+      // Double-check user is editing their own profile
+      if (session.user.id !== personId) {
+        alert("You can only edit your own profile.");
+        router.push("/people");
+        return;
+      }
+
+      // Prepare the update data, handling null values properly
+      const updateData = {
+        name: formData.name || null,
+        role: formData.role || null,
+        'short-bio': formData.shortBio || null,
+        'full-bio': formData.fullBio || null,
+        email: formData.social.email || null,
+        tags: formData.tags.length > 0 ? formData.tags : null,
+        linkedin: formData.social.linkedin || null,
+        twitter: formData.social.twitter || null,
+        instagram: formData.social.instagram || null,
+        website: formData.social.website || null,
+        'image-path': formData.imageSrc || null
+      };
+      console.log(updateData);
+
+      // Remove null values to avoid overwriting with null
+      const cleanedUpdateData = Object.fromEntries(
+        Object.entries(updateData).filter(([_, value]) => value !== null)
+      );
+
+      const { error } = await supabase
+        .from('v1-people')
+        .update(cleanedUpdateData)
+        .eq('id', personId);
+
+      if (error) {
+        console.error('Error updating person:', error.message);
+        alert(`Error updating profile: ${error.message}`);
+        setSaving(false);
+        return;
+      }
+
+      router.push("/people");
+    } catch (error) {
+      console.error('Unexpected error updating profile:', error);
+      alert("An unexpected error occurred while updating your profile");
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handleTagsChange = (value: string) => {
-    const tags = value.split(",").map(tag => tag.trim()).filter(Boolean);
-    setFormData(prev => ({ ...prev, tags }));
-  };
 
   if (loading) {
     return (
@@ -147,12 +270,22 @@ export default function EditPersonPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="imageSrc">Profile Image URL</Label>
+                  <Label htmlFor="imageFile">Profile Image</Label>
                   <Input
-                    id="imageSrc"
-                    value={formData.imageSrc}
-                    onChange={(e) => setFormData(prev => ({ ...prev, imageSrc: e.target.value }))}
-                    placeholder="/headshots/your-photo.jpg"
+                    id="imageFile"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                          const result = event.target?.result as string;
+                          setFormData(prev => ({ ...prev, imageSrc: result }));
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
                   />
                 </div>
 
@@ -179,17 +312,67 @@ export default function EditPersonPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="tags">Tags (comma-separated)</Label>
+                  <Label htmlFor="tags">Tags</Label>
                   <Input
                     id="tags"
-                    value={formData.tags.join(", ")}
-                    onChange={(e) => handleTagsChange(e.target.value)}
-                    placeholder="Engineering, Design, Product, etc."
+                    value={tagsInput}
+                    onChange={(e) => {
+                      setTagsInput(e.target.value);
+                      // Process tags when user types comma
+                      if (e.target.value.includes(',')) {
+                        const newTags = e.target.value.split(',').map(tag => tag.trim()).filter(Boolean);
+                        setFormData(prev => {
+                          // Filter out duplicates (case-insensitive)
+                          const existingTags = prev.tags.map(t => t.toLowerCase());
+                          const uniqueNewTags = newTags.filter(tag => !existingTags.includes(tag.toLowerCase()));
+                          return { ...prev, tags: [...prev.tags, ...uniqueNewTags] };
+                        });
+                        setTagsInput('');
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ',') {
+                        e.preventDefault();
+                        const newTags = tagsInput.split(',').map(tag => tag.trim()).filter(Boolean);
+                        if (newTags.length > 0) {
+                          setFormData(prev => {
+                            // Filter out duplicates (case-insensitive)
+                            const existingTags = prev.tags.map(t => t.toLowerCase());
+                            const uniqueNewTags = newTags.filter(tag => !existingTags.includes(tag.toLowerCase()));
+                            return { ...prev, tags: [...prev.tags, ...uniqueNewTags] };
+                          });
+                          setTagsInput('');
+                        }
+                      }
+                    }}
+                    placeholder="Engineering, Design, Product, Marketing, etc."
                   />
+                  <p className="text-xs text-gray-500">
+                    Type tags and add a comma to add them
+                  </p>
+                  {formData.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {formData.tags.map((tag, index) => (
+                        <span key={index} className="inline-flex items-center gap-1 rounded-full bg-[#E9B872] px-3 py-1 text-xs font-medium text-gray-800">
+                          {tag}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const newTags = formData.tags.filter((_, i) => i !== index);
+                              setFormData(prev => ({ ...prev, tags: newTags }));
+                            }}
+                            className="ml-1 hover:text-red-600"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Social Links</h3>
+                  <h3 className="text-lg font-medium">Social Links (Optional)</h3>
                   
                   <div className="space-y-2">
                     <Label htmlFor="linkedin">LinkedIn</Label>
@@ -200,7 +383,7 @@ export default function EditPersonPage() {
                         ...prev, 
                         social: { ...prev.social, linkedin: e.target.value }
                       }))}
-                      placeholder="https://linkedin.com/in/yourname"
+                      placeholder="https://linkedin.com/in/yourname (optional)"
                     />
                   </div>
 
@@ -213,7 +396,7 @@ export default function EditPersonPage() {
                         ...prev, 
                         social: { ...prev.social, twitter: e.target.value }
                       }))}
-                      placeholder="https://twitter.com/yourname"
+                      placeholder="https://twitter.com/yourname (optional)"
                     />
                   </div>
 
@@ -226,7 +409,7 @@ export default function EditPersonPage() {
                         ...prev, 
                         social: { ...prev.social, instagram: e.target.value }
                       }))}
-                      placeholder="https://instagram.com/yourname"
+                      placeholder="https://instagram.com/yourname (optional)"
                     />
                   </div>
 
@@ -239,7 +422,7 @@ export default function EditPersonPage() {
                         ...prev, 
                         social: { ...prev.social, website: e.target.value }
                       }))}
-                      placeholder="https://yourwebsite.com"
+                      placeholder="https://yourwebsite.com (optional)"
                     />
                   </div>
 
@@ -253,7 +436,7 @@ export default function EditPersonPage() {
                         ...prev, 
                         social: { ...prev.social, email: e.target.value }
                       }))}
-                      placeholder="your.email@example.com"
+                      placeholder="your.email@example.com (optional)"
                     />
                   </div>
                 </div>

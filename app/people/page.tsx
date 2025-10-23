@@ -1,22 +1,67 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import PersonCard from "@/components/person-card";
 import PersonModal from "@/components/person-modal";
-import { PEOPLE } from "@/data/people";
+// import { PEOPLE } from "@/data/people";
+import supabase from "@/utils/supabaseClient";
 import type { Person } from "@/types/person";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/components/auth/auth-provider";
 
 export default function PeoplePage() {
+  const router = useRouter();
+  const { user } = useAuth();
   const [selected, setSelected] = useState<Person | null>(null);
   const [query, setQuery] = useState("");
+  const [people, setPeople] = useState<Person[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getPeople() {
+      const { data, error } = await supabase
+        .from('v1-people')
+        .select('*');
+
+      if (error) {
+        console.error('Error fetching data:', error.message);
+      } else {
+        console.log('Data:', data);
+        
+        // Map database fields to Person interface
+        const mappedPeople = (data || []).map((item: any) => ({
+          id: item.id,
+          name: item.name,
+          role: item.role,
+          imageSrc: item['image-path'] || item.imageSrc || "/placeholder.svg",
+          shortBio: item['short-bio'] || item.shortBio || "",
+          fullBio: item['full-bio'] || item.fullBio || "",
+          tags: item.tags || [],
+          social: {
+            linkedin: item.linkedin || "",
+            twitter: item.twitter || "",
+            instagram: item.instagram || "",
+            website: item.website || "",
+            email: item.email || "",
+          },
+        }));
+        
+        setPeople(mappedPeople);
+      }
+      setLoading(false);
+    }
+
+    getPeople();
+  }, []);
 
   const filteredPeople = useMemo(() => {
     const trimmed = query.trim().toLowerCase();
-    if (!trimmed) return PEOPLE;
-    return PEOPLE.filter((p) => {
+    if (!trimmed) return people;
+    return people.filter((p) => {
       const haystack = [
         p.name,
         p.role,
@@ -29,7 +74,7 @@ export default function PeoplePage() {
         .toLowerCase();
       return haystack.includes(trimmed);
     });
-  }, [query]);
+  }, [query, people]);
 
   return (
     <div className="min-h-screen bg-[#FEF9F5]">
@@ -53,10 +98,41 @@ export default function PeoplePage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {filteredPeople.map((person) => (
-            <PersonCard key={person.id} person={person} onClick={() => setSelected(person)} />
-          ))}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {loading ? (
+            <div className="col-span-full flex items-center justify-center py-12">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+                <p className="mt-4 text-gray-600">Loading people...</p>
+              </div>
+            </div>
+          ) : filteredPeople.length === 0 ? (
+            <div className="col-span-full text-center py-12">
+              <p className="text-gray-600">No people found matching your search.</p>
+            </div>
+          ) : (
+            filteredPeople.map((person) => {
+              const isOwnProfile = user && user.id === person.id;
+              
+              return (
+                <div key={person.id} className="group relative bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 overflow-hidden">
+                  <PersonCard person={person} onClick={() => setSelected(person)} />
+                  {isOwnProfile && (
+                    <Button
+                      size="sm"
+                      className="absolute top-3 right-3 z-10 bg-blue-600 hover:bg-blue-700 text-white border-2 border-white shadow-lg px-4 py-2 min-w-[80px]"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/people/edit?id=${person.id}`);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
       </main>
 
