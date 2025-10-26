@@ -17,7 +17,7 @@ export default function PersonModal({ person, open, onOpenChange }: PersonModalP
   const { user } = useAuth();
   
   // Check if the current user is viewing their own profile
-  const isOwnProfile = user && person && user.email === person.id;
+  const isOwnProfile = user && person && user.id === person.id;
   
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

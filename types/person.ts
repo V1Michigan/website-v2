@@ -3,7 +3,6 @@ export interface PersonSocialLinks {
   twitter?: string
   instagram?: string
   website?: string
-  email?: string
 }
 
 export interface Person {
