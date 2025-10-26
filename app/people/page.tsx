@@ -30,7 +30,7 @@ export default function PeoplePage() {
       if (error) {
         console.error('Error fetching data:', error.message);
       } else {
-        console.log('Data:', data);
+        //console.log('Data:', data);
         
         // Map database fields to Person interface
         const mappedPeople = (data || []).map((item: any) => ({

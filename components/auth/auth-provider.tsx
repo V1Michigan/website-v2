@@ -24,7 +24,7 @@ async function createUserInPeopleTable(user: User) {
 
     // If user already exists, don't create a duplicate
     if (existingUser && !checkError) {
-      console.log('User already exists in v1-people table');
+      //console.log('User already exists in v1-people table');
       return;
     }
 
@@ -49,7 +49,7 @@ async function createUserInPeopleTable(user: User) {
     if (insertError) {
       console.error('Error creating user in v1-people table:', insertError.message);
     } else {
-      console.log('User successfully created in v1-people table');
+      //console.log('User successfully created in v1-people table');
     }
   } catch (error) {
     console.error('Unexpected error creating user in v1-people table:', error);

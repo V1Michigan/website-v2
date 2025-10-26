@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/auth/auth-provider";
 import Header from "@/components/header";
@@ -13,7 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import supabase from "@/utils/supabaseClient";
 import type { Person } from "@/types/person";
 
-export default function EditPersonPage() {
+function EditPersonContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuth();
@@ -21,6 +21,7 @@ export default function EditPersonPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [tagsInput, setTagsInput] = useState("");
+  const [timeoutReached, setTimeoutReached] = useState(false);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -38,6 +39,22 @@ export default function EditPersonPage() {
       email: "",
     },
   });
+
+  // Timeout effect - sign out user if loading takes too long
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (loading) {
+        console.log('Loading timeout reached, signing out user');
+        setTimeoutReached(true);
+        // Sign out the user
+        supabase.auth.signOut().then(() => {
+          router.push("/auth");
+        });
+      }
+    }, 10000); // 10 second timeout
+
+    return () => clearTimeout(timeout);
+  }, [loading, router]);
 
   useEffect(() => {
     async function checkSessionAndFetch() {
@@ -180,7 +197,7 @@ export default function EditPersonPage() {
         website: formData.social.website || null,
         'image-path': formData.imageSrc || null
       };
-      console.log(updateData);
+      //console.log(updateData);
 
       // Remove null values to avoid overwriting with null
       const cleanedUpdateData = Object.fromEntries(
@@ -214,7 +231,27 @@ export default function EditPersonPage() {
       <div className="min-h-screen bg-[#FEF9F5] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <p className="mt-4 text-gray-600">
+            {timeoutReached ? "Taking longer than expected..." : "Loading..."}
+          </p>
+          {timeoutReached && (
+            <div className="mt-4">
+              <p className="text-sm text-gray-500 mb-4">
+                This is taking longer than usual. You'll be redirected to sign in again.
+              </p>
+              <Button 
+                onClick={() => {
+                  supabase.auth.signOut().then(() => {
+                    router.push("/auth");
+                  });
+                }}
+                variant="outline"
+                size="sm"
+              >
+                Sign Out Now
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -457,5 +494,20 @@ export default function EditPersonPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function EditPersonPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#FEF9F5] flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <EditPersonContent />
+    </Suspense>
   );
 }
