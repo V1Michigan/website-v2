@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Compass } from "lucide-react";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -45,16 +45,17 @@ export default function Header() {
           Startup Week
         </Link>
         <Link
-          href="https://v1michigan.com/events"
-          className="text-sm text-gray-700 hover:text-black"
-        >
-          Build Blue
-        </Link>
-        <Link
           href="https://v1michigan.com/ship-it"
           className="text-sm text-gray-700 hover:text-black"
         >
           Ship-it
+        </Link>
+        <Link
+          href="/north-star"
+          className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+        >
+          North Star
+          <Compass className="ml-1.5 h-3.5 w-3.5" />
         </Link>
         <Link
           href="https://v1michigan.com/community?utm_source=website"
@@ -99,19 +100,20 @@ export default function Header() {
               Product Studio
             </Link>
             <Link
+              href="/north-star"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              North Star
+            </Link>
+            <Link
               href="/"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               Startup Week
             </Link>
-            <Link
-              href="https://v1michigan.com/events"
-              className="block py-2 text-sm text-gray-700 hover:text-black"
-              onClick={closeMobileMenu}
-            >
-              Build Blue
-            </Link>
+
             <Link
               href="https://v1michigan.com/ship-it"
               className="block py-2 text-sm text-gray-700 hover:text-black"
