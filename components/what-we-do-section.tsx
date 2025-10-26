@@ -18,10 +18,10 @@ export default function WhatWeDoSection() {
       />
 
       <ProgramCard
-        title="Build Blue"
-        description="Season of community events ft. meetups, demo days, ..."
+        title="Project North Star"
+        description="Connect with partners, talk to customers, and raise capital."
         imageSrc="/build-blue-img.JPG?height=160&width=300"
-        href="https://v1michigan.com/events"
+        href="https://v1michigan.com/north-star"
       />
 
       <ProgramCard
