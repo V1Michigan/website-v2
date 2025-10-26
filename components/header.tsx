@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X, LogOut, ChevronDown } from "lucide-react";
+import { ArrowRight, Menu, X, Compass, LogOut, ChevronDown } from "lucide-react";
 import { useAuth } from "@/components/auth/auth-provider";
 
 export default function Header() {
@@ -56,12 +56,6 @@ export default function Header() {
           Startup Week
         </Link>
         <Link
-          href="https://v1michigan.com/events"
-          className="text-sm text-gray-700 hover:text-black"
-        >
-          Build Blue
-        </Link>
-        <Link
           href="https://v1michigan.com/ship-it"
           className="text-sm text-gray-700 hover:text-black"
         >
@@ -72,6 +66,14 @@ export default function Header() {
           className="text-sm text-gray-700 hover:text-black"
         >
           People
+        </Link>
+        <Link
+          className="text-sm text-gray-700 hover:text-black"
+          href="/north-star"
+          className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+        >
+          North Star
+          <Compass className="ml-1.5 h-3.5 w-3.5" />
         </Link>
         {user ? (
           <div className="flex items-center space-x-4">
@@ -166,19 +168,20 @@ export default function Header() {
               Product Studio
             </Link>
             <Link
+              href="/north-star"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              North Star
+            </Link>
+            <Link
               href="/"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               Startup Week
             </Link>
-            <Link
-              href="https://v1michigan.com/events"
-              className="block py-2 text-sm text-gray-700 hover:text-black"
-              onClick={closeMobileMenu}
-            >
-              Build Blue
-            </Link>
+
             <Link
               href="https://v1michigan.com/ship-it"
               className="block py-2 text-sm text-gray-700 hover:text-black"
