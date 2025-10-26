@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <>
       {/* Promotional Banner */}
-      <div className="bg-gradient-to-r from-yellow-400 to-yellow-300 py-2 px-6 text-center shadow-lg border-b border-yellow-500/20">
+      {/* <div className="bg-gradient-to-r from-yellow-400 to-yellow-300 py-2 px-6 text-center shadow-lg border-b border-yellow-500/20">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <div className="flex items-center gap-2">
             <span className="text-sm font-inter font-semibold text-[#191919] leading-relaxed">
@@ -55,8 +55,8 @@ export default function HeroSection() {
               <span>FAQ</span>
             </a>
           </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
 
       <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
         <div className="relative aspect-[16/9] w-full">
