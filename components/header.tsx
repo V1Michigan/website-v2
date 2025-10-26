@@ -3,10 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X, Compass } from "lucide-react";
+import { ArrowRight, Menu, X, Compass, LogOut, ChevronDown } from "lucide-react";
+import { useAuth } from "@/components/auth/auth-provider";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -14,6 +17,14 @@ export default function Header() {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -51,26 +62,83 @@ export default function Header() {
           Ship-it
         </Link>
         <Link
+          href="/people"
+          className="text-sm text-gray-700 hover:text-black"
+        >
+          People
+        </Link>
+        <Link
+          className="text-sm text-gray-700 hover:text-black"
           href="/north-star"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
         >
           North Star
           <Compass className="ml-1.5 h-3.5 w-3.5" />
         </Link>
-        <Link
-          href="https://v1michigan.com/community?utm_source=website"
-          className="inline-flex items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
-        >
-          Join Slack!
-          <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
-        </Link>
-        <Link
-          href="https://v1michigan.com/join"
-          className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
-        >
-          Join us!
-          <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
-        </Link>
+        {user ? (
+          <div className="flex items-center space-x-4">
+            {user.user_metadata?.avatar_url ? (
+              <img
+                src={user.user_metadata.avatar_url}
+                alt="Profile"
+                className="h-8 w-8 rounded-full"
+              />
+            ) : (
+              <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
+                <span className="text-xs text-gray-600">
+                  {user.email?.charAt(0).toUpperCase()}
+                </span>
+              </div>
+            )}
+            <button
+              onClick={signOut}
+              className="inline-flex items-center rounded-md bg-gray-600 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+            >
+              <LogOut className="mr-1.5 h-3.5 w-3.5" />
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+            >
+              Get Involved
+              <ChevronDown className="ml-1.5 h-3.5 w-3.5" />
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                <div className="py-1">
+                  <Link
+                    href="https://v1michigan.com/community?utm_source=website"
+                    className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1"
+                    onClick={closeDropdown}
+                  >
+                    Join Slack!
+                    <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
+                  </Link>
+                  <Link
+                    href="https://v1michigan.com/join"
+                    className="flex items-center px-4 py-2 text-sm text-white bg-gray-800 hover:bg-gray-700 rounded-md mx-2 my-1"
+                    onClick={closeDropdown}
+                  >
+                    Join us!
+                    <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
+                  </Link>
+                  <Link
+                    href="/auth"
+                    className="flex items-center px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-md mx-2 my-1"
+                    onClick={closeDropdown}
+                  >
+                    Sign In
+                    <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu Button */}
@@ -121,25 +189,71 @@ export default function Header() {
             >
               Ship-it
             </Link>
-
-        <div className="flex flex-col ">
             <Link
-              href="https://v1michigan.com/community?utm_source=website"
-              className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c] mt-2"
-            >
-              Join Slack!
-              <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
-            </Link>
-
-            <Link
-              href="https://v1michigan.com/join"
-              className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700 mt-2"
+              href="/people"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
-              Join us
-              <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+              People
             </Link>
-          </div>
+            {user ? (
+              <div className="py-2 border-t">
+                <div className="flex items-center space-x-2 mb-2">
+                  {user.user_metadata?.avatar_url ? (
+                    <img
+                      src={user.user_metadata.avatar_url}
+                      alt="Profile"
+                      className="h-6 w-6 rounded-full"
+                    />
+                  ) : (
+                    <div className="h-6 w-6 rounded-full bg-gray-300 flex items-center justify-center">
+                      <span className="text-xs text-gray-600">
+                        {user.email?.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={() => {
+                    signOut();
+                    closeMobileMenu();
+                  }}
+                  className="block text-sm text-gray-700 hover:text-black"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <div className="py-2 border-t">
+                <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
+                <div className="flex flex-col space-y-2">
+                  <Link
+                    href="https://v1michigan.com/community?utm_source=website"
+                    className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
+                    onClick={closeMobileMenu}
+                  >
+                    Join Slack!
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+                  </Link>
+                  <Link
+                    href="https://v1michigan.com/join"
+                    className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+                    onClick={closeMobileMenu}
+                  >
+                    Join us!
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+                  </Link>
+                  <Link
+                    href="/auth"
+                    className="inline-flex w-fit items-center rounded-md bg-blue-600 px-3 py-1.5 text-xs text-white hover:bg-blue-700"
+                    onClick={closeMobileMenu}
+                  >
+                    Sign In
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+                  </Link>
+                </div>
+              </div>
+            )}
 
           </div>
         </div>
