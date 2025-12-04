@@ -67,12 +67,12 @@ export default function Header() {
         >
           Events
         </Link>
-        <Link
+        {/* <Link
           href="/people"
           className="text-sm text-gray-700 hover:text-black"
         >
           People
-        </Link>
+        </Link> */}
         <Link
           href="/north-star"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
@@ -201,13 +201,13 @@ export default function Header() {
             >
               Events
             </Link>
-            <Link
+            {/* <Link
               href="/people"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               People
-            </Link>
+            </Link> */}
             {user ? (
               <div className="py-2 border-t">
                 <div className="flex items-center space-x-2 mb-2">
