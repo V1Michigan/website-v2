@@ -74,7 +74,6 @@ export default function Header() {
           People
         </Link>
         <Link
-          className="text-sm text-gray-700 hover:text-black"
           href="/north-star"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
         >
