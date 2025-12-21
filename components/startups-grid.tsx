@@ -10,72 +10,72 @@ export default function StartupsGrid() {
     {
       name: "Ramp",
       domain: "Fintech",
-      image: "/ramp.png?height=32&width=32&text=R",
+      image: "/ramp.png",
     },
     {
       name: "Watershed",
       domain: "ClimateOS",
-      image: "/watershed.png?height=32&width=32&text=W",
+      image: "/watershed.png",
     },
     {
       name: "Courier Health",
       domain: "Patient CRM",
-      image: "/courierhealth.png?height=32&width=32&text=CH",
+      image: "/courierhealth.png",
     },
     {
       name: "Applied Intuition",
       domain: "Motion AI",
-      image: "/app-intuition.png?height=32&width=32&text=AI",
+      image: "/app-intuition.png",
     },
     {
       name: "Authentic",
       domain: "Insurance",
-      image: "/authenticinsurance.png?height=32&width=32&text=A",
+      image: "/authenticinsurance.png",
     },
     {
       name: "Pylon",
       domain: "B2B Support",
-      image: "/pylon.png?height=32&width=32&text=P",
+      image: "/pylon.png",
     },
     {
       name: "Windsurf",
       domain: "AI Agents",
-      image: "/codeium.png?height=32&width=32&text=C",
+      image: "/codeium.png",
     },
     {
       name: "Lumos",
       domain: "Autonomy",
-      image: "/lumos.png?height=32&width=32&text=L",
+      image: "/lumos.png",
     },
     {
       name: "Pallet",
       domain: "Logistics",
-      image: "/pallet.png?height=32&width=32&text=P",
+      image: "/pallet.png",
     },
     {
       name: "Thatch",
       domain: "Healthcare",
-      image: "/thatch.png?height=32&width=32&text=T",
+      image: "/thatch.png",
     },
     {
       name: "Comulate",
       domain: "Insurance",
-      image: "/comulate.png?height=32&width=32&text=C",
+      image: "/comulate.png",
     },
     {
       name: "Wave RF",
       domain: "Communication",
-      image: "/waverf.png?height=32&width=32&text=W",
+      image: "/waverf.png",
     },
     {
       name: "MeetYourClass",
       domain: "Social",
-      image: "/meetyourclass.png?height=32&width=32&text=M",
+      image: "/meetyourclass.png",
     },
     {
       name: "random",
       domain: "random",
-      image: "/random.png?height=32&width=32&text=M",
+      image: "/random.png",
     },
   ];
 
@@ -83,22 +83,22 @@ export default function StartupsGrid() {
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
+      image: "/placeholder.svg",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
+      image: "/placeholder.svg",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
+      image: "/placeholder.svg",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
+      image: "/placeholder.svg",
     },
   ];
 

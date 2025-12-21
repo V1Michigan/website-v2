@@ -13,14 +13,12 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Enable Next.js image optimization for faster load times
+    formats: ['image/avif', 'image/webp'],
   },
   experimental: {
     webpackBuildWorker: true,

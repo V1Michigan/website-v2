@@ -67,6 +67,12 @@ export default function Header() {
         >
           Events
         </Link>
+        <Link
+          href="/store"
+          className="text-sm text-gray-700 hover:text-black"
+        >
+          Store
+        </Link>
         {/* <Link
           href="/people"
           className="text-sm text-gray-700 hover:text-black"
@@ -200,6 +206,13 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Events
+            </Link>
+            <Link
+              href="/store"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              Store
             </Link>
             {/* <Link
               href="/people"
