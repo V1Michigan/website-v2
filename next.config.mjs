@@ -20,7 +20,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Enable Next.js image optimization for faster load times
+    formats: ['image/avif', 'image/webp'],
   },
   experimental: {
     webpackBuildWorker: true,
