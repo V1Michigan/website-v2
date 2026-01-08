@@ -66,29 +66,6 @@ export default function PeoplePage() {
       return haystack.includes(trimmed);
     });
     
-    // Maintain alphabetical sorting after filtering
-    return filtered.sort((a, b) => {
-      const aName = a.name.toLowerCase().trim();
-      const bName = b.name.toLowerCase().trim();
-      
-      // Split names into parts
-      const aParts = aName.split(/\s+/);
-      const bParts = bName.split(/\s+/);
-      
-      // Compare first names
-      const aFirst = aParts[0] || '';
-      const bFirst = bParts[0] || '';
-      
-      if (aFirst !== bFirst) {
-        return aFirst.localeCompare(bFirst);
-      }
-      
-      // If first names are the same, compare last names
-      const aLast = aParts[aParts.length - 1] || '';
-      const bLast = bParts[bParts.length - 1] || '';
-      
-      return aLast.localeCompare(bLast);
-    });
   }, [query, people]);
 
   return (
