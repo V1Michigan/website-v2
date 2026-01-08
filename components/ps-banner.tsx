@@ -4,7 +4,10 @@ export default function PSBanner({ enabled }: { enabled: boolean }) {
     }
 
     return (
-        <div className="bg-gradient-to-r from-yellow-400 to-yellow-300 py-2 px-6 text-center shadow-lg border-b border-yellow-500/20">
+        <div 
+            className="bg-gradient-to-r from-yellow-400 to-yellow-300 py-2 px-6 text-center shadow-lg border-b border-yellow-500/20"
+            style={{ background: 'linear-gradient(to right, rgb(250 204 21), rgb(253 224 71))' }}
+        >
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <div className="flex items-center gap-2">
             <span className="text-sm font-inter font-semibold text-[#191919] leading-relaxed">
