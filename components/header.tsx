@@ -122,6 +122,13 @@ export default function Header() {
             >
               Product Studio
             </Link>
+            <Link
+              href="https://www.v1michigan.com/north-star"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              North Star
+            </Link>
              <Link
               href="/"
               className="block py-2 text-sm text-gray-700 hover:text-black"
@@ -149,13 +156,6 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Store
-            </Link>
-            <Link
-              href="https://www.v1michigan.com/north-star"
-              className="block py-2 text-sm text-gray-700 hover:text-black"
-              onClick={closeMobileMenu}
-            >
-              North Star
             </Link>
             <div className="py-2 border-t">
               <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
