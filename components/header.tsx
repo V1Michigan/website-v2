@@ -32,11 +32,20 @@ export default function Header() {
         <Link href="/" className="text-sm text-gray-700 hover:text-black">
           Startup Week
         </Link>
-        <Link href="https://v1michigan.com/events?utm_source=website" className="text-sm text-gray-700 hover:text-black">
-          Build Blue
-        </Link>
         <Link href="https://v1michigan.com/ship-it?utm_source=website" className="text-sm text-gray-700 hover:text-black">
           Ship-it
+        </Link>
+        <Link
+          href="https://v1michigan.com/events?utm_source=website"
+          className="text-sm text-gray-700 hover:text-black"
+        >
+          Events
+        </Link>
+        <Link
+          href="/store"
+          className="text-sm text-gray-700 hover:text-black"
+        >
+          Store
         </Link>
         <Link
           href="https://v1michigan.com/join?utm_source=website"
@@ -86,6 +95,20 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Build Blue
+            </Link>
+            <Link
+              href="https://v1michigan.com/events?utm_source=website"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              Events
+            </Link>
+            <Link
+              href="/store"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              Store
             </Link>
             <Link
               href="https://v1michigan.com/ship-it?utm_source=website"
