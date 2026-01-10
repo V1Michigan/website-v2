@@ -90,6 +90,13 @@ export default function Header() {
               Startup Week
             </Link>
             <Link
+              href="https://v1michigan.com/ship-it?utm_source=website"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              Ship-it
+            </Link>
+            <Link
               href="https://v1michigan.com/events?utm_source=website"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
@@ -102,13 +109,6 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Store
-            </Link>
-            <Link
-              href="https://v1michigan.com/ship-it?utm_source=website"
-              className="block py-2 text-sm text-gray-700 hover:text-black"
-              onClick={closeMobileMenu}
-            >
-              Ship-it
             </Link>
             <Link
               href="https://v1michigan.com/join?utm_source=website"
