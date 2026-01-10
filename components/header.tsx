@@ -94,13 +94,6 @@ export default function Header() {
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
-              Build Blue
-            </Link>
-            <Link
-              href="https://v1michigan.com/events?utm_source=website"
-              className="block py-2 text-sm text-gray-700 hover:text-black"
-              onClick={closeMobileMenu}
-            >
               Events
             </Link>
             <Link
