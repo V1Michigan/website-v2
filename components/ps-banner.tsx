@@ -35,6 +35,27 @@ export default function PSBanner({ enabled }: { enabled: boolean }) {
               </svg>
             </a>
             <a
+              href="https://calendar.google.com/calendar/u/2?cid=Y183YjdmZGYyNWRmMjA5YTNjYjlhODAzNzhhYjk0MmIzMmRjZmZhYzQ1NTg5NTQzZDRiZDFhYzU1MWRjNTM3ZDZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-[#191919]/10 text-[#191919] rounded-full text-sm font-inter font-medium hover:bg-[#191919]/20 transition-all duration-200 border border-[#191919]/20 hover:border-[#191919]/40"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <span>Calendar</span>
+            </a>
+            <a
               href="https://v1michigan.com/product-studio/faq?utm_source=website"
               className="inline-flex items-center gap-2 px-3 py-2 bg-[#191919]/10 text-[#191919] rounded-full text-sm font-inter font-medium hover:bg-[#191919]/20 transition-all duration-200 border border-[#191919]/20 hover:border-[#191919]/40"
             >
