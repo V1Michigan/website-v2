@@ -3,10 +3,11 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Menu, X } from "lucide-react"
+import { ArrowRight, Menu, X, Compass, ChevronDown } from "lucide-react"
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -14,6 +15,14 @@ export default function Header() {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
+  }
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen)
+  }
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false)
   }
 
   return (
@@ -42,18 +51,49 @@ export default function Header() {
           Events
         </Link>
         <Link
-          href="/store"
+          href="https://www.v1michigan.com/store"
           className="text-sm text-gray-700 hover:text-black"
         >
           Store
         </Link>
         <Link
-          href="https://v1michigan.com/join?utm_source=website"
+          href="https://www.v1michigan.com/north-star"
           className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
         >
-          Join us!
-          <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+          North Star
+          <Compass className="ml-1.5 h-3.5 w-3.5" />
         </Link>
+        <div className="relative">
+          <button
+            onClick={toggleDropdown}
+            className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+          >
+            Get Involved
+            <ChevronDown className="ml-1.5 h-3.5 w-3.5" />
+          </button>
+          {isDropdownOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+              <div className="py-1">
+                <Link
+                  href="https://v1michigan.com/community?utm_source=website"
+                  className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1"
+                  onClick={closeDropdown}
+                >
+                  Join Slack!
+                  <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
+                </Link>
+                <Link
+                  href="https://v1michigan.com/join?utm_source=website"
+                  className="flex items-center px-4 py-2 text-sm text-white bg-gray-800 hover:bg-gray-700 rounded-md mx-2 my-1"
+                  onClick={closeDropdown}
+                >
+                  Join us!
+                  <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Mobile Menu Button */}
@@ -104,20 +144,40 @@ export default function Header() {
               Events
             </Link>
             <Link
-              href="/store"
+              href="https://www.v1michigan.com/store"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               Store
             </Link>
             <Link
-              href="https://v1michigan.com/join?utm_source=website"
-              className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700 mt-2"
+              href="https://www.v1michigan.com/north-star"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
-              Join us
-              <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+              North Star
             </Link>
+            <div className="py-2 border-t">
+              <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
+              <div className="flex flex-col space-y-2">
+                <Link
+                  href="https://v1michigan.com/community?utm_source=website"
+                  className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
+                  onClick={closeMobileMenu}
+                >
+                  Join Slack!
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+                </Link>
+                <Link
+                  href="https://v1michigan.com/join?utm_source=website"
+                  className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+                  onClick={closeMobileMenu}
+                >
+                  Join us!
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       )}
