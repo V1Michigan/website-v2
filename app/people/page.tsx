@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import PersonCard from "@/components/person-card";
@@ -8,19 +8,9 @@ import PersonModal from "@/components/person-modal";
 import supabase from "@/utils/supabaseClient";
 import type { Person } from "@/types/person";
 import { Input } from "@/components/ui/input";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
-async function getPeople() {
-  const { data, error } = await supabase
-    .from('v1-people')
-    .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role, image-path');
-  // .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role');
-
-  if (error) {
-    console.error("Error fetching people:", error.message);
-  }
-
-  // Map database fields to Person interface
+function transformToPeople<T>(data: T[] | null) {
   const mappedPeople = (data || []).map((item: any) => ({
     id: item.id,
     name: item.name,
@@ -39,10 +29,25 @@ async function getPeople() {
   return mappedPeople;
 }
 
+async function getPeople() {
+  const { data, error } = await supabase
+    .from('v1-people')
+    .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role, image-path');
+  // .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role');
+
+  if (error) {
+    console.error("Error fetching people:", error.message);
+  }
+
+  // Map database fields to Person interface
+  const transformedPeople = transformToPeople(data);
+  return transformedPeople;
+}
+
 export default function PeoplePage() {
   const [selected, setSelected] = useState<Person | null>(null);
   const [query, setQuery] = useState("");
-  const { data, isPending } = useQuery({
+  const { data, isPending } = useSuspenseQuery({
     queryKey: ['people'],
     queryFn: getPeople
   });
@@ -54,7 +59,7 @@ export default function PeoplePage() {
   const filteredPeople = useMemo(() => {
     const trimmed = query.trim().toLowerCase();
     if (!trimmed) return data;
-    return data!.filter((p) => {
+    return data.filter((p) => {
       const haystack = [
         p.name,
         p.role,
@@ -100,12 +105,12 @@ export default function PeoplePage() {
                 <p className="mt-4 text-gray-600">Loading people...</p>
               </div>
             </div>
-          ) : filteredPeople!.length === 0 ? (
+          ) : filteredPeople.length === 0 ? (
             <div className="col-span-full text-center py-12">
               <p className="text-gray-600">No people found matching your search.</p>
             </div>
           ) : (
-            filteredPeople!.map((person) => (
+            filteredPeople.map((person) => (
               <PersonCard key={person.id} person={person} onClick={() => setSelected(person)} />
             ))
           )}
