@@ -8,51 +8,53 @@ import PersonModal from "@/components/person-modal";
 import supabase from "@/utils/supabaseClient";
 import type { Person } from "@/types/person";
 import { Input } from "@/components/ui/input";
+import { useQuery } from "@tanstack/react-query";
+
+async function getPeople() {
+  const { data, error } = await supabase
+    .from('v1-people')
+    .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role, image-path');
+  // .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role');
+
+  if (error) {
+    console.error("Error fetching people:", error.message);
+  }
+
+  // Map database fields to Person interface
+  const mappedPeople = (data || []).map((item: any) => ({
+    id: item.id,
+    name: item.name,
+    role: item.role,
+    imageSrc: item['image-path'] || "/placeholder.svg",
+    shortBio: item['short-bio'] || "",
+    fullBio: item['full-bio'] || "",
+    tags: item.tags || [],
+    social: {
+      linkedin: item.linkedin || "",
+      twitter: item.twitter || "",
+      instagram: item.instagram || "",
+      website: item.website || ""
+    },
+  }));
+  return mappedPeople;
+}
 
 export default function PeoplePage() {
   const [selected, setSelected] = useState<Person | null>(null);
   const [query, setQuery] = useState("");
-  const [people, setPeople] = useState<Person[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data, isPending } = useQuery({
+    queryKey: ['people'],
+    queryFn: getPeople
+  });
 
-  useEffect(() => {
-    async function getPeople() {
-      const { data, error } = await supabase
-        .from('v1-people')
-        .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role, image-path');
-
-      if (error) {
-        console.error('Error fetching people:', error.message);
-      } else {
-        // Map database fields to Person interface
-        const mappedPeople = (data || []).map((item: any) => ({
-          id: item.id,
-          name: item.name,
-          role: item.role,
-          imageSrc: item['image-path'] || "/placeholder.svg",
-          shortBio: item['short-bio'] || "",
-          fullBio: item['full-bio'] || "",
-          tags: item.tags || [],
-          social: {
-            linkedin: item.linkedin || "",
-            twitter: item.twitter || "", 
-            instagram: item.instagram || "", 
-            website: item.website || ""
-          },
-        }));
-        
-        setPeople(mappedPeople);
-      }
-      setLoading(false);
-    }
-
-    getPeople();
-  }, []);
+  // data or filteredPeople will never be null
+  // since the function will just return an array
+  // of empty data if the function fails
 
   const filteredPeople = useMemo(() => {
     const trimmed = query.trim().toLowerCase();
-    if (!trimmed) return people;
-    return people.filter((p) => {
+    if (!trimmed) return data;
+    return data!.filter((p) => {
       const haystack = [
         p.name,
         p.role,
@@ -65,8 +67,8 @@ export default function PeoplePage() {
         .toLowerCase();
       return haystack.includes(trimmed);
     });
-    
-  }, [query, people]);
+
+  }, [query, data]);
 
   return (
     <div className="min-h-screen bg-[#FEF9F5]">
@@ -91,19 +93,19 @@ export default function PeoplePage() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {loading ? (
+          {isPending ? (
             <div className="col-span-full flex items-center justify-center py-12">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
                 <p className="mt-4 text-gray-600">Loading people...</p>
               </div>
             </div>
-          ) : filteredPeople.length === 0 ? (
+          ) : filteredPeople!.length === 0 ? (
             <div className="col-span-full text-center py-12">
               <p className="text-gray-600">No people found matching your search.</p>
             </div>
           ) : (
-            filteredPeople.map((person) => (
+            filteredPeople!.map((person) => (
               <PersonCard key={person.id} person={person} onClick={() => setSelected(person)} />
             ))
           )}
