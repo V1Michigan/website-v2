@@ -27,4 +27,5 @@ yarn-error.log*
 next-env.d.ts
 
 # mac
-/app/.DS_Store
+**/.DS_Store
+.DS_Store
