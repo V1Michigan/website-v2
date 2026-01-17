@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -57,32 +57,28 @@ export default function PeoplePage() {
   const searchParams = useSearchParams();
   const urlSearch = searchParams?.get('q') || '';
   const [localSearch, setLocalSearch] = useState(urlSearch);
-  const [debouncedSearch, setDebouncedSearch] = useState(urlSearch);
 
   // Sync local state with URL on mount or URL change
   useEffect(() => {
     if (localSearch !== urlSearch) setLocalSearch(urlSearch);
-    if (debouncedSearch !== urlSearch) setDebouncedSearch(urlSearch);
   }, [urlSearch]);
 
-  // Debounce localSearch to update debouncedSearch
-  useEffect(() => {
-    const timeout = setTimeout(() => setDebouncedSearch(localSearch), 300);
-    return () => clearTimeout(timeout);
-  }, [localSearch]);
-
-  // Update URL when debouncedSearch changes
-  useEffect(() => {
-    if (debouncedSearch !== urlSearch) {
-      const params = new URLSearchParams(searchParams?.toString() || '');
-      if (debouncedSearch.trim()) {
-        params.set('q', debouncedSearch.trim());
-      } else {
-        params.delete('q');
-      }
-      router.replace(`?${params.toString()}`, { scroll: false });
-    }
-  }, [debouncedSearch, urlSearch, searchParams, router]);
+  // Debounced URL update
+  const debouncedUpdateURL = useMemo(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    return (value: string) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const params = new URLSearchParams(searchParams?.toString() || '');
+        if (value.trim()) {
+          params.set('q', value.trim());
+        } else {
+          params.delete('q');
+        }
+        router.replace(`?${params.toString()}`, { scroll: false });
+      }, 300);
+    };
+  }, [searchParams, router]);
 
   const { data, isPending } = useSuspenseQuery({
     queryKey: ['people', urlSearch],
@@ -105,7 +101,10 @@ export default function PeoplePage() {
         <div className="mb-6">
           <Input
             value={localSearch}
-            onChange={(e) => setLocalSearch(e.target.value)}
+            onChange={(e) => {
+              setLocalSearch(e.target.value);
+              debouncedUpdateURL(e.target.value);
+            }}
             placeholder="Search by name"
             aria-label="Search people"
             className="max-w-md bg-white/70"
