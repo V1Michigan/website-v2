@@ -4,6 +4,7 @@ import { Inter, Playfair_Display, Instrument_Serif } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { CSPostHogProvider } from "@/components/posthog-provider";
 import { AuthProvider } from "@/components/auth/auth-provider";
+import { Metadata } from "next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +22,7 @@ const instrumentSerif = Instrument_Serif({
   weight: ["400"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "V1 @ Michigan",
   description:
     "V1 is the premier student-run entrepreneurship organization at Michigan dedicated to empowering builders and innovators of tomorrow.",
