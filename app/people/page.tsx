@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import PersonCard from "@/components/person-card";
@@ -29,11 +30,17 @@ function transformToPeople<T>(data: T[] | null) {
   return mappedPeople;
 }
 
-async function getPeople() {
-  const { data, error } = await supabase
+async function getPeople(searchQuery?: string) {
+  let query = supabase
     .from('v1-people')
-    .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role, image-path');
-  // .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role');
+    // .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role, image-path');
+    .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role');
+
+  if (searchQuery?.trim()) {
+    query = query.ilike('name', `%${searchQuery.trim()}%`);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     console.error("Error fetching people:", error.message);
@@ -46,34 +53,42 @@ async function getPeople() {
 
 export default function PeoplePage() {
   const [selected, setSelected] = useState<Person | null>(null);
-  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const urlSearch = searchParams?.get('q') || '';
+  const [localSearch, setLocalSearch] = useState(urlSearch);
+  const [debouncedSearch, setDebouncedSearch] = useState(urlSearch);
+
+  // Sync local state with URL on mount or URL change
+  useEffect(() => {
+    if (localSearch !== urlSearch) setLocalSearch(urlSearch);
+    if (debouncedSearch !== urlSearch) setDebouncedSearch(urlSearch);
+  }, [urlSearch]);
+
+  // Debounce localSearch to update debouncedSearch
+  useEffect(() => {
+    const timeout = setTimeout(() => setDebouncedSearch(localSearch), 300);
+    return () => clearTimeout(timeout);
+  }, [localSearch]);
+
+  // Update URL when debouncedSearch changes
+  useEffect(() => {
+    if (debouncedSearch !== urlSearch) {
+      const params = new URLSearchParams(searchParams?.toString() || '');
+      if (debouncedSearch.trim()) {
+        params.set('q', debouncedSearch.trim());
+      } else {
+        params.delete('q');
+      }
+      router.replace(`?${params.toString()}`, { scroll: false });
+    }
+  }, [debouncedSearch, urlSearch, searchParams, router]);
+
   const { data, isPending } = useSuspenseQuery({
-    queryKey: ['people'],
-    queryFn: getPeople
+    queryKey: ['people', urlSearch],
+    queryFn: ({ queryKey }) => getPeople(queryKey[1] as string),
+    staleTime: 5 * 60 * 1000 // 5 minutes
   });
-
-  // data or filteredPeople will never be null
-  // since the function will just return an array
-  // of empty data if the function fails
-
-  const filteredPeople = useMemo(() => {
-    const trimmed = query.trim().toLowerCase();
-    if (!trimmed) return data;
-    return data.filter((p) => {
-      const haystack = [
-        p.name,
-        p.role,
-        p.shortBio,
-        p.fullBio,
-        (p.tags || []).join(" "),
-      ]
-        .filter(Boolean)
-        .join(" \n ")
-        .toLowerCase();
-      return haystack.includes(trimmed);
-    });
-
-  }, [query, data]);
 
   return (
     <div className="min-h-screen bg-[#FEF9F5]">
@@ -89,9 +104,9 @@ export default function PeoplePage() {
 
         <div className="mb-6">
           <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by name, role, tag, or bio"
+            value={localSearch}
+            onChange={(e) => setLocalSearch(e.target.value)}
+            placeholder="Search by name"
             aria-label="Search people"
             className="max-w-md bg-white/70"
           />
@@ -105,12 +120,12 @@ export default function PeoplePage() {
                 <p className="mt-4 text-gray-600">Loading people...</p>
               </div>
             </div>
-          ) : filteredPeople.length === 0 ? (
+          ) : data.length === 0 ? (
             <div className="col-span-full text-center py-12">
               <p className="text-gray-600">No people found matching your search.</p>
             </div>
           ) : (
-            filteredPeople.map((person) => (
+            data.map((person: Person) => (
               <PersonCard key={person.id} person={person} onClick={() => setSelected(person)} />
             ))
           )}
