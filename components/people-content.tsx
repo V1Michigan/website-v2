@@ -62,7 +62,6 @@ export default function PeopleContent() {
   }, [urlSearch]);
 
   // Debounced URL update
-  // TODO: make the expanded view a shallow route
   const debouncedUpdateURL = useMemo(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
     return (value: string) => {
