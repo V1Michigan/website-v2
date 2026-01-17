@@ -53,6 +53,7 @@ export default function PeopleContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const urlSearch = searchParams?.get('q') || '';
+  const profileId = searchParams?.get('profile') || '';
   const [localSearch, setLocalSearch] = useState(urlSearch);
 
   // Sync local state with URL on mount or URL change
@@ -61,6 +62,7 @@ export default function PeopleContent() {
   }, [urlSearch]);
 
   // Debounced URL update
+  // TODO: make the expanded view a shallow route
   const debouncedUpdateURL = useMemo(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
     return (value: string) => {
@@ -82,6 +84,16 @@ export default function PeopleContent() {
     queryFn: ({ queryKey }) => getPeople(queryKey[1] as string),
     staleTime: 5 * 60 * 1000 // 5 minutes
   });
+
+  // Sync selected person with profile query param
+  useEffect(() => {
+    if (profileId && data) {
+      const person = data.find(p => p.id === profileId);
+      setSelected(person || null);
+    } else {
+      setSelected(null);
+    }
+  }, [profileId, data]);
 
   return (
     <>
@@ -120,13 +132,25 @@ export default function PeopleContent() {
             </div>
           ) : (
             data.map((person: Person) => (
-              <PersonCard key={person.id} person={person} onClick={() => setSelected(person)} />
+              <PersonCard key={person.id} person={person} onClick={() => {
+                setSelected(person);
+                const params = new URLSearchParams(searchParams?.toString() || '');
+                params.set('profile', person.id);
+                router.push(`/people?${params.toString()}`);
+              }} />
             ))
           )}
         </div>
       </main>
 
-      <PersonModal person={selected} open={!!selected} onOpenChange={(o) => !o && setSelected(null)} />
+      <PersonModal person={selected} open={!!selected} onOpenChange={(o) => {
+        if (!o) {
+          setSelected(null);
+          const params = new URLSearchParams(searchParams?.toString() || '');
+          params.delete('profile');
+          router.replace(`?${params.toString()}`, { scroll: false });
+        }
+      }} />
     </>
   );
 }
