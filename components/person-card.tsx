@@ -26,7 +26,7 @@ export default function PersonCard({ person, onClick }: PersonCardProps) {
       <div className="mt-3">
         <h3 className="text-base font-medium text-gray-800">{person.name}</h3>
         <p className="text-xs text-gray-600">{person.role}</p>
-        <p className="mt-2 line-clamp-3 text-xs text-gray-700">{person.shortBio}</p>
+        <p className="mt-2 line-clamp-3 text-xs text-gray-700 min-h-[2rem]">{person.shortBio}</p>
       </div>
     </button>
   );
