@@ -19,6 +19,16 @@ const nextConfig = {
   images: {
     // Enable Next.js image optimization for faster load times
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'xxlvdpgngmcvkzcsatuz.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.imgflip.com',
+      },
+    ],
   },
   experimental: {
     webpackBuildWorker: true,
