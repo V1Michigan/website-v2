@@ -4,6 +4,7 @@ import supabase from "../utils/supabaseClient";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
+  query,
   req,
 }) => {
   const slug = params?.slug as string[];
@@ -23,10 +24,10 @@ export const getServerSideProps: GetServerSideProps = async ({
   });
   posthog.capture({
     distinctId: req.headers['x-forwarded-for'] || (req as any).connection?.remoteAddress || 'anonymous',
-    event: 'slug_visited',
+    event: 'user visited the url redirector',
     properties: {
       slug: slugRoute,
-      valid: initialRoute !== "404",
+      source: query?.utm_source || 'none',
     },
   });
   posthog.shutdown();
