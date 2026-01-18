@@ -135,7 +135,7 @@ export default function PeopleContent() {
                 setSelected(person);
                 const params = new URLSearchParams(searchParams?.toString() || '');
                 params.set('profile', person.id);
-                router.push(`/people?${params.toString()}`);
+                router.push(`/people?${params.toString()}`, { scroll: false });
               }} />
             ))
           )}
