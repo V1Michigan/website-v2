@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <>
       {/* Promotional Banner */}
-      <PSBanner enabled={true} />
+      <PSBanner enabled={false} />
 
       <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
         <div className="relative aspect-[16/9] w-full">
