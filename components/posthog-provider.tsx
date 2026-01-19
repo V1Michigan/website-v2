@@ -12,6 +12,7 @@ export function CSPostHogProvider({ children }: { children: React.ReactNode }) {
         person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
         capture_pageview: false, // Disable automatic pageview capture, as we capture manually
         capture_pageleave: true, // Enable pageleave capture
+        __add_tracing_headers: ['v1michigan.com'], // enable session id tracking
         loaded: (posthog) => {
           if (process.env.NODE_ENV === 'development') console.log('PostHog loaded');
         }
