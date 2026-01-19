@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       source: query?.utm_source || 'none',
     },
   });
-  posthog.shutdown();
+  await posthog.shutdown();
 
   if (initialRoute !== "404") {
     return {
