@@ -4,15 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import PSBanner from "./ps-banner";
+import YCBanner from "./yc-banner";
 import { useShowPsBannerFlag } from "@/hooks/useShowPsBannerFlag";
+import { useShowYcBannerFlag } from "@/hooks/useShowYcBannerFlag";
 
 export default function HeroSection() {
-  const { isEnabled } = useShowPsBannerFlag();
+  const { psFlagEnabled } = useShowPsBannerFlag();
+  const { ycFlagEnabled } = useShowYcBannerFlag();
 
   return (
     <>
       {/* Promotional Banner */}
-      <PSBanner enabled={isEnabled} />
+      <PSBanner enabled={psFlagEnabled} />
+      <YCBanner enabled={ycFlagEnabled} />
 
       <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
         <div className="relative aspect-[16/9] w-full">

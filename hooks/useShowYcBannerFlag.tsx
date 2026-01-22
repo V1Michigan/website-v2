@@ -1,12 +1,13 @@
+
 "use client";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import supabase from "@/utils/supabaseClient";
 
-const FLAG_NAME = "SHOW_PS_BANNER";
+const FLAG_NAME = "SHOW_YC_BANNER";
 
-async function fetchPsBannerFlag() {
+async function fetchYcBannerFlag() {
   const { data, error } = await supabase
     .from("flags")
     .select("is_active")
@@ -14,23 +15,23 @@ async function fetchPsBannerFlag() {
     .single();
 
   if (error) {
-    console.error("Error fetching PS banner flag:", error.message);
+    console.error("Error fetching YC banner flag:", error.message);
     throw error;
   }
 
   return data?.is_active ?? false;
 }
 
-export function useShowPsBannerFlag() {
+export function useShowYcBannerFlag() {
   const queryClient = useQueryClient();
 
   const {
-    data: psFlagEnabled = false,
+    data: ycFlagEnabled = false,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["psBannerFlag"],
-    queryFn: fetchPsBannerFlag,
+    queryKey: ["ycBannerFlag"],
+    queryFn: fetchYcBannerFlag,
     initialData: false,
     refetchInterval: 30000, // Fallback polling every 30s if subscription fails
     staleTime: 5 * 60 * 1000, // 5 minutes
@@ -38,7 +39,7 @@ export function useShowPsBannerFlag() {
 
   useEffect(() => {
     const channel = supabase
-      .channel("flags_show_ps_banner")
+      .channel("flags_show_yc_banner")
       .on(
         "postgres_changes",
         {
@@ -49,15 +50,15 @@ export function useShowPsBannerFlag() {
         },
         (payload) => {
           if (payload.new && "is_active" in payload.new) {
-            queryClient.invalidateQueries({ queryKey: ["psBannerFlag"] });
+            queryClient.invalidateQueries({ queryKey: ["ycBannerFlag"] });
           }
         }
       )
       .subscribe((status) => {
         if (status === "SUBSCRIBED") {
-          console.log("Subscribed to PS banner flag changes");
+          console.log("Subscribed to YC banner flag changes");
         } else if (status === "CHANNEL_ERROR") {
-          console.error("Failed to subscribe to PS banner flag changes, falling back to polling");
+          console.error("Failed to subscribe to YC banner flag changes, falling back to polling");
         }
       });
 
@@ -66,5 +67,5 @@ export function useShowPsBannerFlag() {
     };
   }, [queryClient]);
 
-  return { psFlagEnabled, isLoading, error };
+  return { ycFlagEnabled, isLoading, error };
 }
