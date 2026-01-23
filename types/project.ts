@@ -1,3 +1,5 @@
+export type SectionType = "funding" | "cohort"
+
 export interface Founder {
   id: string
   name: string
@@ -15,4 +17,7 @@ export interface Project {
   categories: string[]
   overview: string
   founders: Founder[]
+  sectionType: SectionType
+  sectionName: string
+  sectionOrder: number
 }
