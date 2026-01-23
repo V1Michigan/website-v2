@@ -59,12 +59,12 @@ export default function SectionNav({
       <div className="mx-auto max-w-6xl">
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
           <Button
-            variant="ghost"
+            variant="default"
             size="sm"
             onClick={handleAllClick}
             className={`flex-shrink-0 ${filterSection === null
-                ? "bg-[#E9B872] text-gray-800 hover:bg-[#E5AD5F]"
-                : ""
+              ? "hover:bg-[#E9B872] text-gray-800 bg-[#F5A624]"
+              : "hover:bg-[#E9B872] bg-transparent text-black"
               }`}
           >
             All
@@ -78,8 +78,8 @@ export default function SectionNav({
               size="sm"
               onClick={() => handleSectionClick(section.name)}
               className={`flex-shrink-0 ${filterSection === section.name
-                ? "bg-[#E9B872] text-gray-800 hover:bg-[#E5AD5F]"
-                : ""
+                ? "hover:bg-[#E9B872] text-gray-800 bg-[#F5A624]"
+                : "hover:bg-[#E9B872] bg-transparent text-black"
                 }`}
             >
               {getDisplayName(section.name, section.type)}
@@ -108,8 +108,8 @@ export default function SectionNav({
               size="sm"
               onClick={() => handleSectionClick(section.name)}
               className={`flex-shrink-0 ${filterSection === section.name
-                ? "bg-[#E9B872] text-gray-800 hover:bg-[#E5AD5F]"
-                : ""
+                ? "hover:bg-[#E9B872] text-gray-800 bg-[#F5A624]"
+                : "hover:bg-[#E9B872] bg-transparent text-black"
                 }`}
             >
               {getDisplayName(section.name, section.type)}
