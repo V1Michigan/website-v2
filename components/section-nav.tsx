@@ -1,7 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface SectionNavProps {
   sections: Array<{
@@ -22,19 +21,6 @@ export default function SectionNav({
   onFilterChange,
   onScrollToSection,
 }: SectionNavProps) {
-  const handleSectionClick = (sectionName: string) => {
-    if (filterSection === sectionName) {
-      onFilterChange(null)
-    } else {
-      onFilterChange(sectionName)
-    }
-  }
-
-  const handleAllClick = () => {
-    onFilterChange(null)
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
   // Group sections by type
   const fundingSections = sections.filter(s => s.type === 'funding')
   const cohortSections = sections.filter(s => s.type === 'cohort')
@@ -54,76 +40,55 @@ export default function SectionNav({
     return sectionName
   }
 
+  const handleValueChange = (value: string) => {
+    if (value === "all") {
+      onFilterChange(null)
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    } else {
+      onFilterChange(value)
+    }
+  }
+
   return (
-    <div className="bg-[#FAF7F2] border-b border-gray-200 py-4">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          <Button
-            variant="default"
-            size="sm"
-            onClick={handleAllClick}
-            className={`flex-shrink-0 ${filterSection === null
-              ? "hover:bg-[#E9B872] text-gray-800 bg-[#F5A624]"
-              : "hover:bg-[#E9B872] bg-transparent text-black"
-              }`}
-          >
-            All
-          </Button>
+    <div className="bg-[#FAF7F2] border-b border-gray-200 py-3 md:py-4">
+      <div className="mx-auto max-w-6xl px-2 md:px-0">
+        <div className="max-w-xs">
+          <Select value={filterSection || "all"} onValueChange={handleValueChange}>
+            <SelectTrigger className="bg-white border-gray-300">
+              <SelectValue placeholder="Filter projects..." />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Projects</SelectItem>
 
-          {/* Funding sections */}
-          {fundingSections.map((section) => (
-            <Button
-              key={section.name}
-              variant={filterSection === section.name ? "default" : "ghost"}
-              size="sm"
-              onClick={() => handleSectionClick(section.name)}
-              className={`flex-shrink-0 ${filterSection === section.name
-                ? "hover:bg-[#E9B872] text-gray-800 bg-[#F5A624]"
-                : "hover:bg-[#E9B872] bg-transparent text-black"
-                }`}
-            >
-              {getDisplayName(section.name, section.type)}
-              <Badge
-                variant="secondary"
-                className={`ml-2 !hover:bg-inherit transition-none ${filterSection === section.name
-                  ? "bg-white/20 text-white"
-                  : "bg-gray-200 text-gray-700"
-                  }`}
-              >
-                {section.count}
-              </Badge>
-            </Button>
-          ))}
+              {/* Funding sections */}
+              {fundingSections.length > 0 && (
+                <>
+                  <div className="px-2 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                    Funding
+                  </div>
+                  {fundingSections.map((section) => (
+                    <SelectItem key={section.name} value={section.name}>
+                      {getDisplayName(section.name, section.type)} ({section.count})
+                    </SelectItem>
+                  ))}
+                </>
+              )}
 
-          {/* Separator */}
-          {cohortSections.length > 0 && (
-            <div className="flex-shrink-0 w-px h-6 bg-gray-300 mx-2"></div>
-          )}
-
-          {/* Cohort sections */}
-          {cohortSections.map((section) => (
-            <Button
-              key={section.name}
-              variant={filterSection === section.name ? "default" : "ghost"}
-              size="sm"
-              onClick={() => handleSectionClick(section.name)}
-              className={`flex-shrink-0 ${filterSection === section.name
-                ? "hover:bg-[#E9B872] text-gray-800 bg-[#F5A624]"
-                : "hover:bg-[#E9B872] bg-transparent text-black"
-                }`}
-            >
-              {getDisplayName(section.name, section.type)}
-              <Badge
-                variant="secondary"
-                className={`ml-2 !hover:bg-inherit transition-none ${filterSection === section.name
-                  ? "bg-white/20 text-white"
-                  : "bg-gray-200 text-gray-700"
-                  }`}
-              >
-                {section.count}
-              </Badge>
-            </Button>
-          ))}
+              {/* Cohort sections */}
+              {cohortSections.length > 0 && (
+                <>
+                  <div className="px-2 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                    Cohorts
+                  </div>
+                  {cohortSections.map((section) => (
+                    <SelectItem key={section.name} value={section.name}>
+                      {getDisplayName(section.name, section.type)} ({section.count})
+                    </SelectItem>
+                  ))}
+                </>
+              )}
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>
