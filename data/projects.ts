@@ -230,7 +230,7 @@ export const projects: Project[] = [
     ],
     sectionType: "cohort",
     sectionName: "Winter 2025 Product Studio Cohort",
-    sectionOrder: 22,
+    sectionOrder: 21,
   },
   {
     id: "project-10",
@@ -305,7 +305,7 @@ export const projects: Project[] = [
     ],
     sectionType: "cohort",
     sectionName: "Winter 2025 Product Studio Cohort",
-    sectionOrder: 22,
+    sectionOrder: 21,
   },
   {
     id: "project-10",
@@ -326,7 +326,7 @@ export const projects: Project[] = [
     ],
     sectionType: "cohort",
     sectionName: "Fall 2025 Product Studio Cohort",
-    sectionOrder: 21,
+    sectionOrder: 22,
   },
   {
     id: "project-11",
@@ -428,7 +428,7 @@ export const projects: Project[] = [
     ],
     sectionType: "cohort",
     sectionName: "Fall 2025 Product Studio Cohort",
-    sectionOrder: 21,
+    sectionOrder: 22,
   },
   {
     id: "project-16",
@@ -449,6 +449,6 @@ export const projects: Project[] = [
     ],
     sectionType: "cohort",
     sectionName: "Fall 2025 Product Studio Cohort",
-    sectionOrder: 21,
+    sectionOrder: 22,
   },
 ]

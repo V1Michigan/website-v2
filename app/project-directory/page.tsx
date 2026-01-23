@@ -122,15 +122,30 @@ export default function ProjectDirectoryPage() {
   }
 
   const getSectionNavData = () => {
-    const groups = new Map<string, number>()
+    const groups = new Map<string, { count: number; type: "funding" | "cohort"; order: number }>()
     projects.forEach((p) => {
-      groups.set(p.sectionName, (groups.get(p.sectionName) || 0) + 1)
+      if (!groups.has(p.sectionName)) {
+        groups.set(p.sectionName, {
+          count: 0,
+          type: p.sectionType,
+          order: p.sectionOrder,
+        })
+      }
+      groups.get(p.sectionName)!.count++
     })
-    return Array.from(groups.entries()).map(([name, count]) => ({
-      name,
-      count,
-      type: projects.find((p) => p.sectionName === name)!.sectionType,
-    }))
+    return Array.from(groups.entries())
+      .map(([name, data]) => ({
+        name,
+        count: data.count,
+        type: data.type,
+        order: data.order,
+      }))
+      .sort((a, b) => {
+        if (a.type !== b.type) return a.type === "funding" ? -1 : 1
+        // For funding sections, lower order = higher priority (Y-Combinator = 1 comes first)
+        // For cohort sections, higher order = more recent (Winter 2026 = 23 comes first)
+        return a.type === "funding" ? a.order - b.order : b.order - a.order
+      })
   }
 
   return (
