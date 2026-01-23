@@ -31,7 +31,7 @@ export const projects: Project[] = [
       },
     ],
     sectionType: "funding",
-    sectionName: "Y-Combinator",
+    sectionName: "Y Combinator",
     sectionOrder: 1,
   },
   {
@@ -58,7 +58,7 @@ export const projects: Project[] = [
       },
     ],
     sectionType: "funding",
-    sectionName: "Y-Combinator",
+    sectionName: "Y Combinator",
     sectionOrder: 1,
   },
   {
@@ -85,7 +85,7 @@ export const projects: Project[] = [
       },
     ],
     sectionType: "funding",
-    sectionName: "Y-Combinator",
+    sectionName: "Y Combinator",
     sectionOrder: 1,
   },
   {
@@ -112,7 +112,7 @@ export const projects: Project[] = [
       },
     ],
     sectionType: "funding",
-    sectionName: "Y-Combinator",
+    sectionName: "Y Combinator",
     sectionOrder: 1,
   },
   {
