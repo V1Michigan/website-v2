@@ -5,12 +5,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import PSBanner from "./ps-banner";
 import YCBanner from "./yc-banner";
-import { useShowPsBannerFlag } from "@/hooks/useShowPsBannerFlag";
-import { useShowYcBannerFlag } from "@/hooks/useShowYcBannerFlag";
+import { useFlags } from "@/hooks/useFlags";
+import { FLAG_NAMES } from "@/constants/flags";
 
 export default function HeroSection() {
-  const { psFlagEnabled } = useShowPsBannerFlag();
-  const { ycFlagEnabled } = useShowYcBannerFlag();
+  const { [FLAG_NAMES.SHOW_PS_BANNER]: psFlagEnabled, [FLAG_NAMES.SHOW_YC_BANNER]: ycFlagEnabled } = useFlags();
 
   return (
     <>
