@@ -6,16 +6,15 @@ import { motion } from "framer-motion";
 import PSBanner from "./ps-banner";
 import YCBanner from "./yc-banner";
 import { useFlags } from "@/hooks/useFlags";
-import { FLAG_NAMES } from "@/constants/flags";
 
 export default function HeroSection() {
-  const { [FLAG_NAMES.SHOW_PS_BANNER]: psFlagEnabled, [FLAG_NAMES.SHOW_YC_BANNER]: ycFlagEnabled } = useFlags();
+  const { SHOW_PS_BANNER, SHOW_YC_BANNER } = useFlags();
 
   return (
     <>
       {/* Promotional Banner */}
-      <PSBanner enabled={psFlagEnabled} />
-      <YCBanner enabled={ycFlagEnabled} />
+      <PSBanner enabled={SHOW_PS_BANNER} />
+      <YCBanner enabled={SHOW_YC_BANNER} />
 
       <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
         <div className="relative aspect-[16/9] w-full">
