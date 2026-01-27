@@ -17,12 +17,12 @@ export default function WhatWeDoSection() {
         href="http://startupweek.v1michigan.com/"
       />
 
-      <ProgramCard
-        title="Project North Star"
-        description="Connect with partners, talk to customers, and raise capital."
-        imageSrc="/build-blue-img.JPG"
-        href="https://v1michigan.com/north-star"
-      />
+      {/* <ProgramCard */}
+      {/*   title="Project North Star" */}
+      {/*   description="Connect with partners, talk to customers, and raise capital." */}
+      {/*   imageSrc="/build-blue-img.JPG" */}
+      {/*   href="https://v1michigan.com/north-star" */}
+      {/* /> */}
 
       <ProgramCard
         title="Ship-It"
