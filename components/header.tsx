@@ -79,13 +79,13 @@ export default function Header() {
         >
           People
         </Link> */}
-        <Link
-          href="/north-star"
-          className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
-        >
-          North Star
-          <Compass className="ml-1.5 h-3.5 w-3.5" />
-        </Link>
+        {/* <Link */}
+        {/*   href="/north-star" */}
+        {/*   className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700" */}
+        {/* > */}
+        {/*   North Star */}
+        {/*   <Compass className="ml-1.5 h-3.5 w-3.5" /> */}
+        {/* </Link> */}
         {user ? (
           <div className="flex items-center space-x-4">
             {user.user_metadata?.avatar_url ? (
