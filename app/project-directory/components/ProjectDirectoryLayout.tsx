@@ -1,0 +1,176 @@
+import { useState } from "react"
+import FilterPanel from "./FilterPanel"
+import ProjectList from "./ProjectList"
+import { Button } from "@/components/ui/button"
+import { Filter } from "lucide-react"
+import type { Project } from "@/types/project"
+
+interface ProjectDirectoryLayoutProps {
+  projects: Project[]
+  filters: {
+    searchQuery: string
+    fundingSources: string[]
+    cohorts: string[]
+    categories: string[]
+  }
+  filterOptions: {
+    fundingSources: string[]
+    cohorts: string[]
+    categories: string[]
+  }
+  onSearchChange: (query: string) => void
+  onToggleFunding: (source: string) => void
+  onToggleCohort: (cohort: string) => void
+  onToggleCategory: (category: string) => void
+  onClearAll: () => void
+  hasActiveFilters: boolean
+  onProjectClick: (project: Project) => void
+}
+
+export default function ProjectDirectoryLayout({
+  projects,
+  filters,
+  filterOptions,
+  onSearchChange,
+  onToggleFunding,
+  onToggleCohort,
+  onToggleCategory,
+  onClearAll,
+  hasActiveFilters,
+  onProjectClick,
+}: ProjectDirectoryLayoutProps) {
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+
+  return (
+    <>
+      {/* Desktop Layout */}
+      <div className="hidden lg:flex lg:gap-6">
+        {/* Filter Panel - Left Side */}
+        <div className="w-96 flex-shrink-0">
+          <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-200 bg-white">
+            <FilterPanel
+              filters={filters}
+              filterOptions={filterOptions}
+              onSearchChange={onSearchChange}
+              onToggleFunding={onToggleFunding}
+              onToggleCohort={onToggleCohort}
+              onToggleCategory={onToggleCategory}
+              onClearAll={onClearAll}
+              hasActiveFilters={hasActiveFilters}
+            />
+          </div>
+        </div>
+
+        {/* Project List - Right Side */}
+        <div className="flex-1">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="font-instrument text-2xl font-semibold text-gray-900">
+              Projects ({projects.length})
+            </h2>
+            {hasActiveFilters && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onClearAll}
+                className="text-xs"
+              >
+                Clear filters
+              </Button>
+            )}
+          </div>
+          <ProjectList projects={projects} onProjectClick={onProjectClick} />
+        </div>
+      </div>
+
+      {/* Mobile/Tablet Layout */}
+      <div className="lg:hidden">
+        {/* Mobile Filter Button */}
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <div className="flex-1">
+            <input
+              type="search"
+              placeholder="Search companies..."
+              value={filters.searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsMobileFilterOpen(true)}
+            className="flex items-center gap-2"
+          >
+            <Filter className="h-4 w-4" />
+            Filters
+            {hasActiveFilters && (
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-xs text-white">
+                {filters.fundingSources.length + filters.cohorts.length + filters.categories.length}
+              </span>
+            )}
+          </Button>
+        </div>
+
+        {/* Project Count */}
+        <div className="mb-4">
+          <h2 className="font-instrument text-xl font-semibold text-gray-900">
+            Projects ({projects.length})
+          </h2>
+        </div>
+
+        {/* Project List */}
+        <ProjectList projects={projects} onProjectClick={onProjectClick} />
+
+        {/* Mobile Filter Modal */}
+        {isMobileFilterOpen && (
+          <div className="fixed inset-0 z-50 flex">
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50"
+              onClick={() => setIsMobileFilterOpen(false)}
+            />
+
+            {/* Filter Panel Slide-up */}
+            <div className="fixed bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-2xl bg-white">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-gray-200 p-4">
+                <h3 className="font-instrument text-lg font-semibold text-gray-900">Filters</h3>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsMobileFilterOpen(false)}
+                >
+                  ×
+                </Button>
+              </div>
+
+              {/* Filter Content */}
+              <div className="flex-1 overflow-y-auto">
+                <FilterPanel
+                  filters={filters}
+                  filterOptions={filterOptions}
+                  onSearchChange={onSearchChange}
+                  onToggleFunding={onToggleFunding}
+                  onToggleCohort={onToggleCohort}
+                  onToggleCategory={onToggleCategory}
+                  onClearAll={onClearAll}
+                  hasActiveFilters={hasActiveFilters}
+                />
+              </div>
+
+              {/* Footer */}
+              <div className="border-t border-gray-200 p-4">
+                <Button
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="w-full"
+                >
+                  Apply Filters
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  )
+}
