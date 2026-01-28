@@ -15,20 +15,21 @@ async function fetchAllFlags(): Promise<FlagsState> {
     throw error;
   }
 
-  // Transform array to object with typed flag names
+  // Transform array to mutable object first
   const flags = data?.reduce((acc, flag) => {
     acc[flag.flag_name as keyof FlagsState] = flag.is_active;
     return acc;
-  }, {} as FlagsState) || {};
+  }, {} as Record<string, boolean>) || {};
 
   // Ensure all known flags are present with false as default
   Object.keys(FLAG_NAMES).forEach(flagName => {
-    if (flags[flagName as keyof FlagsState] === undefined) {
-      flags[flagName as keyof FlagsState] = false;
+    if (flags[flagName] === undefined) {
+      flags[flagName] = false;
     }
   });
 
-  return flags;
+  // Cast to FlagsState at the end
+  return flags as FlagsState;
 }
 
 export function useFlags() {
@@ -36,14 +37,15 @@ export function useFlags() {
 
   const {
     data: flags = {} as FlagsState,
-    isLoading,
+    isPending,
     error,
   } = useQuery({
     queryKey: ["allFlags"],
     queryFn: fetchAllFlags,
-    initialData: {},
+    placeholderData: {} as FlagsState,
     refetchInterval: 30000, // Fallback polling every 30s if subscription fails
     staleTime: 5 * 60 * 1000, // 5 minutes
+    retry: 3,
   });
 
   useEffect(() => {
@@ -79,5 +81,5 @@ export function useFlags() {
     };
   }, [queryClient]);
 
-  return { ...flags, isLoading, error };
+  return { ...flags, isLoading: isPending, error };
 }
