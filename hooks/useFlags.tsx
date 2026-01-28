@@ -60,7 +60,6 @@ export function useFlags() {
         },
         (payload) => {
           if (payload.new?.flag_name) {
-            console.log("hello world!");
             queryClient.setQueryData(["allFlags"], (old: FlagsState) => ({
               ...old,
               [payload.new.flag_name as keyof FlagsState]: payload.new.is_active
