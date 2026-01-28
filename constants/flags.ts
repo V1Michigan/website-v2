@@ -1,6 +1,7 @@
 export const FLAG_NAMES = {
   SHOW_YC_BANNER: 'SHOW_YC_BANNER',
   SHOW_PS_BANNER: 'SHOW_PS_BANNER',
+  SHOW_DEV_BANNER: 'SHOW_DEV_BANNER',
 } as const;
 
 export type FlagName = keyof typeof FLAG_NAMES;
