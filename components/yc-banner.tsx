@@ -15,7 +15,7 @@ export default function YCBanner({ enabled }: { enabled: boolean }) {
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="https://www.v1michigan.com/"
+            href="https://www.v1michigan.com/yc-w26?utm_source=website"
             className="inline-flex items-center gap-2 px-4 py-2 bg-[#191919] text-white rounded-full text-sm font-inter font-bold hover:bg-[#000000] transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg ring-1 ring-black/20 ring-inset"
           >
             <span>RSVP Here</span>
@@ -34,7 +34,7 @@ export default function YCBanner({ enabled }: { enabled: boolean }) {
             </svg>
           </a>
           <a
-            href="https://events.ycombinator.com/YhyKrZXfU"
+            href="https://www.v1michigan.com/yc-w26-coffee-chats?utm_source=website"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-3 py-2 bg-white/10 text-white rounded-full text-sm font-inter font-medium hover:bg-white/20 transition-all duration-200 border border-white/20 hover:border-white/30 ring-1 ring-white/15 ring-inset"
