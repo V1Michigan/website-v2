@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import YCBannerBackground from "./yc-banner-bg";
 
 export default function YCBanner({ enabled }: { enabled: boolean }) {
   const [daysLeft, setDaysLeft] = useState<number | null>(null);
@@ -43,10 +44,9 @@ export default function YCBanner({ enabled }: { enabled: boolean }) {
   }
 
   return (
-    <div
-      className="bg-[#EA6F34] py-2 px-6 text-center shadow-lg"
-    >
-      <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+    <div className="relative py-2 px-6 text-center shadow-lg overflow-hidden">
+      <YCBannerBackground className="absolute inset-0 z-0 w-full h-full" />
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
         <div className="flex items-center gap-2">
           <span className="text-lg font-inter font-semibold text-white leading-relaxed">
             Y Combinator is coming to campus{isClient && daysLeft !== null && daysLeft > 0 && (
