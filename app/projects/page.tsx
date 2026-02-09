@@ -121,7 +121,7 @@ export default function ProjectDirectoryPage() {
       <main className="mx-auto px-4 py-8 md:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="font-instrument text-4xl font-bold text-[#444]">Project Directory</h1>
+          <h1 className="font-instrument text-4xl font-bold text-[#444]">Projects</h1>
           <p className="mt-2 max-w-3xl text-sm text-gray-700">
             A curated showcase of innovative startups and products built by founders and teams from V1 ecosystem.
           </p>
@@ -140,7 +140,7 @@ export default function ProjectDirectoryPage() {
               </button>
             </div>
           </div>
-         ) : (
+        ) : (
           /* Main Layout */
           <ProjectDirectoryLayout
             projects={projects}
