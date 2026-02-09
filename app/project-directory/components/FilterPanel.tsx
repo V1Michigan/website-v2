@@ -1,6 +1,5 @@
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { X, Search, Building, Users, Tag } from "lucide-react"
+import { Search, Building, Users, Tag } from "lucide-react"
 
 interface FilterPanelProps {
   filters: {
@@ -18,8 +17,6 @@ interface FilterPanelProps {
   onToggleFunding: (_source: string) => void
   onToggleCohort: (_cohort: string) => void
   onToggleCategory: (_category: string) => void
-  onClearAll: () => void
-  hasActiveFilters: boolean
 }
 
 export default function FilterPanel({
@@ -29,25 +26,12 @@ export default function FilterPanel({
   onToggleFunding,
   onToggleCohort,
   onToggleCategory,
-  onClearAll,
-  hasActiveFilters,
 }: FilterPanelProps) {
   return (
     <div className="h-full overflow-y-auto p-6">
-      {/* Header */}
+       {/* Header */}
       <div className="mb-6">
         <h2 className="font-instrument text-xl font-semibold text-gray-900">Filters</h2>
-        {hasActiveFilters && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClearAll}
-            className="mt-2 text-xs text-gray-500 hover:text-gray-700"
-          >
-            <X className="mr-1 h-3 w-3" />
-            Clear all
-          </Button>
-        )}
       </div>
 
       {/* Search */}

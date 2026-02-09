@@ -30,11 +30,7 @@ export default function ProjectDirectoryPage() {
     categories: searchParams?.getAll("category") || [],
   }
 
-  const hasActiveFilters = 
-    filters.searchQuery !== "" ||
-    filters.fundingSources.length > 0 ||
-    filters.cohorts.length > 0 ||
-    filters.categories.length > 0
+  // Fetch projects when filters change
 
   // Fetch projects when filters change
   useEffect(() => {
@@ -131,10 +127,6 @@ export default function ProjectDirectoryPage() {
     updateFilters({ categories: updated })
   }
 
-  const clearAllFilters = () => {
-    router.push("/project-directory", { scroll: false })
-  }
-
   const openProjectModal = (project: Project) => {
     setSelectedProject(project)
     setIsModalOpen(true)
@@ -181,8 +173,6 @@ export default function ProjectDirectoryPage() {
             onToggleFunding={toggleFundingSource}
             onToggleCohort={toggleCohort}
             onToggleCategory={toggleCategory}
-            onClearAll={clearAllFilters}
-            hasActiveFilters={hasActiveFilters}
             onProjectClick={openProjectModal}
             isLoading={isLoading}
           />

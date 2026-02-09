@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Filter } from "lucide-react"
 import type { Project } from "@/types/project"
 
- interface ProjectDirectoryLayoutProps {
+interface ProjectDirectoryLayoutProps {
   projects: Project[]
   filters: {
     searchQuery: string
@@ -22,8 +22,6 @@ import type { Project } from "@/types/project"
   onToggleFunding: (_source: string) => void
   onToggleCohort: (_cohort: string) => void
   onToggleCategory: (_category: string) => void
-  onClearAll: () => void
-  hasActiveFilters: boolean
   onProjectClick: (_project: Project) => void
   isLoading?: boolean
 }
@@ -36,12 +34,16 @@ import type { Project } from "@/types/project"
    onToggleFunding,
    onToggleCohort,
    onToggleCategory,
-   onClearAll,
-   hasActiveFilters,
    onProjectClick,
    isLoading = false,
  }: ProjectDirectoryLayoutProps) {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+
+  const hasActiveFilters = 
+    filters.searchQuery !== "" ||
+    filters.fundingSources.length > 0 ||
+    filters.cohorts.length > 0 ||
+    filters.categories.length > 0
 
   return (
     <>
@@ -49,7 +51,7 @@ import type { Project } from "@/types/project"
       <div className="hidden lg:flex lg:gap-6">
         {/* Filter Panel - Left Side */}
         <div className="w-96 flex-shrink-0">
-          <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-200 bg-white">
+           <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-200 bg-white">
             <FilterPanel
               filters={filters}
               filterOptions={filterOptions}
@@ -57,29 +59,17 @@ import type { Project } from "@/types/project"
               onToggleFunding={onToggleFunding}
               onToggleCohort={onToggleCohort}
               onToggleCategory={onToggleCategory}
-              onClearAll={onClearAll}
-              hasActiveFilters={hasActiveFilters}
             />
           </div>
         </div>
 
-        {/* Project List - Right Side */}
+         {/* Project List - Right Side */}
         <div className="flex-1">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-instrument text-2xl font-semibold text-gray-900">
               Projects ({projects.length})
             </h2>
-            {hasActiveFilters && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={onClearAll}
-                className="text-xs"
-              >
-                Clear filters
-              </Button>
-            )}
-           </div>
+         </div>
            {isLoading ? (
              <div className="flex justify-center items-center py-12">
                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
@@ -159,19 +149,17 @@ import type { Project } from "@/types/project"
                 </Button>
               </div>
 
-              {/* Filter Content */}
-              <div className="flex-1 overflow-y-auto">
-                <FilterPanel
-                  filters={filters}
-                  filterOptions={filterOptions}
-                  onSearchChange={onSearchChange}
-                  onToggleFunding={onToggleFunding}
-                  onToggleCohort={onToggleCohort}
-                  onToggleCategory={onToggleCategory}
-                  onClearAll={onClearAll}
-                  hasActiveFilters={hasActiveFilters}
-                />
-              </div>
+               {/* Filter Content */}
+               <div className="flex-1 overflow-y-auto">
+                 <FilterPanel
+                   filters={filters}
+                   filterOptions={filterOptions}
+                   onSearchChange={onSearchChange}
+                   onToggleFunding={onToggleFunding}
+                   onToggleCohort={onToggleCohort}
+                   onToggleCategory={onToggleCategory}
+                 />
+               </div>
 
               {/* Footer */}
               <div className="border-t border-gray-200 p-4">
