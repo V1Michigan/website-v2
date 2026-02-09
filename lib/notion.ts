@@ -55,6 +55,56 @@ export function sortProjects(projects: Project[]): Project[] {
   })
 }
 
+export function extractFilterOptions(projects: Project[]) {
+  const fundingSources = new Set<string>()
+  const cohorts = new Set<string>()
+  const categories = new Set<string>()
+  
+  projects.forEach(project => {
+    if (project.sectionType === "funding" && project.sectionName) {
+      fundingSources.add(project.sectionName)
+    } else if (project.sectionType === "cohort") {
+      cohorts.add(project.sectionName)
+    }
+    project.categories.forEach(cat => categories.add(cat))
+  })
+  
+  return {
+    fundingSources: Array.from(fundingSources).sort(),
+    cohorts: Array.from(cohorts).sort(),
+    categories: Array.from(categories).sort(),
+  }
+}
+
+export function filterProjects(projects: Project[], filters: {
+  searchQuery?: string
+  fundingSources?: string[]
+  cohorts?: string[]
+  categories?: string[]
+}) {
+  return projects.filter((project) => {
+    const searchQuery = filters.searchQuery?.toLowerCase() || ""
+    const matchesSearch = 
+      searchQuery === "" || 
+      project.title.toLowerCase().includes(searchQuery) ||
+      project.companyName.toLowerCase().includes(searchQuery)
+
+    const matchesFunding = 
+      !filters.fundingSources?.length || 
+      (project.sectionType === "funding" && filters.fundingSources.includes(project.sectionName))
+
+    const matchesCohort = 
+      !filters.cohorts?.length || 
+      (project.sectionType === "cohort" && filters.cohorts.includes(project.sectionName))
+
+    const matchesCategory = 
+      !filters.categories?.length || 
+      project.categories.some((category) => filters.categories!.includes(category))
+
+    return matchesSearch && matchesFunding && matchesCohort && matchesCategory
+  })
+}
+
 export function generatePlaceholderImage(_companyName: string, size: string = "64x64"): string {
   return `https://placehold.co/${size}.jpg`
 }
