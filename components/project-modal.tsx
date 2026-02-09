@@ -66,14 +66,16 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             <h1 className="text-2xl font-medium text-gray-800">{project.companyName}</h1>
           </div>
 
-          <a
-            href={project.companyWebsite}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 inline-flex items-center text-xs text-gray-600 hover:underline"
-          >
-            Company website <ArrowRight className="ml-1 h-3 w-3" />
-          </a>
+          {project.companyWebsite && (
+            <a
+              href={project.companyWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 inline-flex items-center text-xs text-gray-600 hover:underline"
+            >
+              Company website <ArrowRight className="ml-1 h-3 w-3" />
+            </a>
+          )}
 
           <div className="mt-4 flex flex-wrap gap-2">
             {project.categories.map((category, index) => (
@@ -93,7 +95,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           <h2 className="mb-4 text-xl font-medium text-gray-800">Founders</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {project.founders.map((founder) => (
-              <FounderCard key={founder.id} name={founder.name} role={founder.role} imageSrc={founder.imageSrc} />
+              <FounderCard key={founder.id} name={founder.name} role={founder.role} imageSrc={founder.imageSrc} contactUrl={founder.contactUrl} />
             ))}
           </div>
         </section>

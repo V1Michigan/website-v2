@@ -113,6 +113,8 @@ export function transformNotionPageToProject(page: any): Project {
   const { id, properties } = page
   const nameInfo = extractTitleInfo(properties.name)
   const hasInvestors = properties.investors?.multi_select?.length > 0
+  const foundersList = properties.founders?.multi_select || []
+  const contactsList = properties.contacts?.multi_select || []
   
   return {
     id,
@@ -123,11 +125,12 @@ export function transformNotionPageToProject(page: any): Project {
     companyName: nameInfo.name,
     companyWebsite: properties.website?.url || nameInfo.link || null,
     categories: extractMultiSelect(properties.categories),
-    founders: properties.founders?.multi_select?.map((f: any) => ({
+    founders: foundersList.map((f: any, index: number) => ({
       id: f.id,
       name: f.name,
       role: "Founder",
       imageSrc: generatePlaceholderImage(f.name, "24x24"),
+      contactUrl: contactsList[index]?.name || null,
     })) || [],
     investors: hasInvestors ? properties.investors.multi_select?.map((inv: any) => ({
       id: inv.id,

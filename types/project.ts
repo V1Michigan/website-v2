@@ -7,6 +7,7 @@ export interface Founder {
   name: string
   role: "Founder"
   imageSrc: string
+  contactUrl?: string
 }
 
 export interface Investor {
