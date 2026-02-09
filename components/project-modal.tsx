@@ -91,14 +91,16 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           <p className="text-sm text-gray-600">{project.overview}</p>
         </section>
 
-        <section>
-          <h2 className="mb-4 text-xl font-medium text-gray-800">Founders</h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {project.founders.map((founder) => (
-              <FounderCard key={founder.id} name={founder.name} role={founder.role} imageSrc={founder.imageSrc} contactUrl={founder.contactUrl} />
-            ))}
-          </div>
-        </section>
+        {project.founders.length > 0 && (
+          <section>
+            <h2 className="mb-4 text-xl font-medium text-gray-800">Founders</h2>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {project.founders.map((founder) => (
+                <FounderCard key={founder.id} name={founder.name} role={founder.role} imageSrc={founder.imageSrc} contactUrl={founder.contactUrl} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   )
