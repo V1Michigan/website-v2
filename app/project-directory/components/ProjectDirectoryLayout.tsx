@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Filter } from "lucide-react"
 import type { Project } from "@/types/project"
 
-interface ProjectDirectoryLayoutProps {
+ interface ProjectDirectoryLayoutProps {
   projects: Project[]
   filters: {
     searchQuery: string
@@ -25,20 +25,22 @@ interface ProjectDirectoryLayoutProps {
   onClearAll: () => void
   hasActiveFilters: boolean
   onProjectClick: (_project: Project) => void
+  isLoading?: boolean
 }
 
-export default function ProjectDirectoryLayout({
-  projects,
-  filters,
-  filterOptions,
-  onSearchChange,
-  onToggleFunding,
-  onToggleCohort,
-  onToggleCategory,
-  onClearAll,
-  hasActiveFilters,
-  onProjectClick,
-}: ProjectDirectoryLayoutProps) {
+ export default function ProjectDirectoryLayout({
+   projects,
+   filters,
+   filterOptions,
+   onSearchChange,
+   onToggleFunding,
+   onToggleCohort,
+   onToggleCategory,
+   onClearAll,
+   hasActiveFilters,
+   onProjectClick,
+   isLoading = false,
+ }: ProjectDirectoryLayoutProps) {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
 
   return (
@@ -77,8 +79,14 @@ export default function ProjectDirectoryLayout({
                 Clear filters
               </Button>
             )}
-          </div>
-          <ProjectList projects={projects} onProjectClick={onProjectClick} />
+           </div>
+           {isLoading ? (
+             <div className="flex justify-center items-center py-12">
+               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
+             </div>
+           ) : (
+             <ProjectList projects={projects} onProjectClick={onProjectClick} />
+           )}
         </div>
       </div>
 
@@ -95,12 +103,13 @@ export default function ProjectDirectoryLayout({
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsMobileFilterOpen(true)}
-            className="flex items-center gap-2"
-          >
+           <Button
+             variant="outline"
+             size="sm"
+             onClick={() => setIsMobileFilterOpen(true)}
+             disabled={isLoading}
+             className="flex items-center gap-2"
+           >
             <Filter className="h-4 w-4" />
             Filters
             {hasActiveFilters && (
@@ -115,11 +124,17 @@ export default function ProjectDirectoryLayout({
         <div className="mb-4">
           <h2 className="font-instrument text-xl font-semibold text-gray-900">
             Projects ({projects.length})
-          </h2>
+           </h2>
         </div>
 
-        {/* Project List */}
-        <ProjectList projects={projects} onProjectClick={onProjectClick} />
+        {/* Loading state */}
+        {isLoading ? (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
+          </div>
+        ) : (
+          <ProjectList projects={projects} onProjectClick={onProjectClick} />
+        )}
 
         {/* Mobile Filter Modal */}
         {isMobileFilterOpen && (

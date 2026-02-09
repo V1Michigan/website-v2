@@ -171,11 +171,7 @@ export default function ProjectDirectoryPage() {
               </button>
             </div>
           </div>
-        ) : isLoading ? (
-          <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
-          </div>
-        ) : (
+         ) : (
           /* Main Layout */
           <ProjectDirectoryLayout
             projects={projects}
@@ -188,6 +184,7 @@ export default function ProjectDirectoryPage() {
             onClearAll={clearAllFilters}
             hasActiveFilters={hasActiveFilters}
             onProjectClick={openProjectModal}
+            isLoading={isLoading}
           />
         )}
       </main>
