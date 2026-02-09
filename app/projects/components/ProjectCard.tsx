@@ -14,6 +14,15 @@ const vcFundColors = {
   "Sequoia Capital": "bg-red-500 text-white",
 }
 
+// Cohort badge colors
+const cohortColors = {
+  "Winter 2026 Product Studio Cohort": "bg-emerald-500 text-white",
+  "Fall 2025 Product Studio Cohort": "bg-purple-500 text-white",
+  "Winter 2025 Product Studio Cohort": "bg-cyan-500 text-white",
+  "Fall 2024 Product Studio Cohort": "bg-amber-600 text-white",
+  "Spring 2025 Product Studio Cohort": "bg-pink-500 text-white",
+}
+
 // Get cohort display name (remove "Product Studio Cohort" suffix)
 const getCohortDisplayName = (cohortName: string) => {
   return cohortName.replace(" Product Studio Cohort", "")
@@ -24,6 +33,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   const hasCohort = project.sectionType === "cohort"
   
   const vcBadgeColor = vcFundColors[project.sectionName as keyof typeof vcFundColors] || "bg-gray-500 text-white"
+  const cohortBadgeColor = cohortColors[project.sectionName as keyof typeof cohortColors] || "bg-gray-500 text-white"
 
   return (
     <div 
@@ -61,7 +71,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
               </span>
             )}
             {hasCohort && (
-              <span className="inline-flex items-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-2.5 py-0.5 text-xs font-medium text-white">
+              <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${cohortBadgeColor}`}>
                 {getCohortDisplayName(project.sectionName)}
               </span>
             )}
