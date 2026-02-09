@@ -1,3 +1,4 @@
+import { memo } from "react"
 import ProjectCard from "./ProjectCard"
 import type { Project } from "@/types/project"
 
@@ -6,7 +7,7 @@ interface ProjectListProps {
   onProjectClick: (_project: Project) => void
 }
 
-export default function ProjectList({ projects, onProjectClick }: ProjectListProps) {
+function ProjectList({ projects, onProjectClick }: ProjectListProps) {
   if (projects.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12">
@@ -32,3 +33,5 @@ export default function ProjectList({ projects, onProjectClick }: ProjectListPro
     </div>
   )
 }
+
+export default memo(ProjectList)

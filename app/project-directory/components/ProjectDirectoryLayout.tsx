@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import FilterPanel from "./FilterPanel"
 import ProjectList from "./ProjectList"
 import { Button } from "@/components/ui/button"
@@ -36,14 +36,17 @@ interface ProjectDirectoryLayoutProps {
    onToggleCategory,
    onProjectClick,
    isLoading = false,
- }: ProjectDirectoryLayoutProps) {
+  }: ProjectDirectoryLayoutProps) {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
 
-  const hasActiveFilters = 
-    filters.searchQuery !== "" ||
-    filters.fundingSources.length > 0 ||
-    filters.cohorts.length > 0 ||
-    filters.categories.length > 0
+  const hasActiveFilters = useMemo(
+    () =>
+      filters.searchQuery !== "" ||
+      filters.fundingSources.length > 0 ||
+      filters.cohorts.length > 0 ||
+      filters.categories.length > 0,
+    [filters.searchQuery, filters.fundingSources.length, filters.cohorts.length, filters.categories.length]
+  )
 
   return (
     <>

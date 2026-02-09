@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { Input } from "@/components/ui/input"
 import { Search, Building, Users, Tag } from "lucide-react"
 
@@ -19,7 +20,7 @@ interface FilterPanelProps {
   onToggleCategory: (_category: string) => void
 }
 
-export default function FilterPanel({
+function FilterPanel({
   filters,
   filterOptions,
   onSearchChange,
@@ -125,3 +126,5 @@ export default function FilterPanel({
     </div>
   )
 }
+
+export default memo(FilterPanel)

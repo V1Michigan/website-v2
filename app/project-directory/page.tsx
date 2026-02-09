@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react"
+import { useEffect, useState, useMemo, useCallback } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -15,32 +15,52 @@ export default function ProjectDirectoryPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Get current filters from URL
-  const filters = {
-    searchQuery: searchParams?.get("search") || "",
-    fundingSources: searchParams?.getAll("funding") || [],
-    cohorts: searchParams?.getAll("cohort") || [],
-    categories: searchParams?.getAll("category") || [],
-  }
+  const urlSearchQuery = searchParams?.get("search") || ""
+  const [localSearchQuery, setLocalSearchQuery] = useState(urlSearchQuery)
+
+  useEffect(() => {
+    setLocalSearchQuery(urlSearchQuery)
+  }, [urlSearchQuery])
+
+  const debouncedUpdateURL = useMemo(() => {
+    let timeoutId: ReturnType<typeof setTimeout>
+    return (value: string) => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        const params = new URLSearchParams(searchParams?.toString() || "")
+        if (value.trim()) {
+          params.set("search", value.trim())
+        } else {
+          params.delete("search")
+        }
+        router.replace(`?${params.toString()}`, { scroll: false })
+      }, 300)
+    }
+  }, [searchParams, router])
+
+  const setSearchQuery = useCallback((query: string) => {
+    setLocalSearchQuery(query)
+    debouncedUpdateURL(query)
+  }, [debouncedUpdateURL])
+
+  const filters = useMemo(
+    () => ({
+      searchQuery: urlSearchQuery,
+      fundingSources: searchParams?.getAll("funding") || [],
+      cohorts: searchParams?.getAll("cohort") || [],
+      categories: searchParams?.getAll("category") || [],
+    }),
+    [urlSearchQuery, searchParams]
+  )
 
   const { projects, filterOptions, isLoading, error } = useProjects(filters)
 
-  // Update URL when filters change
-  const updateFilters = (updates: {
-    searchQuery?: string
+  const updateFilters = useCallback((updates: {
     fundingSources?: string[]
     cohorts?: string[]
     categories?: string[]
   }) => {
     const params = new URLSearchParams(searchParams?.toString() || "")
-
-    if (updates.searchQuery !== undefined) {
-      if (updates.searchQuery) {
-        params.set("search", updates.searchQuery)
-      } else {
-        params.delete("search")
-      }
-    }
 
     if (updates.fundingSources !== undefined) {
       params.delete("funding")
@@ -56,47 +76,43 @@ export default function ProjectDirectoryPage() {
       params.delete("category")
       updates.categories.forEach(c => params.append("category", c))
     }
-    
+
     router.push(`?${params.toString()}`, { scroll: false })
-  }
+  }, [searchParams, router])
 
-  const setSearchQuery = (query: string) => {
-    updateFilters({ searchQuery: query })
-  }
-
-  const toggleFundingSource = (source: string) => {
+  const toggleFundingSource = useCallback((source: string) => {
     const current = filters.fundingSources
     const updated = current.includes(source)
       ? current.filter((s) => s !== source)
       : [...current, source]
     updateFilters({ fundingSources: updated })
-  }
+  }, [filters.fundingSources, updateFilters])
 
-  const toggleCohort = (cohort: string) => {
+  const toggleCohort = useCallback((cohort: string) => {
     const current = filters.cohorts
     const updated = current.includes(cohort)
       ? current.filter((c) => c !== cohort)
       : [...current, cohort]
     updateFilters({ cohorts: updated })
-  }
+  }, [filters.cohorts, updateFilters])
 
-  const toggleCategory = (category: string) => {
+  const toggleCategory = useCallback((category: string) => {
     const current = filters.categories
     const updated = current.includes(category)
       ? current.filter((c) => c !== category)
       : [...current, category]
     updateFilters({ categories: updated })
-  }
+  }, [filters.categories, updateFilters])
 
-  const openProjectModal = (project: Project) => {
+  const openProjectModal = useCallback((project: Project) => {
     setSelectedProject(project)
     setIsModalOpen(true)
-  }
+  }, [])
 
-  const closeProjectModal = () => {
+  const closeProjectModal = useCallback(() => {
     setIsModalOpen(false)
     setTimeout(() => setSelectedProject(null), 200)
-  }
+  }, [])
 
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
@@ -128,7 +144,10 @@ export default function ProjectDirectoryPage() {
           /* Main Layout */
           <ProjectDirectoryLayout
             projects={projects}
-            filters={filters}
+            filters={{
+              ...filters,
+              searchQuery: localSearchQuery
+            }}
             filterOptions={filterOptions}
             onSearchChange={setSearchQuery}
             onToggleFunding={toggleFundingSource}
