@@ -136,7 +136,7 @@ export function transformNotionPageToProject(page: any): Project {
       website: null,
     })) : undefined,
     sectionType: hasInvestors ? "funding" : "cohort",
-    sectionName: hasInvestors ? properties.investors.multi_select[0].name : properties.cohort?.select?.name || "",
+    sectionName: hasInvestors ? parseInvestorName(properties.investors.multi_select[0].name).name : properties.cohort?.select?.name || "",
     sectionOrder: getCohortOrder(properties.cohort?.select?.name || ""),
   }
 }
