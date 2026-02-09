@@ -1,14 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ProjectModal from "@/components/project-modal"
 import ProjectDirectoryLayout from "./components/ProjectDirectoryLayout"
-import { useProjectFilters } from "./hooks/useProjectFilters"
 import type { Project } from "@/types/project"
+import { useProjectFilters } from "./hooks/useProjectFilters"
 
 export default function ProjectDirectoryPage() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -22,7 +24,23 @@ export default function ProjectDirectoryPage() {
     toggleCategory,
     clearAllFilters,
     hasActiveFilters,
-  } = useProjectFilters()
+  } = useProjectFilters(projects)
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch("/api/projects")
+        const data = await response.json()
+        setProjects(data.projects || [])
+      } catch (error) {
+        console.error("Failed to fetch projects:", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchProjects()
+  }, [])
 
   const openProjectModal = (project: Project) => {
     setSelectedProject(project)
@@ -31,6 +49,7 @@ export default function ProjectDirectoryPage() {
 
   const closeProjectModal = () => {
     setIsModalOpen(false)
+    setTimeout(() => setSelectedProject(null), 200)
   }
 
   return (
@@ -46,19 +65,25 @@ export default function ProjectDirectoryPage() {
           </p>
         </div>
 
-        {/* Main Layout */}
-        <ProjectDirectoryLayout
-          projects={filteredProjects}
-          filters={filters}
-          filterOptions={filterOptions}
-          onSearchChange={setSearchQuery}
-          onToggleFunding={toggleFundingSource}
-          onToggleCohort={toggleCohort}
-          onToggleCategory={toggleCategory}
-          onClearAll={clearAllFilters}
-          hasActiveFilters={hasActiveFilters}
-          onProjectClick={openProjectModal}
-        />
+        {isLoading ? (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
+          </div>
+        ) : (
+          /* Main Layout */
+          <ProjectDirectoryLayout
+            projects={filteredProjects}
+            filters={filters}
+            filterOptions={filterOptions}
+            onSearchChange={setSearchQuery}
+            onToggleFunding={toggleFundingSource}
+            onToggleCohort={toggleCohort}
+            onToggleCategory={toggleCategory}
+            onClearAll={clearAllFilters}
+            hasActiveFilters={hasActiveFilters}
+            onProjectClick={openProjectModal}
+          />
+        )}
       </main>
 
       <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeProjectModal} />

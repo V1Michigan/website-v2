@@ -4,7 +4,7 @@ import type { Project } from "@/types/project"
 
 interface ProjectListProps {
   projects: Project[]
-  onProjectClick: (project: Project) => void
+  onProjectClick: (_project: Project) => void
 }
 
 export default function ProjectList({ projects, onProjectClick }: ProjectListProps) {

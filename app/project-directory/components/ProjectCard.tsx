@@ -134,12 +134,14 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
                     key={founder.id}
                     className="relative h-6 w-6 overflow-hidden rounded-full border-2 border-white bg-gray-100"
                   >
-                    <Image
-                      src={founder.imageSrc}
-                      alt={founder.name}
-                      fill
-                      className="object-cover"
-                    />
+                    {founder.imageSrc && (
+                      <Image
+                        src={founder.imageSrc}
+                        alt={founder.name}
+                        fill
+                        className="object-cover"
+                      />
+                    )}
                   </div>
                 ))}
               </div>

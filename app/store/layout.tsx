@@ -1,3 +1,4 @@
+import React from "react"
 import { CartProvider } from "@/components/store/cart-provider";
 import { CartSheet } from "@/components/store/cart-sheet";
 

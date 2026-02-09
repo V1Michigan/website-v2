@@ -18,13 +18,13 @@ interface ProjectDirectoryLayoutProps {
     cohorts: string[]
     categories: string[]
   }
-  onSearchChange: (query: string) => void
-  onToggleFunding: (source: string) => void
-  onToggleCohort: (cohort: string) => void
-  onToggleCategory: (category: string) => void
+  onSearchChange: (_query: string) => void
+  onToggleFunding: (_source: string) => void
+  onToggleCohort: (_cohort: string) => void
+  onToggleCategory: (_category: string) => void
   onClearAll: () => void
   hasActiveFilters: boolean
-  onProjectClick: (project: Project) => void
+  onProjectClick: (_project: Project) => void
 }
 
 export default function ProjectDirectoryLayout({
