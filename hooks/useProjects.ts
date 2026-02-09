@@ -45,7 +45,6 @@ export function useProjects(params: ProjectsQueryParams) {
   } = useQuery({
     queryKey: ["projects", params],
     queryFn: () => fetchProjects(params),
-    placeholderData: (previousData) => previousData,
     staleTime: 5 * 60 * 1000,
     retry: 3,
   });

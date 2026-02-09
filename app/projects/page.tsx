@@ -22,6 +22,37 @@ export default function ProjectDirectoryPage() {
     setLocalSearchQuery(urlSearchQuery)
   }, [urlSearchQuery])
 
+  const [localFilters, setLocalFilters] = useState({
+    searchQuery: urlSearchQuery,
+    fundingSources: searchParams?.getAll("funding") || [],
+    cohorts: searchParams?.getAll("cohort") || [],
+    categories: searchParams?.getAll("category") || [],
+  })
+
+  const [isRefetching, setIsRefetching] = useState(false)
+  const [cachedFilterOptions, setCachedFilterOptions] = useState({
+    fundingSources: [] as string[],
+    cohorts: [] as string[],
+    categories: [] as string[],
+  })
+
+  useEffect(() => {
+    setLocalFilters({
+      searchQuery: urlSearchQuery,
+      fundingSources: searchParams?.getAll("funding") || [],
+      cohorts: searchParams?.getAll("cohort") || [],
+      categories: searchParams?.getAll("category") || [],
+    })
+  }, [urlSearchQuery, searchParams])
+
+  const { projects, filterOptions, isLoading, error } = useProjects(localFilters)
+
+  useEffect(() => {
+    if (filterOptions.fundingSources.length > 0 || filterOptions.cohorts.length > 0 || filterOptions.categories.length > 0) {
+      setCachedFilterOptions(filterOptions)
+    }
+  }, [filterOptions])
+
   const debouncedUpdateURL = useMemo(() => {
     let timeoutId: ReturnType<typeof setTimeout>
     return (value: string) => {
@@ -40,20 +71,19 @@ export default function ProjectDirectoryPage() {
 
   const setSearchQuery = useCallback((query: string) => {
     setLocalSearchQuery(query)
+    setLocalFilters(prev => ({ ...prev, searchQuery: query }))
     debouncedUpdateURL(query)
   }, [debouncedUpdateURL])
 
-  const filters = useMemo(
-    () => ({
-      searchQuery: urlSearchQuery,
-      fundingSources: searchParams?.getAll("funding") || [],
-      cohorts: searchParams?.getAll("cohort") || [],
-      categories: searchParams?.getAll("category") || [],
-    }),
-    [urlSearchQuery, searchParams]
-  )
+  useEffect(() => {
+    if (isLoading && !isRefetching) {
+      setIsRefetching(true)
+    } else if (!isLoading && isRefetching) {
+      setIsRefetching(false)
+    }
+  }, [isLoading, isRefetching])
 
-  const { projects, filterOptions, isLoading, error } = useProjects(filters)
+  const isFilterLoading = isRefetching || isLoading
 
   const updateFilters = useCallback((updates: {
     fundingSources?: string[]
@@ -81,28 +111,34 @@ export default function ProjectDirectoryPage() {
   }, [searchParams, router])
 
   const toggleFundingSource = useCallback((source: string) => {
-    const current = filters.fundingSources
+    setIsRefetching(true)
+    const current = localFilters.fundingSources
     const updated = current.includes(source)
-      ? current.filter((s) => s !== source)
+      ? current.filter((s: string) => s !== source)
       : [...current, source]
+    setLocalFilters(prev => ({ ...prev, fundingSources: updated }))
     updateFilters({ fundingSources: updated })
-  }, [filters.fundingSources, updateFilters])
+  }, [localFilters.fundingSources, updateFilters])
 
   const toggleCohort = useCallback((cohort: string) => {
-    const current = filters.cohorts
+    setIsRefetching(true)
+    const current = localFilters.cohorts
     const updated = current.includes(cohort)
-      ? current.filter((c) => c !== cohort)
+      ? current.filter((c: string) => c !== cohort)
       : [...current, cohort]
+    setLocalFilters(prev => ({ ...prev, cohorts: updated }))
     updateFilters({ cohorts: updated })
-  }, [filters.cohorts, updateFilters])
+  }, [localFilters.cohorts, updateFilters])
 
   const toggleCategory = useCallback((category: string) => {
-    const current = filters.categories
+    setIsRefetching(true)
+    const current = localFilters.categories
     const updated = current.includes(category)
-      ? current.filter((c) => c !== category)
+      ? current.filter((c: string) => c !== category)
       : [...current, category]
+    setLocalFilters(prev => ({ ...prev, categories: updated }))
     updateFilters({ categories: updated })
-  }, [filters.categories, updateFilters])
+  }, [localFilters.categories, updateFilters])
 
   const openProjectModal = useCallback((project: Project) => {
     setSelectedProject(project)
@@ -145,16 +181,16 @@ export default function ProjectDirectoryPage() {
           <ProjectDirectoryLayout
             projects={projects}
             filters={{
-              ...filters,
+              ...localFilters,
               searchQuery: localSearchQuery
             }}
-            filterOptions={filterOptions}
+            filterOptions={cachedFilterOptions}
             onSearchChange={setSearchQuery}
             onToggleFunding={toggleFundingSource}
             onToggleCohort={toggleCohort}
             onToggleCategory={toggleCategory}
             onProjectClick={openProjectModal}
-            isLoading={isLoading}
+            isLoading={isFilterLoading}
           />
         )}
       </main>

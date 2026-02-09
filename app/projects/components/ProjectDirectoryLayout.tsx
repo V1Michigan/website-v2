@@ -62,6 +62,7 @@ interface ProjectDirectoryLayoutProps {
               onToggleFunding={onToggleFunding}
               onToggleCohort={onToggleCohort}
               onToggleCategory={onToggleCategory}
+              isLoading={isLoading}
             />
           </div>
         </div>
@@ -154,14 +155,15 @@ interface ProjectDirectoryLayoutProps {
 
                {/* Filter Content */}
                <div className="flex-1 overflow-y-auto">
-                 <FilterPanel
-                   filters={filters}
-                   filterOptions={filterOptions}
-                   onSearchChange={onSearchChange}
-                   onToggleFunding={onToggleFunding}
-                   onToggleCohort={onToggleCohort}
-                   onToggleCategory={onToggleCategory}
-                 />
+                  <FilterPanel
+                    filters={filters}
+                    filterOptions={filterOptions}
+                    onSearchChange={onSearchChange}
+                    onToggleFunding={onToggleFunding}
+                    onToggleCohort={onToggleCohort}
+                    onToggleCategory={onToggleCategory}
+                    isLoading={isLoading}
+                  />
                </div>
 
               {/* Footer */}

@@ -18,6 +18,7 @@ interface FilterPanelProps {
   onToggleFunding: (_source: string) => void
   onToggleCohort: (_cohort: string) => void
   onToggleCategory: (_category: string) => void
+  isLoading?: boolean
 }
 
 function FilterPanel({
@@ -27,6 +28,7 @@ function FilterPanel({
   onToggleFunding,
   onToggleCohort,
   onToggleCategory,
+  isLoading = false,
 }: FilterPanelProps) {
   return (
     <div className="h-full overflow-y-auto p-6">
@@ -45,6 +47,7 @@ function FilterPanel({
             value={filters.searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="pl-10"
+            disabled={isLoading}
           />
         </div>
       </div>
@@ -59,13 +62,14 @@ function FilterPanel({
           {filterOptions.fundingSources.map((source) => (
             <label
               key={source}
-              className="flex cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-gray-50"
+              className={`flex items-center gap-2 rounded-md p-2 ${isLoading ? '' : 'cursor-pointer hover:bg-gray-50'}`}
             >
               <input
                 type="checkbox"
                 checked={filters.fundingSources.includes(source)}
                 onChange={() => onToggleFunding(source)}
                 className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                disabled={isLoading}
               />
               <span className="text-sm text-gray-700">{source}</span>
             </label>
@@ -85,13 +89,14 @@ function FilterPanel({
             return (
               <label
                 key={cohort}
-                className="flex cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-gray-50"
+                className={`flex items-center gap-2 rounded-md p-2 ${isLoading ? '' : 'cursor-pointer hover:bg-gray-50'}`}
               >
                 <input
                   type="checkbox"
                   checked={filters.cohorts.includes(cohort)}
                   onChange={() => onToggleCohort(cohort)}
                   className="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                  disabled={isLoading}
                 />
                 <span className="text-sm text-gray-700">{displayName}</span>
               </label>
@@ -110,13 +115,14 @@ function FilterPanel({
           {filterOptions.categories.map((category) => (
             <label
               key={category}
-              className="flex cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-gray-50"
+              className={`flex items-center gap-2 rounded-md p-2 ${isLoading ? '' : 'cursor-pointer hover:bg-gray-50'}`}
             >
               <input
                 type="checkbox"
                 checked={filters.categories.includes(category)}
                 onChange={() => onToggleCategory(category)}
                 className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-500"
+                disabled={isLoading}
               />
               <span className="text-sm text-gray-700">{category}</span>
             </label>
