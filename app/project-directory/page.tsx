@@ -1,24 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ProjectModal from "@/components/project-modal"
 import ProjectDirectoryLayout from "./components/ProjectDirectoryLayout"
 import type { Project } from "@/types/project"
+import { useProjects } from "@/hooks/useProjects"
 
 export default function ProjectDirectoryPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const [projects, setProjects] = useState<Project[]>([])
-  const [filterOptions, setFilterOptions] = useState<{
-    fundingSources: string[]
-    cohorts: string[]
-    categories: string[]
-  }>({ fundingSources: [], cohorts: [], categories: [] })
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -30,39 +23,7 @@ export default function ProjectDirectoryPage() {
     categories: searchParams?.getAll("category") || [],
   }
 
-  // Fetch projects when filters change
-
-  // Fetch projects when filters change
-  useEffect(() => {
-    const fetchProjects = async () => {
-      setIsLoading(true)
-      setError(null)
-      try {
-        const params = new URLSearchParams()
-        if (filters.searchQuery) params.set("search", filters.searchQuery)
-        filters.fundingSources.forEach(f => params.append("funding", f))
-        filters.cohorts.forEach(c => params.append("cohort", c))
-        filters.categories.forEach(c => params.append("category", c))
-        
-        const response = await fetch(`/api/projects?${params.toString()}`)
-        
-        if (!response.ok) {
-          throw new Error("Failed to fetch projects")
-        }
-        
-        const data = await response.json()
-        setProjects(data.projects || [])
-        setFilterOptions(data.filterOptions || { fundingSources: [], cohorts: [], categories: [] })
-      } catch (error) {
-        console.error("Failed to fetch projects:", error)
-        setError("Unable to load projects. Please try again later.")
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchProjects()
-  }, [searchParams])
+  const { projects, filterOptions, isLoading, error } = useProjects(filters)
 
   // Update URL when filters change
   const updateFilters = (updates: {
@@ -154,7 +115,7 @@ export default function ProjectDirectoryPage() {
           <div className="flex flex-col items-center justify-center py-12">
             <div className="text-center">
               <h3 className="text-lg font-medium text-red-600">Error</h3>
-              <p className="mt-1 text-sm text-gray-700">{error}</p>
+              <p className="mt-1 text-sm text-gray-700">{error.message}</p>
               <button
                 onClick={() => window.location.reload()}
                 className="mt-4 rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"

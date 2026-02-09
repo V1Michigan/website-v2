@@ -25,7 +25,6 @@ export interface Project {
   companyName: string
   companyWebsite: string | null
   categories: string[]
-  overview: string
   founders: Founder[]
   investors?: Investor[]
   sectionType: "funding" | "cohort"
