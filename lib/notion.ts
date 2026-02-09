@@ -1,4 +1,82 @@
-import type { Project } from "@/types/project"
+import type { Project, Investor } from "@/types/project"
+
+export type PrestigeTier = "top" | "high" | "standard"
+
+const INVESTOR_TIERS: Record<string, PrestigeTier> = {
+  "Sequoia Capital": "top",
+  "General Catalyst": "top",
+  "Y Combinator": "top",
+  "Techstars": "top",
+  "SignalFire": "high",
+  "Contrary Capital": "high",
+  "Pioneer Fund": "high",
+  "Agent Fund": "high",
+  "Moxxie Ventures": "high",
+  "Streamlined Ventures": "high",
+  "Lobster Capital": "high",
+  "Gold House Ventures": "high",
+  "GC Venture Fellows": "high",
+  "Z Fellows": "high",
+  "Bling": "standard",
+  "Heliconia Capital": "standard",
+  "Armajaro Holdings": "standard",
+  "Transpose Platform Management": "standard",
+  "UMich Center for Entrepreneurship": "standard",
+  "Zell Lurie Institute": "standard",
+  "Paul Graham": "high",
+  "Stephen Wolfram": "high",
+  "Paul Copplestone": "high",
+  "Karim Atiyeh": "high",
+}
+
+const TIER_SCORES: Record<PrestigeTier, number> = {
+  top: 100,
+  high: 50,
+  standard: 10,
+}
+
+export function getInvestorTier(investorName: string): PrestigeTier {
+  const baseName = investorName.includes("Techstars") ? "Techstars" : investorName
+  return INVESTOR_TIERS[baseName] || "standard"
+}
+
+export function getInvestorPrestigeScore(investorName: string, investorType: string): number {
+  const tier = getInvestorTier(investorName)
+  const score = TIER_SCORES[tier]
+  
+  if (investorType === "angel" && tier === "standard") {
+    return score + 5
+  }
+  
+  return score
+}
+
+export function sortInvestorsByPrestige(investors: Investor[]): Investor[] {
+  return [...investors].sort((a, b) => {
+    const scoreA = getInvestorPrestigeScore(a.name, a.type)
+    const scoreB = getInvestorPrestigeScore(b.name, b.type)
+    
+    if (scoreA !== scoreB) {
+      return scoreB - scoreA
+    }
+    
+    return a.name.localeCompare(b.name)
+  })
+}
+
+export function getProjectPrestigeScore(project: Project): number {
+  if (!project.investors || project.investors.length === 0) {
+    return 0
+  }
+  
+  const maxScore = Math.max(
+    ...project.investors.map(inv => getInvestorPrestigeScore(inv.name, inv.type))
+  )
+  
+  const countBonus = Math.min(project.investors.length - 1, 3) * 5
+  
+  return maxScore + countBonus
+}
 
 export function extractTitleInfo(titleProp: any): { name: string; link: string | null } {
   const titleText = titleProp.title?.[0]?.text
@@ -51,6 +129,18 @@ export function sortProjects(projects: Project[]): Project[] {
     if (a.sectionType !== b.sectionType) {
       return a.sectionType === "funding" ? -1 : 1
     }
+    
+    if (a.sectionType === "funding" && b.sectionType === "funding") {
+      const prestigeA = getProjectPrestigeScore(a)
+      const prestigeB = getProjectPrestigeScore(b)
+      
+      if (prestigeA !== prestigeB) {
+        return prestigeB - prestigeA
+      }
+      
+      return a.companyName.localeCompare(b.companyName)
+    }
+    
     return b.sectionOrder - a.sectionOrder
   })
 }
@@ -62,7 +152,11 @@ export function extractFilterOptions(projects: Project[]) {
   
   projects.forEach(project => {
     if (project.sectionType === "funding" && project.sectionName) {
-      fundingSources.add(project.sectionName)
+      const topInvestor = project.investors?.[0]
+      if (topInvestor && 
+          (topInvestor.type === "vc" || topInvestor.type === "accelerator")) {
+        fundingSources.add(project.sectionName)
+      }
     } else if (project.sectionType === "cohort") {
       cohorts.add(project.sectionName)
     }
@@ -116,6 +210,15 @@ export function transformNotionPageToProject(page: any): Project {
   const foundersList = properties.founders?.multi_select || []
   const contactsList = properties.contacts?.multi_select || []
   
+  const rawInvestors = hasInvestors ? properties.investors.multi_select?.map((inv: any) => ({
+    id: inv.id,
+    name: parseInvestorName(inv.name).name,
+    type: parseInvestorName(inv.name).type,
+    website: null,
+  })) : undefined
+  
+  const sortedInvestors = rawInvestors ? sortInvestorsByPrestige(rawInvestors) : undefined
+  
   return {
     id,
     title: nameInfo.name,
@@ -132,14 +235,11 @@ export function transformNotionPageToProject(page: any): Project {
       imageSrc: generatePlaceholderImage(f.name, "24x24"),
       contactUrl: contactsList[index]?.name || null,
     })) || [],
-    investors: hasInvestors ? properties.investors.multi_select?.map((inv: any) => ({
-      id: inv.id,
-      name: parseInvestorName(inv.name).name,
-      type: parseInvestorName(inv.name).type,
-      website: null,
-    })) : undefined,
+    investors: sortedInvestors,
     sectionType: hasInvestors ? "funding" : "cohort",
-    sectionName: hasInvestors ? parseInvestorName(properties.investors.multi_select[0].name).name : properties.cohort?.select?.name || "",
+    sectionName: hasInvestors 
+      ? sortedInvestors?.[0]?.name || "" 
+      : properties.cohort?.select?.name || "",
     sectionOrder: getCohortOrder(properties.cohort?.select?.name || ""),
   }
 }
