@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { Client } from "@notionhq/client"
-import { transformNotionPageToProject } from "@/lib/notion"
+import { transformNotionPageToProject, sortProjects } from "@/lib/notion"
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
@@ -12,8 +12,9 @@ export async function GET() {
 
     const pages = response.results || []
     const projects = pages.map(transformNotionPageToProject)
+    const sortedProjects = sortProjects(projects)
 
-    return NextResponse.json({ projects })
+    return NextResponse.json({ projects: sortedProjects })
   } catch (error) {
     console.error("Notion API error:", error)
     return NextResponse.json({ error: "Failed to fetch projects from Notion" }, { status: 500 })

@@ -32,14 +32,27 @@ export function parseCohortName(cohortName: string): string {
 }
 
 export function getCohortOrder(cohortName: string): number {
-  const orderMap: Record<string, number> = {
-    "Winter 2026": 23,
-    "Fall 2025": 22,
-    "Winter 2025": 21,
-    "Fall 2024": 20,
-    "Winter 2024": 19,
+  const match = cohortName.match(/(Winter|Fall)\s+(\d{4})/i)
+  if (!match) return 0
+
+  const season = match[1]
+  const year = parseInt(match[2])
+
+  const seasonPriority: Record<string, number> = {
+    "Winter": 2,
+    "Fall": 1
   }
-  return orderMap[cohortName] || 0
+
+  return year * 10 + seasonPriority[season]
+}
+
+export function sortProjects(projects: Project[]): Project[] {
+  return [...projects].sort((a, b) => {
+    if (a.sectionType !== b.sectionType) {
+      return a.sectionType === "funding" ? -1 : 1
+    }
+    return b.sectionOrder - a.sectionOrder
+  })
 }
 
 export function generatePlaceholderImage(_companyName: string, size: string = "64x64"): string {
