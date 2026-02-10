@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-10T02:46:23.949Z",
+  "timestamp": "2026-02-10T04:04:14.137Z",
   "projects": [
     {
       "id": "30082307-c07d-811a-984b-f34ec0487dc0",
@@ -590,7 +590,7 @@
       "id": "30082307-c07d-81a6-9ca9-f8e457b116e6",
       "title": "Dezu",
       "description": "AI tax accountant for high net worth clients",
-      "overview": "Dezu is an AI tax accountan that automates the preparation of complex tax returns for high net worth clients.",
+      "overview": "Dezu is an AI tax accountant that automates the preparation of complex tax returns for high net worth clients.",
       "imageSrc": "https://placehold.co/64x64.jpg",
       "companyName": "Dezu",
       "companyWebsite": "https://dezu.ai/",
@@ -1687,9 +1687,9 @@
   ],
   "filterOptions": {
     "fundingSources": [
+      "Y Combinator",
       "General Catalyst",
-      "Sequoia Capital",
-      "Y Combinator"
+      "Sequoia Capital"
     ],
     "cohorts": [
       "Winter 2025 Product Studio Cohort",
