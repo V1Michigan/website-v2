@@ -23,6 +23,7 @@ interface ProjectDirectoryLayoutProps {
   onToggleCohort: (_cohort: string) => void
   onToggleCategory: (_category: string) => void
   onProjectClick: (_project: Project) => void
+  onClearFilters: () => void
   isLoading?: boolean
 }
 
@@ -35,6 +36,7 @@ export default function ProjectDirectoryLayout({
   onToggleCohort,
   onToggleCategory,
   onProjectClick,
+  onClearFilters,
   isLoading = false,
 }: ProjectDirectoryLayoutProps) {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
@@ -55,15 +57,30 @@ export default function ProjectDirectoryLayout({
         {/* Filter Panel - Left Side */}
         <div className="w-96 flex-shrink-0">
           <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-300 bg-white">
-            <FilterPanel
-              filters={filters}
-              filterOptions={filterOptions}
-              onSearchChange={onSearchChange}
-              onToggleFunding={onToggleFunding}
-              onToggleCohort={onToggleCohort}
-              onToggleCategory={onToggleCategory}
-              isLoading={isLoading}
-            />
+            <div className="flex h-full flex-col">
+              <div className="border-b border-gray-300 p-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={onClearFilters}
+                  disabled={!hasActiveFilters || isLoading}
+                  className="w-full"
+                >
+                  Clear All Filters
+                </Button>
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                <FilterPanel
+                  filters={filters}
+                  filterOptions={filterOptions}
+                  onSearchChange={onSearchChange}
+                  onToggleFunding={onToggleFunding}
+                  onToggleCohort={onToggleCohort}
+                  onToggleCategory={onToggleCategory}
+                  isLoading={isLoading}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -180,12 +197,25 @@ export default function ProjectDirectoryLayout({
               </div>
 
               {/* Footer */}
-              <div className="border-t border-gray-300 p-4">
+              <div className="border-t border-gray-300 p-4 flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    onClearFilters()
+                    setIsMobileFilterOpen(false)
+                  }}
+                  disabled={!hasActiveFilters || isLoading}
+                  className="flex-1"
+                >
+                  Clear All
+                </Button>
                 <Button
                   onClick={() => setIsMobileFilterOpen(false)}
-                  className="w-full"
+                  disabled={isLoading}
+                  className="flex-1"
                 >
-                  Apply Filters
+                  Close
                 </Button>
               </div>
             </div>

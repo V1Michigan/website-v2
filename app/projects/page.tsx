@@ -150,6 +150,18 @@ export default function ProjectDirectoryPage() {
     setTimeout(() => setSelectedProject(null), 200)
   }, [])
 
+  const clearAllFilters = useCallback(() => {
+    setIsRefetching(true)
+    setLocalSearchQuery("")
+    setLocalFilters({
+      searchQuery: "",
+      fundingSources: [],
+      cohorts: [],
+      categories: [],
+    })
+    router.push("/projects", { scroll: false })
+  }, [router])
+
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
       <Header />
@@ -190,6 +202,7 @@ export default function ProjectDirectoryPage() {
             onToggleCohort={toggleCohort}
             onToggleCategory={toggleCategory}
             onProjectClick={openProjectModal}
+            onClearFilters={clearAllFilters}
             isLoading={isFilterLoading}
           />
         )}
