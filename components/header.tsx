@@ -137,14 +137,14 @@ export default function Header() {
                     Join us!
                     <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/auth"
                     className="flex items-center px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-md mx-2 my-1"
                     onClick={closeDropdown}
                   >
                     Sign In
                     <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             )}
@@ -268,14 +268,14 @@ export default function Header() {
                     Join us!
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/auth"
                     className="inline-flex w-fit items-center rounded-md bg-blue-600 px-3 py-1.5 text-xs text-white hover:bg-blue-700"
                     onClick={closeMobileMenu}
                   >
                     Sign In
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             )}
