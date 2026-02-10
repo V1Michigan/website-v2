@@ -1,34 +1,34 @@
 import { NextResponse } from "next/server"
-import { Client } from "@notionhq/client"
-import { transformNotionPageToProject, sortProjects, extractFilterOptions, filterProjects } from "@/lib/notion"
-
-const notion = new Client({ auth: process.env.NOTION_API_KEY })
+import { readFileSync, existsSync } from "fs"
+import { join } from "path"
+import type { Project } from "@/types/project"
+import { filterProjects } from "@/lib/notion"
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     
-    // Parse filter parameters
+    const dataPath = join(process.cwd(), "data/projects-data.json")
+    
+    if (!existsSync(dataPath)) {
+      console.error("Projects data file not found:", dataPath)
+      return NextResponse.json({ 
+        error: "Projects data not found. Please run 'pnpm build:projects' first." 
+      }, { 
+        status: 503 
+      })
+    }
+
+    const data = JSON.parse(readFileSync(dataPath, "utf-8"))
+    const allProjects = data.projects as Project[]
+    const cachedFilterOptions = data.filterOptions
+    
     const searchQuery = searchParams.get("search") || ""
     const fundingSources = searchParams.getAll("funding")
     const cohorts = searchParams.getAll("cohort")
     const categories = searchParams.getAll("category")
     
-    const response = await notion.dataSources.query({
-      data_source_id: process.env.NOTION_DATA_SOURCE_ID!,
-    })
-
-    const pages = response.results || []
-    const allProjects = pages.map(transformNotionPageToProject)
-    
-    // Sort all projects first
-    const sortedProjects = sortProjects(allProjects)
-    
-    // Extract filter options from ALL projects (not filtered)
-    const filterOptions = extractFilterOptions(sortedProjects)
-    
-    // Apply filters
-    const filteredProjects = filterProjects(sortedProjects, {
+    const filteredProjects = filterProjects(allProjects, {
       searchQuery,
       fundingSources,
       cohorts,
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
     
     return NextResponse.json({ 
       projects: filteredProjects,
-      filterOptions,
+      filterOptions: cachedFilterOptions,
       totalProjects: allProjects.length,
       filteredCount: filteredProjects.length
     }, {
@@ -46,9 +46,9 @@ export async function GET(request: Request) {
       }
     })
   } catch (error) {
-    console.error("Notion API error:", error)
+    console.error("Error reading projects data:", error)
     return NextResponse.json({ 
-      error: "Failed to fetch projects from Notion" 
+      error: "Failed to read projects data" 
     }, { 
       status: 500 
     })
