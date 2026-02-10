@@ -45,7 +45,7 @@ function FilterPanel({
                 type="checkbox"
                 checked={filters.fundingSources.includes(source)}
                 onChange={() => onToggleFunding(source)}
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="h-4 w-4 rounded border-gray-100 text-blue-600 focus:ring-blue-500"
                 disabled={isLoading}
               />
               <span className="text-sm text-gray-700">{source}</span>
@@ -69,7 +69,7 @@ function FilterPanel({
                   type="checkbox"
                   checked={filters.cohorts.includes(cohort)}
                   onChange={() => onToggleCohort(cohort)}
-                  className="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                  className="h-4 w-4 rounded border-gray-100 text-purple-600 focus:ring-purple-500"
                   disabled={isLoading}
                 />
                 <span className="text-sm text-gray-700">{displayName}</span>
@@ -92,7 +92,7 @@ function FilterPanel({
                 type="checkbox"
                 checked={filters.categories.includes(category)}
                 onChange={() => onToggleCategory(category)}
-                className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-500"
+                className="h-4 w-4 rounded border-gray-100 text-gray-600 focus:ring-gray-500"
                 disabled={isLoading}
               />
               <span className="text-sm text-gray-700">{category}</span>
