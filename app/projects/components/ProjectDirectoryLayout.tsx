@@ -105,7 +105,7 @@ export default function ProjectDirectoryLayout({
               placeholder="Search companies..."
               value={filters.searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
           <Button
@@ -152,7 +152,7 @@ export default function ProjectDirectoryLayout({
             />
 
             {/* Filter Panel Slide-up */}
-            <div className="fixed bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-2xl bg-white">
+            <div className="fixed bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-lg bg-white">
               {/* Header */}
               <div className="flex items-center justify-between border-b border-gray-300 p-4">
                 <h3 className="font-instrument text-lg font-semibold text-gray-900">Filters</h3>
