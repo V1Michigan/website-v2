@@ -164,8 +164,14 @@ export function extractFilterOptions(projects: Project[]) {
     project.categories.forEach(cat => categories.add(cat))
   })
   
+  const sortedFundingSources = Array.from(fundingSources).sort((a, b) => {
+    if (a === "Y Combinator") return -1
+    if (b === "Y Combinator") return 1
+    return a.localeCompare(b)
+  })
+  
   return {
-    fundingSources: Array.from(fundingSources).sort(),
+    fundingSources: sortedFundingSources,
     cohorts: Array.from(cohorts).sort((a, b) => getCohortOrder(b) - getCohortOrder(a)),
     categories: Array.from(categories).sort(),
   }
