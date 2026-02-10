@@ -166,7 +166,7 @@ export function extractFilterOptions(projects: Project[]) {
   
   return {
     fundingSources: Array.from(fundingSources).sort(),
-    cohorts: Array.from(cohorts).sort(),
+    cohorts: Array.from(cohorts).sort((a, b) => getCohortOrder(b) - getCohortOrder(a)),
     categories: Array.from(categories).sort(),
   }
 }
