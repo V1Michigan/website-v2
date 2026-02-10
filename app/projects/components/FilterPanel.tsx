@@ -1,5 +1,4 @@
 import { memo } from "react"
-import { Search, Building, Users, Tag } from "lucide-react"
 
 interface FilterPanelProps {
   filters: {
@@ -33,17 +32,9 @@ function FilterPanel({
 }: FilterPanelProps) {
   return (
     <div className="h-full overflow-y-auto p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <h2 className="font-instrument text-xl font-semibold text-gray-900">Filters</h2>
-      </div>
-
       {/* Funding Sources */}
       <div className="mb-6">
-        <div className="mb-3 flex items-center gap-2">
-          <Building className="h-4 w-4 text-gray-600" />
-          <h3 className="font-medium text-gray-900">Funding</h3>
-        </div>
+        <h3 className="mb-3 text-base font-semibold text-gray-900">Funding</h3>
         <div className="space-y-2">
           {filterOptions.fundingSources.map((source) => (
             <label
@@ -65,10 +56,7 @@ function FilterPanel({
 
       {/* Product Studio Cohorts */}
       <div className="mb-6">
-        <div className="mb-3 flex items-center gap-2">
-          <Users className="h-4 w-4 text-gray-600" />
-          <h3 className="font-medium text-gray-900">Cohorts</h3>
-        </div>
+        <h3 className="mb-3 text-base font-semibold text-gray-900">Cohorts</h3>
         <div className="space-y-2">
           {filterOptions.cohorts.map((cohort) => {
             const displayName = cohort.replace(" Product Studio Cohort", "")
@@ -93,10 +81,7 @@ function FilterPanel({
 
       {/* Categories */}
       <div className="mb-6">
-        <div className="mb-3 flex items-center gap-2">
-          <Tag className="h-4 w-4 text-gray-600" />
-          <h3 className="font-medium text-gray-900">Categories</h3>
-        </div>
+        <h3 className="mb-3 text-base font-semibold text-gray-900">Categories</h3>
         <div className="space-y-2">
           {filterOptions.categories.map((category) => (
             <label

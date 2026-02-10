@@ -36,8 +36,8 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   const cohortBadgeColor = cohortColors[project.sectionName as keyof typeof cohortColors] || "bg-gray-500 text-white"
 
   return (
-    <div 
-      className="group cursor-pointer rounded-lg border border-gray-200 bg-white p-6 transition-all hover:shadow-md hover:border-gray-300"
+    <div
+      className="group cursor-pointer rounded-lg border border-gray-300 bg-white p-6 transition-all hover:shadow-md hover:border-gray-400"
       onClick={onClick}
     >
       <div className="flex items-start gap-4">

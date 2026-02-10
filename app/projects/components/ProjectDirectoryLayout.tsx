@@ -54,7 +54,7 @@ export default function ProjectDirectoryLayout({
       <div className="hidden lg:flex lg:gap-6">
         {/* Filter Panel - Left Side */}
         <div className="w-96 flex-shrink-0">
-          <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-200 bg-white">
+          <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-300 bg-white">
             <FilterPanel
               filters={filters}
               filterOptions={filterOptions}
@@ -154,7 +154,7 @@ export default function ProjectDirectoryLayout({
             {/* Filter Panel Slide-up */}
             <div className="fixed bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-2xl bg-white">
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-gray-200 p-4">
+              <div className="flex items-center justify-between border-b border-gray-300 p-4">
                 <h3 className="font-instrument text-lg font-semibold text-gray-900">Filters</h3>
                 <Button
                   variant="ghost"
@@ -180,7 +180,7 @@ export default function ProjectDirectoryLayout({
               </div>
 
               {/* Footer */}
-              <div className="border-t border-gray-200 p-4">
+              <div className="border-t border-gray-300 p-4">
                 <Button
                   onClick={() => setIsMobileFilterOpen(false)}
                   className="w-full"
