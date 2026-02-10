@@ -1,5 +1,4 @@
 import { memo } from "react"
-import { Input } from "@/components/ui/input"
 import { Search, Building, Users, Tag } from "lucide-react"
 
 interface FilterPanelProps {
@@ -19,6 +18,7 @@ interface FilterPanelProps {
   onToggleCohort: (_cohort: string) => void
   onToggleCategory: (_category: string) => void
   isLoading?: boolean
+  showSearch?: boolean
 }
 
 function FilterPanel({
@@ -29,27 +29,13 @@ function FilterPanel({
   onToggleCohort,
   onToggleCategory,
   isLoading = false,
+  showSearch = true,
 }: FilterPanelProps) {
   return (
     <div className="h-full overflow-y-auto p-6">
-       {/* Header */}
+      {/* Header */}
       <div className="mb-6">
         <h2 className="font-instrument text-xl font-semibold text-gray-900">Filters</h2>
-      </div>
-
-      {/* Search */}
-      <div className="mb-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <Input
-            type="search"
-            placeholder="Search companies..."
-            value={filters.searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-10"
-            disabled={isLoading}
-          />
-        </div>
       </div>
 
       {/* Funding Sources */}

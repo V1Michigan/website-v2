@@ -26,17 +26,17 @@ interface ProjectDirectoryLayoutProps {
   isLoading?: boolean
 }
 
- export default function ProjectDirectoryLayout({
-   projects,
-   filters,
-   filterOptions,
-   onSearchChange,
-   onToggleFunding,
-   onToggleCohort,
-   onToggleCategory,
-   onProjectClick,
-   isLoading = false,
-  }: ProjectDirectoryLayoutProps) {
+export default function ProjectDirectoryLayout({
+  projects,
+  filters,
+  filterOptions,
+  onSearchChange,
+  onToggleFunding,
+  onToggleCohort,
+  onToggleCategory,
+  onProjectClick,
+  isLoading = false,
+}: ProjectDirectoryLayoutProps) {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
 
   const hasActiveFilters = useMemo(
@@ -54,7 +54,7 @@ interface ProjectDirectoryLayoutProps {
       <div className="hidden lg:flex lg:gap-6">
         {/* Filter Panel - Left Side */}
         <div className="w-96 flex-shrink-0">
-           <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-200 bg-white">
+          <div className="sticky top-8 h-[calc(100vh-8rem)] overflow-hidden rounded-lg border border-gray-200 bg-white">
             <FilterPanel
               filters={filters}
               filterOptions={filterOptions}
@@ -67,26 +67,37 @@ interface ProjectDirectoryLayoutProps {
           </div>
         </div>
 
-         {/* Project List - Right Side */}
+        {/* Project List - Right Side */}
         <div className="flex-1">
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <div className="flex-1">
+              <input
+                type="search"
+                placeholder="Search companies..."
+                value={filters.searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
+                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-instrument text-2xl font-semibold text-gray-900">
               Projects ({projects.length})
             </h2>
-         </div>
-           {isLoading ? (
-             <div className="flex justify-center items-center py-12">
-               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
-             </div>
-           ) : (
-             <ProjectList projects={projects} onProjectClick={onProjectClick} />
-           )}
+          </div>
+          {isLoading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
+            </div>
+          ) : (
+            <ProjectList projects={projects} onProjectClick={onProjectClick} />
+          )}
         </div>
       </div>
 
       {/* Mobile/Tablet Layout */}
       <div className="lg:hidden">
-        {/* Mobile Filter Button */}
         <div className="mb-4 flex items-center justify-between gap-4">
           <div className="flex-1">
             <input
@@ -97,13 +108,13 @@ interface ProjectDirectoryLayoutProps {
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
-           <Button
-             variant="outline"
-             size="sm"
-             onClick={() => setIsMobileFilterOpen(true)}
-             disabled={isLoading}
-             className="flex items-center gap-2"
-           >
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsMobileFilterOpen(true)}
+            disabled={isLoading}
+            className="flex items-center gap-2"
+          >
             <Filter className="h-4 w-4" />
             Filters
             {hasActiveFilters && (
@@ -113,12 +124,13 @@ interface ProjectDirectoryLayoutProps {
             )}
           </Button>
         </div>
+        {/* Mobile Filter Button */}
 
         {/* Project Count */}
         <div className="mb-4">
           <h2 className="font-instrument text-xl font-semibold text-gray-900">
             Projects ({projects.length})
-           </h2>
+          </h2>
         </div>
 
         {/* Loading state */}
@@ -153,18 +165,19 @@ interface ProjectDirectoryLayoutProps {
                 </Button>
               </div>
 
-               {/* Filter Content */}
-               <div className="flex-1 overflow-y-auto">
-                  <FilterPanel
-                    filters={filters}
-                    filterOptions={filterOptions}
-                    onSearchChange={onSearchChange}
-                    onToggleFunding={onToggleFunding}
-                    onToggleCohort={onToggleCohort}
-                    onToggleCategory={onToggleCategory}
-                    isLoading={isLoading}
-                  />
-               </div>
+              {/* Filter Content */}
+              <div className="flex-1 overflow-y-auto">
+                <FilterPanel
+                  filters={filters}
+                  filterOptions={filterOptions}
+                  onSearchChange={onSearchChange}
+                  onToggleFunding={onToggleFunding}
+                  onToggleCohort={onToggleCohort}
+                  onToggleCategory={onToggleCategory}
+                  isLoading={isLoading}
+                  showSearch={false}
+                />
+              </div>
 
               {/* Footer */}
               <div className="border-t border-gray-200 p-4">
