@@ -34,7 +34,7 @@ function FilterPanel({
     <div className="h-full overflow-y-auto p-6">
       {/* Funding Sources */}
       <div className="mb-6">
-        <h3 className="mb-3 text-base font-semibold text-gray-900">Funding</h3>
+        <h3 className="mb-3 font-instrument text-xl font-semibold text-gray-900">Funding</h3>
         <div className="space-y-2">
           {filterOptions.fundingSources.map((source) => (
             <label
@@ -56,7 +56,7 @@ function FilterPanel({
 
       {/* Product Studio Cohorts */}
       <div className="mb-6">
-        <h3 className="mb-3 text-base font-semibold text-gray-900">Cohorts</h3>
+        <h3 className="mb-3 font-instrument text-xl font-semibold text-gray-900">Cohorts</h3>
         <div className="space-y-2">
           {filterOptions.cohorts.map((cohort) => {
             const displayName = cohort.replace(" Product Studio Cohort", "")
@@ -81,7 +81,7 @@ function FilterPanel({
 
       {/* Categories */}
       <div className="mb-6">
-        <h3 className="mb-3 text-base font-semibold text-gray-900">Categories</h3>
+        <h3 className="mb-3 font-instrument text-xl font-semibold text-gray-900">Categories</h3>
         <div className="space-y-2">
           {filterOptions.categories.map((category) => (
             <label
