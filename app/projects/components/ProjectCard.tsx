@@ -42,7 +42,8 @@ const getInvestorBadgeColor = (name: string): string => {
 const cohortColors = {
   "Winter 2026 Product Studio Cohort": "bg-emerald-500 text-white",
   "Fall 2025 Product Studio Cohort": "bg-purple-500 text-white",
-  "Winter 2025 Product Studio Cohort": "bg-cyan-500 text-white",
+  "Winter 2025 Product Studio Cohort": "bg-indigo-500 text-white",
+  "Winter 2024 Product Studio Cohort": "bg-sky-500 text-white",
   "Fall 2024 Product Studio Cohort": "bg-amber-600 text-white",
   "Spring 2025 Product Studio Cohort": "bg-pink-500 text-white",
 }
