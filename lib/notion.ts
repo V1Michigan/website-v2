@@ -1,11 +1,11 @@
 import type { Project, Investor } from "@/types/project"
 
-export type PrestigeTier = "top" | "high" | "standard"
+export type PrestigeTier = "prestige" | "top" | "high" | "standard"
 
 const INVESTOR_TIERS: Record<string, PrestigeTier> = {
   "Sequoia Capital": "top",
   "General Catalyst": "top",
-  "Y Combinator": "top",
+  "Y Combinator": "prestige",
   "Techstars": "top",
   "SignalFire": "high",
   "Contrary Capital": "high",
@@ -30,6 +30,7 @@ const INVESTOR_TIERS: Record<string, PrestigeTier> = {
 }
 
 const TIER_SCORES: Record<PrestigeTier, number> = {
+  prestige: 150,
   top: 100,
   high: 50,
   standard: 10,

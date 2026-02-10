@@ -1,17 +1,41 @@
 import Image from "next/image"
-import type { Project } from "@/types/project"
+import type { Project, Investor } from "@/types/project"
 
 interface ProjectCardProps {
   project: Project
   onClick: () => void
 }
 
-// VC Fund badge colors
-const vcFundColors = {
+// Investor badge colors
+const investorBadgeColors: Record<string, string> = {
   "Y Combinator": "bg-orange-500 text-white",
-  "Techstars": "bg-blue-500 text-white", 
-  "General Catalyst": "bg-green-500 text-white",
+  "Techstars": "bg-blue-500 text-white",
+  "Z Fellows": "bg-purple-500 text-white",
   "Sequoia Capital": "bg-red-500 text-white",
+  "General Catalyst": "bg-green-500 text-white",
+  "SignalFire": "bg-cyan-500 text-white",
+  "Contrary Capital": "bg-indigo-500 text-white",
+  "Pioneer Fund": "bg-yellow-500 text-white",
+  "Agent Fund": "bg-rose-500 text-white",
+  "Moxxie Ventures": "bg-pink-500 text-white",
+  "Streamlined Ventures": "bg-lime-500 text-white",
+  "Lobster Capital": "bg-sky-500 text-white",
+  "Gold House Ventures": "bg-amber-500 text-white",
+  "GC Venture Fellows": "bg-emerald-500 text-white",
+  "Paul Graham": "bg-violet-500 text-white",
+  "Stephen Wolfram": "bg-fuchsia-500 text-white",
+  "Paul Copplestone": "bg-rose-400 text-white",
+  "Karim Atiyeh": "bg-orange-400 text-white",
+  "UMich Center for Entrepreneurship": "bg-blue-700 text-white",
+  "Zell Lurie Institute": "bg-blue-800 text-white",
+}
+
+// Get badge color for investor
+const getInvestorBadgeColor = (name: string): string => {
+  for (const [key, color] of Object.entries(investorBadgeColors)) {
+    if (name.includes(key)) return color
+  }
+  return "bg-gray-500 text-white"
 }
 
 // Cohort badge colors
@@ -29,10 +53,8 @@ const getCohortDisplayName = (cohortName: string) => {
 }
 
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
-  const hasVCFunding = project.sectionType === "funding"
   const hasCohort = project.sectionType === "cohort"
-  
-  const vcBadgeColor = vcFundColors[project.sectionName as keyof typeof vcFundColors] || "bg-gray-500 text-white"
+  const primaryInvestor = project.investors?.[0] || null
   const cohortBadgeColor = cohortColors[project.sectionName as keyof typeof cohortColors] || "bg-gray-500 text-white"
 
   return (
@@ -65,9 +87,9 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 
           {/* Badges */}
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            {hasVCFunding && (
-              <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${vcBadgeColor}`}>
-                {project.sectionName}
+            {primaryInvestor && (
+              <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getInvestorBadgeColor(primaryInvestor.name)}`}>
+                {primaryInvestor.name}
               </span>
             )}
             {hasCohort && (
