@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X, Compass, LogOut, ChevronDown } from "lucide-react";
+import { ArrowRight, Menu, X, Compass, LogOut, ChevronDown, Heart } from "lucide-react";
 import { useAuth } from "@/components/auth/auth-provider";
 
 export default function Header() {
@@ -66,6 +66,13 @@ export default function Header() {
           className="text-sm text-gray-700 hover:text-black"
         >
           Events
+        </Link>
+        <Link
+          href="/love-notes"
+          className="inline-flex items-center gap-1 text-sm text-rose-600 hover:text-rose-800 font-medium"
+        >
+          <Heart className="h-3.5 w-3.5 fill-rose-600" />
+          Love Notes
         </Link>
         <Link
           href="/store"
@@ -206,6 +213,14 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Events
+            </Link>
+            <Link
+              href="/love-notes"
+              className="flex items-center gap-1 py-2 text-sm text-rose-600 hover:text-rose-800 font-medium"
+              onClick={closeMobileMenu}
+            >
+              <Heart className="h-3.5 w-3.5 fill-rose-600" />
+              Love Notes
             </Link>
             <Link
               href="/store"
