@@ -57,7 +57,7 @@ export default function YCBanner({ enabled }: { enabled: boolean }) {
         <div className="flex items-center gap-3">
           <a
             href="https://www.v1michigan.com/yc-w26?utm_source=website"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-white rounded-full text-sm font-inter font-bold hover:bg-white/20 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg ring-1 ring-black/20 ring-inset"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-white/10 text-white rounded-full text-sm font-inter font-medium hover:bg-white/20 transition-all duration-200 border border-white/20 hover:border-white/30 ring-1 ring-white/15 ring-inset"
           >
             <span>RSVP</span>
             <svg
