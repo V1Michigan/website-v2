@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 function RotatingCube() {
   const meshRef = useRef<THREE.Mesh>(null);
+  const texture = useTexture("/koob.png");
 
   useFrame(() => {
     if (meshRef.current) {
@@ -17,7 +19,7 @@ function RotatingCube() {
   return (
     <mesh ref={meshRef}>
       <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color="#7db6ff" />
+      <meshBasicMaterial map={texture} />
     </mesh>
   );
 }
@@ -26,9 +28,9 @@ export default function RotatingCubeExperience() {
   return (
     <div className="w-screen h-dvh bg-black">
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <RotatingCube />
+        <Suspense fallback={null}>
+          <RotatingCube />
+        </Suspense>
       </Canvas>
     </div>
   );
