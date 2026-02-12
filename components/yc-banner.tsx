@@ -59,7 +59,7 @@ export default function YCBanner({ enabled }: { enabled: boolean }) {
             href="https://www.v1michigan.com/yc-w26?utm_source=website"
             className="inline-flex items-center gap-2 px-4 py-2 bg-[#191919] text-white rounded-full text-sm font-inter font-bold hover:bg-[#000000] transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg ring-1 ring-black/20 ring-inset"
           >
-            <span>RSVP Here</span>
+            <span>RSVP</span>
             <svg
               className="w-4 h-4"
               fill="none"
