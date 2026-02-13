@@ -26,7 +26,6 @@ const COLOR_PRESETS = [
   { name: "Orange Red", value: "#EA580C" },
   { name: "Green", value: "#16A34A" },
   { name: "Blue", value: "#2563EB" },
-  { name: "Soft Pink", value: "#FBCFE8" },
   { name: "Deep Rose", value: "#9F1239" },
 ];
 
