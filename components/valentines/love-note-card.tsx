@@ -47,7 +47,7 @@ export default function LoveNoteCard({ note, onDelete }: LoveNoteCardProps) {
 
           {canvas_data.image && (
             <div className="w-16 h-16 relative flex-shrink-0">
-              {canvas_data.image.startsWith("/love-notes/") ? (
+              {canvas_data.image.startsWith("/valentines/") ? (
                 <Image
                   src={canvas_data.image}
                   alt="Love note image"

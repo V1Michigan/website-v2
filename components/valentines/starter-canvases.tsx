@@ -17,21 +17,21 @@ export const TEMPLATES: Template[] = [
     name: "Red Romance",
     backgroundColor: "#DC2626",
     defaultText: "You make my heart skip a beat!",
-    defaultImage: "/love-notes/heart-red.svg",
+    defaultImage: "/valentines/heart-red.svg",
   },
   {
     id: "green-love",
     name: "Green Love",
     backgroundColor: "#16A34A",
     defaultText: "Growing together, always.",
-    defaultImage: "/love-notes/heart-green.svg",
+    defaultImage: "/valentines/heart-green.svg",
   },
   {
     id: "blue-devotion",
     name: "Blue Devotion",
     backgroundColor: "#2563EB",
     defaultText: "My love for you is as deep as the ocean.",
-    defaultImage: "/love-notes/heart-blue.svg",
+    defaultImage: "/valentines/heart-blue.svg",
   },
 ];
 

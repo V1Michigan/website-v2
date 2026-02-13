@@ -68,7 +68,7 @@ export default function Header() {
           Events
         </Link>
         <Link
-          href="/love-notes"
+          href="/valentines"
           className="inline-flex items-center gap-1 text-sm text-rose-600 hover:text-rose-800 font-medium"
         >
           <Heart className="h-3.5 w-3.5 fill-rose-600" />
@@ -215,7 +215,7 @@ export default function Header() {
               Events
             </Link>
             <Link
-              href="/love-notes"
+              href="/valentines"
               className="flex items-center gap-1 py-2 text-sm text-rose-600 hover:text-rose-800 font-medium"
               onClick={closeMobileMenu}
             >

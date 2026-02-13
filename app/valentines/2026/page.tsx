@@ -6,11 +6,11 @@ import { Heart } from "lucide-react";
 import { useAuth } from "@/components/auth/auth-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import StarterCanvases from "@/components/love-notes/starter-canvases";
-import CanvasEditor from "@/components/love-notes/canvas-editor";
-import LoveNoteCard from "@/components/love-notes/love-note-card";
-import type { Template } from "@/components/love-notes/starter-canvases";
-import type { LoveNote } from "@/components/love-notes/love-note-card";
+import StarterCanvases from "@/components/valentines/starter-canvases";
+import CanvasEditor from "@/components/valentines/canvas-editor";
+import LoveNoteCard from "@/components/valentines/love-note-card";
+import type { Template } from "@/components/valentines/starter-canvases";
+import type { LoveNote } from "@/components/valentines/love-note-card";
 import supabase from "@/utils/supabaseClient";
 
 export default function LoveNotesPage() {

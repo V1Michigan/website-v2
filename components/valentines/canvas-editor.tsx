@@ -195,7 +195,7 @@ export default function CanvasEditor({
                   <ImagePlus className="h-4 w-4 mr-2" />
                   Upload Image
                 </Button>
-                {imageData && !imageData.startsWith("/love-notes/") && (
+                {imageData && !imageData.startsWith("/valentines/") && (
                   <button
                     onClick={removeImage}
                     className="text-rose-400 hover:text-rose-600 transition-colors"
@@ -264,7 +264,7 @@ export default function CanvasEditor({
 
                 {imageData && (
                   <div className="w-20 h-20 relative">
-                    {imageData.startsWith("/love-notes/") ? (
+                    {imageData.startsWith("/valentines/") ? (
                       <Image
                         src={imageData}
                         alt="Love note image"
