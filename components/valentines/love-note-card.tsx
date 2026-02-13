@@ -6,7 +6,8 @@ import { Trash2 } from "lucide-react";
 export interface LoveNote {
   id: string;
   user_id: string;
-  recipient_name: string | null;
+  recipient_name: string;
+  recipient_email: string;
   background_color: string;
   canvas_data: {
     text: string;
@@ -18,39 +19,33 @@ export interface LoveNote {
 
 interface LoveNoteCardProps {
   note: LoveNote;
-  onDelete: (id: string) => void;
+  onDelete?: (id: string) => void;
 }
 
 export default function LoveNoteCard({ note, onDelete }: LoveNoteCardProps) {
   const { background_color, canvas_data, recipient_name, created_at } = note;
 
   return (
-    <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+    <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] flex flex-col">
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center p-6"
+        className="flex-1 flex flex-col items-center min-h-[280px]"
         style={{ backgroundColor: background_color }}
       >
-        {/* Decorative hearts background */}
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 200 260" fill="white">
-            <path d="M20 40C20 40 5 28 5 18C5 12 10 8 15 8C18 8 21 10 22 13C23 10 26 8 29 8C34 8 39 12 39 18C39 28 24 40 24 40Z" />
-            <path d="M170 220C170 220 155 208 155 198C155 192 160 188 165 188C168 188 171 190 172 193C173 190 176 188 179 188C184 188 189 192 189 198C189 208 174 220 174 220Z" />
-          </svg>
-        </div>
+        {/* Recipient */}
+        {recipient_name && (
+          <p className="text-white/90 text-xs font-medium tracking-wide pt-4">
+            For {recipient_name}
+          </p>
+        )}
 
-        <div className="relative z-10 flex flex-col items-center gap-3 text-center max-h-full overflow-hidden">
-          {recipient_name && (
-            <p className="text-white/90 text-xs font-medium tracking-widest uppercase">
-              For {recipient_name}
-            </p>
-          )}
-
-          {canvas_data.image && (
-            <div className="w-16 h-16 relative flex-shrink-0">
+        {/* Image - centered, top, takes up at least half */}
+        {canvas_data.image && (
+          <div className="flex-1 w-full flex items-center justify-center p-8">
+            <div className="w-3/4 max-w-[260px] aspect-square relative">
               {canvas_data.image.startsWith("/valentines/") ? (
                 <Image
                   src={canvas_data.image}
-                  alt="Love note image"
+                  alt="Valentine's note image"
                   fill
                   className="object-contain drop-shadow-lg"
                 />
@@ -58,21 +53,22 @@ export default function LoveNoteCard({ note, onDelete }: LoveNoteCardProps) {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={canvas_data.image}
-                  alt="Love note image"
+                  alt="Valentine's note image"
                   className="w-full h-full object-contain rounded-lg drop-shadow-lg"
                 />
               )}
             </div>
-          )}
+          </div>
+        )}
 
-          <p className="text-white font-serif text-base leading-relaxed drop-shadow-md line-clamp-6">
+        {/* Text - wrapping */}
+        <div className="w-full px-6 pb-4 text-center">
+          <p className="text-white font-serif text-lg leading-relaxed drop-shadow-md break-words whitespace-normal">
             &ldquo;{canvas_data.text}&rdquo;
           </p>
-        </div>
 
-        {/* Date stamp */}
-        <div className="absolute bottom-3 left-0 right-0 text-center">
-          <span className="text-white/60 text-xs">
+          {/* Date stamp */}
+          <span className="mt-3 inline-block text-white/60 text-xs">
             {new Date(created_at).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
@@ -81,17 +77,19 @@ export default function LoveNoteCard({ note, onDelete }: LoveNoteCardProps) {
           </span>
         </div>
 
-        {/* Delete button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(note.id);
-          }}
-          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/30 hover:bg-black/50 rounded-full p-2"
-          title="Delete note"
-        >
-          <Trash2 className="h-4 w-4 text-white" />
-        </button>
+        {/* Delete button (only shown if onDelete is provided) */}
+        {onDelete && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(note.id);
+            }}
+            className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/30 hover:bg-black/50 rounded-full p-2"
+            title="Delete note"
+          >
+            <Trash2 className="h-4 w-4 text-white" />
+          </button>
+        )}
       </div>
     </div>
   );

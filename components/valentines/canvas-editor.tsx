@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Heart, ImagePlus, X as XIcon } from "lucide-react";
 import {
@@ -34,6 +34,7 @@ interface CanvasEditorProps {
   onOpenChange: (open: boolean) => void;
   template?: Template | null;
   userId: string;
+  senderName: string;
   onSaved: () => void;
 }
 
@@ -42,6 +43,7 @@ export default function CanvasEditor({
   onOpenChange,
   template,
   userId,
+  senderName,
   onSaved,
 }: CanvasEditorProps) {
   const [backgroundColor, setBackgroundColor] = useState(
@@ -49,22 +51,26 @@ export default function CanvasEditor({
   );
   const [text, setText] = useState(template?.defaultText ?? "");
   const [recipientName, setRecipientName] = useState("");
+  const [recipientEmail, setRecipientEmail] = useState("");
   const [imageData, setImageData] = useState<string | null>(
     template?.defaultImage ?? null
   );
   const [saving, setSaving] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Reset form when dialog opens with a new template
-  const handleOpenChange = (newOpen: boolean) => {
-    if (newOpen) {
+  // Sync form state whenever the template or open state changes
+  useEffect(() => {
+    if (open) {
       setBackgroundColor(template?.backgroundColor ?? "#E11D48");
       setText(template?.defaultText ?? "");
       setRecipientName("");
+      setRecipientEmail("");
       setImageData(template?.defaultImage ?? null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
-    onOpenChange(newOpen);
-  };
+  }, [open, template]);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -89,20 +95,49 @@ export default function CanvasEditor({
     setSaving(true);
 
     try {
-      const { error } = await supabase.from("love_notes").insert({
-        user_id: userId,
-        recipient_name: recipientName.trim() || null,
-        background_color: backgroundColor,
-        canvas_data: {
-          text: text.trim(),
-          image: imageData,
-        },
-        template_id: template?.id ?? null,
-      });
+      const { data, error } = await supabase
+        .from("love_notes")
+        .insert({
+          user_id: userId,
+          recipient_name: recipientName.trim(),
+          recipient_email: recipientEmail.trim().toLowerCase(),
+          background_color: backgroundColor,
+          canvas_data: {
+            text: text.trim(),
+            image: imageData,
+          },
+          template_id: template?.id ?? null,
+        })
+        .select()
+        .single();
 
       if (error) {
         console.error("Error saving love note:", error.message);
       } else {
+        // Send email notification to recipient
+        try {
+          await fetch("/api/love-notes/send", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              recipientEmail: recipientEmail.trim().toLowerCase(),
+              senderName,
+            }),
+          });
+        } catch (emailError) {
+          console.error("Failed to send email notification:", emailError);
+        }
+
+        // Clear form
+        setBackgroundColor("#E11D48");
+        setText("");
+        setRecipientName("");
+        setRecipientEmail("");
+        setImageData(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+
         onSaved();
         onOpenChange(false);
       }
@@ -114,7 +149,7 @@ export default function CanvasEditor({
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-rose-700 font-serif text-2xl">
@@ -131,15 +166,32 @@ export default function CanvasEditor({
           <div className="space-y-5">
             {/* Recipient Name */}
             <div className="space-y-2">
-              <Label htmlFor="recipient" className="text-rose-700 font-medium">
-                To (optional)
+              <Label htmlFor="recipientName" className="text-rose-700 font-medium">
+                Recipient Name <span className="text-rose-500">(required)</span>
               </Label>
               <Input
-                id="recipient"
-                placeholder="Who is this for?"
+                id="recipientName"
+                placeholder="Their name"
                 value={recipientName}
                 onChange={(e) => setRecipientName(e.target.value)}
                 className="border-rose-200 focus:border-rose-400 focus:ring-rose-300"
+                required
+              />
+            </div>
+
+            {/* Recipient Email */}
+            <div className="space-y-2">
+              <Label htmlFor="recipientEmail" className="text-rose-700 font-medium">
+                Recipient Email <span className="text-rose-500">(required)</span>
+              </Label>
+              <Input
+                id="recipientEmail"
+                type="email"
+                placeholder="recipient@umich.edu"
+                value={recipientEmail}
+                onChange={(e) => setRecipientEmail(e.target.value)}
+                className="border-rose-200 focus:border-rose-400 focus:ring-rose-300"
+                required
               />
             </div>
 
@@ -148,9 +200,13 @@ export default function CanvasEditor({
               <Label htmlFor="message" className="text-rose-700 font-medium">
                 Your Message
               </Label>
+              <p className="text-xs text-rose-400">
+                Write the main text for your card -- a short love note,
+                compliment, or inside joke.
+              </p>
               <Textarea
                 id="message"
-                placeholder="Write something from the heart..."
+                placeholder="e.g. &quot;You light up every room you walk into&quot;"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 rows={4}
@@ -217,7 +273,7 @@ export default function CanvasEditor({
             {/* Submit */}
             <Button
               onClick={handleSubmit}
-              disabled={saving || !text.trim()}
+              disabled={saving || !text.trim() || !recipientName.trim() || !recipientEmail.trim()}
               className="w-full bg-rose-600 hover:bg-rose-700 text-white font-medium py-2.5"
             >
               {saving ? (
@@ -228,7 +284,7 @@ export default function CanvasEditor({
               ) : (
                 <span className="flex items-center gap-2">
                   <Heart className="h-4 w-4 fill-white" />
-                  Send Love Note
+                  Send Valentine's Note
                 </span>
               )}
             </Button>
@@ -238,36 +294,22 @@ export default function CanvasEditor({
           <div className="space-y-2">
             <Label className="text-rose-700 font-medium">Preview</Label>
             <div
-              className="aspect-[3/4] rounded-2xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-6 relative"
+              className="rounded-2xl overflow-hidden shadow-xl flex flex-col items-center min-h-[300px]"
               style={{ backgroundColor }}
             >
-              {/* Decorative hearts overlay */}
-              <div className="absolute inset-0 opacity-10">
-                <svg
-                  className="w-full h-full"
-                  viewBox="0 0 200 260"
-                  fill="white"
-                >
-                  <path d="M20 40C20 40 5 28 5 18C5 12 10 8 15 8C18 8 21 10 22 13C23 10 26 8 29 8C34 8 39 12 39 18C39 28 24 40 24 40Z" />
-                  <path d="M160 30C160 30 145 18 145 8C145 2 150 -2 155 -2C158 -2 161 0 162 3C163 0 166 -2 169 -2C174 -2 179 2 179 8C179 18 164 30 164 30Z" />
-                  <path d="M170 220C170 220 155 208 155 198C155 192 160 188 165 188C168 188 171 190 172 193C173 190 176 188 179 188C184 188 189 192 189 198C189 208 174 220 174 220Z" />
-                  <path d="M10 200C10 200 -5 188 -5 178C-5 172 0 168 5 168C8 168 11 170 12 173C13 170 16 168 19 168C24 168 29 172 29 178C29 188 14 200 14 200Z" />
-                </svg>
-              </div>
+              {recipientName && (
+                <p className="text-white/90 text-sm font-medium tracking-wide pt-4">
+                  For {recipientName}
+                </p>
+              )}
 
-              <div className="relative z-10 flex flex-col items-center gap-4 text-center">
-                {recipientName && (
-                  <p className="text-white/90 text-sm font-medium tracking-wide uppercase">
-                    For {recipientName}
-                  </p>
-                )}
-
-                {imageData && (
-                  <div className="w-20 h-20 relative">
+              {imageData && (
+                <div className="flex-1 w-full flex items-center justify-center p-6">
+                  <div className="w-3/4 max-w-[200px] aspect-square relative">
                     {imageData.startsWith("/valentines/") ? (
                       <Image
                         src={imageData}
-                        alt="Love note image"
+                        alt="Valentine's note image"
                         fill
                         className="object-contain drop-shadow-lg"
                       />
@@ -275,14 +317,16 @@ export default function CanvasEditor({
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={imageData}
-                        alt="Love note image"
+                        alt="Valentine's note image"
                         className="w-full h-full object-contain rounded-lg drop-shadow-lg"
                       />
                     )}
                   </div>
-                )}
+                </div>
+              )}
 
-                <p className="text-white font-serif text-lg leading-relaxed drop-shadow-md">
+              <div className="w-full px-6 pb-6 text-center">
+                <p className="text-white font-serif text-lg leading-relaxed drop-shadow-md break-words whitespace-normal">
                   {text || "Your message here..."}
                 </p>
               </div>
