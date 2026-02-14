@@ -184,6 +184,7 @@ export default function LoveNotesPage() {
                   note={note}
                   onSelect={setZoomedNote}
                   imageOnly
+                  showSender
                 />
               ))}
             </div>
@@ -278,7 +279,7 @@ export default function LoveNotesPage() {
                 />
               </div>
               <div className="shrink-0 text-center text-sm text-gray-500">
-                For {zoomedNote.recipient_name} ·{" "}
+                From: {zoomedNote.sender_name} · For: {zoomedNote.recipient_name} ·{" "}
                 {new Date(zoomedNote.created_at).toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",

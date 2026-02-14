@@ -23,6 +23,8 @@ interface LoveNoteCardProps {
   onSelect?: (note: LoveNote) => void;
   /** When true, show only the card image (no text excerpt or date). Used for "Notes For You". */
   imageOnly?: boolean;
+  /** When true, display sender name below the card. */
+  showSender?: boolean;
 }
 
 export default function LoveNoteCard({
@@ -30,8 +32,9 @@ export default function LoveNoteCard({
   onDelete,
   onSelect,
   imageOnly = false,
+  showSender = false,
 }: LoveNoteCardProps) {
-  const { message_text, image_url, recipient_name, created_at } = note;
+  const { message_text, image_url, recipient_name, sender_name, created_at } = note;
 
   return (
     <div
@@ -58,6 +61,13 @@ export default function LoveNoteCard({
         className="w-full shrink-0"
         style={{ objectFit: "cover" }}
       />
+      {showSender && sender_name && (
+        <div className="px-3 py-2 text-center">
+          <p className="text-sm text-rose-600 font-medium">
+            From: {sender_name}
+          </p>
+        </div>
+      )}
       {!imageOnly && (
         <div className="flex-1 min-h-0 px-3 py-2 flex flex-col">
           <div className="overflow-y-auto flex-1 min-h-0 max-h-24 text-center">
