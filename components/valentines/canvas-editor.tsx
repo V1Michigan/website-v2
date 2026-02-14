@@ -318,7 +318,7 @@ export default function CanvasEditor({
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/png"
                 onChange={handleImageUpload}
                 className="hidden"
               />
