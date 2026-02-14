@@ -7,7 +7,7 @@ const YEARS = [
   {
     year: 2026,
     path: "/valentines/2026",
-    label: "2026",
+    label: "V1 and Community!",
     description: "Create and share beautiful Valentine's cards",
   },
 ];
@@ -36,9 +36,7 @@ export default function ValentinesPage() {
                 href={year.path}
                 className="group relative bg-white/60 backdrop-blur-sm rounded-2xl border-2 border-rose-200 p-8 hover:border-rose-400 hover:shadow-2xl transition-all duration-300"
               >
-                <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-30 transition-opacity">
-                  <Heart className="h-16 w-16 text-rose-500 fill-rose-500" />
-                </div>
+
 
                 <div className="relative z-10">
                   <h2 className="text-4xl font-serif text-rose-700 mb-3">
