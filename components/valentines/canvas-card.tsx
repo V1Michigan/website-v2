@@ -12,8 +12,6 @@ interface CanvasCardProps {
   width?: number;
   height?: number;
   className?: string;
-  /** When true, imageUrl is the full rendered card PNG; only draw that image. */
-  imageOnly?: boolean;
   /** Message text font size in px. Default 24. */
   fontSize?: number;
   /** Where to place the photo on the card. Default "top". */
@@ -295,20 +293,6 @@ export function renderCardToBlob(options: {
   });
 }
 
-function drawImageOnly(
-  ctx: CanvasRenderingContext2D,
-  width: number,
-  height: number,
-  img: HTMLImageElement
-) {
-  const scale = Math.min(width / img.naturalWidth, height / img.naturalHeight);
-  const w = img.naturalWidth * scale;
-  const h = img.naturalHeight * scale;
-  const x = (width - w) / 2;
-  const y = (height - h) / 2;
-  ctx.drawImage(img, x, y, w, h);
-}
-
 export default function CanvasCard({
   backgroundColor,
   messageText,
@@ -317,7 +301,6 @@ export default function CanvasCard({
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT,
   className = "",
-  imageOnly = false,
 }: CanvasCardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sizeRef = useRef({ width: 0, height: 0 });
@@ -348,42 +331,6 @@ export default function CanvasCard({
 
     const imgSrc = (imageUrl || "").trim();
     const recipient = recipientName?.trim() ?? null;
-
-    if (imageOnly && imgSrc) {
-      const cachedImg = imageRef.current;
-      const cachedUrl = imageUrlRef.current;
-      const useCached =
-        cachedImg &&
-        cachedImg.complete &&
-        cachedImg.naturalWidth > 0 &&
-        cachedUrl === imgSrc;
-      if (useCached) {
-        drawImageOnly(ctx, width, height, cachedImg);
-        return;
-      }
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.onload = () => {
-        imageRef.current = img;
-        imageUrlRef.current = imgSrc;
-        const c = canvasRef.current;
-        if (!c) return;
-        const ctx2 = c.getContext("2d");
-        if (!ctx2) return;
-        const dpr2 = window.devicePixelRatio ?? 1;
-        ctx2.setTransform(1, 0, 0, 1, 0, 0);
-        ctx2.scale(dpr2, dpr2);
-        drawImageOnly(ctx2, width, height, img);
-      };
-      img.onerror = () => {};
-      img.src = imgSrc;
-      return;
-    }
-
-    if (imageOnly && !imgSrc) {
-      drawCard(ctx, width, height, backgroundColor, messageText, recipient, null);
-      return;
-    }
 
     if (!imgSrc) {
       imageRef.current = null;
@@ -425,7 +372,7 @@ export default function CanvasCard({
     };
     img.onerror = () => {};
     img.src = src;
-  }, [backgroundColor, messageText, imageUrl, recipientName, width, height, imageOnly]);
+  }, [backgroundColor, messageText, imageUrl, recipientName, width, height]);
 
   return (
     <canvas

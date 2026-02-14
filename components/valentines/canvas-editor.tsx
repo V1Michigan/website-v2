@@ -200,7 +200,7 @@ export default function CanvasEditor({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-rose-700 font-serif text-2xl">
             <Heart className="h-5 w-5 fill-rose-500 text-rose-500" />
@@ -318,7 +318,7 @@ export default function CanvasEditor({
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/png"
                 onChange={handleImageUpload}
                 className="hidden"
               />
