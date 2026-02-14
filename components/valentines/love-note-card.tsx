@@ -1,7 +1,7 @@
 "use client";
 
 import { Trash2 } from "lucide-react";
-import CanvasCard from "./canvas-card";
+import Image from "next/image";
 
 export interface LoveNote {
   id: string;
@@ -31,13 +31,7 @@ export default function LoveNoteCard({
   onSelect,
   imageOnly = false,
 }: LoveNoteCardProps) {
-  const {
-    background_color,
-    message_text,
-    image_url,
-    recipient_name,
-    created_at,
-  } = note;
+  const { message_text, image_url, recipient_name, created_at } = note;
 
   return (
     <div
@@ -56,15 +50,13 @@ export default function LoveNoteCard({
       }
       className={`group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] flex flex-col ${onSelect ? "cursor-pointer" : ""}`}
     >
-      <CanvasCard
-        imageUrl={image_url}
+      <Image
+        src={image_url || "/valentines/heart-red.svg"}
+        alt={`Valentine for ${recipient_name}`}
         width={320}
         height={340}
         className="w-full shrink-0"
-        imageOnly
-        backgroundColor={background_color}
-        messageText={message_text}
-        recipientName={recipient_name}
+        style={{ objectFit: "cover" }}
       />
       {!imageOnly && (
         <div className="flex-1 min-h-0 px-3 py-2 flex flex-col">

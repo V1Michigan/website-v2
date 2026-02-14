@@ -3,13 +3,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Heart, Mail } from "lucide-react";
+import Image from "next/image";
 import { useAuth } from "@/components/auth/auth-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import StarterCanvases from "@/components/valentines/starter-canvases";
 import CanvasEditor from "@/components/valentines/canvas-editor";
 import LoveNoteCard from "@/components/valentines/love-note-card";
-import CanvasCard from "@/components/valentines/canvas-card";
 import {
   Dialog,
   DialogContent,
@@ -268,14 +268,13 @@ export default function LoveNotesPage() {
           {zoomedNote && (
             <div className="flex flex-col gap-4 overflow-hidden min-h-0">
               <div className="flex justify-center shrink-0">
-                <CanvasCard
-                  imageUrl={zoomedNote.image_url}
+                <Image
+                  src={zoomedNote.image_url || "/valentines/heart-red.svg"}
+                  alt={`Valentine for ${zoomedNote.recipient_name}`}
                   width={480}
                   height={520}
-                  imageOnly
-                  backgroundColor={zoomedNote.background_color}
-                  messageText={zoomedNote.message_text}
-                  recipientName={zoomedNote.recipient_name}
+                  className="rounded-2xl shadow-lg shrink-0"
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               <div className="shrink-0 text-center text-sm text-gray-500">
