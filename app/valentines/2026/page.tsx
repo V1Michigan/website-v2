@@ -9,6 +9,13 @@ import Footer from "@/components/footer";
 import StarterCanvases from "@/components/valentines/starter-canvases";
 import CanvasEditor from "@/components/valentines/canvas-editor";
 import LoveNoteCard from "@/components/valentines/love-note-card";
+import CanvasCard from "@/components/valentines/canvas-card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import type { Template } from "@/components/valentines/starter-canvases";
 import type { LoveNote } from "@/components/valentines/love-note-card";
 import supabase from "@/utils/supabaseClient";
@@ -24,6 +31,7 @@ export default function LoveNotesPage() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null
   );
+  const [zoomedNote, setZoomedNote] = useState<LoveNote | null>(null);
 
   // Auth guard
   useEffect(() => {
@@ -91,11 +99,29 @@ export default function LoveNotesPage() {
   };
 
   const handleDeleteNote = async (id: string) => {
+    if (!user) return;
     try {
+      const { data: note } = await supabase
+        .from("love_notes")
+        .select("image_url")
+        .eq("id", id)
+        .eq("user_id", user.id)
+        .single();
+
+      if (note?.image_url) {
+        const url = note.image_url as string;
+        const bucket = "love-notes";
+        const match = url.match(new RegExp(`/object/public/${bucket}/(.+)`));
+        if (match?.[1]) {
+          await supabase.storage.from(bucket).remove([match[1]]);
+        }
+      }
+
       const { error } = await supabase
         .from("love_notes")
         .delete()
-        .eq("id", id);
+        .eq("id", id)
+        .eq("user_id", user.id);
 
       if (error) {
         console.error("Error deleting love note:", error.message);
@@ -153,7 +179,12 @@ export default function LoveNotesPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {receivedNotes.map((note) => (
-                <LoveNoteCard key={note.id} note={note} />
+                <LoveNoteCard
+                  key={note.id}
+                  note={note}
+                  onSelect={setZoomedNote}
+                  imageOnly
+                />
               ))}
             </div>
           </section>
@@ -206,6 +237,8 @@ export default function LoveNotesPage() {
                   key={note.id}
                   note={note}
                   onDelete={handleDeleteNote}
+                  onSelect={setZoomedNote}
+                  imageOnly
                 />
               ))}
             </div>
@@ -222,8 +255,46 @@ export default function LoveNotesPage() {
         template={selectedTemplate}
         userId={user.id}
         senderName={senderName}
+        senderEmail={user.email ?? ""}
         onSaved={fetchNotes}
       />
+
+      {/* Zoomed note view */}
+      <Dialog open={!!zoomedNote} onOpenChange={() => setZoomedNote(null)}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+          <DialogHeader>
+            <DialogTitle className="sr-only">Love note</DialogTitle>
+          </DialogHeader>
+          {zoomedNote && (
+            <div className="flex flex-col gap-4 overflow-hidden min-h-0">
+              <div className="flex justify-center shrink-0">
+                <CanvasCard
+                  imageUrl={zoomedNote.image_url}
+                  width={480}
+                  height={520}
+                  imageOnly
+                  backgroundColor={zoomedNote.background_color}
+                  messageText={zoomedNote.message_text}
+                  recipientName={zoomedNote.recipient_name}
+                />
+              </div>
+              <div className="shrink-0 text-center text-sm text-gray-500">
+                For {zoomedNote.recipient_name} ·{" "}
+                {new Date(zoomedNote.created_at).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </div>
+              <div className="flex-1 min-h-0 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-4">
+                <p className="text-gray-700 leading-relaxed whitespace-pre-wrap break-words font-serif">
+                  &ldquo;{zoomedNote.message_text}&rdquo;
+                </p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

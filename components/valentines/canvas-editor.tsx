@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import { Heart, ImagePlus, X as XIcon } from "lucide-react";
 import {
   Dialog,
@@ -16,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import supabase from "@/utils/supabaseClient";
 import type { Template } from "./starter-canvases";
+import CanvasCard, { renderCardToBlob } from "./canvas-card";
 
 const COLOR_PRESETS = [
   { name: "Rose Red", value: "#E11D48" },
@@ -35,8 +35,14 @@ interface CanvasEditorProps {
   template?: Template | null;
   userId: string;
   senderName: string;
+  senderEmail: string;
   onSaved: () => void;
 }
+
+const BUCKET = "love-notes";
+
+/** Max message length so text fits on the card (reserved message area). */
+const MAX_MESSAGE_LENGTH = 400;
 
 export default function CanvasEditor({
   open,
@@ -44,6 +50,7 @@ export default function CanvasEditor({
   template,
   userId,
   senderName,
+  senderEmail,
   onSaved,
 }: CanvasEditorProps) {
   const [backgroundColor, setBackgroundColor] = useState(
@@ -52,20 +59,39 @@ export default function CanvasEditor({
   const [text, setText] = useState(template?.defaultText ?? "");
   const [recipientName, setRecipientName] = useState("");
   const [recipientEmail, setRecipientEmail] = useState("");
-  const [imageData, setImageData] = useState<string | null>(
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(
     template?.defaultImage ?? null
   );
   const [saving, setSaving] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [previewSize, setPreviewSize] = useState({ width: 320, height: 400 });
+
+  useEffect(() => {
+    const el = previewRef.current;
+    if (!el || !open) return;
+    const ro = new ResizeObserver((entries) => {
+      const { width, height } = entries[0]?.contentRect ?? {};
+      if (width > 0 && height > 0) {
+        setPreviewSize({ width: Math.round(width), height: Math.round(height) });
+      }
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [open]);
 
   // Sync form state whenever the template or open state changes
   useEffect(() => {
     if (open) {
       setBackgroundColor(template?.backgroundColor ?? "#E11D48");
-      setText(template?.defaultText ?? "");
+      setText(
+        (template?.defaultText ?? "").slice(0, MAX_MESSAGE_LENGTH)
+      );
       setRecipientName("");
       setRecipientEmail("");
-      setImageData(template?.defaultImage ?? null);
+      setImageFile(null);
+      setImagePreviewUrl(template?.defaultImage ?? null);
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -75,16 +101,17 @@ export default function CanvasEditor({
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImageData(reader.result as string);
-    };
-    reader.readAsDataURL(file);
+    setImageFile(file);
+    const url = URL.createObjectURL(file);
+    setImagePreviewUrl(url);
   };
 
   const removeImage = () => {
-    setImageData(null);
+    setImageFile(null);
+    if (imagePreviewUrl && imagePreviewUrl.startsWith("blob:")) {
+      URL.revokeObjectURL(imagePreviewUrl);
+    }
+    setImagePreviewUrl(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -95,26 +122,46 @@ export default function CanvasEditor({
     setSaving(true);
 
     try {
-      const { data, error } = await supabase
-        .from("love_notes")
-        .insert({
-          user_id: userId,
-          recipient_name: recipientName.trim(),
-          recipient_email: recipientEmail.trim().toLowerCase(),
-          background_color: backgroundColor,
-          canvas_data: {
-            text: text.trim(),
-            image: imageData,
-          },
-          template_id: template?.id ?? null,
-        })
-        .select()
-        .single();
+      let imageUrl: string | null = null;
+
+      // Render full card (background + "For X" + image + text) to a PNG and upload
+      const blob = await renderCardToBlob({
+        backgroundColor,
+        messageText: text.trim(),
+        recipientName: recipientName.trim() || null,
+        imageUrl: imagePreviewUrl,
+      });
+      const path = `${userId}/${crypto.randomUUID()}.png`;
+      const { error: uploadError } = await supabase.storage
+        .from(BUCKET)
+        .upload(path, blob, {
+          upsert: false,
+          contentType: "image/png",
+        });
+      if (uploadError) {
+        console.error("Error uploading card image:", uploadError.message);
+      } else {
+        const { data: urlData } = supabase.storage
+          .from(BUCKET)
+          .getPublicUrl(path);
+        imageUrl = urlData.publicUrl;
+      }
+
+      const { error } = await supabase.from("love_notes").insert({
+        user_id: userId,
+        sender_name: senderName,
+        sender_email: senderEmail,
+        recipient_name: recipientName.trim(),
+        recipient_email: recipientEmail.trim().toLowerCase(),
+        message_text: text.trim(),
+        background_color: backgroundColor,
+        image_url: imageUrl,
+        template_id: template?.id ?? null,
+      });
 
       if (error) {
         console.error("Error saving love note:", error.message);
       } else {
-        // Send email notification to recipient
         try {
           await fetch("/api/love-notes/send", {
             method: "POST",
@@ -128,12 +175,15 @@ export default function CanvasEditor({
           console.error("Failed to send email notification:", emailError);
         }
 
-        // Clear form
         setBackgroundColor("#E11D48");
         setText("");
         setRecipientName("");
         setRecipientEmail("");
-        setImageData(null);
+        setImageFile(null);
+        if (imagePreviewUrl && imagePreviewUrl.startsWith("blob:")) {
+          URL.revokeObjectURL(imagePreviewUrl);
+        }
+        setImagePreviewUrl(null);
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
@@ -158,12 +208,13 @@ export default function CanvasEditor({
           </DialogTitle>
           <DialogDescription className="text-rose-500">
             Design your Valentine&apos;s card with a personal message and image.
+            Sending a card will email the recipient so they can view it.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 md:min-h-[480px] md:items-stretch">
           {/* Editor Controls */}
-          <div className="space-y-5">
+          <div className="space-y-5 overflow-y-auto">
             {/* Recipient Name */}
             <div className="space-y-2">
               <Label htmlFor="recipientName" className="text-rose-700 font-medium">
@@ -174,7 +225,7 @@ export default function CanvasEditor({
                 placeholder="Their name"
                 value={recipientName}
                 onChange={(e) => setRecipientName(e.target.value)}
-                className="border-rose-200 focus:border-rose-400 focus:ring-rose-300"
+                className="border-rose-200 focus:border-rose-400 focus-visible:ring-0 focus-visible:ring-offset-0"
                 required
               />
             </div>
@@ -190,7 +241,7 @@ export default function CanvasEditor({
                 placeholder="recipient@umich.edu"
                 value={recipientEmail}
                 onChange={(e) => setRecipientEmail(e.target.value)}
-                className="border-rose-200 focus:border-rose-400 focus:ring-rose-300"
+                className="border-rose-200 focus:border-rose-400 focus-visible:ring-0 focus-visible:ring-offset-0"
                 required
               />
             </div>
@@ -201,16 +252,19 @@ export default function CanvasEditor({
                 Your Message
               </Label>
               <p className="text-xs text-rose-400">
-                Write the main text for your card -- a short love note,
-                compliment, or inside joke.
+                Write the main text for your card — must fit on the card (
+                currently {text.length} / {MAX_MESSAGE_LENGTH} characters).
               </p>
               <Textarea
                 id="message"
                 placeholder="e.g. &quot;You light up every room you walk into&quot;"
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) =>
+                  setText(e.target.value.slice(0, MAX_MESSAGE_LENGTH))
+                }
+                maxLength={MAX_MESSAGE_LENGTH}
                 rows={4}
-                className="border-rose-200 focus:border-rose-400 focus:ring-rose-300 resize-none"
+                className="border-rose-200 focus:border-rose-400 focus-visible:ring-0 focus-visible:ring-offset-0 resize-none"
               />
             </div>
 
@@ -251,7 +305,7 @@ export default function CanvasEditor({
                   <ImagePlus className="h-4 w-4 mr-2" />
                   Upload Image
                 </Button>
-                {imageData && !imageData.startsWith("/valentines/") && (
+                {imageFile && (
                   <button
                     onClick={removeImage}
                     className="text-rose-400 hover:text-rose-600 transition-colors"
@@ -271,6 +325,9 @@ export default function CanvasEditor({
             </div>
 
             {/* Submit */}
+            <p className="text-xs text-rose-500">
+              Every card sends an email to the recipient at the address above.
+            </p>
             <Button
               onClick={handleSubmit}
               disabled={saving || !text.trim() || !recipientName.trim() || !recipientEmail.trim()}
@@ -290,45 +347,25 @@ export default function CanvasEditor({
             </Button>
           </div>
 
-          {/* Live Preview */}
-          <div className="space-y-2">
-            <Label className="text-rose-700 font-medium">Preview</Label>
-            <div
-              className="rounded-2xl overflow-hidden shadow-xl flex flex-col items-center min-h-[300px]"
-              style={{ backgroundColor }}
-            >
-              {recipientName && (
-                <p className="text-white/90 text-sm font-medium tracking-wide pt-4">
-                  For {recipientName}
-                </p>
-              )}
-
-              {imageData && (
-                <div className="flex-1 w-full flex items-center justify-center p-6">
-                  <div className="w-3/4 max-w-[200px] aspect-square relative">
-                    {imageData.startsWith("/valentines/") ? (
-                      <Image
-                        src={imageData}
-                        alt="Valentine's note image"
-                        fill
-                        className="object-contain drop-shadow-lg"
-                      />
-                    ) : (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={imageData}
-                        alt="Valentine's note image"
-                        className="w-full h-full object-contain rounded-lg drop-shadow-lg"
-                      />
-                    )}
-                  </div>
-                </div>
-              )}
-
-              <div className="w-full px-6 pb-6 text-center">
-                <p className="text-white font-serif text-lg leading-relaxed drop-shadow-md break-words whitespace-normal">
-                  {text || "Your message here..."}
-                </p>
+          {/* Live Preview - taller/wider, scrollable */}
+          <div className="flex flex-col min-h-0 flex-1 md:min-h-[520px] w-full overflow-hidden">
+            <Label className="text-rose-700 font-medium shrink-0 mb-1">
+              Preview
+            </Label>
+            <div className="flex-1 min-h-0 overflow-auto">
+              <div
+                ref={previewRef}
+                className="w-full min-w-[420px] min-h-[580px] flex items-center justify-center p-2"
+              >
+                <CanvasCard
+                  backgroundColor={backgroundColor}
+                  messageText={text || "Your message here..."}
+                  imageUrl={imagePreviewUrl}
+                  recipientName={recipientName}
+                  width={previewSize.width}
+                  height={previewSize.height}
+                  className="shrink-0"
+                />
               </div>
             </div>
           </div>
