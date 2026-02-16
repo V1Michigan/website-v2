@@ -43,12 +43,12 @@ export default function Header() {
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center justify-end space-x-6">
-        <Link
+        {/* <Link
           href="/valentines"
           className="inline-flex items-center gap-1 text-sm text-rose-500 hover:text-rose-600 font-medium"
         >
           Valentines
-        </Link>
+        </Link> */}
         <Link
           href="https://v1michigan.com/apply?utm_source=website"
           className="text-sm text-gray-700 hover:text-black"
@@ -177,13 +177,13 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden z-40">
           <div className="px-4 py-2 space-y-2">
-            <Link
+            {/* <Link
               href="/valentines"
               className="flex items-center gap-1 py-2 text-sm text-rose-500 hover:text-rose-600 font-medium"
               onClick={closeMobileMenu}
             >
               Valentines
-            </Link>
+            </Link> */}
             <Link
               href="https://v1michigan.com/apply?utm_source=website"
               className="block py-2 text-sm text-gray-700 hover:text-black"
