@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-02-10T04:04:14.137Z",
+  "timestamp": "2026-02-16T01:32:07.767Z",
   "projects": [
     {
       "id": "30082307-c07d-811a-984b-f34ec0487dc0",
       "title": "AgentMail",
       "description": "Email Inboxes for AI Agents",
       "overview": "AgentMail is the email inbox API for AI agents. It gives agents their own email inboxes, like Gmail does for humans. Unlike other email APIs, AgentMail provides fully-managed, persistent inboxes that handle parsing, threading, labeling, searching, and replying so agents get the same email experience as humans.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/agentmail.jpg",
       "companyName": "AgentMail",
       "companyWebsite": "https://agentmail.to",
       "categories": [
@@ -90,7 +90,7 @@
       "title": "Orange Slice",
       "description": "Agentic sales enrichment spreadsheet",
       "overview": "Orange Slice is a spreadsheet where every column is TypeScript—and AI writes it for you. Describe what you want in chat ('find the CEO's LinkedIn and get their email'), and we generate the code, create the columns, and run it across thousands of rows. Our fully-typed SDK has 100+ enrichments built in: LinkedIn, contact info, company data, web scraping, AI research.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/orange-slice.jpg",
       "companyName": "Orange Slice",
       "companyWebsite": "https://orangeslice.ai",
       "categories": [
@@ -155,7 +155,7 @@
       "title": "Embedder",
       "description": "Cursor for Firmware",
       "overview": "Embedder is a coding agent that can write, test, and debug firmware on both physical and simulated hardware. Supporting 20+ MCU/SoC platforms, it accelerates embedded systems development across semiconductors, automotive, medical devices, aerospace, IoT, and consumer electronics.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/embedder.jpg",
       "companyName": "Embedder",
       "companyWebsite": "https://www.embedder.com",
       "categories": [
@@ -202,7 +202,7 @@
       "title": "Skope",
       "description": "Build a more profitable law firm with AI",
       "overview": "Skope builds AI for core legal workflows. We will save your law firm time and help you make more money, with AI. Unlike general-purpose AI, Skope is purpose-built for legal work. We offer specialized features like document redlining and knowledge base search that other tools do not offer, as well as improved security for your data.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/skope.jpg",
       "companyName": "Skope",
       "companyWebsite": "https://useskope.com",
       "categories": [
@@ -243,7 +243,7 @@
       "title": "Shade",
       "description": "AI-powered media storage for creative teams",
       "overview": "Shade is a seed stage startup backed by General Catalyst, Contrary, SignalFire, and Bling building the future of file storage. AI-powered media storage solution that enables creative teams to instantly sync files from anywhere.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/shade.jpg",
       "companyName": "Shade",
       "companyWebsite": "https://shade.inc",
       "categories": [
@@ -330,57 +330,11 @@
       "sectionOrder": 20241
     },
     {
-      "id": "30082307-c07d-8116-9f86-f7e4f1a33a75",
-      "title": "Altrix",
-      "description": "Nursing station automation",
-      "overview": "Your Nursing Station On Auto-Pilot. Save nurses 3 hours a day on administrative tasks.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
-      "companyName": "Altrix",
-      "companyWebsite": "https://www.altrix.tech/",
-      "categories": [
-        "HealthTech",
-        "AI/ML",
-        "B2B"
-      ],
-      "founders": [
-        {
-          "id": "kUuC",
-          "name": "Hector Benitez Ventura",
-          "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": "https://www.linkedin.com/in/hectorbenitezventura"
-        }
-      ],
-      "investors": [
-        {
-          "id": "fb300a28-5ce1-451a-81b9-93d5b3900684",
-          "name": "Techstars",
-          "type": "unknown",
-          "website": null
-        },
-        {
-          "id": "FV@=",
-          "name": "Armajaro Holdings",
-          "type": "vc",
-          "website": null
-        },
-        {
-          "id": "Du@H",
-          "name": "Heliconia Capital",
-          "type": "vc",
-          "website": null
-        }
-      ],
-      "sectionType": "funding",
-      "sectionName": "Techstars",
-      "sectionOrder": 20242
-    },
-    {
       "id": "30082307-c07d-8111-86ec-eb6e11eff5c1",
       "title": "TwinMind",
       "description": "AI sidekick for productivity",
       "overview": "Your AI Sidekick Understands What You See and Hear to Boost Your Productivity",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/twinmind.jpg",
       "companyName": "TwinMind",
       "companyWebsite": "https://twinmind.com/",
       "categories": [
@@ -417,7 +371,7 @@
       "title": "MeetYourClass",
       "description": "Student social networking for universities",
       "overview": "MeetYourClass is a student-facing social networking system that helps university enrollment and student life departments better understand and reach their prospective student body.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/meetyourclass.jpg",
       "companyName": "MeetYourClass",
       "companyWebsite": "https://meetyourclassinc.com/",
       "categories": [
@@ -478,7 +432,7 @@
       "title": "AgroQR",
       "description": "Environmental insights using QR sensors and drones",
       "overview": "AgroQR delivers hyperlocal environmental insights using passive QR sensors and autonomous drones.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/agroqr.jpg",
       "companyName": "AgroQR",
       "companyWebsite": "https://www.useagroqr.com/",
       "categories": [
@@ -504,7 +458,7 @@
       "title": "frnds of frnds",
       "description": "Dating app based on mutual friends",
       "overview": "LinkedIn meets Hinge: Frnds of Frnds is a dating app where your pool is mutual friends",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/frnds-of-frnds.jpg",
       "companyName": "frnds of frnds",
       "companyWebsite": "https://www.frndsoffrnds.com/",
       "categories": [
@@ -521,7 +475,7 @@
       "title": "Roots",
       "description": "Private social media for families",
       "overview": "Roots is a private social media made specially for your family. In a world dominated by big tech selling your information, roots creates a privacy focused platform.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/roots.jpg",
       "companyName": "Roots",
       "companyWebsite": "rootsapp.org",
       "categories": [
@@ -538,7 +492,7 @@
       "title": "MBooking",
       "description": "Campus study space booking platform",
       "overview": "Find and book the perfect study space on campus without the hassle. Automated, simple, and built for students.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/mbooking.jpg",
       "companyName": "MBooking",
       "companyWebsite": "https://mbooking.me",
       "categories": [
@@ -555,7 +509,7 @@
       "title": "Claris",
       "description": "Unified research workflow platform",
       "overview": "Claris is a unified web platform that streamlines research workflows and save time across labs in any discipline.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/claris.jpg",
       "companyName": "Claris",
       "companyWebsite": "https://claris-two.vercel.app/",
       "categories": [
@@ -573,7 +527,7 @@
       "title": "TagIt",
       "description": "Automated metadata tagging for sports photography",
       "overview": "TagIt automates metadata tagging in sports photography",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/tagit.jpg",
       "companyName": "TagIt",
       "companyWebsite": null,
       "categories": [
@@ -591,7 +545,7 @@
       "title": "Dezu",
       "description": "AI tax accountant for high net worth clients",
       "overview": "Dezu is an AI tax accountant that automates the preparation of complex tax returns for high net worth clients.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/dezu.jpg",
       "companyName": "Dezu",
       "companyWebsite": "https://dezu.ai/",
       "categories": [
@@ -624,7 +578,7 @@
       "title": "Fathom",
       "description": "AI-powered runtime debugger",
       "overview": "Fathom is an AI-powered debugger that seeks bugs during the runtime of programs while having access to its running context, memory, and stack trace.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/fathom.jpg",
       "companyName": "Fathom",
       "companyWebsite": null,
       "categories": [
@@ -641,7 +595,7 @@
       "title": "Oreen",
       "description": "Diagramming tool for ChatGPT",
       "overview": "The world's best diagramming tool for ChatGPT",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/oreen.jpg",
       "companyName": "Oreen",
       "companyWebsite": "https://oreen.dev",
       "categories": [
@@ -667,7 +621,7 @@
       "title": "wstwatch",
       "description": "Food waste tracking for dining halls",
       "overview": "wstwatch - CV food waste tracking for dining halls",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/wstwatch.jpg",
       "companyName": "wstwatch",
       "companyWebsite": null,
       "categories": [
@@ -684,7 +638,7 @@
       "title": "Squad",
       "description": "Campus discovery platform",
       "overview": "Squad is where campus comes together. Discover the best food, study spots, and more—all curated by students like you.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/squad.jpg",
       "companyName": "Squad",
       "companyWebsite": "https://getsquad.app/",
       "categories": [
@@ -702,7 +656,7 @@
       "title": "Temp8",
       "description": "Dance choreography app",
       "overview": "An app that simplifies dance by breaking down choreography into 8-counts",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/temp8.jpg",
       "companyName": "Temp8",
       "companyWebsite": "https://www.youtube.com/watch?v=TLt6yX44u1Q&t=1s",
       "categories": [
@@ -734,7 +688,7 @@
       "title": "Doublet",
       "description": "Word transformation puzzle game",
       "overview": "Word transformation puzzle game that challenges players to transform one word into another through a series of steps. Educational and entertaining word game.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/doublet.jpg",
       "companyName": "Doublet",
       "companyWebsite": "https://doublet-waitlist.vercel.app/",
       "categories": [
@@ -759,7 +713,7 @@
       "title": "Nudge",
       "description": "Helping you keep track of your must-visit travel spots",
       "overview": "Helping you keep track of your must-visit travel spots ✈️. Personal travel planning platform that helps users organize and remember places they want to visit.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/nudge.jpg",
       "companyName": "Nudge",
       "companyWebsite": null,
       "categories": [
@@ -799,7 +753,7 @@
       "title": "RushLink",
       "description": "Live event experience for college campuses",
       "overview": "Bringing the Rush of Live Events to College Campuses",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/rushlink.jpg",
       "companyName": "RushLink",
       "companyWebsite": "https://download.therushlink.com",
       "categories": [
@@ -828,28 +782,11 @@
       "sectionOrder": 20242
     },
     {
-      "id": "30082307-c07d-814b-931c-e80b4bd32553",
-      "title": "EarlyBird",
-      "description": "Gen-Z marketing platform for new businesses",
-      "overview": "Gen-Z marketing platform for newly opened businesses",
-      "imageSrc": "https://placehold.co/64x64.jpg",
-      "companyName": "EarlyBird",
-      "companyWebsite": "https://earlybirddrop.com",
-      "categories": [
-        "Marketing",
-        "B2B"
-      ],
-      "founders": [],
-      "sectionType": "cohort",
-      "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
-    },
-    {
       "id": "30082307-c07d-8166-bb09-ea82825ce0a2",
       "title": "QuickSync",
       "description": "Helping contractors bill faster",
       "overview": "Helping contractors bill faster. Streamlined billing and invoicing platform designed specifically for construction contractors.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/quicksync.jpg",
       "companyName": "QuickSync",
       "companyWebsite": "https://pitch.com/v/f24-demo-day-zxnxqi/50a580be-6497-435e-9e3d-4516bcde4860",
       "categories": [
@@ -875,7 +812,7 @@
       "title": "CodeTrace",
       "description": "AI-powered semantic search for seamless onboarding and smarter codebase navigation",
       "overview": "AI-powered semantic search for seamless onboarding and smarter codebase navigation. Helps developers understand and navigate large codebases more efficiently.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/codetrace.jpg",
       "companyName": "CodeTrace",
       "companyWebsite": "https://www.codetrace.ai/",
       "categories": [
@@ -896,30 +833,11 @@
       "sectionOrder": 20242
     },
     {
-      "id": "30082307-c07d-8186-9279-ffb8e7702f1d",
-      "title": "Collage",
-      "description": "AI academic advising platform",
-      "overview": "AI-powered academic advising and social scheduling platform for college students",
-      "imageSrc": "https://placehold.co/64x64.jpg",
-      "companyName": "Collage",
-      "companyWebsite": "https://mycollage.us",
-      "categories": [
-        "AI/ML",
-        "EdTech",
-        "Social",
-        "B2C"
-      ],
-      "founders": [],
-      "sectionType": "cohort",
-      "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
-    },
-    {
       "id": "30082307-c07d-8187-903a-ef2cf0666365",
       "title": "Find Blue",
       "description": "The go-to space for students at the University of Michigan to launch ideas and build ventures",
       "overview": "The go-to space for students at the University of Michigan to launch ideas and build ventures. Community platform for student entrepreneurs and innovators.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/find-blue.jpg",
       "companyName": "Find Blue",
       "companyWebsite": "https://f-bweb.vercel.app/",
       "categories": [
@@ -951,7 +869,7 @@
       "title": "Nexxus Labs",
       "description": "Vehicle data network for urban mobility",
       "overview": "Building a vehicle data network for the future of urban mobility",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/nexxus-labs.jpg",
       "companyName": "Nexxus Labs",
       "companyWebsite": "https://www.nexxuslabs.org/",
       "categories": [
@@ -977,7 +895,7 @@
       "title": "Museaic",
       "description": "An AI tool to automate arranging music",
       "overview": "An AI tool to automate arranging music 🎶. AI-powered platform that helps musicians and producers arrange and compose music more efficiently.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/museaic.jpg",
       "companyName": "Museaic",
       "companyWebsite": null,
       "categories": [
@@ -1002,7 +920,7 @@
       "title": "Batch",
       "description": "Shared rides to DTW from $9",
       "overview": "Ubers to DTW from $9. Batch your ride with verified U-M students. Affordable shared transportation solution for university students traveling to the airport.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/batch.jpg",
       "companyName": "Batch",
       "companyWebsite": "https://www.batchme.app/",
       "categories": [
@@ -1034,7 +952,7 @@
       "title": "RepConnect",
       "description": "App for constituents to know about local politicians",
       "overview": "Ex-pollster building an app for constituents to know about local politicians 🗳️. Platform that helps citizens stay informed about their local representatives and political activities.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/repconnect.jpg",
       "companyName": "RepConnect",
       "companyWebsite": null,
       "categories": [
@@ -1059,7 +977,7 @@
       "title": "Cyberwright",
       "description": "The first cybersecurity developer tool",
       "overview": "The first cybersecurity developer tool, allowing programmers to identify bugs and fix bugs before production. AI-powered security tool that helps developers find and fix security vulnerabilities in code.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/cyberwright.jpg",
       "companyName": "Cyberwright",
       "companyWebsite": "https://devpost.com/software/cyberwright",
       "categories": [
@@ -1084,7 +1002,7 @@
       "title": "Infralens",
       "description": "All-In-One 3D Imaging Access for Contractors",
       "overview": "All-In-One 3D Imaging Access for Contractors. Platform that provides contractors with easy access to 3D imaging tools and data for construction projects.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/infralens.jpg",
       "companyName": "Infralens",
       "companyWebsite": "https://pitch.com/v/f24-demo-day-zxnxqi/aa63d81b-fd08-4e46-9f50-6f5d4d1cbf7c",
       "categories": [
@@ -1109,7 +1027,7 @@
       "title": "Ghost Kitchen Finder",
       "description": "Chrome extension that flags ghost kitchens on delivery apps",
       "overview": "Chrome extension that flags ghost kitchens on delivery apps. Helps consumers identify and avoid ordering from virtual kitchens on food delivery platforms.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/ghost-kitchen-finder.jpg",
       "companyName": "Ghost Kitchen Finder",
       "companyWebsite": null,
       "categories": [
@@ -1134,7 +1052,7 @@
       "title": "Milieu",
       "description": "Skincare platform with science",
       "overview": "Dedicated to revolutionizing skincare through cutting-edge science and personalized solutions.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/milieu.jpg",
       "companyName": "Milieu",
       "companyWebsite": "https://milieubio.com",
       "categories": [
@@ -1167,7 +1085,7 @@
       "title": "Manu.AI",
       "description": "Easy access to any manual you could ever need",
       "overview": "Easy access to any manual you could ever need. AI-powered platform that provides instant access to user manuals, documentation, and guides for any product or device.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/manu.ai.jpg",
       "companyName": "Manu.AI",
       "companyWebsite": null,
       "categories": [
@@ -1200,7 +1118,7 @@
       "title": "Hyperfan",
       "description": "Platform for creators to connect with fans",
       "overview": "Helping creators connect with their fans",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/hyperfan.jpg",
       "companyName": "Hyperfan",
       "companyWebsite": "https://www.hyperfan.com/",
       "categories": [
@@ -1226,7 +1144,7 @@
       "title": "DAWG",
       "description": "Elevating sport program performance through technology",
       "overview": "Elevating sport program performance through technology. Data-driven platform that helps athletic programs optimize training, performance, and team management.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/dawg.jpg",
       "companyName": "DAWG",
       "companyWebsite": null,
       "categories": [
@@ -1251,7 +1169,7 @@
       "title": "codefy.AI",
       "description": "Coding widget toolbox for developers",
       "overview": "codefy.ai is your own toolbox of useful coding widgets to help you speed up your workflow. Write, explain, debug, compare, and translate code with 15+ helpful, customized tools.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/codefy.ai.jpg",
       "companyName": "codefy.AI",
       "companyWebsite": "https://www.codefy.ai/",
       "categories": [
@@ -1283,7 +1201,7 @@
       "title": "Tour.video",
       "description": "Interactive virtual tours for apartments",
       "overview": "Interactive, virtual tours that get your apartment more leases",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/tour.video.jpg",
       "companyName": "Tour.video",
       "companyWebsite": "https://tour.video/",
       "categories": [
@@ -1308,7 +1226,7 @@
       "title": "Courtline",
       "description": "Organizing recreational sports & pickup games at UMich",
       "overview": "Organizing recreational sports & pickup games at UMich! Platform for coordinating and joining casual sports activities and pickup games on campus.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/courtline.jpg",
       "companyName": "Courtline",
       "companyWebsite": "https://mqueue-six.vercel.app/",
       "categories": [
@@ -1341,7 +1259,7 @@
       "title": "0xKnowledge",
       "description": "Knowledge base management with AI",
       "overview": "0xKnowledge brings cutting edge technology to your fingertips through a knowledge base management system (KBMS) that is automatically maintained, and integrated with powerful AI tools",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/0xknowledge.jpg",
       "companyName": "0xKnowledge",
       "companyWebsite": "https://0xknowledge.io/",
       "categories": [
@@ -1374,7 +1292,7 @@
       "title": "AccoAI",
       "description": "AI-powered admin task automation for practices",
       "overview": "AccoAI automates admin tasks and unifies your practice, helping save time and grow billables.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/accoai.jpg",
       "companyName": "AccoAI",
       "companyWebsite": "https://www.accoai.com/",
       "categories": [
@@ -1400,7 +1318,7 @@
       "title": "Quotr",
       "description": "Conversational AI platform that automates estimates and information gathering",
       "overview": "Quotr is a conversational AI platform that automates away the manual calling for estimates, quotes, and general information from places all around you. All you do is put in your request, and we make the calls and get the information back to you.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/quotr.jpg",
       "companyName": "Quotr",
       "companyWebsite": null,
       "categories": [
@@ -1440,7 +1358,7 @@
       "title": "Parley",
       "description": "Gamify productivity by betting on your friend's tasks",
       "overview": "Gamify productivity by betting on your friend's tasks. Social accountability platform that turns task completion into friendly competitions and bets.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/parley.jpg",
       "companyName": "Parley",
       "companyWebsite": null,
       "categories": [
@@ -1480,7 +1398,7 @@
       "title": "Learn Bubble",
       "description": "Popping the bubble of higher education through accessible STEM literacy",
       "overview": "Popping the bubble of higher education through accessible STEM literacy. Making complex STEM concepts accessible to everyone through interactive learning experiences.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/learn-bubble.jpg",
       "companyName": "Learn Bubble",
       "companyWebsite": null,
       "categories": [
@@ -1505,7 +1423,7 @@
       "title": "Lost and Found Plus",
       "description": "An easy-to-use system that tracks tools and materials that are being used in communal spaces",
       "overview": "An easy-to-use system that tracks tools and materials that are being used in communal spaces. Helps organizations manage shared resources efficiently and reduce loss of valuable items.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/lost-and-found-plus.jpg",
       "companyName": "Lost and Found Plus",
       "companyWebsite": null,
       "categories": [
@@ -1530,7 +1448,7 @@
       "title": "Scholarly",
       "description": "Context for research papers",
       "overview": "Scholarly provides fast, concise context for research papers. Scholarly reduces friction for people of any background trying to break into a field.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/scholarly.jpg",
       "companyName": "Scholarly",
       "companyWebsite": null,
       "categories": [
@@ -1548,7 +1466,7 @@
       "title": "Parrot",
       "description": "Advanced communication and collaboration platform",
       "overview": "Advanced communication and collaboration platform designed to enhance team productivity and information sharing in modern workplaces.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/parrot.jpg",
       "companyName": "Parrot",
       "companyWebsite": null,
       "categories": [
@@ -1565,7 +1483,7 @@
       "title": "MeetingBrew",
       "description": "A group event scheduler",
       "overview": "A group event scheduler that makes coordinating meetings and events effortless. Uses smart algorithms to find optimal times that work for everyone.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/meetingbrew.jpg",
       "companyName": "MeetingBrew",
       "companyWebsite": "https://www.meetingbrew.com/",
       "categories": [
@@ -1598,7 +1516,7 @@
       "title": "Closet Swap",
       "description": "Digital platform for borrowing and lending clothes affordably",
       "overview": "A digital platform for users to borrow and lend clothes affordably, quickly, and reliably. Reduces fashion waste while giving people access to a wider variety of clothing.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/closet-swap.jpg",
       "companyName": "Closet Swap",
       "companyWebsite": "https://closet-swap.vercel.app/",
       "categories": [
@@ -1645,7 +1563,7 @@
       "title": "fomo",
       "description": "College event discovery platform",
       "overview": "A platform to create, manage, and discover college events.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/fomo.jpg",
       "companyName": "fomo",
       "companyWebsite": null,
       "categories": [
@@ -1663,7 +1581,7 @@
       "title": "Hair Haven",
       "description": "Our mission is to provide barbers with an individualized, interactive platform to help customers get the most optimal haircut.",
       "overview": "Our mission is to provide barbers with an individualized, interactive platform to help customers get the most optimal haircut. Uses AI and personalization to recommend the perfect haircut based on face shape, hair type, and personal style.",
-      "imageSrc": "https://placehold.co/64x64.jpg",
+      "imageSrc": "/projects/hair-haven.jpg",
       "companyName": "Hair Haven",
       "companyWebsite": null,
       "categories": [
@@ -1718,7 +1636,6 @@
       "HealthTech",
       "Infrastructure",
       "LegalTech",
-      "Marketing",
       "Mobility",
       "Music",
       "Productivity",
@@ -1731,5 +1648,5 @@
       "Travel"
     ]
   },
-  "totalProjects": 54
+  "totalProjects": 51
 }

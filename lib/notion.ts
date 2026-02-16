@@ -206,6 +206,34 @@ export function filterProjects(projects: Project[], filters: {
   })
 }
 
+export function sanitizeProjectName(name: string): string {
+  return name.replace(/[^a-zA-Z0-9\s.-]/g, '').replace(/\s+/g, '-').toLowerCase()
+}
+
+export function getExtension(url: string): string {
+  const match = url.match(/\.([a-zA-Z0-9]+)(?:\?|$)/)
+  return match ? match[1].toLowerCase() : ''
+}
+
+export function convertToJpgIfNeeded(filename: string): string {
+  const ext = getExtension(filename)
+  return (ext !== 'jpg' && ext !== 'jpeg') ? filename.replace(/\.[^.]+$/, '.jpg') : filename
+}
+
+export function extractLogoUrl(page: any): string | null {
+  const logoFiles = page.properties?.logo?.files
+  if (!logoFiles || logoFiles.length === 0) {
+    return null
+  }
+  
+  const logoFile = logoFiles[0]
+  if (logoFile.type !== 'file' || !logoFile.file?.url) {
+    return null
+  }
+  
+  return logoFile.file.url
+}
+
 export function generatePlaceholderImage(_companyName: string, size: string = "64x64"): string {
   return `https://placehold.co/${size}.jpg`
 }
@@ -226,12 +254,24 @@ export function transformNotionPageToProject(page: any): Project {
   
   const sortedInvestors = rawInvestors ? sortInvestorsByPrestige(rawInvestors) : undefined
   
+  const logoUrl = extractLogoUrl(page)
+  
+  if (!logoUrl) {
+    throw new Error(`Project "${nameInfo.name}" has no logo - failing build`)
+  }
+  
+  const extension = getExtension(logoUrl)
+  const sanitizedName = sanitizeProjectName(nameInfo.name)
+  const logoFilename = `${sanitizedName}.${extension}`
+  const convertedFilename = convertToJpgIfNeeded(logoFilename)
+  const logoPath = `/projects/${convertedFilename}`
+  
   return {
     id,
     title: nameInfo.name,
     description: extractPlainText(properties.description),
     overview: extractPlainText(properties.overview),
-    imageSrc: generatePlaceholderImage(nameInfo.name, "64x64"),
+    imageSrc: logoPath,
     companyName: nameInfo.name,
     companyWebsite: properties.website?.url || nameInfo.link || null,
     categories: extractMultiSelect(properties.categories),
