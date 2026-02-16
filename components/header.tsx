@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X, Compass, LogOut, ChevronDown } from "lucide-react";
+import { ArrowRight, Menu, X, Compass, LogOut, ChevronDown, Heart } from "lucide-react";
 import { useAuth } from "@/components/auth/auth-provider";
 
 export default function Header() {
@@ -43,6 +43,12 @@ export default function Header() {
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center justify-end space-x-6">
+        <Link
+          href="/valentines"
+          className="inline-flex items-center gap-1 text-sm text-rose-500 hover:text-rose-600 font-medium"
+        >
+          Valentines
+        </Link>
         <Link
           href="https://v1michigan.com/apply?utm_source=website"
           className="text-sm text-gray-700 hover:text-black"
@@ -137,14 +143,14 @@ export default function Header() {
                     Join us!
                     <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/auth"
                     className="flex items-center px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-md mx-2 my-1"
                     onClick={closeDropdown}
                   >
                     Sign In
                     <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             )}
@@ -171,6 +177,13 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden z-40">
           <div className="px-4 py-2 space-y-2">
+            <Link
+              href="/valentines"
+              className="flex items-center gap-1 py-2 text-sm text-rose-500 hover:text-rose-600 font-medium"
+              onClick={closeMobileMenu}
+            >
+              Valentines
+            </Link>
             <Link
               href="https://v1michigan.com/apply?utm_source=website"
               className="block py-2 text-sm text-gray-700 hover:text-black"
@@ -268,14 +281,14 @@ export default function Header() {
                     Join us!
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/auth"
                     className="inline-flex w-fit items-center rounded-md bg-blue-600 px-3 py-1.5 text-xs text-white hover:bg-blue-700"
                     onClick={closeMobileMenu}
                   >
                     Sign In
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             )}
