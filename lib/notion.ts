@@ -238,9 +238,39 @@ export function generatePlaceholderImage(_companyName: string, size: string = "6
   return `https://placehold.co/${size}.jpg`
 }
 
+export function extractPfpUrls(page: any): string[] {
+  const pfpFiles = page.properties?.pfps?.files
+  if (!pfpFiles || pfpFiles.length === 0) {
+    return []
+  }
+  
+  const urls: string[] = []
+  pfpFiles.forEach((file: any) => {
+    if (file.type === 'file' && file.file?.url) {
+      urls.push(file.file.url)
+    }
+  })
+  return urls
+}
+
+export function sanitizeFounderName(name: string): string {
+  return name.replace(/[^a-zA-Z0-9\s.-]/g, '').replace(/\s+/g, '-').toLowerCase()
+}
+
+export function generateFounderImagePath(companyName: string, founderName: string): string {
+  const sanitizedCompany = sanitizeProjectName(companyName)
+  const sanitizedFounder = sanitizeFounderName(founderName)
+  return `/founders/${sanitizedCompany}/${sanitizedFounder}.jpg`
+}
+
 export function transformNotionPageToProject(page: any): Project {
   const { id, properties } = page
   const nameInfo = extractTitleInfo(properties.name)
+  
+  if (!nameInfo.name) {
+    throw new Error(`Project has no name - skipping`)
+  }
+  
   const hasInvestors = properties.investors?.multi_select?.length > 0
   const foundersList = properties.founders?.multi_select || []
   const contactsList = properties.contacts?.multi_select || []
@@ -266,6 +296,8 @@ export function transformNotionPageToProject(page: any): Project {
   const convertedFilename = convertToJpgIfNeeded(logoFilename)
   const logoPath = `/projects/${convertedFilename}`
   
+  const pfpUrls = extractPfpUrls(page)
+  
   return {
     id,
     title: nameInfo.name,
@@ -279,7 +311,9 @@ export function transformNotionPageToProject(page: any): Project {
       id: f.id,
       name: f.name,
       role: "Founder",
-      imageSrc: generatePlaceholderImage(f.name, "24x24"),
+      imageSrc: pfpUrls[index] 
+        ? generateFounderImagePath(nameInfo.name, f.name)
+        : `https://placehold.co/256x256.jpg`,
       contactUrl: contactsList[index]?.name || null,
     })) || [],
     investors: sortedInvestors,

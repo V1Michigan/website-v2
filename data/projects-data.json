@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-16T01:42:17.792Z",
+  "timestamp": "2026-02-16T22:07:19.637Z",
   "projects": [
     {
       "id": "30082307-c07d-811a-984b-f34ec0487dc0",
@@ -19,21 +19,21 @@
           "id": "OLYE",
           "name": "Michael Hyun Kim",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/agentmail/michael-hyun-kim.jpg",
           "contactUrl": "https://www.linkedin.com/in/haaaujla"
         },
         {
           "id": "ceca65bc-8199-40f8-ad3c-02a229924717",
           "name": "Adi Singh",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/agentmail/adi-singh.jpg",
           "contactUrl": "https://www.linkedin.com/in/michaelhyunkim"
         },
         {
           "id": "cf916633-c730-49dc-a750-ad4a4a9e402a",
           "name": "Haakam Aujla",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/agentmail/haakam-aujla.jpg",
           "contactUrl": "https://www.linkedin.com/in/adivirsingh13"
         }
       ],
@@ -103,14 +103,14 @@
           "id": "HyeX",
           "name": "Vihaar Nandigala",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/orange-slice/vihaar-nandigala.jpg",
           "contactUrl": "https://www.linkedin.com/in/vihaarnandigala"
         },
         {
           "id": "s|PY",
           "name": "Kishan Sripada",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/orange-slice/kishan-sripada.jpg",
           "contactUrl": "https://www.linkedin.com/in/kishansripada"
         }
       ],
@@ -168,14 +168,14 @@
           "id": "e5bfd314-1726-4b6b-a989-9008a080c385",
           "name": "Ethan Gibbs",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/embedder/ethan-gibbs.jpg",
           "contactUrl": "https://www.linkedin.com/in/etgibbs"
         },
         {
           "id": "6b4e5107-9832-4b4d-883d-aca6cecd1211",
           "name": "Bob Wei",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/embedder/bob-wei.jpg",
           "contactUrl": "https://www.linkedin.com/in/jiachew/"
         }
       ],
@@ -215,14 +215,14 @@
           "id": "|Q`H",
           "name": "Ben Smith",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/skope/ben-smith.jpg",
           "contactUrl": "https://www.linkedin.com/in/ben-smith-b15b12293"
         },
         {
           "id": "iJ~}",
           "name": "Connor Park",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/skope/connor-park.jpg",
           "contactUrl": "https://www.linkedin.com/in/connor-park24"
         }
       ],
@@ -256,28 +256,28 @@
           "id": "ag^k",
           "name": "Brandon Fan",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/shade/brandon-fan.jpg",
           "contactUrl": "https://www.linkedin.com/in/brandonfan1256"
         },
         {
           "id": "VWzM",
           "name": "Bright Xu",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/shade/bright-xu.jpg",
           "contactUrl": "https://www.linkedin.com/in/brightxu"
         },
         {
           "id": "oLq}",
           "name": "Edison Chiu",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/shade/edison-chiu.jpg",
           "contactUrl": "https://www.linkedin.com/in/edison-chiu"
         },
         {
           "id": "c``E",
           "name": "Gurish Sharma",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/shade/gurish-sharma.jpg",
           "contactUrl": "https://www.linkedin.com/in/gurish-sharma-"
         }
       ],
@@ -384,28 +384,28 @@
           "id": "iL=O",
           "name": "Jonah Liss",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/meetyourclass/jonah-liss.jpg",
           "contactUrl": "https://www.linkedin.com/in/jonahliss"
         },
         {
           "id": "bPvW",
           "name": "Blake Mischley",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/meetyourclass/blake-mischley.jpg",
           "contactUrl": "https://www.linkedin.com/in/blake-mischley"
-        },
-        {
-          "id": ";chE",
-          "name": "K Schmott",
-          "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": "https://www.linkedin.com/in/kschmott"
         },
         {
           "id": "ttuz",
           "name": "Jon Millar",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/meetyourclass/jon-millar.jpg",
+          "contactUrl": "https://www.linkedin.com/in/kschmott"
+        },
+        {
+          "id": "5ce6cc56-0ea5-4d83-9258-8967084dabbe",
+          "name": "Kaleb Schmottlach",
+          "role": "Founder",
+          "imageSrc": "/founders/meetyourclass/kaleb-schmottlach.jpg",
           "contactUrl": "https://www.linkedin.com/in/jon-millar"
         }
       ],
@@ -558,14 +558,14 @@
           "id": "dd028f7a-ba3d-4194-b686-fe9daa418b08",
           "name": "Riya Dev",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/dezu/riya-dev.jpg",
           "contactUrl": "https://www.linkedin.com/in/riya-dev/"
         },
         {
           "id": "554cfdd9-2775-42fb-8694-e8d4e56ddbef",
           "name": "Luke Zhu",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/dezu/luke-zhu.jpg",
           "contactUrl": "https://www.linkedin.com/in/zhuluke/"
         }
       ],
@@ -608,7 +608,7 @@
           "id": "ccfb8968-2dca-46e8-8431-4f3a54935adb",
           "name": "Ben Antonow",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/oreen/ben-antonow.jpg",
           "contactUrl": "https://www.linkedin.com/in/benantonow/"
         }
       ],
@@ -668,14 +668,14 @@
           "id": "_xF;",
           "name": "Maya Malik",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/temp8/maya-malik.jpg",
           "contactUrl": "https://www.linkedin.com/in/maya-malik-umich/"
         },
         {
           "id": "`;V>",
           "name": "Jeffery Wu",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/temp8/jeffery-wu.jpg",
           "contactUrl": "https://www.linkedin.com/in/wujeffery/"
         }
       ],
@@ -700,7 +700,7 @@
           "id": "Tr`K",
           "name": "Jaymeson Kondrat",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "https://placehold.co/256x256.jpg",
           "contactUrl": null
         }
       ],
@@ -726,22 +726,22 @@
           "id": "e6c21113-ef01-4f3d-b6b1-ea2ffd755719",
           "name": "Riya Saha",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/nudge/riya-saha.jpg",
+          "contactUrl": "https://www.linkedin.com/in/riya-saha-/"
         },
         {
           "id": "95a358bd-ece5-4056-9414-04af8ba6c786",
           "name": "Pari Gulati",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/nudge/pari-gulati.jpg",
+          "contactUrl": "https://www.linkedin.com/in/pari-gulati/"
         },
         {
           "id": "c0ba1449-7aef-4cad-b1da-520f878ca1a9",
           "name": "Kritika Singh",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/nudge/kritika-singh.jpg",
+          "contactUrl": "https://www.linkedin.com/in/kritika-singhh/"
         }
       ],
       "sectionType": "cohort",
@@ -766,14 +766,14 @@
           "id": "bi<t",
           "name": "Zachary Joelson",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/rushlink/zachary-joelson.jpg",
           "contactUrl": "https://www.linkedin.com/in/zacharyjoelson/"
         },
         {
           "id": "Z_<f",
           "name": "Gavin Schwartz",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/rushlink/gavin-schwartz.jpg",
           "contactUrl": "https://www.linkedin.com/in/gavin-schwartz/"
         }
       ],
@@ -799,7 +799,7 @@
           "id": "wz[{",
           "name": "Phoenix Sheppard",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/quicksync/phoenix-sheppard.jpg",
           "contactUrl": "https://www.linkedin.com/in/phoenixsheppard/"
         }
       ],
@@ -824,7 +824,7 @@
           "id": "3fb3844b-2796-444b-9acd-12ba46eadd8d",
           "name": "David Mazur",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/codetrace/david-mazur.jpg",
           "contactUrl": "https://www.linkedin.com/in/davidsmazur"
         }
       ],
@@ -849,14 +849,14 @@
           "id": "29884885-9ce6-4a4e-bbee-506c158ff1f8",
           "name": "Owen Lennon",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/find-blue/owen-lennon.jpg",
+          "contactUrl": "https://www.linkedin.com/in/ojlennon/"
         },
         {
           "id": "ded502d8-9451-4371-b3a8-e4b9aba7fc70",
           "name": "Rakesh Varma Kottapalli",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "https://placehold.co/256x256.jpg",
           "contactUrl": null
         }
       ],
@@ -882,7 +882,7 @@
           "id": "13c8d920-101c-4b9a-aec7-21575a0e5899",
           "name": "Leo Gao",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/nexxus-labs/leo-gao.jpg",
           "contactUrl": "https://www.linkedin.com/in/leogao25/"
         }
       ],
@@ -907,7 +907,7 @@
           "id": "5a409a11-1dc1-40ea-9d68-e26ee2d4594d",
           "name": "Casey Feng",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/museaic/casey-feng.jpg",
           "contactUrl": "https://www.linkedin.com/in/caseyfeng/"
         }
       ],
@@ -932,14 +932,14 @@
           "id": "qfee",
           "name": "Sanjit Vijay",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/batch/sanjit-vijay.jpg",
           "contactUrl": "https://www.linkedin.com/in/sanjit-vijay"
         },
         {
           "id": "74fb0c66-bd8d-4f95-bef2-ae59184979c2",
           "name": "Aryan Shah",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/batch/aryan-shah.jpg",
           "contactUrl": null
         }
       ],
@@ -964,7 +964,7 @@
           "id": "1eb7b20f-1b5e-40fc-b686-9d1b79536383",
           "name": "Arhan Kaul",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/repconnect/arhan-kaul.jpg",
           "contactUrl": "https://www.linkedin.com/in/arhan-kaul/"
         }
       ],
@@ -989,7 +989,7 @@
           "id": "b8e59539-c3b6-434d-9e68-0573ecdd8ab2",
           "name": "Jacob Chen",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/cyberwright/jacob-chen.jpg",
           "contactUrl": "https://www.linkedin.com/in/jacobche"
         }
       ],
@@ -1014,7 +1014,7 @@
           "id": "6d02ee80-edce-47f3-a445-bcdf08be5e0a",
           "name": "Diego Paredes",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/infralens/diego-paredes.jpg",
           "contactUrl": "https://www.linkedin.com/in/diegokaiparedes/"
         }
       ],
@@ -1039,7 +1039,7 @@
           "id": "f75fac00-484d-4017-a8c9-07153aca1745",
           "name": "Alexis Gu",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/ghost-kitchen-finder/alexis-gu.jpg",
           "contactUrl": "https://www.linkedin.com/in/alexis-gu-7bb77129a/"
         }
       ],
@@ -1065,14 +1065,14 @@
           "id": "fc21ea34-a489-4ea5-8f52-07ff68d4708f",
           "name": "Nathan Shatz",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/milieu/nathan-shatz.jpg",
           "contactUrl": "https://www.linkedin.com/in/nathan-shatz/"
         },
         {
           "id": "494f15da-0167-4863-a762-1a37276e6a55",
           "name": "Ronil Chaudhary",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/milieu/ronil-chaudhary.jpg",
           "contactUrl": "https://www.linkedin.com/in/ronuofm/"
         }
       ],
@@ -1098,14 +1098,14 @@
           "id": "3593cbb7-1df2-4385-ab31-ab2845d81b50",
           "name": "Leo Liu",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/manu.ai/leo-liu.jpg",
           "contactUrl": "https://www.linkedin.com/in/leoliu12/"
         },
         {
           "id": "8271489d-b710-4b96-87f6-05c2c026d681",
           "name": "Jonathan Mo",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/manu.ai/jonathan-mo.jpg",
           "contactUrl": "https://www.linkedin.com/in/johnathan-mo/"
         }
       ],
@@ -1131,7 +1131,7 @@
           "id": "3f263269-ae66-419f-9ad1-b28eaed60d9f",
           "name": "Areeb Khan",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "https://placehold.co/256x256.jpg",
           "contactUrl": "https://www.linkedin.com/in/areebkhan280/"
         }
       ],
@@ -1156,7 +1156,7 @@
           "id": "=YWS",
           "name": "Priya Gutta",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "https://placehold.co/256x256.jpg",
           "contactUrl": null
         }
       ],
@@ -1181,14 +1181,14 @@
           "id": "~Df@",
           "name": "Cooper Saye",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/codefy.ai/cooper-saye.jpg",
           "contactUrl": "https://www.linkedin.com/in/coopersaye"
         },
         {
           "id": "L=Fg",
           "name": "Brian Z Travis",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/codefy.ai/brian-z-travis.jpg",
           "contactUrl": "https://www.linkedin.com/in/brian-z-travis"
         }
       ],
@@ -1213,7 +1213,7 @@
           "id": "s|PY",
           "name": "Kishan Sripada",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/tour.video/kishan-sripada.jpg",
           "contactUrl": "https://www.linkedin.com/in/kishansripada"
         }
       ],
@@ -1239,14 +1239,14 @@
           "id": "H|D`",
           "name": "Amy Liu",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/courtline/amy-liu.jpg",
           "contactUrl": "https://www.linkedin.com/in/amyliiu"
         },
         {
           "id": "12273661-ff3a-4fa3-9f5f-24cda9c3e60f",
           "name": "Joshua Lee",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/courtline/joshua-lee.jpg",
           "contactUrl": "https://www.linkedin.com/in/mildjosh"
         }
       ],
@@ -1272,14 +1272,14 @@
           "id": "XHWc",
           "name": "Joshua Sum",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/0xknowledge/joshua-sum.jpg",
           "contactUrl": "https://www.linkedin.com/in/joshua-sum"
         },
         {
           "id": "xXMM",
           "name": "Ammar Ateya",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/0xknowledge/ammar-ateya.jpg",
           "contactUrl": "https://www.linkedin.com/in/ammarateya"
         }
       ],
@@ -1305,7 +1305,7 @@
           "id": "=y;L",
           "name": "Lance Fuchia",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/accoai/lance-fuchia.jpg",
           "contactUrl": "https://www.linkedin.com/in/lancefuchia"
         }
       ],
@@ -1331,22 +1331,22 @@
           "id": "8b5b42e5-0374-4456-b1a1-61921f054669",
           "name": "Soham Salunke",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/quotr/soham-salunke.jpg",
+          "contactUrl": "https://www.linkedin.com/in/sohamsalunke/"
         },
         {
           "id": "743309c0-360b-4811-b080-567b413351d7",
           "name": "Divya Ponda",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/quotr/divya-ponda.jpg",
+          "contactUrl": "https://www.linkedin.com/in/divyaponda/"
         },
         {
           "id": "e45b1f7d-05e7-4971-9f0c-6dc8edb7e89c",
           "name": "Roshni Koduri",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/quotr/roshni-koduri.jpg",
+          "contactUrl": "https://www.linkedin.com/in/roshni-koduri/"
         }
       ],
       "sectionType": "cohort",
@@ -1371,21 +1371,21 @@
           "id": "2a26f370-eed5-4d83-8e83-092e79b38592",
           "name": "Toan Bui",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/parley/toan-bui.jpg",
           "contactUrl": "https://www.linkedin.com/in/toanmbui/"
         },
         {
           "id": "65a39fe3-d45e-4702-b9c4-760567bc574f",
           "name": "Sriram MK",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/parley/sriram-mk.jpg",
           "contactUrl": "https://www.linkedin.com/in/mksriram/"
         },
         {
           "id": "8fa31d00-a40f-4974-a2ad-db5ffae2f848",
           "name": "Aditi Locula",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "https://placehold.co/256x256.jpg",
           "contactUrl": null
         }
       ],
@@ -1410,7 +1410,7 @@
           "id": "b0b69bc2-fa6f-4ac0-b573-21c2611ef10e",
           "name": "Rafee Mirza",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "https://placehold.co/256x256.jpg",
           "contactUrl": null
         }
       ],
@@ -1435,7 +1435,7 @@
           "id": "0536c273-f143-4894-8467-eb023685fd9f",
           "name": "Anuhea Tao",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "https://placehold.co/256x256.jpg",
           "contactUrl": null
         }
       ],
@@ -1496,14 +1496,14 @@
           "id": "~Df@",
           "name": "Cooper Saye",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/meetingbrew/cooper-saye.jpg",
           "contactUrl": "https://www.linkedin.com/in/coopersaye"
         },
         {
           "id": "L=Fg",
           "name": "Brian Z Travis",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/meetingbrew/brian-z-travis.jpg",
           "contactUrl": "https://www.linkedin.com/in/brian-z-travis"
         }
       ],
@@ -1529,28 +1529,28 @@
           "id": "dgOP",
           "name": "Meghna Reddy",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
-          "contactUrl": null
+          "imageSrc": "/founders/closet-swap/meghna-reddy.jpg",
+          "contactUrl": "https://www.linkedin.com/in/reddymeghna/"
         },
         {
           "id": "uQ=r",
           "name": "Shriya Kankatala",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/closet-swap/shriya-kankatala.jpg",
           "contactUrl": null
         },
         {
           "id": "7ad86cdf-4ccb-4d25-ab60-a307fb1974fb",
           "name": "Diya Mahaveer",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/closet-swap/diya-mahaveer.jpg",
           "contactUrl": null
         },
         {
           "id": "bc98d4dc-7c1d-4ca3-b627-2ccf56523f30",
           "name": "Hana Ahmed",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/closet-swap/hana-ahmed.jpg",
           "contactUrl": null
         }
       ],
@@ -1594,7 +1594,7 @@
           "id": "c89622a2-4bbf-43c5-8f1c-a57e838bf6e1",
           "name": "Om Joshi",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/24x24.jpg",
+          "imageSrc": "/founders/hair-haven/om-joshi.jpg",
           "contactUrl": "https://www.linkedin.com/in/omkj/"
         }
       ],
