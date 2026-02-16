@@ -45,3 +45,4 @@ We recommend using an [ESLint plugin for your editor](https://eslint.org/docs/us
 - VSCode: [extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [tutorial](https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-code)
 
 See the [CONTRIBUTING.md](./CONTRIBUTING.md) file for more detailed information about code standards and workflow.
+s
