@@ -1,7 +1,9 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import type { Project } from "@/types/project";
+import { filterProjects } from "@/lib/notion";
 
 interface ProjectsResponse {
   projects: Project[];
@@ -21,19 +23,13 @@ interface ProjectsQueryParams {
   categories: string[];
 }
 
-async function fetchProjects(params: ProjectsQueryParams): Promise<ProjectsResponse> {
-  const query = new URLSearchParams();
-  if (params.searchQuery) query.set("search", params.searchQuery);
-  params.fundingSources.forEach((f) => query.append("funding", f));
-  params.cohorts.forEach((c) => query.append("cohort", c));
-  params.categories.forEach((c) => query.append("category", c));
-
-  const response = await fetch(`/api/projects?${query.toString()}`);
-
+async function fetchProjects(): Promise<ProjectsResponse> {
+  const response = await fetch(`/api/projects`);
+ 
   if (!response.ok) {
     throw new Error("Failed to fetch projects");
   }
-
+ 
   return response.json();
 }
 
@@ -43,19 +39,27 @@ export function useProjects(params: ProjectsQueryParams) {
     isPending: isLoading,
     error,
   } = useQuery({
-    queryKey: ["projects", params],
-    queryFn: () => fetchProjects(params),
+    queryKey: ["projects"],
+    queryFn: fetchProjects,
     staleTime: 5 * 60 * 1000,
     retry: 3,
   });
-
+  
+  const filteredProjects = useMemo(() => {
+    return filterProjects(data?.projects || [], params);
+  }, [data, params]);
+  
+  const filteredCount = useMemo(() => filteredProjects.length, [filteredProjects]);
+  
   return {
-    projects: data?.projects || [],
+    projects: filteredProjects,
     filterOptions: data?.filterOptions || {
       fundingSources: [],
       cohorts: [],
       categories: [],
     },
+    totalProjects: data?.projects?.length || 0,
+    filteredCount,
     isLoading,
     error: error as Error | null,
   };
