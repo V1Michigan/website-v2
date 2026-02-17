@@ -42,9 +42,16 @@ export async function GET(request: NextRequest) {
       }
     })
   } catch (error) {
-    console.error("Error reading projects data:", error)
+    console.error("Error in projects API:", {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      name: error instanceof Error ? error.name : typeof error
+    })
+    
     return NextResponse.json({ 
-      error: "Failed to read projects data" 
+      error: "Failed to process projects data",
+      message: error instanceof Error ? error.message : String(error),
+      type: error instanceof Error ? error.name : typeof error,
     }, { 
       status: 500 
     })
