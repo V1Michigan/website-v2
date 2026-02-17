@@ -9,13 +9,7 @@ export async function GET(request: NextRequest) {
     const cohorts = request.nextUrl.searchParams.getAll("cohort")
     const categories = request.nextUrl.searchParams.getAll("category")
     
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}`
-      : process.env.NODE_ENV === 'production'
-        ? 'https://v1-landing-page.netlify.app'
-        : 'http://localhost:3000'
-
-    const response = await fetch(`${baseUrl}/projects-data.json`)
+    const response = await fetch(`${request.nextUrl.origin}/projects-data.json`)
     if (!response.ok) {
       throw new Error("Failed to fetch projects data")
     }
