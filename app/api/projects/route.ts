@@ -1,19 +1,17 @@
-import { NextResponse } from "next/server"
+import { NextResponse, NextRequest } from "next/server"
 import type { Project } from "@/types/project"
 import { filterProjects } from "@/lib/notion"
 import projectsData from "@/data/projects-data.json"
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
+    const searchQuery = request.nextUrl.searchParams.get("search") || ""
+    const fundingSources = request.nextUrl.searchParams.getAll("funding")
+    const cohorts = request.nextUrl.searchParams.getAll("cohort")
+    const categories = request.nextUrl.searchParams.getAll("category")
     
     const allProjects = projectsData.projects as Project[]
     const cachedFilterOptions = projectsData.filterOptions
-    
-    const searchQuery = searchParams.get("search") || ""
-    const fundingSources = searchParams.getAll("funding")
-    const cohorts = searchParams.getAll("cohort")
-    const categories = searchParams.getAll("category")
     
     const filteredProjects = filterProjects(allProjects, {
       searchQuery,
