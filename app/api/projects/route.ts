@@ -1,27 +1,14 @@
 import { NextResponse } from "next/server"
-import { readFileSync, existsSync } from "fs"
-import { join } from "path"
 import type { Project } from "@/types/project"
 import { filterProjects } from "@/lib/notion"
+import projectsData from "@/data/projects-data.json"
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     
-    const dataPath = join(process.cwd(), "data/projects-data.json")
-    
-    if (!existsSync(dataPath)) {
-      console.error("Projects data file not found:", dataPath)
-      return NextResponse.json({ 
-        error: "Projects data not found. Please run 'pnpm build:projects' first." 
-      }, { 
-        status: 503 
-      })
-    }
-
-    const data = JSON.parse(readFileSync(dataPath, "utf-8"))
-    const allProjects = data.projects as Project[]
-    const cachedFilterOptions = data.filterOptions
+    const allProjects = projectsData.projects as Project[]
+    const cachedFilterOptions = projectsData.filterOptions
     
     const searchQuery = searchParams.get("search") || ""
     const fundingSources = searchParams.getAll("funding")

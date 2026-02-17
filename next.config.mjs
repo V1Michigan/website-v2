@@ -35,6 +35,11 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  webpack: (config) => {
+    config.resolve.extensions.push('.json')
+    return config
+  },
+  turbopack: {},
 }
 
 if (userConfig) {
