@@ -296,7 +296,7 @@ async function buildProjectsData() {
       process.exit(1)
     }
     
-    const outputPath = join(__dirname, "../data/projects-data.json")
+    const outputPath = join(__dirname, "../public/projects-data.json")
     const outputData = {
       timestamp: new Date().toISOString(),
       projects: sortedProjects,
