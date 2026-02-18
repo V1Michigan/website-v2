@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-17T01:42:30.341Z",
+  "timestamp": "2026-02-18T19:59:00.372Z",
   "projects": [
     {
       "id": "30082307-c07d-811a-984b-f34ec0487dc0",
@@ -434,7 +434,7 @@
       "overview": "AgroQR delivers hyperlocal environmental insights using passive QR sensors and autonomous drones.",
       "imageSrc": "/projects/agroqr.jpg",
       "companyName": "AgroQR",
-      "companyWebsite": "https://www.useagroqr.com/",
+      "companyWebsite": null,
       "categories": [
         "AgTech",
         "Climate",
@@ -477,7 +477,7 @@
       "overview": "Roots is a private social media made specially for your family. In a world dominated by big tech selling your information, roots creates a privacy focused platform.",
       "imageSrc": "/projects/roots.jpg",
       "companyName": "Roots",
-      "companyWebsite": "rootsapp.org",
+      "companyWebsite": "https://rootsapp.org",
       "categories": [
         "Social",
         "B2C"
@@ -755,7 +755,7 @@
       "overview": "Bringing the Rush of Live Events to College Campuses",
       "imageSrc": "/projects/rushlink.jpg",
       "companyName": "RushLink",
-      "companyWebsite": "https://download.therushlink.com",
+      "companyWebsite": "https://therushlink.com/",
       "categories": [
         "Events",
         "Social",

@@ -263,6 +263,25 @@ export function generateFounderImagePath(companyName: string, founderName: strin
   return `/founders/${sanitizedCompany}/${sanitizedFounder}.jpg`
 }
 
+export function sanitizeUrl(url: string | null, field: string): string | null {
+  if (!url) return null
+  
+  const trimmed = url.trim()
+  if (!trimmed) return null
+  
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed
+  }
+  
+  if (!trimmed.includes('.') || trimmed.startsWith('.')) {
+    console.warn(`⚠️  Invalid URL format for ${field}: "${url}" - missing valid domain structure`)
+    return null
+  }
+  
+  console.log(`🔧 Sanitizing URL for ${field}: "${url}" → "https://${trimmed}"`)
+  return `https://${trimmed}`
+}
+
 export function transformNotionPageToProject(page: any): Project {
   const { id, properties } = page
   const nameInfo = extractTitleInfo(properties.name)
@@ -279,7 +298,7 @@ export function transformNotionPageToProject(page: any): Project {
     id: inv.id,
     name: parseInvestorName(inv.name).name,
     type: parseInvestorName(inv.name).type,
-    website: null,
+    website: sanitizeUrl(null, `website of ${inv.name}`),
   })) : undefined
   
   const sortedInvestors = rawInvestors ? sortInvestorsByPrestige(rawInvestors) : undefined
@@ -305,21 +324,21 @@ export function transformNotionPageToProject(page: any): Project {
     overview: extractPlainText(properties.overview),
     imageSrc: logoPath,
     companyName: nameInfo.name,
-    companyWebsite: properties.website?.url || nameInfo.link || null,
+    companyWebsite: sanitizeUrl(properties.website?.url || nameInfo.link || null, `companyWebsite of "${nameInfo.name}"`),
     categories: extractMultiSelect(properties.categories),
     founders: foundersList.map((f: any, index: number) => ({
       id: f.id,
       name: f.name,
       role: "Founder",
-      imageSrc: pfpUrls[index] 
+      imageSrc: pfpUrls[index]
         ? generateFounderImagePath(nameInfo.name, f.name)
         : `https://placehold.co/256x256.jpg`,
-      contactUrl: contactsList[index]?.name || null,
+      contactUrl: sanitizeUrl(contactsList[index]?.name || null, `contactUrl of "${f.name}" in "${nameInfo.name}"`),
     })) || [],
     investors: sortedInvestors,
     sectionType: hasInvestors ? "funding" : "cohort",
-    sectionName: hasInvestors 
-      ? sortedInvestors?.[0]?.name || "" 
+    sectionName: hasInvestors
+      ? sortedInvestors?.[0]?.name || ""
       : properties.cohort?.select?.name || "",
     sectionOrder: getCohortOrder(properties.cohort?.select?.name || ""),
   }
