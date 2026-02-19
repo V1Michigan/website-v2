@@ -11,7 +11,7 @@ interface ScheduledToggleProps {
 
 export default function ScheduledToggle({ flag, children }: ScheduledToggleProps) {
   const [isMounted, setIsMounted] = useState(false);
-  const { flags } = useFlags();
+  const { flags, isLoading } = useFlags();
   
   useEffect(() => {
     setIsMounted(true);
@@ -19,6 +19,10 @@ export default function ScheduledToggle({ flag, children }: ScheduledToggleProps
   
   if (!isMounted) {
     return null;
+  }
+  
+  if (isLoading) {
+    return <>{children}</>;
   }
   
   const isEnabled = flags[flag];

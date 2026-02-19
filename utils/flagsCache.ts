@@ -39,5 +39,9 @@ export function setCachedFlags(data: FlagsState): void {
     timestamp: Date.now(),
   };
   
-  localStorage.setItem(CACHE_KEY, JSON.stringify(cached));
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify(cached));
+  } catch (error) {
+    console.error("Error saving cached flags:", error);
+  }
 }

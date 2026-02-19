@@ -45,7 +45,7 @@ export function useFlags() {
     queryFn: fetchAllFlags,
     initialData: getCachedFlags() || undefined,
     placeholderData: {} as FlagsState,
-    refetchInterval: false, // Realtime handles updates
+    refetchInterval: 5 * 60 * 1000, // 5 minute safety net, primarily relies on realtime
     staleTime: 0, // Always validate on page visit
     retry: 3,
   });
