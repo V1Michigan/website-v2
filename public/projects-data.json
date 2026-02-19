@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-18T19:59:00.372Z",
+  "timestamp": "2026-02-19T20:36:20.500Z",
   "projects": [
     {
       "id": "30082307-c07d-811a-984b-f34ec0487dc0",
@@ -328,43 +328,6 @@
       "sectionType": "funding",
       "sectionName": "General Catalyst",
       "sectionOrder": 20241
-    },
-    {
-      "id": "30082307-c07d-8111-86ec-eb6e11eff5c1",
-      "title": "TwinMind",
-      "description": "AI sidekick for productivity",
-      "overview": "Your AI Sidekick Understands What You See and Hear to Boost Your Productivity",
-      "imageSrc": "/projects/twinmind.jpg",
-      "companyName": "TwinMind",
-      "companyWebsite": "https://twinmind.com/",
-      "categories": [
-        "AI/ML",
-        "Productivity"
-      ],
-      "founders": [],
-      "investors": [
-        {
-          "id": "JyFc",
-          "name": "Sequoia Capital",
-          "type": "vc",
-          "website": null
-        },
-        {
-          "id": "oCl:",
-          "name": "Stephen Wolfram",
-          "type": "angel",
-          "website": null
-        },
-        {
-          "id": "fWPe",
-          "name": "Streamlined Ventures",
-          "type": "vc",
-          "website": null
-        }
-      ],
-      "sectionType": "funding",
-      "sectionName": "Sequoia Capital",
-      "sectionOrder": 20242
     },
     {
       "id": "30082307-c07d-812f-82b4-f3a4b7cfe677",
@@ -700,7 +663,7 @@
           "id": "Tr`K",
           "name": "Jaymeson Kondrat",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/256x256.jpg",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
@@ -856,7 +819,7 @@
           "id": "ded502d8-9451-4371-b3a8-e4b9aba7fc70",
           "name": "Rakesh Varma Kottapalli",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/256x256.jpg",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
@@ -1131,7 +1094,7 @@
           "id": "3f263269-ae66-419f-9ad1-b28eaed60d9f",
           "name": "Areeb Khan",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/256x256.jpg",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": "https://www.linkedin.com/in/areebkhan280/"
         }
       ],
@@ -1156,7 +1119,7 @@
           "id": "=YWS",
           "name": "Priya Gutta",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/256x256.jpg",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
@@ -1385,7 +1348,7 @@
           "id": "8fa31d00-a40f-4974-a2ad-db5ffae2f848",
           "name": "Aditi Locula",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/256x256.jpg",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
@@ -1410,7 +1373,7 @@
           "id": "b0b69bc2-fa6f-4ac0-b573-21c2611ef10e",
           "name": "Rafee Mirza",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/256x256.jpg",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
@@ -1435,7 +1398,7 @@
           "id": "0536c273-f143-4894-8467-eb023685fd9f",
           "name": "Anuhea Tao",
           "role": "Founder",
-          "imageSrc": "https://placehold.co/256x256.jpg",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
@@ -1606,8 +1569,7 @@
   "filterOptions": {
     "fundingSources": [
       "Y Combinator",
-      "General Catalyst",
-      "Sequoia Capital"
+      "General Catalyst"
     ],
     "cohorts": [
       "Winter 2025 Product Studio Cohort",
@@ -1648,5 +1610,5 @@
       "Travel"
     ]
   },
-  "totalProjects": 51
+  "totalProjects": 50
 }

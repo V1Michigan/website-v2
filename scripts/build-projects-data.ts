@@ -258,7 +258,7 @@ async function buildProjectsData() {
       for (const [index, founder] of project.founders.entries()) {
         const pfpUrl = pfpUrls[index]
         
-        if (!pfpUrl || founder.imageSrc.includes('placehold.co')) {
+        if (!pfpUrl || founder.imageSrc.includes('founder_placeholder_pfp.jpg')) {
           skippedFounders++
           founderProgress++
           continue

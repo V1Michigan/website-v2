@@ -235,7 +235,7 @@ export function extractLogoUrl(page: any): string | null {
 }
 
 export function generatePlaceholderImage(_companyName: string, size: string = "64x64"): string {
-  return `https://placehold.co/${size}.jpg`
+  return `/founder_placeholder_pfp.jpg`
 }
 
 export function extractPfpUrls(page: any): string[] {
@@ -332,7 +332,7 @@ export function transformNotionPageToProject(page: any): Project {
       role: "Founder",
       imageSrc: pfpUrls[index]
         ? generateFounderImagePath(nameInfo.name, f.name)
-        : `https://placehold.co/256x256.jpg`,
+        : `/founder_placeholder_pfp.jpg`,
       contactUrl: sanitizeUrl(contactsList[index]?.name || null, `contactUrl of "${f.name}" in "${nameInfo.name}"`),
     })) || [],
     investors: sortedInvestors,
