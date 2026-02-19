@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import supabase from "@/utils/supabaseClient";
 import { FLAG_NAMES, type FlagsState } from "@/constants/flags";
+import { getCachedFlags, setCachedFlags } from "@/utils/flagsCache";
 
 async function fetchAllFlags(): Promise<FlagsState> {
   const { data, error } = await supabase
@@ -42,11 +43,18 @@ export function useFlags() {
   } = useQuery({
     queryKey: ["allFlags"],
     queryFn: fetchAllFlags,
+    initialData: getCachedFlags() || undefined,
     placeholderData: {} as FlagsState,
-    refetchInterval: 30000, // Fallback polling every 30s if subscription fails
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchInterval: false, // Realtime handles updates
+    staleTime: 0, // Always validate on page visit
     retry: 3,
   });
+
+  useEffect(() => {
+    if (flags && Object.keys(flags).length > 0) {
+      setCachedFlags(flags);
+    }
+  }, [flags]);
 
   useEffect(() => {
     const channel = supabase
@@ -80,5 +88,5 @@ export function useFlags() {
     };
   }, [queryClient]);
 
-  return { ...flags, isLoading: isPending, error };
+  return { flags, isLoading: isPending, error };
 }

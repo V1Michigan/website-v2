@@ -6,17 +6,23 @@ import { motion } from "framer-motion";
 import PSBanner from "./ps-banner";
 import YCBanner from "./yc-banner";
 import DevBanner from "./dev-banner";
-import { useFlags } from "@/hooks/useFlags";
+import ScheduledToggle from "./scheduled-toggle";
 
 export default function HeroSection() {
-  const { SHOW_PS_BANNER, SHOW_YC_BANNER, SHOW_DEV_BANNER } = useFlags();
-
   return (
     <>
       {/* Promotional Banner */}
-      <PSBanner enabled={SHOW_PS_BANNER} />
-      <YCBanner enabled={SHOW_YC_BANNER} />
-      <DevBanner enabled={SHOW_DEV_BANNER} />
+      <ScheduledToggle flag="SHOW_PS_BANNER">
+        <PSBanner />
+      </ScheduledToggle>
+
+      <ScheduledToggle flag="SHOW_YC_BANNER">
+        <YCBanner />
+      </ScheduledToggle>
+
+      <ScheduledToggle flag="SHOW_DEV_BANNER">
+        <DevBanner />
+      </ScheduledToggle>
 
       <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
         <div className="relative aspect-[16/9] w-full">
