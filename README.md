@@ -44,4 +44,75 @@ We recommend using an [ESLint plugin for your editor](https://eslint.org/docs/us
 
 - VSCode: [extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [tutorial](https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-code)
 
+## Project Data Structure
+
+Projects are stored in [Notion](https://notion.so) and built into static JSON data at build time.
+
+### Data Flow
+
+```
+Notion DataSource → build script → projects-data.json → API → Components
+```
+
+1. **Data Source**: Project information is stored as a Notion DataSource (configured via `NOTION_DATA_SOURCE_ID`)
+2. **Build Process**: The build script fetches data from Notion, downloads images, and generates static JSON
+3. **Serving**: An API route serves the pre-built JSON data
+4. **Consumption**: Components use React Query to fetch and display project data
+
+### Building Project Data
+
+To build or update project data:
+
+```bash
+# Build only project data (for development/testing)
+pnpm build:projects
+
+# Build project data as part of full production build
+pnpm build
+```
+
+### Deployment Notes
+
+⚠️ **Important**: The projects page uses static JSON data that is built at deploy time. Any changes made to the Notion database will **not appear on the live site** until the Platform Team triggers a redeploy of the Netlify website.
+
+To edit projects in the Notion database, visit:
+**[V1 Projects Notion Database](https://www.notion.so/v1team/30082307c07d80e3a38bd1f180684f93?v=30082307c07d8076bea6000c63bc3738&source=copy_link)**
+
+### Required Environment Variables
+
+These must be set in your `.env.local` file:
+- `NOTION_API_KEY` - Your Notion integration API key
+- `NOTION_DATA_SOURCE_ID` - The ID of the Notion DataSource containing project information
+
+### Key Files
+
+- `scripts/build-projects-data.ts` - Build script that fetches from Notion and generates JSON
+- `lib/notion.ts` - Data transformation, filtering, and sorting logic
+- `public/projects-data.json` - Generated project data (do not edit manually)
+- `app/api/projects/route.ts` - API route serving project data
+- `hooks/useProjects.ts` - React hook for fetching projects
+- `types/project.ts` - TypeScript interfaces for Project type
+- `app/projects/` - Project directory page and components
+
+### Asset Management
+
+The build process automatically downloads and optimizes:
+- **Company logos**: Stored in `public/projects/[company-name].jpg`
+- **Founder profile pictures**: Stored in `public/founders/[company-name]/[founder-name].jpg`
+
+All images are resized to 256x256px and converted to JPEG format using Sharp.
+
+### Data Features
+
+Projects can be filtered by:
+- **Funding sources**: VC firms, accelerators (e.g., Y Combinator, Techstars)
+- **Cohorts**: Product Studio cohorts by semester
+- **Categories**: Industry tags (e.g., AI/ML, Developer Tools, B2B)
+- **Search**: By company name or project title
+
+Projects are sorted by:
+1. Funding status (funded projects first)
+2. Investor prestige score
+3. Cohort order (newest first)
+
 See the [CONTRIBUTING.md](./CONTRIBUTING.md) file for more detailed information about code standards and workflow.

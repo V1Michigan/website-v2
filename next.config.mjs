@@ -24,6 +24,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'xxlvdpgngmcvkzcsatuz.supabase.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
     ],
   },
   experimental: {
@@ -31,6 +35,11 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  webpack: (config) => {
+    config.resolve.extensions.push('.json')
+    return config
+  },
+  turbopack: {},
 }
 
 if (userConfig) {

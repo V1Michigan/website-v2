@@ -1,0 +1,1614 @@
+{
+  "timestamp": "2026-02-19T20:36:20.500Z",
+  "projects": [
+    {
+      "id": "30082307-c07d-811a-984b-f34ec0487dc0",
+      "title": "AgentMail",
+      "description": "Email Inboxes for AI Agents",
+      "overview": "AgentMail is the email inbox API for AI agents. It gives agents their own email inboxes, like Gmail does for humans. Unlike other email APIs, AgentMail provides fully-managed, persistent inboxes that handle parsing, threading, labeling, searching, and replying so agents get the same email experience as humans.",
+      "imageSrc": "/projects/agentmail.jpg",
+      "companyName": "AgentMail",
+      "companyWebsite": "https://agentmail.to",
+      "categories": [
+        "AI/ML",
+        "B2B",
+        "Developer Tools"
+      ],
+      "founders": [
+        {
+          "id": "OLYE",
+          "name": "Michael Hyun Kim",
+          "role": "Founder",
+          "imageSrc": "/founders/agentmail/michael-hyun-kim.jpg",
+          "contactUrl": "https://www.linkedin.com/in/haaaujla"
+        },
+        {
+          "id": "ceca65bc-8199-40f8-ad3c-02a229924717",
+          "name": "Adi Singh",
+          "role": "Founder",
+          "imageSrc": "/founders/agentmail/adi-singh.jpg",
+          "contactUrl": "https://www.linkedin.com/in/michaelhyunkim"
+        },
+        {
+          "id": "cf916633-c730-49dc-a750-ad4a4a9e402a",
+          "name": "Haakam Aujla",
+          "role": "Founder",
+          "imageSrc": "/founders/agentmail/haakam-aujla.jpg",
+          "contactUrl": "https://www.linkedin.com/in/adivirsingh13"
+        }
+      ],
+      "investors": [
+        {
+          "id": "Y;gc",
+          "name": "Y Combinator",
+          "type": "accelerator",
+          "website": null
+        },
+        {
+          "id": "u\\HC",
+          "name": "General Catalyst",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "avlv",
+          "name": "Agent Fund",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "ZDXM",
+          "name": "Karim Atiyeh",
+          "type": "angel",
+          "website": null
+        },
+        {
+          "id": "aHGk",
+          "name": "Paul Copplestone",
+          "type": "angel",
+          "website": null
+        },
+        {
+          "id": "ZcdQ",
+          "name": "Paul Graham",
+          "type": "angel",
+          "website": null
+        },
+        {
+          "id": "zyg[",
+          "name": "Pioneer Fund",
+          "type": "vc",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "Y Combinator",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-810e-80bb-cc5bc6fb8b87",
+      "title": "Orange Slice",
+      "description": "Agentic sales enrichment spreadsheet",
+      "overview": "Orange Slice is a spreadsheet where every column is TypeScript—and AI writes it for you. Describe what you want in chat ('find the CEO's LinkedIn and get their email'), and we generate the code, create the columns, and run it across thousands of rows. Our fully-typed SDK has 100+ enrichments built in: LinkedIn, contact info, company data, web scraping, AI research.",
+      "imageSrc": "/projects/orange-slice.jpg",
+      "companyName": "Orange Slice",
+      "companyWebsite": "https://orangeslice.ai",
+      "categories": [
+        "AI/ML",
+        "B2B",
+        "Sales"
+      ],
+      "founders": [
+        {
+          "id": "HyeX",
+          "name": "Vihaar Nandigala",
+          "role": "Founder",
+          "imageSrc": "/founders/orange-slice/vihaar-nandigala.jpg",
+          "contactUrl": "https://www.linkedin.com/in/vihaarnandigala"
+        },
+        {
+          "id": "s|PY",
+          "name": "Kishan Sripada",
+          "role": "Founder",
+          "imageSrc": "/founders/orange-slice/kishan-sripada.jpg",
+          "contactUrl": "https://www.linkedin.com/in/kishansripada"
+        }
+      ],
+      "investors": [
+        {
+          "id": "Y;gc",
+          "name": "Y Combinator",
+          "type": "accelerator",
+          "website": null
+        },
+        {
+          "id": "gzoU",
+          "name": "Lobster Capital",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "|I_C",
+          "name": "Moxxie Ventures",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "ZcdQ",
+          "name": "Paul Graham",
+          "type": "angel",
+          "website": null
+        },
+        {
+          "id": "_scK",
+          "name": "Transpose Platform Management",
+          "type": "vc",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "Y Combinator",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-8171-ac2f-c360d74e6195",
+      "title": "Embedder",
+      "description": "Cursor for Firmware",
+      "overview": "Embedder is a coding agent that can write, test, and debug firmware on both physical and simulated hardware. Supporting 20+ MCU/SoC platforms, it accelerates embedded systems development across semiconductors, automotive, medical devices, aerospace, IoT, and consumer electronics.",
+      "imageSrc": "/projects/embedder.jpg",
+      "companyName": "Embedder",
+      "companyWebsite": "https://www.embedder.com",
+      "categories": [
+        "AI/ML",
+        "Developer Tools",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "e5bfd314-1726-4b6b-a989-9008a080c385",
+          "name": "Ethan Gibbs",
+          "role": "Founder",
+          "imageSrc": "/founders/embedder/ethan-gibbs.jpg",
+          "contactUrl": "https://www.linkedin.com/in/etgibbs"
+        },
+        {
+          "id": "6b4e5107-9832-4b4d-883d-aca6cecd1211",
+          "name": "Bob Wei",
+          "role": "Founder",
+          "imageSrc": "/founders/embedder/bob-wei.jpg",
+          "contactUrl": "https://www.linkedin.com/in/jiachew/"
+        }
+      ],
+      "investors": [
+        {
+          "id": "Y;gc",
+          "name": "Y Combinator",
+          "type": "accelerator",
+          "website": null
+        },
+        {
+          "id": "bogq",
+          "name": "Z Fellows",
+          "type": "accelerator",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "Y Combinator",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-8123-9560-df1eacbaea39",
+      "title": "Skope",
+      "description": "Build a more profitable law firm with AI",
+      "overview": "Skope builds AI for core legal workflows. We will save your law firm time and help you make more money, with AI. Unlike general-purpose AI, Skope is purpose-built for legal work. We offer specialized features like document redlining and knowledge base search that other tools do not offer, as well as improved security for your data.",
+      "imageSrc": "/projects/skope.jpg",
+      "companyName": "Skope",
+      "companyWebsite": "https://useskope.com",
+      "categories": [
+        "AI/ML",
+        "LegalTech",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "|Q`H",
+          "name": "Ben Smith",
+          "role": "Founder",
+          "imageSrc": "/founders/skope/ben-smith.jpg",
+          "contactUrl": "https://www.linkedin.com/in/ben-smith-b15b12293"
+        },
+        {
+          "id": "iJ~}",
+          "name": "Connor Park",
+          "role": "Founder",
+          "imageSrc": "/founders/skope/connor-park.jpg",
+          "contactUrl": "https://www.linkedin.com/in/connor-park24"
+        }
+      ],
+      "investors": [
+        {
+          "id": "Y;gc",
+          "name": "Y Combinator",
+          "type": "accelerator",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "Y Combinator",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-810c-8576-e2e7b09c76b4",
+      "title": "Shade",
+      "description": "AI-powered media storage for creative teams",
+      "overview": "Shade is a seed stage startup backed by General Catalyst, Contrary, SignalFire, and Bling building the future of file storage. AI-powered media storage solution that enables creative teams to instantly sync files from anywhere.",
+      "imageSrc": "/projects/shade.jpg",
+      "companyName": "Shade",
+      "companyWebsite": "https://shade.inc",
+      "categories": [
+        "AI/ML",
+        "Productivity",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "ag^k",
+          "name": "Brandon Fan",
+          "role": "Founder",
+          "imageSrc": "/founders/shade/brandon-fan.jpg",
+          "contactUrl": "https://www.linkedin.com/in/brandonfan1256"
+        },
+        {
+          "id": "VWzM",
+          "name": "Bright Xu",
+          "role": "Founder",
+          "imageSrc": "/founders/shade/bright-xu.jpg",
+          "contactUrl": "https://www.linkedin.com/in/brightxu"
+        },
+        {
+          "id": "oLq}",
+          "name": "Edison Chiu",
+          "role": "Founder",
+          "imageSrc": "/founders/shade/edison-chiu.jpg",
+          "contactUrl": "https://www.linkedin.com/in/edison-chiu"
+        },
+        {
+          "id": "c``E",
+          "name": "Gurish Sharma",
+          "role": "Founder",
+          "imageSrc": "/founders/shade/gurish-sharma.jpg",
+          "contactUrl": "https://www.linkedin.com/in/gurish-sharma-"
+        }
+      ],
+      "investors": [
+        {
+          "id": "u\\HC",
+          "name": "General Catalyst",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "wct=",
+          "name": "Contrary Capital",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "~@<A",
+          "name": "GC Venture Fellows",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "KQS<",
+          "name": "Gold House Ventures",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "F~Yt",
+          "name": "SignalFire",
+          "type": "vc",
+          "website": null
+        },
+        {
+          "id": "bogq",
+          "name": "Z Fellows",
+          "type": "accelerator",
+          "website": null
+        },
+        {
+          "id": "AXHc",
+          "name": "Bling",
+          "type": "vc",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "General Catalyst",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-812f-82b4-f3a4b7cfe677",
+      "title": "MeetYourClass",
+      "description": "Student social networking for universities",
+      "overview": "MeetYourClass is a student-facing social networking system that helps university enrollment and student life departments better understand and reach their prospective student body.",
+      "imageSrc": "/projects/meetyourclass.jpg",
+      "companyName": "MeetYourClass",
+      "companyWebsite": "https://meetyourclassinc.com/",
+      "categories": [
+        "EdTech",
+        "Social",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "iL=O",
+          "name": "Jonah Liss",
+          "role": "Founder",
+          "imageSrc": "/founders/meetyourclass/jonah-liss.jpg",
+          "contactUrl": "https://www.linkedin.com/in/jonahliss"
+        },
+        {
+          "id": "bPvW",
+          "name": "Blake Mischley",
+          "role": "Founder",
+          "imageSrc": "/founders/meetyourclass/blake-mischley.jpg",
+          "contactUrl": "https://www.linkedin.com/in/blake-mischley"
+        },
+        {
+          "id": "ttuz",
+          "name": "Jon Millar",
+          "role": "Founder",
+          "imageSrc": "/founders/meetyourclass/jon-millar.jpg",
+          "contactUrl": "https://www.linkedin.com/in/kschmott"
+        },
+        {
+          "id": "5ce6cc56-0ea5-4d83-9258-8967084dabbe",
+          "name": "Kaleb Schmottlach",
+          "role": "Founder",
+          "imageSrc": "/founders/meetyourclass/kaleb-schmottlach.jpg",
+          "contactUrl": "https://www.linkedin.com/in/jon-millar"
+        }
+      ],
+      "investors": [
+        {
+          "id": "fb300a28-5ce1-451a-81b9-93d5b3900684",
+          "name": "Techstars",
+          "type": "unknown",
+          "website": null
+        },
+        {
+          "id": "Xn[G",
+          "name": "Zell Lurie Institute",
+          "type": "university-fund",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "Techstars",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8155-90e6-cf2eaf1bb44c",
+      "title": "AgroQR",
+      "description": "Environmental insights using QR sensors and drones",
+      "overview": "AgroQR delivers hyperlocal environmental insights using passive QR sensors and autonomous drones.",
+      "imageSrc": "/projects/agroqr.jpg",
+      "companyName": "AgroQR",
+      "companyWebsite": null,
+      "categories": [
+        "AgTech",
+        "Climate",
+        "B2B"
+      ],
+      "founders": [],
+      "investors": [
+        {
+          "id": "nyyS",
+          "name": "UMich Center for Entrepreneurship",
+          "type": "university-fund",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "UMich Center for Entrepreneurship",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-8139-8fbc-e81251fcff00",
+      "title": "frnds of frnds",
+      "description": "Dating app based on mutual friends",
+      "overview": "LinkedIn meets Hinge: Frnds of Frnds is a dating app where your pool is mutual friends",
+      "imageSrc": "/projects/frnds-of-frnds.jpg",
+      "companyName": "frnds of frnds",
+      "companyWebsite": "https://www.frndsoffrnds.com/",
+      "categories": [
+        "Social",
+        "B2C"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-814b-ba42-fefafcc90f4a",
+      "title": "Roots",
+      "description": "Private social media for families",
+      "overview": "Roots is a private social media made specially for your family. In a world dominated by big tech selling your information, roots creates a privacy focused platform.",
+      "imageSrc": "/projects/roots.jpg",
+      "companyName": "Roots",
+      "companyWebsite": "https://rootsapp.org",
+      "categories": [
+        "Social",
+        "B2C"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-8150-b31a-e668e9967907",
+      "title": "MBooking",
+      "description": "Campus study space booking platform",
+      "overview": "Find and book the perfect study space on campus without the hassle. Automated, simple, and built for students.",
+      "imageSrc": "/projects/mbooking.jpg",
+      "companyName": "MBooking",
+      "companyWebsite": "https://mbooking.me",
+      "categories": [
+        "EdTech",
+        "B2C"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-8155-a14b-f9c5aee88a48",
+      "title": "Claris",
+      "description": "Unified research workflow platform",
+      "overview": "Claris is a unified web platform that streamlines research workflows and save time across labs in any discipline.",
+      "imageSrc": "/projects/claris.jpg",
+      "companyName": "Claris",
+      "companyWebsite": "https://claris-two.vercel.app/",
+      "categories": [
+        "Research",
+        "Productivity",
+        "B2B"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-8193-a053-dc169bdc8265",
+      "title": "TagIt",
+      "description": "Automated metadata tagging for sports photography",
+      "overview": "TagIt automates metadata tagging in sports photography",
+      "imageSrc": "/projects/tagit.jpg",
+      "companyName": "TagIt",
+      "companyWebsite": null,
+      "categories": [
+        "AI/ML",
+        "Sports",
+        "B2B"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-81a6-9ca9-f8e457b116e6",
+      "title": "Dezu",
+      "description": "AI tax accountant for high net worth clients",
+      "overview": "Dezu is an AI tax accountant that automates the preparation of complex tax returns for high net worth clients.",
+      "imageSrc": "/projects/dezu.jpg",
+      "companyName": "Dezu",
+      "companyWebsite": "https://dezu.ai/",
+      "categories": [
+        "AI/ML",
+        "FinTech",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "dd028f7a-ba3d-4194-b686-fe9daa418b08",
+          "name": "Riya Dev",
+          "role": "Founder",
+          "imageSrc": "/founders/dezu/riya-dev.jpg",
+          "contactUrl": "https://www.linkedin.com/in/riya-dev/"
+        },
+        {
+          "id": "554cfdd9-2775-42fb-8694-e8d4e56ddbef",
+          "name": "Luke Zhu",
+          "role": "Founder",
+          "imageSrc": "/founders/dezu/luke-zhu.jpg",
+          "contactUrl": "https://www.linkedin.com/in/zhuluke/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-81ae-bff0-d8e2899c6d81",
+      "title": "Fathom",
+      "description": "AI-powered runtime debugger",
+      "overview": "Fathom is an AI-powered debugger that seeks bugs during the runtime of programs while having access to its running context, memory, and stack trace.",
+      "imageSrc": "/projects/fathom.jpg",
+      "companyName": "Fathom",
+      "companyWebsite": null,
+      "categories": [
+        "AI/ML",
+        "Developer Tools"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-81d2-9636-f4d295b5cfbb",
+      "title": "Oreen",
+      "description": "Diagramming tool for ChatGPT",
+      "overview": "The world's best diagramming tool for ChatGPT",
+      "imageSrc": "/projects/oreen.jpg",
+      "companyName": "Oreen",
+      "companyWebsite": "https://oreen.dev",
+      "categories": [
+        "AI/ML",
+        "Productivity",
+        "Developer Tools"
+      ],
+      "founders": [
+        {
+          "id": "ccfb8968-2dca-46e8-8431-4f3a54935adb",
+          "name": "Ben Antonow",
+          "role": "Founder",
+          "imageSrc": "/founders/oreen/ben-antonow.jpg",
+          "contactUrl": "https://www.linkedin.com/in/benantonow/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-81e8-8653-cc518d0f340d",
+      "title": "wstwatch",
+      "description": "Food waste tracking for dining halls",
+      "overview": "wstwatch - CV food waste tracking for dining halls",
+      "imageSrc": "/projects/wstwatch.jpg",
+      "companyName": "wstwatch",
+      "companyWebsite": null,
+      "categories": [
+        "Climate",
+        "B2B"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-81f3-a7ce-fda3835e5396",
+      "title": "Squad",
+      "description": "Campus discovery platform",
+      "overview": "Squad is where campus comes together. Discover the best food, study spots, and more—all curated by students like you.",
+      "imageSrc": "/projects/squad.jpg",
+      "companyName": "Squad",
+      "companyWebsite": "https://getsquad.app/",
+      "categories": [
+        "Social",
+        "EdTech",
+        "B2C"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2025 Product Studio Cohort",
+      "sectionOrder": 20252
+    },
+    {
+      "id": "30082307-c07d-8111-82b6-fc35d2b86664",
+      "title": "Temp8",
+      "description": "Dance choreography app",
+      "overview": "An app that simplifies dance by breaking down choreography into 8-counts",
+      "imageSrc": "/projects/temp8.jpg",
+      "companyName": "Temp8",
+      "companyWebsite": "https://www.youtube.com/watch?v=TLt6yX44u1Q&t=1s",
+      "categories": [
+        "EdTech",
+        "Entertainment"
+      ],
+      "founders": [
+        {
+          "id": "_xF;",
+          "name": "Maya Malik",
+          "role": "Founder",
+          "imageSrc": "/founders/temp8/maya-malik.jpg",
+          "contactUrl": "https://www.linkedin.com/in/maya-malik-umich/"
+        },
+        {
+          "id": "`;V>",
+          "name": "Jeffery Wu",
+          "role": "Founder",
+          "imageSrc": "/founders/temp8/jeffery-wu.jpg",
+          "contactUrl": "https://www.linkedin.com/in/wujeffery/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-8114-af8b-d7603a5822bc",
+      "title": "Doublet",
+      "description": "Word transformation puzzle game",
+      "overview": "Word transformation puzzle game that challenges players to transform one word into another through a series of steps. Educational and entertaining word game.",
+      "imageSrc": "/projects/doublet.jpg",
+      "companyName": "Doublet",
+      "companyWebsite": "https://doublet-waitlist.vercel.app/",
+      "categories": [
+        "Gaming",
+        "EdTech"
+      ],
+      "founders": [
+        {
+          "id": "Tr`K",
+          "name": "Jaymeson Kondrat",
+          "role": "Founder",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-812b-b076-f960e2e06af1",
+      "title": "Nudge",
+      "description": "Helping you keep track of your must-visit travel spots",
+      "overview": "Helping you keep track of your must-visit travel spots ✈️. Personal travel planning platform that helps users organize and remember places they want to visit.",
+      "imageSrc": "/projects/nudge.jpg",
+      "companyName": "Nudge",
+      "companyWebsite": null,
+      "categories": [
+        "Travel",
+        "Consumer",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "e6c21113-ef01-4f3d-b6b1-ea2ffd755719",
+          "name": "Riya Saha",
+          "role": "Founder",
+          "imageSrc": "/founders/nudge/riya-saha.jpg",
+          "contactUrl": "https://www.linkedin.com/in/riya-saha-/"
+        },
+        {
+          "id": "95a358bd-ece5-4056-9414-04af8ba6c786",
+          "name": "Pari Gulati",
+          "role": "Founder",
+          "imageSrc": "/founders/nudge/pari-gulati.jpg",
+          "contactUrl": "https://www.linkedin.com/in/pari-gulati/"
+        },
+        {
+          "id": "c0ba1449-7aef-4cad-b1da-520f878ca1a9",
+          "name": "Kritika Singh",
+          "role": "Founder",
+          "imageSrc": "/founders/nudge/kritika-singh.jpg",
+          "contactUrl": "https://www.linkedin.com/in/kritika-singhh/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-8143-87b3-e5d6fb09356a",
+      "title": "RushLink",
+      "description": "Live event experience for college campuses",
+      "overview": "Bringing the Rush of Live Events to College Campuses",
+      "imageSrc": "/projects/rushlink.jpg",
+      "companyName": "RushLink",
+      "companyWebsite": "https://therushlink.com/",
+      "categories": [
+        "Events",
+        "Social",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "bi<t",
+          "name": "Zachary Joelson",
+          "role": "Founder",
+          "imageSrc": "/founders/rushlink/zachary-joelson.jpg",
+          "contactUrl": "https://www.linkedin.com/in/zacharyjoelson/"
+        },
+        {
+          "id": "Z_<f",
+          "name": "Gavin Schwartz",
+          "role": "Founder",
+          "imageSrc": "/founders/rushlink/gavin-schwartz.jpg",
+          "contactUrl": "https://www.linkedin.com/in/gavin-schwartz/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-8166-bb09-ea82825ce0a2",
+      "title": "QuickSync",
+      "description": "Helping contractors bill faster",
+      "overview": "Helping contractors bill faster. Streamlined billing and invoicing platform designed specifically for construction contractors.",
+      "imageSrc": "/projects/quicksync.jpg",
+      "companyName": "QuickSync",
+      "companyWebsite": "https://pitch.com/v/f24-demo-day-zxnxqi/50a580be-6497-435e-9e3d-4516bcde4860",
+      "categories": [
+        "Construction",
+        "B2B",
+        "FinTech"
+      ],
+      "founders": [
+        {
+          "id": "wz[{",
+          "name": "Phoenix Sheppard",
+          "role": "Founder",
+          "imageSrc": "/founders/quicksync/phoenix-sheppard.jpg",
+          "contactUrl": "https://www.linkedin.com/in/phoenixsheppard/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-8178-b6d5-cfb61b33aac7",
+      "title": "CodeTrace",
+      "description": "AI-powered semantic search for seamless onboarding and smarter codebase navigation",
+      "overview": "AI-powered semantic search for seamless onboarding and smarter codebase navigation. Helps developers understand and navigate large codebases more efficiently.",
+      "imageSrc": "/projects/codetrace.jpg",
+      "companyName": "CodeTrace",
+      "companyWebsite": "https://www.codetrace.ai/",
+      "categories": [
+        "AI/ML",
+        "Developer Tools"
+      ],
+      "founders": [
+        {
+          "id": "3fb3844b-2796-444b-9acd-12ba46eadd8d",
+          "name": "David Mazur",
+          "role": "Founder",
+          "imageSrc": "/founders/codetrace/david-mazur.jpg",
+          "contactUrl": "https://www.linkedin.com/in/davidsmazur"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-8187-903a-ef2cf0666365",
+      "title": "Find Blue",
+      "description": "The go-to space for students at the University of Michigan to launch ideas and build ventures",
+      "overview": "The go-to space for students at the University of Michigan to launch ideas and build ventures. Community platform for student entrepreneurs and innovators.",
+      "imageSrc": "/projects/find-blue.jpg",
+      "companyName": "Find Blue",
+      "companyWebsite": "https://f-bweb.vercel.app/",
+      "categories": [
+        "Community",
+        "EdTech"
+      ],
+      "founders": [
+        {
+          "id": "29884885-9ce6-4a4e-bbee-506c158ff1f8",
+          "name": "Owen Lennon",
+          "role": "Founder",
+          "imageSrc": "/founders/find-blue/owen-lennon.jpg",
+          "contactUrl": "https://www.linkedin.com/in/ojlennon/"
+        },
+        {
+          "id": "ded502d8-9451-4371-b3a8-e4b9aba7fc70",
+          "name": "Rakesh Varma Kottapalli",
+          "role": "Founder",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-818d-b69e-d809d257ebfb",
+      "title": "Nexxus Labs",
+      "description": "Vehicle data network for urban mobility",
+      "overview": "Building a vehicle data network for the future of urban mobility",
+      "imageSrc": "/projects/nexxus-labs.jpg",
+      "companyName": "Nexxus Labs",
+      "companyWebsite": "https://www.nexxuslabs.org/",
+      "categories": [
+        "Mobility",
+        "Infrastructure",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "13c8d920-101c-4b9a-aec7-21575a0e5899",
+          "name": "Leo Gao",
+          "role": "Founder",
+          "imageSrc": "/founders/nexxus-labs/leo-gao.jpg",
+          "contactUrl": "https://www.linkedin.com/in/leogao25/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-81a5-b449-cab3c928a5c7",
+      "title": "Museaic",
+      "description": "An AI tool to automate arranging music",
+      "overview": "An AI tool to automate arranging music 🎶. AI-powered platform that helps musicians and producers arrange and compose music more efficiently.",
+      "imageSrc": "/projects/museaic.jpg",
+      "companyName": "Museaic",
+      "companyWebsite": null,
+      "categories": [
+        "AI/ML",
+        "Music"
+      ],
+      "founders": [
+        {
+          "id": "5a409a11-1dc1-40ea-9d68-e26ee2d4594d",
+          "name": "Casey Feng",
+          "role": "Founder",
+          "imageSrc": "/founders/museaic/casey-feng.jpg",
+          "contactUrl": "https://www.linkedin.com/in/caseyfeng/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-81b7-a9fb-cce15a3b43e7",
+      "title": "Batch",
+      "description": "Shared rides to DTW from $9",
+      "overview": "Ubers to DTW from $9. Batch your ride with verified U-M students. Affordable shared transportation solution for university students traveling to the airport.",
+      "imageSrc": "/projects/batch.jpg",
+      "companyName": "Batch",
+      "companyWebsite": "https://www.batchme.app/",
+      "categories": [
+        "Transportation",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "qfee",
+          "name": "Sanjit Vijay",
+          "role": "Founder",
+          "imageSrc": "/founders/batch/sanjit-vijay.jpg",
+          "contactUrl": "https://www.linkedin.com/in/sanjit-vijay"
+        },
+        {
+          "id": "74fb0c66-bd8d-4f95-bef2-ae59184979c2",
+          "name": "Aryan Shah",
+          "role": "Founder",
+          "imageSrc": "/founders/batch/aryan-shah.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-81c6-a501-e76a3b44c9de",
+      "title": "RepConnect",
+      "description": "App for constituents to know about local politicians",
+      "overview": "Ex-pollster building an app for constituents to know about local politicians 🗳️. Platform that helps citizens stay informed about their local representatives and political activities.",
+      "imageSrc": "/projects/repconnect.jpg",
+      "companyName": "RepConnect",
+      "companyWebsite": null,
+      "categories": [
+        "Civic Tech",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "1eb7b20f-1b5e-40fc-b686-9d1b79536383",
+          "name": "Arhan Kaul",
+          "role": "Founder",
+          "imageSrc": "/founders/repconnect/arhan-kaul.jpg",
+          "contactUrl": "https://www.linkedin.com/in/arhan-kaul/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-81ce-af9d-f062203325bc",
+      "title": "Cyberwright",
+      "description": "The first cybersecurity developer tool",
+      "overview": "The first cybersecurity developer tool, allowing programmers to identify bugs and fix bugs before production. AI-powered security tool that helps developers find and fix security vulnerabilities in code.",
+      "imageSrc": "/projects/cyberwright.jpg",
+      "companyName": "Cyberwright",
+      "companyWebsite": "https://devpost.com/software/cyberwright",
+      "categories": [
+        "Cybersecurity",
+        "Developer Tools"
+      ],
+      "founders": [
+        {
+          "id": "b8e59539-c3b6-434d-9e68-0573ecdd8ab2",
+          "name": "Jacob Chen",
+          "role": "Founder",
+          "imageSrc": "/founders/cyberwright/jacob-chen.jpg",
+          "contactUrl": "https://www.linkedin.com/in/jacobche"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-81d7-9a8b-c5b85d882c22",
+      "title": "Infralens",
+      "description": "All-In-One 3D Imaging Access for Contractors",
+      "overview": "All-In-One 3D Imaging Access for Contractors. Platform that provides contractors with easy access to 3D imaging tools and data for construction projects.",
+      "imageSrc": "/projects/infralens.jpg",
+      "companyName": "Infralens",
+      "companyWebsite": "https://pitch.com/v/f24-demo-day-zxnxqi/aa63d81b-fd08-4e46-9f50-6f5d4d1cbf7c",
+      "categories": [
+        "Construction",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "6d02ee80-edce-47f3-a445-bcdf08be5e0a",
+          "name": "Diego Paredes",
+          "role": "Founder",
+          "imageSrc": "/founders/infralens/diego-paredes.jpg",
+          "contactUrl": "https://www.linkedin.com/in/diegokaiparedes/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-81ea-827e-d6a0b6b0ca7f",
+      "title": "Ghost Kitchen Finder",
+      "description": "Chrome extension that flags ghost kitchens on delivery apps",
+      "overview": "Chrome extension that flags ghost kitchens on delivery apps. Helps consumers identify and avoid ordering from virtual kitchens on food delivery platforms.",
+      "imageSrc": "/projects/ghost-kitchen-finder.jpg",
+      "companyName": "Ghost Kitchen Finder",
+      "companyWebsite": null,
+      "categories": [
+        "Consumer",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "f75fac00-484d-4017-a8c9-07153aca1745",
+          "name": "Alexis Gu",
+          "role": "Founder",
+          "imageSrc": "/founders/ghost-kitchen-finder/alexis-gu.jpg",
+          "contactUrl": "https://www.linkedin.com/in/alexis-gu-7bb77129a/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-81fe-885c-d81b65409399",
+      "title": "Milieu",
+      "description": "Skincare platform with science",
+      "overview": "Dedicated to revolutionizing skincare through cutting-edge science and personalized solutions.",
+      "imageSrc": "/projects/milieu.jpg",
+      "companyName": "Milieu",
+      "companyWebsite": "https://milieubio.com",
+      "categories": [
+        "Beauty",
+        "HealthTech",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "fc21ea34-a489-4ea5-8f52-07ff68d4708f",
+          "name": "Nathan Shatz",
+          "role": "Founder",
+          "imageSrc": "/founders/milieu/nathan-shatz.jpg",
+          "contactUrl": "https://www.linkedin.com/in/nathan-shatz/"
+        },
+        {
+          "id": "494f15da-0167-4863-a762-1a37276e6a55",
+          "name": "Ronil Chaudhary",
+          "role": "Founder",
+          "imageSrc": "/founders/milieu/ronil-chaudhary.jpg",
+          "contactUrl": "https://www.linkedin.com/in/ronuofm/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Winter 2024 Product Studio Cohort",
+      "sectionOrder": 20242
+    },
+    {
+      "id": "30082307-c07d-8108-bb72-d986187adec3",
+      "title": "Manu.AI",
+      "description": "Easy access to any manual you could ever need",
+      "overview": "Easy access to any manual you could ever need. AI-powered platform that provides instant access to user manuals, documentation, and guides for any product or device.",
+      "imageSrc": "/projects/manu.ai.jpg",
+      "companyName": "Manu.AI",
+      "companyWebsite": null,
+      "categories": [
+        "AI/ML",
+        "Productivity",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "3593cbb7-1df2-4385-ab31-ab2845d81b50",
+          "name": "Leo Liu",
+          "role": "Founder",
+          "imageSrc": "/founders/manu.ai/leo-liu.jpg",
+          "contactUrl": "https://www.linkedin.com/in/leoliu12/"
+        },
+        {
+          "id": "8271489d-b710-4b96-87f6-05c2c026d681",
+          "name": "Jonathan Mo",
+          "role": "Founder",
+          "imageSrc": "/founders/manu.ai/jonathan-mo.jpg",
+          "contactUrl": "https://www.linkedin.com/in/johnathan-mo/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8113-9b9a-de2e60a1ddb1",
+      "title": "Hyperfan",
+      "description": "Platform for creators to connect with fans",
+      "overview": "Helping creators connect with their fans",
+      "imageSrc": "/projects/hyperfan.jpg",
+      "companyName": "Hyperfan",
+      "companyWebsite": "https://www.hyperfan.com/",
+      "categories": [
+        "Social",
+        "Entertainment",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "3f263269-ae66-419f-9ad1-b28eaed60d9f",
+          "name": "Areeb Khan",
+          "role": "Founder",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
+          "contactUrl": "https://www.linkedin.com/in/areebkhan280/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8135-ac5f-f6e3e2f363e9",
+      "title": "DAWG",
+      "description": "Elevating sport program performance through technology",
+      "overview": "Elevating sport program performance through technology. Data-driven platform that helps athletic programs optimize training, performance, and team management.",
+      "imageSrc": "/projects/dawg.jpg",
+      "companyName": "DAWG",
+      "companyWebsite": null,
+      "categories": [
+        "Sports",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "=YWS",
+          "name": "Priya Gutta",
+          "role": "Founder",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-813a-a795-ea0d32ecb537",
+      "title": "codefy.AI",
+      "description": "Coding widget toolbox for developers",
+      "overview": "codefy.ai is your own toolbox of useful coding widgets to help you speed up your workflow. Write, explain, debug, compare, and translate code with 15+ helpful, customized tools.",
+      "imageSrc": "/projects/codefy.ai.jpg",
+      "companyName": "codefy.AI",
+      "companyWebsite": "https://www.codefy.ai/",
+      "categories": [
+        "AI/ML",
+        "Developer Tools"
+      ],
+      "founders": [
+        {
+          "id": "~Df@",
+          "name": "Cooper Saye",
+          "role": "Founder",
+          "imageSrc": "/founders/codefy.ai/cooper-saye.jpg",
+          "contactUrl": "https://www.linkedin.com/in/coopersaye"
+        },
+        {
+          "id": "L=Fg",
+          "name": "Brian Z Travis",
+          "role": "Founder",
+          "imageSrc": "/founders/codefy.ai/brian-z-travis.jpg",
+          "contactUrl": "https://www.linkedin.com/in/brian-z-travis"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-813e-a789-de220996fc23",
+      "title": "Tour.video",
+      "description": "Interactive virtual tours for apartments",
+      "overview": "Interactive, virtual tours that get your apartment more leases",
+      "imageSrc": "/projects/tour.video.jpg",
+      "companyName": "Tour.video",
+      "companyWebsite": "https://tour.video/",
+      "categories": [
+        "PropTech",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "s|PY",
+          "name": "Kishan Sripada",
+          "role": "Founder",
+          "imageSrc": "/founders/tour.video/kishan-sripada.jpg",
+          "contactUrl": "https://www.linkedin.com/in/kishansripada"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8151-904d-c111a6822582",
+      "title": "Courtline",
+      "description": "Organizing recreational sports & pickup games at UMich",
+      "overview": "Organizing recreational sports & pickup games at UMich! Platform for coordinating and joining casual sports activities and pickup games on campus.",
+      "imageSrc": "/projects/courtline.jpg",
+      "companyName": "Courtline",
+      "companyWebsite": "https://mqueue-six.vercel.app/",
+      "categories": [
+        "Sports",
+        "Social",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "H|D`",
+          "name": "Amy Liu",
+          "role": "Founder",
+          "imageSrc": "/founders/courtline/amy-liu.jpg",
+          "contactUrl": "https://www.linkedin.com/in/amyliiu"
+        },
+        {
+          "id": "12273661-ff3a-4fa3-9f5f-24cda9c3e60f",
+          "name": "Joshua Lee",
+          "role": "Founder",
+          "imageSrc": "/founders/courtline/joshua-lee.jpg",
+          "contactUrl": "https://www.linkedin.com/in/mildjosh"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8156-892b-ce7a211dfac8",
+      "title": "0xKnowledge",
+      "description": "Knowledge base management with AI",
+      "overview": "0xKnowledge brings cutting edge technology to your fingertips through a knowledge base management system (KBMS) that is automatically maintained, and integrated with powerful AI tools",
+      "imageSrc": "/projects/0xknowledge.jpg",
+      "companyName": "0xKnowledge",
+      "companyWebsite": "https://0xknowledge.io/",
+      "categories": [
+        "AI/ML",
+        "Productivity",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "XHWc",
+          "name": "Joshua Sum",
+          "role": "Founder",
+          "imageSrc": "/founders/0xknowledge/joshua-sum.jpg",
+          "contactUrl": "https://www.linkedin.com/in/joshua-sum"
+        },
+        {
+          "id": "xXMM",
+          "name": "Ammar Ateya",
+          "role": "Founder",
+          "imageSrc": "/founders/0xknowledge/ammar-ateya.jpg",
+          "contactUrl": "https://www.linkedin.com/in/ammarateya"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-815f-80fd-d6118fff51e4",
+      "title": "AccoAI",
+      "description": "AI-powered admin task automation for practices",
+      "overview": "AccoAI automates admin tasks and unifies your practice, helping save time and grow billables.",
+      "imageSrc": "/projects/accoai.jpg",
+      "companyName": "AccoAI",
+      "companyWebsite": "https://www.accoai.com/",
+      "categories": [
+        "AI/ML",
+        "B2B",
+        "Productivity"
+      ],
+      "founders": [
+        {
+          "id": "=y;L",
+          "name": "Lance Fuchia",
+          "role": "Founder",
+          "imageSrc": "/founders/accoai/lance-fuchia.jpg",
+          "contactUrl": "https://www.linkedin.com/in/lancefuchia"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8161-b76a-fe2444e9982e",
+      "title": "Quotr",
+      "description": "Conversational AI platform that automates estimates and information gathering",
+      "overview": "Quotr is a conversational AI platform that automates away the manual calling for estimates, quotes, and general information from places all around you. All you do is put in your request, and we make the calls and get the information back to you.",
+      "imageSrc": "/projects/quotr.jpg",
+      "companyName": "Quotr",
+      "companyWebsite": null,
+      "categories": [
+        "AI/ML",
+        "B2C",
+        "Consumer"
+      ],
+      "founders": [
+        {
+          "id": "8b5b42e5-0374-4456-b1a1-61921f054669",
+          "name": "Soham Salunke",
+          "role": "Founder",
+          "imageSrc": "/founders/quotr/soham-salunke.jpg",
+          "contactUrl": "https://www.linkedin.com/in/sohamsalunke/"
+        },
+        {
+          "id": "743309c0-360b-4811-b080-567b413351d7",
+          "name": "Divya Ponda",
+          "role": "Founder",
+          "imageSrc": "/founders/quotr/divya-ponda.jpg",
+          "contactUrl": "https://www.linkedin.com/in/divyaponda/"
+        },
+        {
+          "id": "e45b1f7d-05e7-4971-9f0c-6dc8edb7e89c",
+          "name": "Roshni Koduri",
+          "role": "Founder",
+          "imageSrc": "/founders/quotr/roshni-koduri.jpg",
+          "contactUrl": "https://www.linkedin.com/in/roshni-koduri/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8165-9a1d-dc19e6bb259e",
+      "title": "Parley",
+      "description": "Gamify productivity by betting on your friend's tasks",
+      "overview": "Gamify productivity by betting on your friend's tasks. Social accountability platform that turns task completion into friendly competitions and bets.",
+      "imageSrc": "/projects/parley.jpg",
+      "companyName": "Parley",
+      "companyWebsite": null,
+      "categories": [
+        "Productivity",
+        "Social",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "2a26f370-eed5-4d83-8e83-092e79b38592",
+          "name": "Toan Bui",
+          "role": "Founder",
+          "imageSrc": "/founders/parley/toan-bui.jpg",
+          "contactUrl": "https://www.linkedin.com/in/toanmbui/"
+        },
+        {
+          "id": "65a39fe3-d45e-4702-b9c4-760567bc574f",
+          "name": "Sriram MK",
+          "role": "Founder",
+          "imageSrc": "/founders/parley/sriram-mk.jpg",
+          "contactUrl": "https://www.linkedin.com/in/mksriram/"
+        },
+        {
+          "id": "8fa31d00-a40f-4974-a2ad-db5ffae2f848",
+          "name": "Aditi Locula",
+          "role": "Founder",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-8166-809c-d1629375cad0",
+      "title": "Learn Bubble",
+      "description": "Popping the bubble of higher education through accessible STEM literacy",
+      "overview": "Popping the bubble of higher education through accessible STEM literacy. Making complex STEM concepts accessible to everyone through interactive learning experiences.",
+      "imageSrc": "/projects/learn-bubble.jpg",
+      "companyName": "Learn Bubble",
+      "companyWebsite": null,
+      "categories": [
+        "EdTech",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "b0b69bc2-fa6f-4ac0-b573-21c2611ef10e",
+          "name": "Rafee Mirza",
+          "role": "Founder",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-816b-8013-ead252e92125",
+      "title": "Lost and Found Plus",
+      "description": "An easy-to-use system that tracks tools and materials that are being used in communal spaces",
+      "overview": "An easy-to-use system that tracks tools and materials that are being used in communal spaces. Helps organizations manage shared resources efficiently and reduce loss of valuable items.",
+      "imageSrc": "/projects/lost-and-found-plus.jpg",
+      "companyName": "Lost and Found Plus",
+      "companyWebsite": null,
+      "categories": [
+        "Productivity",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "0536c273-f143-4894-8467-eb023685fd9f",
+          "name": "Anuhea Tao",
+          "role": "Founder",
+          "imageSrc": "/founder_placeholder_pfp.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-818e-b08b-c70a8abac43e",
+      "title": "Scholarly",
+      "description": "Context for research papers",
+      "overview": "Scholarly provides fast, concise context for research papers. Scholarly reduces friction for people of any background trying to break into a field.",
+      "imageSrc": "/projects/scholarly.jpg",
+      "companyName": "Scholarly",
+      "companyWebsite": null,
+      "categories": [
+        "Research",
+        "EdTech",
+        "AI/ML"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-819b-8853-f0585f80922d",
+      "title": "Parrot",
+      "description": "Advanced communication and collaboration platform",
+      "overview": "Advanced communication and collaboration platform designed to enhance team productivity and information sharing in modern workplaces.",
+      "imageSrc": "/projects/parrot.jpg",
+      "companyName": "Parrot",
+      "companyWebsite": null,
+      "categories": [
+        "Productivity",
+        "B2B"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-81a6-b0d3-f15844049879",
+      "title": "MeetingBrew",
+      "description": "A group event scheduler",
+      "overview": "A group event scheduler that makes coordinating meetings and events effortless. Uses smart algorithms to find optimal times that work for everyone.",
+      "imageSrc": "/projects/meetingbrew.jpg",
+      "companyName": "MeetingBrew",
+      "companyWebsite": "https://www.meetingbrew.com/",
+      "categories": [
+        "Productivity",
+        "Social",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "~Df@",
+          "name": "Cooper Saye",
+          "role": "Founder",
+          "imageSrc": "/founders/meetingbrew/cooper-saye.jpg",
+          "contactUrl": "https://www.linkedin.com/in/coopersaye"
+        },
+        {
+          "id": "L=Fg",
+          "name": "Brian Z Travis",
+          "role": "Founder",
+          "imageSrc": "/founders/meetingbrew/brian-z-travis.jpg",
+          "contactUrl": "https://www.linkedin.com/in/brian-z-travis"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-81d2-a1e1-e0ba6349cc83",
+      "title": "Closet Swap",
+      "description": "Digital platform for borrowing and lending clothes affordably",
+      "overview": "A digital platform for users to borrow and lend clothes affordably, quickly, and reliably. Reduces fashion waste while giving people access to a wider variety of clothing.",
+      "imageSrc": "/projects/closet-swap.jpg",
+      "companyName": "Closet Swap",
+      "companyWebsite": "https://closet-swap.vercel.app/",
+      "categories": [
+        "Fashion",
+        "B2C",
+        "Climate"
+      ],
+      "founders": [
+        {
+          "id": "dgOP",
+          "name": "Meghna Reddy",
+          "role": "Founder",
+          "imageSrc": "/founders/closet-swap/meghna-reddy.jpg",
+          "contactUrl": "https://www.linkedin.com/in/reddymeghna/"
+        },
+        {
+          "id": "uQ=r",
+          "name": "Shriya Kankatala",
+          "role": "Founder",
+          "imageSrc": "/founders/closet-swap/shriya-kankatala.jpg",
+          "contactUrl": null
+        },
+        {
+          "id": "7ad86cdf-4ccb-4d25-ab60-a307fb1974fb",
+          "name": "Diya Mahaveer",
+          "role": "Founder",
+          "imageSrc": "/founders/closet-swap/diya-mahaveer.jpg",
+          "contactUrl": null
+        },
+        {
+          "id": "bc98d4dc-7c1d-4ca3-b627-2ccf56523f30",
+          "name": "Hana Ahmed",
+          "role": "Founder",
+          "imageSrc": "/founders/closet-swap/hana-ahmed.jpg",
+          "contactUrl": null
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-81ec-a468-e848c90e16af",
+      "title": "fomo",
+      "description": "College event discovery platform",
+      "overview": "A platform to create, manage, and discover college events.",
+      "imageSrc": "/projects/fomo.jpg",
+      "companyName": "fomo",
+      "companyWebsite": null,
+      "categories": [
+        "Events",
+        "Social",
+        "B2C"
+      ],
+      "founders": [],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    },
+    {
+      "id": "30082307-c07d-81fb-879c-e6b65bc91bba",
+      "title": "Hair Haven",
+      "description": "Our mission is to provide barbers with an individualized, interactive platform to help customers get the most optimal haircut.",
+      "overview": "Our mission is to provide barbers with an individualized, interactive platform to help customers get the most optimal haircut. Uses AI and personalization to recommend the perfect haircut based on face shape, hair type, and personal style.",
+      "imageSrc": "/projects/hair-haven.jpg",
+      "companyName": "Hair Haven",
+      "companyWebsite": null,
+      "categories": [
+        "AI/ML",
+        "Beauty",
+        "B2C"
+      ],
+      "founders": [
+        {
+          "id": "c89622a2-4bbf-43c5-8f1c-a57e838bf6e1",
+          "name": "Om Joshi",
+          "role": "Founder",
+          "imageSrc": "/founders/hair-haven/om-joshi.jpg",
+          "contactUrl": "https://www.linkedin.com/in/omkj/"
+        }
+      ],
+      "sectionType": "cohort",
+      "sectionName": "Fall 2024 Product Studio Cohort",
+      "sectionOrder": 20241
+    }
+  ],
+  "filterOptions": {
+    "fundingSources": [
+      "Y Combinator",
+      "General Catalyst"
+    ],
+    "cohorts": [
+      "Winter 2025 Product Studio Cohort",
+      "Winter 2024 Product Studio Cohort",
+      "Fall 2024 Product Studio Cohort"
+    ],
+    "categories": [
+      "AI/ML",
+      "AgTech",
+      "B2B",
+      "B2C",
+      "Beauty",
+      "Civic Tech",
+      "Climate",
+      "Community",
+      "Construction",
+      "Consumer",
+      "Cybersecurity",
+      "Developer Tools",
+      "EdTech",
+      "Entertainment",
+      "Events",
+      "Fashion",
+      "FinTech",
+      "Gaming",
+      "HealthTech",
+      "Infrastructure",
+      "LegalTech",
+      "Mobility",
+      "Music",
+      "Productivity",
+      "PropTech",
+      "Research",
+      "Sales",
+      "Social",
+      "Sports",
+      "Transportation",
+      "Travel"
+    ]
+  },
+  "totalProjects": 50
+}
