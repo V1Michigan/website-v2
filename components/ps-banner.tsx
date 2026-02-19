@@ -1,8 +1,4 @@
-export default function PSBanner({ enabled }: { enabled: boolean }) {
-    if (!enabled) {
-        return (<></>);
-    }
-
+export default function PSBanner() {
     return (
         <div 
             className="bg-gradient-to-r from-yellow-400 to-yellow-300 py-2 px-6 text-center shadow-lg border-b border-yellow-500/20"

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Send } from "lucide-react";
 import YCBannerBackground from "./yc-banner-bg";
 
-export default function YCBanner({ enabled }: { enabled: boolean }) {
+export default function YCBanner() {
   const [daysLeft, setDaysLeft] = useState<number | null>(null);
   const [isClient, setIsClient] = useState(false);
 
@@ -39,10 +39,6 @@ export default function YCBanner({ enabled }: { enabled: boolean }) {
 
     return () => clearTimeout(midnightTimer);
   }, []);
-
-  if (!enabled) {
-    return (<></>);
-  }
 
   return (
     <div className="relative py-2 px-6 text-center shadow-lg overflow-hidden">

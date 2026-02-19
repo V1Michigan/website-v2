@@ -4,6 +4,7 @@ import { Inter, Playfair_Display, Instrument_Serif } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { CSPostHogProvider } from "@/components/posthog-provider";
 import { AuthProvider } from "@/components/auth/auth-provider";
+import { FlagsProvider } from "@/components/flags-provider";
 import { Metadata } from "next";
 
 const inter = Inter({
@@ -47,7 +48,9 @@ export default function RootLayout({
         )}
       >
         <CSPostHogProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <FlagsProvider>{children}</FlagsProvider>
+          </AuthProvider>
         </CSPostHogProvider>
       </body>
     </html>

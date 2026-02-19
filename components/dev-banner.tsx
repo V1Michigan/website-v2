@@ -1,5 +1,5 @@
-export default function DevBanner({ enabled }: { enabled: boolean }) {
-  if (!enabled || process.env.NODE_ENV !== 'development') {
+export default function DevBanner() {
+  if (process.env.NODE_ENV !== 'development') {
     return null;
   }
 
