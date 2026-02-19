@@ -71,6 +71,13 @@ pnpm build:projects
 pnpm build
 ```
 
+### Deployment Notes
+
+⚠️ **Important**: The projects page uses static JSON data that is built at deploy time. Any changes made to the Notion database will **not appear on the live site** until the Platform Team triggers a redeploy of the Netlify website.
+
+To edit projects in the Notion database, visit:
+**[V1 Projects Notion Database](https://www.notion.so/v1team/30082307c07d80e3a38bd1f180684f93?v=30082307c07d8076bea6000c63bc3738&source=copy_link)**
+
 ### Required Environment Variables
 
 These must be set in your `.env.local` file:
