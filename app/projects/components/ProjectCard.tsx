@@ -1,3 +1,4 @@
+import { memo } from "react"
 import Image from "next/image"
 import type { Project, Investor } from "@/types/project"
 
@@ -30,8 +31,13 @@ const investorBadgeColors: Record<string, string> = {
   "Zell Lurie Institute": "bg-blue-800 text-white",
 }
 
-// Get badge color for investor
+// Get badge color for investor - moved outside component for performance
 const getInvestorBadgeColor = (name: string): string => {
+  // Direct lookup first
+  if (investorBadgeColors[name]) {
+    return investorBadgeColors[name]
+  }
+  // Fallback to includes check for partial matches
   for (const [key, color] of Object.entries(investorBadgeColors)) {
     if (name.includes(key)) return color
   }
@@ -53,7 +59,7 @@ const getCohortDisplayName = (cohortName: string) => {
   return cohortName.replace(" Product Studio Cohort", "")
 }
 
-export default function ProjectCard({ project, onClick }: ProjectCardProps) {
+function ProjectCard({ project, onClick }: ProjectCardProps) {
   const hasCohort = project.sectionType === "cohort"
   const primaryInvestor = project.investors?.[0] || null
   const cohortBadgeColor = cohortColors[project.sectionName as keyof typeof cohortColors] || "bg-gray-500 text-white"
@@ -71,6 +77,8 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
             alt={project.companyName}
             fill
             className="object-cover"
+            sizes="64px"
+            quality={75}
           />
         </div>
 
@@ -173,6 +181,8 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
                         alt={founder.name}
                         fill
                         className="object-cover"
+                        sizes="24px"
+                        quality={60}
                       />
                     )}
                   </div>
@@ -191,3 +201,5 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
     </div>
   )
 }
+
+export default memo(ProjectCard)
