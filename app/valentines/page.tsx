@@ -3,6 +3,11 @@ import { Heart } from "lucide-react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
+export const metadata = {
+  title: "Valentine's Cards - V1 at Michigan",
+  description: "Create and share beautiful Valentine's cards with the V1 community.",
+};
+
 const YEARS = [
   {
     year: 2026,

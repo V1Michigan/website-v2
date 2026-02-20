@@ -70,6 +70,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
             src={project.imageSrc}
             alt={project.companyName}
             fill
+            sizes="(max-width: 640px) 64px, 64px"
             className="object-cover"
           />
         </div>
@@ -172,6 +173,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
                         src={founder.imageSrc}
                         alt={founder.name}
                         fill
+                        sizes="24px"
                         className="object-cover"
                       />
                     )}

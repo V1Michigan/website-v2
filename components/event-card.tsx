@@ -19,6 +19,7 @@ export default function EventCard({
             src={image || "/placeholder.svg"}
             alt={title}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="rounded-md object-cover"
           />
         </div>

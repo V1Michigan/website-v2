@@ -18,10 +18,6 @@ export default function ProjectDirectoryPage() {
   const urlSearchQuery = searchParams?.get("search") || ""
   const [localSearchQuery, setLocalSearchQuery] = useState(urlSearchQuery)
 
-  useEffect(() => {
-    setLocalSearchQuery(urlSearchQuery)
-  }, [urlSearchQuery])
-
   const [localFilters, setLocalFilters] = useState({
     searchQuery: urlSearchQuery,
     fundingSources: searchParams?.getAll("funding") || [],

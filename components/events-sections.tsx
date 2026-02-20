@@ -37,8 +37,8 @@ export default function EventsSection({ events }: EventsSectionProps) {
         viewport={{ once: true, amount: 0.2 }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {events.map((event, index) => (
-          <motion.div key={index} variants={item}>
+        {events.map((event) => (
+          <motion.div key={event.title} variants={item}>
             <EventCard
               title={event.title}
               description={event.description}

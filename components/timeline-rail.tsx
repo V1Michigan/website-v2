@@ -111,9 +111,9 @@ export default function TimelineRail({ sectionRefs }: TimelineRailProps) {
       />
 
       {/* Empty circles at each section title */}
-      {markerTops.map((topPos, idx) => (
+      {markerTops.map((topPos) => (
         <div
-          key={idx}
+          key={topPos}
           className="absolute -translate-x-1/2 h-4 w-4 rounded-full border-2 border-[#F5A623] bg-white"
           style={{ top: topPos - 8, left: railLeft }}
         />

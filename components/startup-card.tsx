@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface StartupCardProps {
   image: string;
   name: string;
@@ -7,12 +9,14 @@ interface StartupCardProps {
 export default function StartupCard({ image, name, domain }: StartupCardProps) {
   return (
     <div className="bg-white/10 rounded-xl p-3 md:p-4 text-center w-full h-32 md:h-40">
-      <div className="w-12 h-12 md:w-20 md:h-20 rounded-lg overflow-hidden mb-2 mt-2 lg:mt-0 md:mb-3 mx-auto flex items-center justify-center">
+      <div className="relative w-12 h-12 md:w-20 md:h-20 rounded-lg overflow-hidden mb-2 mt-2 lg:mt-0 md:mb-3 mx-auto flex items-center justify-center">
         {image ? (
-          <img
+          <Image
             src={image}
             alt={`${name} logo`}
-            className="w-full h-full object-contain"
+            fill
+            sizes="(max-width: 640px) 48px, (max-width: 1024px) 80px, 80px"
+            className="object-contain"
           />
         ) : (
           <div className="w-full h-full bg-gray-400 rounded-lg"></div>

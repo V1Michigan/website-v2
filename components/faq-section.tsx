@@ -55,7 +55,7 @@ export default function FAQSection() {
       <div className="space-y-3">
         {faqData.map((faq, index) => (
           <FAQItem
-            key={index}
+            key={faq.question}
             question={faq.question}
             answer={faq.answer}
             isExpanded={expandedIndex === index}

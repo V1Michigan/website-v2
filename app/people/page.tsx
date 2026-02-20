@@ -4,6 +4,11 @@ import Footer from "@/components/footer";
 import { Input } from "@/components/ui/input";
 import PeopleContent from "@/components/people-content";
 
+export const metadata = {
+  title: "People @ V1 - Our Community of Builders",
+  description: "A curated directory of builders, engineers, designers, and operators from the V1 ecosystem at the University of Michigan.",
+};
+
 function PeopleFallback() {
   return (
     <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { MerchProduct } from "@/types/merch";
 import { useCart } from "./cart-provider";
@@ -23,10 +23,6 @@ export function ProductCard({ product }: ProductCardProps) {
     }
     return product.images || [product.image];
   }, [selectedColor, product.images, product.image]);
-
-  useEffect(() => {
-    setCurrentImageIndex(0);
-  }, [selectedColor]);
 
   const handleAddToCart = () => {
     addItem(product, selectedSize, selectedColor.name);
@@ -53,7 +49,7 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Product Image */}
       <div className="relative aspect-[4/5] bg-[#f0ebe3] overflow-hidden mb-4">
         <Image
-          key={currentImage}
+          key={`${selectedColor.name}-${currentImage}`}
           src={currentImage}
           alt={product.name}
           fill
@@ -89,10 +85,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
             {/* Image Indicators */}
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-              {images.map((_, idx) => (
+              {images.map((image, idx) => (
                 <button
                   type="button"
-                  key={idx}
+                  key={image}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -151,7 +147,10 @@ export function ProductCard({ product }: ProductCardProps) {
               {product.colors.map((color) => (
                 <button
                   key={color.name}
-                  onClick={() => setSelectedColor(color)}
+                  onClick={() => {
+                    setSelectedColor(color);
+                    setCurrentImageIndex(0);
+                  }}
                   className={`w-5 h-5 rounded-full transition-all ${
                     selectedColor.name === color.name
                       ? "ring-2 ring-offset-2 ring-gray-800"

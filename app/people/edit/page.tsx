@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type React from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/auth-provider";
 import Header from "@/components/header";
@@ -328,9 +329,9 @@ export default function EditPersonPage() {
                       <div className="mt-2">
                         <p className="font-medium">Current tags:</p>
                         <div className="flex flex-wrap gap-1 mt-1">
-                          {formData.tags.map((tag, index) => (
+                          {formData.tags.map((tag) => (
                             <span
-                              key={index}
+                              key={tag}
                               className="inline-block rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800"
                             >
                               {tag}

@@ -20,7 +20,7 @@ export default function TeamSection({ teamMembers }: TeamSectionProps) {
       <div className="flex flex-wrap justify-center -space-x-2 sm:-space-x-3 w-full mb-4">
         {teamMembers.map((member, index) => (
           <TeamMember
-            key={index}
+            key={member.name}
             image={member.image}
             name={member.name}
             linkedinUrl={member.linkedinUrl}

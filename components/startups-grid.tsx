@@ -292,7 +292,7 @@ export default function StartupsGrid() {
                 {years[pageIndex].companies
                   .slice(0, 3 * 4)
                   .map((company, index) => (
-                    <motion.div key={index} variants={itemVariants}>
+                    <motion.div key={company.name} variants={itemVariants}>
                       <StartupCard
                         image={company.image}
                         name={company.name}
