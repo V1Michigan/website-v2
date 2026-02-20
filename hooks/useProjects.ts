@@ -24,13 +24,21 @@ interface ProjectsQueryParams {
 }
 
 async function fetchProjects(): Promise<ProjectsResponse> {
-  const response = await fetch(`/api/projects`);
- 
+  const response = await fetch(`/projects-data.json`);
+
   if (!response.ok) {
     throw new Error("Failed to fetch projects");
   }
- 
-  return response.json();
+
+  const data = await response.json();
+  const projects = data.projects as Project[];
+
+  return {
+    projects,
+    filterOptions: data.filterOptions,
+    totalProjects: projects.length,
+    filteredCount: projects.length,
+  };
 }
 
 export function useProjects(params: ProjectsQueryParams) {

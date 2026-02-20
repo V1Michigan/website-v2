@@ -51,24 +51,28 @@ export default function Header() {
         </Link> */}
         <Link
           href="https://v1michigan.com/apply?utm_source=website"
+          prefetch={false}
           className="text-sm text-gray-700 hover:text-black"
         >
           Product Studio
         </Link>
         <Link
           href="http://startupweek.v1michigan.com/"
+          prefetch={false}
           className="text-sm text-gray-700 hover:text-black"
         >
           Startup Week
         </Link>
         <Link
           href="https://v1michigan.com/ship-it"
+          prefetch={false}
           className="text-sm text-gray-700 hover:text-black"
         >
           Ship-it
         </Link>
         <Link
           href="https://v1michigan.com/events"
+          prefetch={false}
           className="text-sm text-gray-700 hover:text-black"
         >
           Events
@@ -129,6 +133,7 @@ export default function Header() {
                 <div className="py-1">
                   <Link
                     href="https://v1michigan.com/community?utm_source=website"
+                    prefetch={false}
                     className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1"
                     onClick={closeDropdown}
                   >
@@ -137,6 +142,7 @@ export default function Header() {
                   </Link>
                   <Link
                     href="https://v1michigan.com/join"
+                    prefetch={false}
                     className="flex items-center px-4 py-2 text-sm text-white bg-gray-800 hover:bg-gray-700 rounded-md mx-2 my-1"
                     onClick={closeDropdown}
                   >
@@ -186,6 +192,7 @@ export default function Header() {
             </Link> */}
             <Link
               href="https://v1michigan.com/apply?utm_source=website"
+              prefetch={false}
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
@@ -208,6 +215,7 @@ export default function Header() {
 
             <Link
               href="https://v1michigan.com/ship-it"
+              prefetch={false}
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
@@ -215,6 +223,7 @@ export default function Header() {
             </Link>
             <Link
               href="https://v1michigan.com/events"
+              prefetch={false}
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
@@ -267,6 +276,7 @@ export default function Header() {
                 <div className="flex flex-col space-y-2">
                   <Link
                     href="https://v1michigan.com/community?utm_source=website"
+                    prefetch={false}
                     className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
                     onClick={closeMobileMenu}
                   >
@@ -275,6 +285,7 @@ export default function Header() {
                   </Link>
                   <Link
                     href="https://v1michigan.com/join"
+                    prefetch={false}
                     className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
                     onClick={closeMobileMenu}
                   >
