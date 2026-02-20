@@ -50,7 +50,7 @@ export default function Header() {
           Valentines
         </Link> */}
         <Link
-          href="https://v1michigan.com/apply?utm_source=website"
+          href="/apply?utm_source=website"
           className="text-sm text-gray-700 hover:text-black"
         >
           Product Studio
@@ -62,13 +62,13 @@ export default function Header() {
           Startup Week
         </Link>
         <Link
-          href="https://v1michigan.com/ship-it"
+          href="/ship-it"
           className="text-sm text-gray-700 hover:text-black"
         >
           Ship-it
         </Link>
         <Link
-          href="https://v1michigan.com/events"
+          href="/events"
           className="text-sm text-gray-700 hover:text-black"
         >
           Events
@@ -128,7 +128,7 @@ export default function Header() {
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
                 <div className="py-1">
                   <Link
-                    href="https://v1michigan.com/community?utm_source=website"
+                    href="/community?utm_source=website"
                     className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1"
                     onClick={closeDropdown}
                   >
@@ -136,7 +136,7 @@ export default function Header() {
                     <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
                   </Link>
                   <Link
-                    href="https://v1michigan.com/join"
+                    href="/join"
                     className="flex items-center px-4 py-2 text-sm text-white bg-gray-800 hover:bg-gray-700 rounded-md mx-2 my-1"
                     onClick={closeDropdown}
                   >
@@ -185,7 +185,7 @@ export default function Header() {
               Valentines
             </Link> */}
             <Link
-              href="https://v1michigan.com/apply?utm_source=website"
+              href="/apply?utm_source=website"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
@@ -207,14 +207,14 @@ export default function Header() {
             </Link>
 
             <Link
-              href="https://v1michigan.com/ship-it"
+              href="/ship-it"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
               Ship-it
             </Link>
             <Link
-              href="https://v1michigan.com/events"
+              href="/events"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
@@ -266,7 +266,7 @@ export default function Header() {
                 <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
                 <div className="flex flex-col space-y-2">
                   <Link
-                    href="https://v1michigan.com/community?utm_source=website"
+                    href="/community?utm_source=website"
                     className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
                     onClick={closeMobileMenu}
                   >
@@ -274,7 +274,7 @@ export default function Header() {
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
                   </Link>
                   <Link
-                    href="https://v1michigan.com/join"
+                    href="/join"
                     className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
                     onClick={closeMobileMenu}
                   >
