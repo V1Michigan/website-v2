@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { LazyMotion, m, domAnimation } from "framer-motion";
 import EventCard from "./event-card";
 
 interface Event {
@@ -30,23 +30,25 @@ export default function EventsSection({ events }: EventsSectionProps) {
   };
   return (
     <div className="max-w-7xl mx-auto p-10">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        {events.map((event) => (
-          <motion.div key={event.title} variants={item}>
-            <EventCard
-              title={event.title}
-              description={event.description}
-              image={event.image}
-            />
-          </motion.div>
-        ))}
-      </motion.div>
+      <LazyMotion features={domAnimation}>
+        <m.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {events.map((event) => (
+            <m.div key={event.title} variants={item}>
+              <EventCard
+                title={event.title}
+                description={event.description}
+                image={event.image}
+              />
+            </m.div>
+          ))}
+        </m.div>
+      </LazyMotion>
     </div>
   );
 }

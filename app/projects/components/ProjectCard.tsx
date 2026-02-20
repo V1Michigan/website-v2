@@ -60,8 +60,11 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       className="group cursor-pointer rounded-lg border border-gray-300 bg-white p-6 transition-all hover:shadow-md hover:border-gray-400"
       onClick={onClick}
+      onKeyDown={(e) => e.key === 'Enter' && onClick()}
     >
       <div className="flex items-start gap-4">
         {/* Company Logo/Image */}
