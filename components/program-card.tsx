@@ -20,10 +20,10 @@ export default function ProgramCard({ title, description, imageSrc, href }: Prog
           className="absolute bottom-0 left-0 w-full rounded-b-lg p-2 md:p-3 text-white"
           style={{ background: "#444444cc", minHeight: "30%" }}
         >
-            <h3 className="text-xs md:text-sm font-medium flex items-center">
+          <h3 className="text-xs md:text-sm font-medium flex items-center">
             {title}
             <ArrowRight className="ml-1 md:ml-1.5 h-3 w-3 md:h-3.5 md:w-3.5 -rotate-45" />
-            </h3>
+          </h3>
           <p className="mt-0.5 text-xs text-gray-200 line-clamp-1 md:line-clamp-none">{description}</p>
         </div>
       </div>
