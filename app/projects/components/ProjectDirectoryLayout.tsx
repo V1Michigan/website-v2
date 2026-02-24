@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react"
 import FilterPanel from "./FilterPanel"
 import ProjectList from "./ProjectList"
+import ProjectGridView from "./ProjectGridView"
+import ViewToggle from "./ViewToggle"
 import { Button } from "@/components/ui/button"
 import { Filter } from "lucide-react"
 import type { Project } from "@/types/project"
@@ -40,6 +42,7 @@ export default function ProjectDirectoryLayout({
   isLoading = false,
 }: ProjectDirectoryLayoutProps) {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+  const [view, setView] = useState<"list" | "grid">("list")
 
   const hasActiveFilters = useMemo(
     () =>
@@ -102,13 +105,16 @@ export default function ProjectDirectoryLayout({
             <h2 className="font-instrument text-2xl font-semibold text-gray-900">
               Projects ({projects.length})
             </h2>
+            <ViewToggle view={view} onViewChange={setView} />
           </div>
           {isLoading ? (
             <div className="flex justify-center items-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
             </div>
-          ) : (
+          ) : view === "list" ? (
             <ProjectList projects={projects} onProjectClick={onProjectClick} />
+          ) : (
+            <ProjectGridView projects={projects} onProjectClick={onProjectClick} />
           )}
         </div>
       </div>
@@ -143,11 +149,12 @@ export default function ProjectDirectoryLayout({
         </div>
         {/* Mobile Filter Button */}
 
-        {/* Project Count */}
-        <div className="mb-4">
+        {/* Project Count & View Toggle */}
+        <div className="mb-4 flex items-center justify-between">
           <h2 className="font-instrument text-xl font-semibold text-gray-900">
             Projects ({projects.length})
           </h2>
+          <ViewToggle view={view} onViewChange={setView} />
         </div>
 
         {/* Loading state */}
@@ -155,8 +162,10 @@ export default function ProjectDirectoryLayout({
           <div className="flex justify-center items-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-800"></div>
           </div>
-        ) : (
+        ) : view === "list" ? (
           <ProjectList projects={projects} onProjectClick={onProjectClick} />
+        ) : (
+          <ProjectGridView projects={projects} onProjectClick={onProjectClick} />
         )}
 
         {/* Mobile Filter Modal */}

@@ -5,7 +5,7 @@ export type InvestmentStage = "pre-seed" | "seed" | "series-a" | "accelerator" |
 export interface Founder {
   id: string
   name: string
-  role: "Founder"
+  role: string
   imageSrc: string
   contactUrl?: string
 }
@@ -31,4 +31,6 @@ export interface Project {
   sectionType: "funding" | "cohort"
   sectionName: string
   sectionOrder: number
+  updatedAt?: string
+  isActive?: boolean
 }

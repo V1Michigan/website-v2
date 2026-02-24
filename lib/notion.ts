@@ -127,8 +127,18 @@ export function getCohortOrder(cohortName: string): number {
 
 export function sortProjects(projects: Project[]): Project[] {
   return [...projects].sort((a, b) => {
-    if (a.sectionType !== b.sectionType) {
-      return a.sectionType === "funding" ? -1 : 1
+    const aIsStartup = isStartup(a)
+    const bIsStartup = isStartup(b)
+    
+    if (aIsStartup !== bIsStartup) {
+      return aIsStartup ? -1 : 1
+    }
+    
+    const aIsActive = a.isActive ?? false
+    const bIsActive = b.isActive ?? false
+    
+    if (aIsActive !== bIsActive) {
+      return bIsActive ? -1 : 1
     }
     
     if (a.sectionType === "funding" && b.sectionType === "funding") {
@@ -204,6 +214,21 @@ export function filterProjects(projects: Project[], filters: {
 
     return matchesSearch && matchesFunding && matchesCohort && matchesCategory
   })
+}
+
+export function isStartup(project: Project): boolean {
+  return project.sectionType === "funding" && (project.investors?.length ?? 0) > 0
+}
+
+export function getFounderRole(project: Project, founderCount: number): string {
+  const isProjectStartup = isStartup(project)
+  const hasMultipleFounders = founderCount > 1
+  
+  if (isProjectStartup) {
+    return hasMultipleFounders ? "Co-Founder" : "Founder"
+  } else {
+    return hasMultipleFounders ? "Co-Creator" : "Creator"
+  }
 }
 
 export function sanitizeProjectName(name: string): string {
@@ -317,6 +342,16 @@ export function transformNotionPageToProject(page: any): Project {
   
   const pfpUrls = extractPfpUrls(page)
   
+  const sectionType = hasInvestors ? "funding" : "cohort"
+  const tempProject = {
+    sectionType,
+    investors: sortedInvestors,
+    founders: foundersList,
+  }
+  
+  const updatedAt = properties.updatedAt?.date?.start || properties.last_edited_time
+  const isActive = properties.isActive?.checkbox ?? false
+  
   return {
     id,
     title: nameInfo.name,
@@ -329,17 +364,19 @@ export function transformNotionPageToProject(page: any): Project {
     founders: foundersList.map((f: any, index: number) => ({
       id: f.id,
       name: f.name,
-      role: "Founder",
+      role: getFounderRole(tempProject as any, foundersList.length),
       imageSrc: pfpUrls[index]
         ? generateFounderImagePath(nameInfo.name, f.name)
         : `/founder_placeholder_pfp.jpg`,
       contactUrl: sanitizeUrl(contactsList[index]?.name || null, `contactUrl of "${f.name}" in "${nameInfo.name}"`),
     })) || [],
     investors: sortedInvestors,
-    sectionType: hasInvestors ? "funding" : "cohort",
+    sectionType,
     sectionName: hasInvestors
       ? sortedInvestors?.[0]?.name || ""
       : properties.cohort?.select?.name || "",
     sectionOrder: getCohortOrder(properties.cohort?.select?.name || ""),
+    updatedAt,
+    isActive,
   }
 }

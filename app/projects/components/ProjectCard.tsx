@@ -1,5 +1,6 @@
 import Image from "next/image"
-import type { Project, Investor } from "@/types/project"
+import type { Project } from "@/types/project"
+import { isStartup } from "@/lib/notion"
 
 interface ProjectCardProps {
   project: Project
@@ -57,6 +58,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   const hasCohort = project.sectionType === "cohort"
   const primaryInvestor = project.investors?.[0] || null
   const cohortBadgeColor = cohortColors[project.sectionName as keyof typeof cohortColors] || "bg-gray-500 text-white"
+  const projectIsStartup = isStartup(project)
 
   return (
     <div
@@ -76,12 +78,29 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 
         {/* Project Info */}
         <div className="min-w-0 flex-1">
-          <h3 className="font-instrument text-lg font-semibold text-gray-900 group-hover:text-gray-700">
-            {project.companyName}
-          </h3>
-          <p className="mt-1 text-sm font-medium text-gray-700">
-            {project.title}
-          </p>
+          <div className="flex items-center gap-2">
+            <h3 className="font-instrument text-lg font-semibold text-gray-900 group-hover:text-gray-700">
+              {project.companyName}
+            </h3>
+            {project.isActive && (
+              <span className="flex h-2 w-2">
+                <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+              </span>
+            )}
+          </div>
+          <div className="mt-1 flex items-center gap-2">
+            <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
+              projectIsStartup 
+                ? "bg-blue-100 text-blue-800" 
+                : "bg-gray-100 text-gray-800"
+            }`}>
+              {projectIsStartup ? "Startup" : "Project"}
+            </span>
+            <p className="text-sm font-medium text-gray-700">
+              {project.title}
+            </p>
+          </div>
           <p className="mt-2 line-clamp-2 text-sm text-gray-600">
             {project.description}
           </p>
