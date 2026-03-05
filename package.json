@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "dotenv -e .env.local -- tsx scripts/build-projects-data.ts && next build",
     "build:projects": "dotenv -e .env.local -- tsx scripts/build-projects-data.ts",
     "start": "next start",
