@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import { ArrowRight, X } from "lucide-react"
 import FounderCard from "./founder-card"
 import type { Project } from "@/types/project"
+import { isStartup } from "@/lib/notion"
 
 interface ProjectModalProps {
   project: Project | null
@@ -93,7 +94,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
         {project.founders.length > 0 && (
           <section>
-            <h2 className="mb-4 text-xl font-medium text-gray-800">Founders</h2>
+            <h2 className="mb-4 text-xl font-medium text-gray-800">
+              {isStartup(project) ? "Founders" : "Creators"}
+            </h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {project.founders.map((founder) => (
                 <FounderCard key={founder.id} name={founder.name} role={founder.role} imageSrc={founder.imageSrc} contactUrl={founder.contactUrl} />
