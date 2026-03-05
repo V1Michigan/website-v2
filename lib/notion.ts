@@ -129,29 +129,29 @@ export function sortProjects(projects: Project[]): Project[] {
   return [...projects].sort((a, b) => {
     const aIsStartup = isStartup(a)
     const bIsStartup = isStartup(b)
-    
+
     if (aIsStartup !== bIsStartup) {
       return aIsStartup ? -1 : 1
     }
-    
-    const aIsActive = a.isActive ?? false
-    const bIsActive = b.isActive ?? false
-    
-    if (aIsActive !== bIsActive) {
-      return bIsActive ? -1 : 1
-    }
-    
-    if (a.sectionType === "funding" && b.sectionType === "funding") {
+
+    if (aIsStartup && bIsStartup) {
+      const aIsActive = a.isActive ?? false
+      const bIsActive = b.isActive ?? false
+
+      if (aIsActive !== bIsActive) {
+        return aIsActive ? -1 : 1
+      }
+
       const prestigeA = getProjectPrestigeScore(a)
       const prestigeB = getProjectPrestigeScore(b)
-      
+
       if (prestigeA !== prestigeB) {
         return prestigeB - prestigeA
       }
-      
+
       return a.companyName.localeCompare(b.companyName)
     }
-    
+
     return b.sectionOrder - a.sectionOrder
   })
 }

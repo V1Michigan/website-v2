@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-19T20:36:20.500Z",
+  "timestamp": "2026-03-05T18:27:02.988Z",
   "projects": [
     {
       "id": "30082307-c07d-811a-984b-f34ec0487dc0",
@@ -18,21 +18,21 @@
         {
           "id": "OLYE",
           "name": "Michael Hyun Kim",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/agentmail/michael-hyun-kim.jpg",
           "contactUrl": "https://www.linkedin.com/in/haaaujla"
         },
         {
           "id": "ceca65bc-8199-40f8-ad3c-02a229924717",
           "name": "Adi Singh",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/agentmail/adi-singh.jpg",
           "contactUrl": "https://www.linkedin.com/in/michaelhyunkim"
         },
         {
           "id": "cf916633-c730-49dc-a750-ad4a4a9e402a",
           "name": "Haakam Aujla",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/agentmail/haakam-aujla.jpg",
           "contactUrl": "https://www.linkedin.com/in/adivirsingh13"
         }
@@ -83,7 +83,8 @@
       ],
       "sectionType": "funding",
       "sectionName": "Y Combinator",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": true
     },
     {
       "id": "30082307-c07d-810e-80bb-cc5bc6fb8b87",
@@ -102,14 +103,14 @@
         {
           "id": "HyeX",
           "name": "Vihaar Nandigala",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/orange-slice/vihaar-nandigala.jpg",
           "contactUrl": "https://www.linkedin.com/in/vihaarnandigala"
         },
         {
           "id": "s|PY",
           "name": "Kishan Sripada",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/orange-slice/kishan-sripada.jpg",
           "contactUrl": "https://www.linkedin.com/in/kishansripada"
         }
@@ -148,7 +149,8 @@
       ],
       "sectionType": "funding",
       "sectionName": "Y Combinator",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": true
     },
     {
       "id": "30082307-c07d-8171-ac2f-c360d74e6195",
@@ -167,14 +169,14 @@
         {
           "id": "e5bfd314-1726-4b6b-a989-9008a080c385",
           "name": "Ethan Gibbs",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/embedder/ethan-gibbs.jpg",
           "contactUrl": "https://www.linkedin.com/in/etgibbs"
         },
         {
           "id": "6b4e5107-9832-4b4d-883d-aca6cecd1211",
           "name": "Bob Wei",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/embedder/bob-wei.jpg",
           "contactUrl": "https://www.linkedin.com/in/jiachew/"
         }
@@ -195,7 +197,8 @@
       ],
       "sectionType": "funding",
       "sectionName": "Y Combinator",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": true
     },
     {
       "id": "30082307-c07d-8123-9560-df1eacbaea39",
@@ -214,14 +217,14 @@
         {
           "id": "|Q`H",
           "name": "Ben Smith",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/skope/ben-smith.jpg",
           "contactUrl": "https://www.linkedin.com/in/ben-smith-b15b12293"
         },
         {
           "id": "iJ~}",
           "name": "Connor Park",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/skope/connor-park.jpg",
           "contactUrl": "https://www.linkedin.com/in/connor-park24"
         }
@@ -236,7 +239,8 @@
       ],
       "sectionType": "funding",
       "sectionName": "Y Combinator",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": true
     },
     {
       "id": "30082307-c07d-810c-8576-e2e7b09c76b4",
@@ -255,28 +259,28 @@
         {
           "id": "ag^k",
           "name": "Brandon Fan",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/shade/brandon-fan.jpg",
           "contactUrl": "https://www.linkedin.com/in/brandonfan1256"
         },
         {
           "id": "VWzM",
           "name": "Bright Xu",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/shade/bright-xu.jpg",
           "contactUrl": "https://www.linkedin.com/in/brightxu"
         },
         {
           "id": "oLq}",
           "name": "Edison Chiu",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/shade/edison-chiu.jpg",
           "contactUrl": "https://www.linkedin.com/in/edison-chiu"
         },
         {
           "id": "c``E",
           "name": "Gurish Sharma",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/shade/gurish-sharma.jpg",
           "contactUrl": "https://www.linkedin.com/in/gurish-sharma-"
         }
@@ -327,7 +331,8 @@
       ],
       "sectionType": "funding",
       "sectionName": "General Catalyst",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": true
     },
     {
       "id": "30082307-c07d-812f-82b4-f3a4b7cfe677",
@@ -346,28 +351,28 @@
         {
           "id": "iL=O",
           "name": "Jonah Liss",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/meetyourclass/jonah-liss.jpg",
           "contactUrl": "https://www.linkedin.com/in/jonahliss"
         },
         {
           "id": "bPvW",
           "name": "Blake Mischley",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/meetyourclass/blake-mischley.jpg",
           "contactUrl": "https://www.linkedin.com/in/blake-mischley"
         },
         {
           "id": "ttuz",
           "name": "Jon Millar",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/meetyourclass/jon-millar.jpg",
           "contactUrl": "https://www.linkedin.com/in/kschmott"
         },
         {
           "id": "5ce6cc56-0ea5-4d83-9258-8967084dabbe",
           "name": "Kaleb Schmottlach",
-          "role": "Founder",
+          "role": "Co-Founder",
           "imageSrc": "/founders/meetyourclass/kaleb-schmottlach.jpg",
           "contactUrl": "https://www.linkedin.com/in/jon-millar"
         }
@@ -388,7 +393,8 @@
       ],
       "sectionType": "funding",
       "sectionName": "Techstars",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": true
     },
     {
       "id": "30082307-c07d-8155-90e6-cf2eaf1bb44c",
@@ -414,7 +420,8 @@
       ],
       "sectionType": "funding",
       "sectionName": "UMich Center for Entrepreneurship",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8139-8fbc-e81251fcff00",
@@ -431,7 +438,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-814b-ba42-fefafcc90f4a",
@@ -448,7 +456,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8150-b31a-e668e9967907",
@@ -465,12 +474,13 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8155-a14b-f9c5aee88a48",
       "title": "Claris",
-      "description": "Unified research workflow platform",
+      "description": "Research workflow platform",
       "overview": "Claris is a unified web platform that streamlines research workflows and save time across labs in any discipline.",
       "imageSrc": "/projects/claris.jpg",
       "companyName": "Claris",
@@ -483,7 +493,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8193-a053-dc169bdc8265",
@@ -501,7 +512,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81a6-9ca9-f8e457b116e6",
@@ -520,21 +532,22 @@
         {
           "id": "dd028f7a-ba3d-4194-b686-fe9daa418b08",
           "name": "Riya Dev",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/dezu/riya-dev.jpg",
           "contactUrl": "https://www.linkedin.com/in/riya-dev/"
         },
         {
           "id": "554cfdd9-2775-42fb-8694-e8d4e56ddbef",
           "name": "Luke Zhu",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/dezu/luke-zhu.jpg",
           "contactUrl": "https://www.linkedin.com/in/zhuluke/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81ae-bff0-d8e2899c6d81",
@@ -551,7 +564,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81d2-9636-f4d295b5cfbb",
@@ -570,14 +584,15 @@
         {
           "id": "ccfb8968-2dca-46e8-8431-4f3a54935adb",
           "name": "Ben Antonow",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/oreen/ben-antonow.jpg",
           "contactUrl": "https://www.linkedin.com/in/benantonow/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81e8-8653-cc518d0f340d",
@@ -594,7 +609,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81f3-a7ce-fda3835e5396",
@@ -612,7 +628,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Winter 2025 Product Studio Cohort",
-      "sectionOrder": 20252
+      "sectionOrder": 20252,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8111-82b6-fc35d2b86664",
@@ -630,21 +647,22 @@
         {
           "id": "_xF;",
           "name": "Maya Malik",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/temp8/maya-malik.jpg",
           "contactUrl": "https://www.linkedin.com/in/maya-malik-umich/"
         },
         {
           "id": "`;V>",
           "name": "Jeffery Wu",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/temp8/jeffery-wu.jpg",
           "contactUrl": "https://www.linkedin.com/in/wujeffery/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8114-af8b-d7603a5822bc",
@@ -662,14 +680,15 @@
         {
           "id": "Tr`K",
           "name": "Jaymeson Kondrat",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-812b-b076-f960e2e06af1",
@@ -688,28 +707,29 @@
         {
           "id": "e6c21113-ef01-4f3d-b6b1-ea2ffd755719",
           "name": "Riya Saha",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/nudge/riya-saha.jpg",
           "contactUrl": "https://www.linkedin.com/in/riya-saha-/"
         },
         {
           "id": "95a358bd-ece5-4056-9414-04af8ba6c786",
           "name": "Pari Gulati",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/nudge/pari-gulati.jpg",
           "contactUrl": "https://www.linkedin.com/in/pari-gulati/"
         },
         {
           "id": "c0ba1449-7aef-4cad-b1da-520f878ca1a9",
           "name": "Kritika Singh",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/nudge/kritika-singh.jpg",
           "contactUrl": "https://www.linkedin.com/in/kritika-singhh/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8143-87b3-e5d6fb09356a",
@@ -728,21 +748,22 @@
         {
           "id": "bi<t",
           "name": "Zachary Joelson",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/rushlink/zachary-joelson.jpg",
           "contactUrl": "https://www.linkedin.com/in/zacharyjoelson/"
         },
         {
           "id": "Z_<f",
           "name": "Gavin Schwartz",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/rushlink/gavin-schwartz.jpg",
           "contactUrl": "https://www.linkedin.com/in/gavin-schwartz/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": true
     },
     {
       "id": "30082307-c07d-8166-bb09-ea82825ce0a2",
@@ -761,14 +782,15 @@
         {
           "id": "wz[{",
           "name": "Phoenix Sheppard",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/quicksync/phoenix-sheppard.jpg",
           "contactUrl": "https://www.linkedin.com/in/phoenixsheppard/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8178-b6d5-cfb61b33aac7",
@@ -786,14 +808,15 @@
         {
           "id": "3fb3844b-2796-444b-9acd-12ba46eadd8d",
           "name": "David Mazur",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/codetrace/david-mazur.jpg",
           "contactUrl": "https://www.linkedin.com/in/davidsmazur"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8187-903a-ef2cf0666365",
@@ -811,21 +834,22 @@
         {
           "id": "29884885-9ce6-4a4e-bbee-506c158ff1f8",
           "name": "Owen Lennon",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/find-blue/owen-lennon.jpg",
           "contactUrl": "https://www.linkedin.com/in/ojlennon/"
         },
         {
           "id": "ded502d8-9451-4371-b3a8-e4b9aba7fc70",
           "name": "Rakesh Varma Kottapalli",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-818d-b69e-d809d257ebfb",
@@ -844,14 +868,15 @@
         {
           "id": "13c8d920-101c-4b9a-aec7-21575a0e5899",
           "name": "Leo Gao",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/nexxus-labs/leo-gao.jpg",
           "contactUrl": "https://www.linkedin.com/in/leogao25/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81a5-b449-cab3c928a5c7",
@@ -869,14 +894,15 @@
         {
           "id": "5a409a11-1dc1-40ea-9d68-e26ee2d4594d",
           "name": "Casey Feng",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/museaic/casey-feng.jpg",
           "contactUrl": "https://www.linkedin.com/in/caseyfeng/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81b7-a9fb-cce15a3b43e7",
@@ -894,21 +920,22 @@
         {
           "id": "qfee",
           "name": "Sanjit Vijay",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/batch/sanjit-vijay.jpg",
           "contactUrl": "https://www.linkedin.com/in/sanjit-vijay"
         },
         {
           "id": "74fb0c66-bd8d-4f95-bef2-ae59184979c2",
           "name": "Aryan Shah",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/batch/aryan-shah.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81c6-a501-e76a3b44c9de",
@@ -926,14 +953,15 @@
         {
           "id": "1eb7b20f-1b5e-40fc-b686-9d1b79536383",
           "name": "Arhan Kaul",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/repconnect/arhan-kaul.jpg",
           "contactUrl": "https://www.linkedin.com/in/arhan-kaul/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81ce-af9d-f062203325bc",
@@ -951,14 +979,15 @@
         {
           "id": "b8e59539-c3b6-434d-9e68-0573ecdd8ab2",
           "name": "Jacob Chen",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/cyberwright/jacob-chen.jpg",
           "contactUrl": "https://www.linkedin.com/in/jacobche"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81d7-9a8b-c5b85d882c22",
@@ -976,14 +1005,15 @@
         {
           "id": "6d02ee80-edce-47f3-a445-bcdf08be5e0a",
           "name": "Diego Paredes",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/infralens/diego-paredes.jpg",
           "contactUrl": "https://www.linkedin.com/in/diegokaiparedes/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81ea-827e-d6a0b6b0ca7f",
@@ -1001,14 +1031,15 @@
         {
           "id": "f75fac00-484d-4017-a8c9-07153aca1745",
           "name": "Alexis Gu",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/ghost-kitchen-finder/alexis-gu.jpg",
           "contactUrl": "https://www.linkedin.com/in/alexis-gu-7bb77129a/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81fe-885c-d81b65409399",
@@ -1027,21 +1058,22 @@
         {
           "id": "fc21ea34-a489-4ea5-8f52-07ff68d4708f",
           "name": "Nathan Shatz",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/milieu/nathan-shatz.jpg",
           "contactUrl": "https://www.linkedin.com/in/nathan-shatz/"
         },
         {
           "id": "494f15da-0167-4863-a762-1a37276e6a55",
           "name": "Ronil Chaudhary",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/milieu/ronil-chaudhary.jpg",
           "contactUrl": "https://www.linkedin.com/in/ronuofm/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Winter 2024 Product Studio Cohort",
-      "sectionOrder": 20242
+      "sectionOrder": 20242,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8108-bb72-d986187adec3",
@@ -1060,21 +1092,22 @@
         {
           "id": "3593cbb7-1df2-4385-ab31-ab2845d81b50",
           "name": "Leo Liu",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/manu.ai/leo-liu.jpg",
           "contactUrl": "https://www.linkedin.com/in/leoliu12/"
         },
         {
           "id": "8271489d-b710-4b96-87f6-05c2c026d681",
           "name": "Jonathan Mo",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/manu.ai/jonathan-mo.jpg",
           "contactUrl": "https://www.linkedin.com/in/johnathan-mo/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8113-9b9a-de2e60a1ddb1",
@@ -1093,14 +1126,15 @@
         {
           "id": "3f263269-ae66-419f-9ad1-b28eaed60d9f",
           "name": "Areeb Khan",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": "https://www.linkedin.com/in/areebkhan280/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8135-ac5f-f6e3e2f363e9",
@@ -1118,14 +1152,15 @@
         {
           "id": "=YWS",
           "name": "Priya Gutta",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-813a-a795-ea0d32ecb537",
@@ -1143,21 +1178,22 @@
         {
           "id": "~Df@",
           "name": "Cooper Saye",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/codefy.ai/cooper-saye.jpg",
           "contactUrl": "https://www.linkedin.com/in/coopersaye"
         },
         {
           "id": "L=Fg",
           "name": "Brian Z Travis",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/codefy.ai/brian-z-travis.jpg",
           "contactUrl": "https://www.linkedin.com/in/brian-z-travis"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-813e-a789-de220996fc23",
@@ -1175,14 +1211,15 @@
         {
           "id": "s|PY",
           "name": "Kishan Sripada",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/tour.video/kishan-sripada.jpg",
           "contactUrl": "https://www.linkedin.com/in/kishansripada"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8151-904d-c111a6822582",
@@ -1201,21 +1238,22 @@
         {
           "id": "H|D`",
           "name": "Amy Liu",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/courtline/amy-liu.jpg",
           "contactUrl": "https://www.linkedin.com/in/amyliiu"
         },
         {
           "id": "12273661-ff3a-4fa3-9f5f-24cda9c3e60f",
           "name": "Joshua Lee",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/courtline/joshua-lee.jpg",
           "contactUrl": "https://www.linkedin.com/in/mildjosh"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8156-892b-ce7a211dfac8",
@@ -1234,21 +1272,22 @@
         {
           "id": "XHWc",
           "name": "Joshua Sum",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/0xknowledge/joshua-sum.jpg",
           "contactUrl": "https://www.linkedin.com/in/joshua-sum"
         },
         {
           "id": "xXMM",
           "name": "Ammar Ateya",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/0xknowledge/ammar-ateya.jpg",
           "contactUrl": "https://www.linkedin.com/in/ammarateya"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-815f-80fd-d6118fff51e4",
@@ -1267,14 +1306,15 @@
         {
           "id": "=y;L",
           "name": "Lance Fuchia",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/accoai/lance-fuchia.jpg",
           "contactUrl": "https://www.linkedin.com/in/lancefuchia"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8161-b76a-fe2444e9982e",
@@ -1293,28 +1333,29 @@
         {
           "id": "8b5b42e5-0374-4456-b1a1-61921f054669",
           "name": "Soham Salunke",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/quotr/soham-salunke.jpg",
           "contactUrl": "https://www.linkedin.com/in/sohamsalunke/"
         },
         {
           "id": "743309c0-360b-4811-b080-567b413351d7",
           "name": "Divya Ponda",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/quotr/divya-ponda.jpg",
           "contactUrl": "https://www.linkedin.com/in/divyaponda/"
         },
         {
           "id": "e45b1f7d-05e7-4971-9f0c-6dc8edb7e89c",
           "name": "Roshni Koduri",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/quotr/roshni-koduri.jpg",
           "contactUrl": "https://www.linkedin.com/in/roshni-koduri/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8165-9a1d-dc19e6bb259e",
@@ -1333,28 +1374,29 @@
         {
           "id": "2a26f370-eed5-4d83-8e83-092e79b38592",
           "name": "Toan Bui",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/parley/toan-bui.jpg",
           "contactUrl": "https://www.linkedin.com/in/toanmbui/"
         },
         {
           "id": "65a39fe3-d45e-4702-b9c4-760567bc574f",
           "name": "Sriram MK",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/parley/sriram-mk.jpg",
           "contactUrl": "https://www.linkedin.com/in/mksriram/"
         },
         {
           "id": "8fa31d00-a40f-4974-a2ad-db5ffae2f848",
           "name": "Aditi Locula",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-8166-809c-d1629375cad0",
@@ -1372,14 +1414,15 @@
         {
           "id": "b0b69bc2-fa6f-4ac0-b573-21c2611ef10e",
           "name": "Rafee Mirza",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-816b-8013-ead252e92125",
@@ -1397,14 +1440,15 @@
         {
           "id": "0536c273-f143-4894-8467-eb023685fd9f",
           "name": "Anuhea Tao",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founder_placeholder_pfp.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-818e-b08b-c70a8abac43e",
@@ -1422,7 +1466,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-819b-8853-f0585f80922d",
@@ -1439,7 +1484,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81a6-b0d3-f15844049879",
@@ -1458,21 +1504,22 @@
         {
           "id": "~Df@",
           "name": "Cooper Saye",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/meetingbrew/cooper-saye.jpg",
           "contactUrl": "https://www.linkedin.com/in/coopersaye"
         },
         {
           "id": "L=Fg",
           "name": "Brian Z Travis",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/meetingbrew/brian-z-travis.jpg",
           "contactUrl": "https://www.linkedin.com/in/brian-z-travis"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81d2-a1e1-e0ba6349cc83",
@@ -1491,35 +1538,36 @@
         {
           "id": "dgOP",
           "name": "Meghna Reddy",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/closet-swap/meghna-reddy.jpg",
           "contactUrl": "https://www.linkedin.com/in/reddymeghna/"
         },
         {
           "id": "uQ=r",
           "name": "Shriya Kankatala",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/closet-swap/shriya-kankatala.jpg",
           "contactUrl": null
         },
         {
           "id": "7ad86cdf-4ccb-4d25-ab60-a307fb1974fb",
           "name": "Diya Mahaveer",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/closet-swap/diya-mahaveer.jpg",
           "contactUrl": null
         },
         {
           "id": "bc98d4dc-7c1d-4ca3-b627-2ccf56523f30",
           "name": "Hana Ahmed",
-          "role": "Founder",
+          "role": "Co-Creator",
           "imageSrc": "/founders/closet-swap/hana-ahmed.jpg",
           "contactUrl": null
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81ec-a468-e848c90e16af",
@@ -1537,7 +1585,8 @@
       "founders": [],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     },
     {
       "id": "30082307-c07d-81fb-879c-e6b65bc91bba",
@@ -1556,14 +1605,15 @@
         {
           "id": "c89622a2-4bbf-43c5-8f1c-a57e838bf6e1",
           "name": "Om Joshi",
-          "role": "Founder",
+          "role": "Creator",
           "imageSrc": "/founders/hair-haven/om-joshi.jpg",
           "contactUrl": "https://www.linkedin.com/in/omkj/"
         }
       ],
       "sectionType": "cohort",
       "sectionName": "Fall 2024 Product Studio Cohort",
-      "sectionOrder": 20241
+      "sectionOrder": 20241,
+      "isActive": false
     }
   ],
   "filterOptions": {
