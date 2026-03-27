@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-19T20:36:20.500Z",
+  "timestamp": "2026-03-27T15:56:52.050Z",
   "projects": [
     {
       "id": "30082307-c07d-811a-984b-f34ec0487dc0",
@@ -196,6 +196,40 @@
       "sectionType": "funding",
       "sectionName": "Y Combinator",
       "sectionOrder": 20252
+    },
+    {
+      "id": "33082307-c07d-806b-bafc-ffc91e21df22",
+      "title": "Harbor",
+      "description": "An AI-powered system of record for clinical trial data designed to replace legacy electronic data capture (EDC) systems",
+      "overview": "Harbor is an AI-driven clinical data management platform designed to replace legacy electronic data capture (EDC) systems by automating the most manual aspects of clinical trials. The platform features two core technologies: Magic Build, which uses AI to parse study protocols and generate digital databases in minutes, and Magic Capture, which automatically extracts data from medical records to eliminate manual entry for research sites. By streamlining these bottlenecks, Harbor significantly reduces study setup times and data transcription labor while maintaining full compliance with 21 CFR Part 11, HIPAA, and GDPR standards.",
+      "imageSrc": "/projects/harbor.jpg",
+      "companyName": "Harbor",
+      "companyWebsite": "https://runharbor.com/",
+      "categories": [
+        "HealthTech",
+        "AI/ML",
+        "B2B"
+      ],
+      "founders": [
+        {
+          "id": "3524ab1c-83d4-447d-9b86-894060150039",
+          "name": "Nathan Leung",
+          "role": "Founder",
+          "imageSrc": "/founders/harbor/nathan-leung.jpg",
+          "contactUrl": "https://www.linkedin.com/in/nathanhleung/"
+        }
+      ],
+      "investors": [
+        {
+          "id": "Y;gc",
+          "name": "Y Combinator",
+          "type": "accelerator",
+          "website": null
+        }
+      ],
+      "sectionType": "funding",
+      "sectionName": "Y Combinator",
+      "sectionOrder": 0
     },
     {
       "id": "30082307-c07d-8123-9560-df1eacbaea39",
@@ -470,7 +504,7 @@
     {
       "id": "30082307-c07d-8155-a14b-f9c5aee88a48",
       "title": "Claris",
-      "description": "Unified research workflow platform",
+      "description": "Research workflow platform",
       "overview": "Claris is a unified web platform that streamlines research workflows and save time across labs in any discipline.",
       "imageSrc": "/projects/claris.jpg",
       "companyName": "Claris",
@@ -1610,5 +1644,5 @@
       "Travel"
     ]
   },
-  "totalProjects": 50
+  "totalProjects": 51
 }
