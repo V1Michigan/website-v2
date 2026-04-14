@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { PostHog } from "posthog-node";
-import supabase from "../utils/supabaseClient";
+import supabase from "@/db/supabaseClient";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,

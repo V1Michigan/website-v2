@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import supabase from "@/utils/supabaseClient";
+import supabase from "@/db/supabaseClient";
 
 interface AuthContextType {
   user: User | null;

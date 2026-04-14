@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PersonCard from "./person-card";
 import PersonModal from "./person-modal";
-import supabase from "@/utils/supabaseClient";
+import supabase from "@/db/supabaseClient";
 import type { Person } from "@/types/person";
 import { Input } from "@/components/ui/input";
 import { useSuspenseQuery } from "@tanstack/react-query";

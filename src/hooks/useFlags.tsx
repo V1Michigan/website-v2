@@ -2,7 +2,7 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
-import supabase from "@/utils/supabaseClient";
+import supabase from "@/db/supabaseClient";
 import { FLAG_NAMES, type FlagsState } from "@/constants/flags";
 import { getCachedFlags, setCachedFlags } from "@/utils/flagsCache";
 

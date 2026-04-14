@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import type { Template } from "@/components/valentines/starter-canvases";
 import type { LoveNote } from "@/components/valentines/love-note-card";
-import supabase from "@/utils/supabaseClient";
+import supabase from "@/db/supabaseClient";
 
 export default function LoveNotesPage() {
   const router = useRouter();

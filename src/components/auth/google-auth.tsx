@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import supabase from "@/utils/supabaseClient";
+import supabase from "@/db/supabaseClient";
 import { LogOut } from "lucide-react";
 
 export default function GoogleAuth() {
