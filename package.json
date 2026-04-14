@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "dotenv -e .env.local -- tsx scripts/build-projects-data.ts && next build",
-    "build:projects": "dotenv -e .env.local -- tsx scripts/build-projects-data.ts",
+    "build": "dotenv -e .env.local -- tsx src/scripts/build-projects-data.ts && next build",
+    "build:projects": "dotenv -e .env.local -- tsx src/scripts/build-projects-data.ts",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
