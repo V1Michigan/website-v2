@@ -13,7 +13,7 @@ export default function ProgramCard({ title, description, imageSrc, href }: Prog
   return (
     <Link href={href} className="block">
       <div className="relative overflow-hidden rounded-lg aspect-[8/3] md:aspect-[5/4] cursor-pointer transition-transform duration-300 hover:scale-102">
-        <Image src={imageSrc || "/placeholder.svg"} alt={`${title} event`} fill className="object-cover" />
+        <Image src={imageSrc || "/placeholders/general/placeholder.svg"} alt={`${title} event`} fill className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
         <div

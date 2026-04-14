@@ -1,5 +1,5 @@
 import { memo } from "react"
-import ProjectCard from "./ProjectCard"
+import ProjectCard from "./project-card"
 import type { Project } from "@/types/project"
 
 interface ProjectListProps {

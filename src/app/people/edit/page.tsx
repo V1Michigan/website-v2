@@ -69,7 +69,7 @@ export default function EditPersonPage() {
           id: data.id,
           name: data.name,
           role: data.role,
-          imageSrc: data['image-path'] || "/placeholder.svg",
+          imageSrc: data['image-path'] || "/placeholders/general/placeholder.svg",
           shortBio: data['short-bio'] || "",
           fullBio: data['full-bio'] || "",
           tags: data.tags || [],

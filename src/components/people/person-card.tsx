@@ -17,7 +17,7 @@ export default function PersonCard({ person, onClick }: PersonCardProps) {
     >
       <div className="relative aspect-[5/4] w-full overflow-hidden rounded-md bg-gray-200">
         <Image
-          src={person.imageSrc || "/placeholder.svg"}
+          src={person.imageSrc || "/placeholders/general/placeholder.svg"}
           alt={person.name}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"

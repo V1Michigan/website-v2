@@ -10,72 +10,72 @@ export default function StartupsGrid() {
     {
       name: "Ramp",
       domain: "Fintech",
-      image: "/ramp.png",
+      image: "/brands/company-logos/ramp.png",
     },
     {
       name: "Watershed",
       domain: "ClimateOS",
-      image: "/watershed.png",
+      image: "/brands/company-logos/watershed.png",
     },
     {
       name: "Courier Health",
       domain: "Patient CRM",
-      image: "/courierhealth.png",
+      image: "/brands/company-logos/courierhealth.png",
     },
     {
       name: "Applied Intuition",
       domain: "Motion AI",
-      image: "/app-intuition.png",
+      image: "/brands/company-logos/app-intuition.png",
     },
     {
       name: "Authentic",
       domain: "Insurance",
-      image: "/authenticinsurance.png",
+      image: "/brands/company-logos/authenticinsurance.png",
     },
     {
       name: "Pylon",
       domain: "B2B Support",
-      image: "/pylon.png",
+      image: "/brands/company-logos/pylon.png",
     },
     {
       name: "Windsurf",
       domain: "AI Agents",
-      image: "/codeium.png",
+      image: "/brands/company-logos/codeium.png",
     },
     {
       name: "Lumos",
       domain: "Autonomy",
-      image: "/lumos.png",
+      image: "/brands/company-logos/lumos.png",
     },
     {
       name: "Pallet",
       domain: "Logistics",
-      image: "/pallet.png",
+      image: "/brands/company-logos/pallet.png",
     },
     {
       name: "Thatch",
       domain: "Healthcare",
-      image: "/thatch.png",
+      image: "/brands/company-logos/thatch.png",
     },
     {
       name: "Comulate",
       domain: "Insurance",
-      image: "/comulate.png",
+      image: "/brands/company-logos/comulate.png",
     },
     {
       name: "Wave RF",
       domain: "Communication",
-      image: "/waverf.png",
+      image: "/brands/company-logos/waverf.png",
     },
     {
       name: "MeetYourClass",
       domain: "Social",
-      image: "/meetyourclass.png",
+      image: "/brands/company-logos/meetyourclass.png",
     },
     {
       name: "random",
       domain: "random",
-      image: "/random.png",
+      image: "/ui/miscellaneous/random.png",
     },
   ];
 
@@ -83,22 +83,22 @@ export default function StartupsGrid() {
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholders/general/placeholder.svg",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholders/general/placeholder.svg",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholders/general/placeholder.svg",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholders/general/placeholder.svg",
     },
   ];
 

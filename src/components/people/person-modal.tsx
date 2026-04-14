@@ -26,7 +26,7 @@ export default function PersonModal({ person, open, onOpenChange }: PersonModalP
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-[160px_1fr]">
             <div className="relative h-40 w-40 overflow-hidden rounded-md sm:h-44 sm:w-40">
               <Image
-                src={person.imageSrc || "/placeholder.svg"}
+                src={person.imageSrc || "/placeholders/general/placeholder.svg"}
                 alt={person.name}
                 fill
                 className="object-cover"

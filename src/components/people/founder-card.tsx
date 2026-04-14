@@ -12,7 +12,7 @@ export default function FounderCard({ name, role, imageSrc, contactUrl }: Founde
   return (
     <div className="flex flex-col">
       <div className="relative aspect-[1/1] w-full overflow-hidden rounded-md bg-gray-300">
-        <Image src={imageSrc || "/founder_placeholder_pfp.jpg"} alt={name} fill className="object-cover" />
+        <Image src={imageSrc || "/placeholders/users/founder_placeholder_pfp.jpg"} alt={name} fill className="object-cover" />
       </div>
       <div className="mt-2">
         <h3 className="text-sm font-medium">{name}</h3>

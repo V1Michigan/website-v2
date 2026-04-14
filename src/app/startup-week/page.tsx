@@ -15,19 +15,19 @@ export default function StartupWeekRootPage() {
       title: "Tech Talks",
       description:
         "Attend tech talks on engineering at a startup, founding a company, career advice, and more.",
-      image: "/tech-talks.png",
+      image: "/events/tech-talks/tech-talks.png",
     },
     {
       title: "1:1 Chats",
       description:
-        "Get the opportunity to be matched with startups for 1:1 chats with founders and recruiters.",
-      image: "/recruiters.png",
+        "Get opportunity to be matched with startups for 1:1 chats with founders and recruiters.",
+      image: "/events/recruiters/recruiters.png",
     },
     {
       title: "Interactive Activities",
       description:
         "Participate in hands-on workshops, coding challenges, and collaborative problem-solving sessions.",
-      image: "/acts.png",
+      image: "/ui/icons/acts.png",
     },
   ];
 

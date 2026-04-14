@@ -28,7 +28,7 @@ export default function TeamMember({
       <Link href={linkedinUrl} target="_blank" rel="noopener noreferrer">
         <div className="relative w-12 h-12 md:w-16 md:h-16 transition-transform duration-200 hover:scale-110">
           <Image
-            src={image || "/placeholder.svg"}
+            src={image || "/placeholders/general/placeholder.svg"}
             alt={name}
             fill
             className="rounded-full object-cover border-2 border-white shadow-sm cursor-pointer"

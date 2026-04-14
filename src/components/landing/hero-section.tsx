@@ -27,14 +27,14 @@ export default function HeroSection() {
       <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
         <div className="relative aspect-[16/9] w-full">
           <motion.video
-            src="/landing-video-v1.mp4"
+            src="/hero/videos/landing-video-v1.mp4"
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
             className="rounded-lg object-cover w-full h-full"
-            poster="/landing-video-img.png"
+            poster="/hero/posters/landing-video-img.png"
             initial={{ scale: 1.04, opacity: 0.9 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -83,7 +83,7 @@ export default function HeroSection() {
               >
                 <motion.div whileHover={{ scale: 1.06 }}>
                   <Image
-                    src="/x.png"
+                    src="/brands/social/x.png"
                     alt="X"
                     width={24}
                     height={24}
@@ -98,7 +98,7 @@ export default function HeroSection() {
               >
                 <motion.div whileHover={{ scale: 1.06 }}>
                   <Image
-                    src="/insta.png"
+                    src="/brands/social/insta.png"
                     alt="Instagram"
                     width={24}
                     height={24}
@@ -113,7 +113,7 @@ export default function HeroSection() {
               >
                 <motion.div whileHover={{ scale: 1.06 }}>
                   <Image
-                    src="/more.png"
+                    src="/ui/footer/more.png"
                     alt="More"
                     width={24}
                     height={24}

@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react"
 import React from "react"
-import ProjectCard from "./project-card"
+import ProjectCard from "./simple/project-card"
 import type { Project } from "@/types/project"
 
 interface ProjectSectionProps {

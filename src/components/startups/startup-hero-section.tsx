@@ -97,7 +97,7 @@ export default function HeroSection() {
           className="absolute inset-0 overflow-hidden"
         >
           <Image
-            src="/excluded.png"
+            src="/events/startup-week/excluded.png"
             alt="People networking at startup event"
             fill
             className="object-cover grayscale transform-gpu origin-center scale-150 translate-x-[25%] -translate-y-[1%] md:translate-x-[25%] md:-translate-y-[-6%]"

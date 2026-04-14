@@ -32,7 +32,7 @@ export default function Header() {
       <div className="flex-shrink-0">
         <Link href="/" className="font-medium">
           <Image
-            src="/v1-logo.png"
+            src="/brands/v1/v1-logo.png"
             alt="V1 Logo"
             width={32}
             height={32}

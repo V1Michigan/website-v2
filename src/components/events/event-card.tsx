@@ -16,7 +16,7 @@ export default function EventCard({
       <div className="flex-shrink-0 w-full">
         <div className="relative aspect-[16/9] md:aspect-[4/3] w-full">
           <Image
-            src={image || "/placeholder.svg"}
+            src={image || "/placeholders/general/placeholder.svg"}
             alt={title}
             fill
             className="rounded-md object-cover"

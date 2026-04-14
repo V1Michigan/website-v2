@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react"
-import FilterPanel from "./FilterPanel"
-import ProjectList from "./ProjectList"
+import FilterPanel from "./filter-panel"
+import ProjectList from "./project-directory-list"
 import { Button } from "@/components/ui/button"
 import { Filter } from "lucide-react"
 import type { Project } from "@/types/project"

@@ -6,28 +6,28 @@ export default function WhatWeDoSection() {
       <ProgramCard
         title="Product Studio"
         description="Build something you're passionate about in 8 weeks."
-        imageSrc="/product-studio.jpg"
+        imageSrc="/events/product-studio/product-studio.jpg"
         href="https://v1michigan.com/apply?utm_source=website"
       />
 
       <ProgramCard
         title="Startup Week"
         description="Where the best startups hire the best talent."
-        imageSrc="/startup-week.png"
+        imageSrc="/events/startup-week/startup-week.png"
         href="http://startupweek.v1michigan.com/"
       />
 
       {/* <ProgramCard */}
       {/*   title="Project North Star" */}
       {/*   description="Connect with partners, talk to customers, and raise capital." */}
-      {/*   imageSrc="/build-blue-img.JPG" */}
+      {/*   imageSrc="/events/build-blue/build-blue-img.JPG" */}
       {/*   href="https://v1michigan.com/north-star" */}
       {/* /> */}
 
       <ProgramCard
         title="Ship-It"
         description="A workspace for engineers, tinkerers, and artists."
-        imageSrc="/ship-its-img.JPG"
+        imageSrc="/events/ship-it/ship-its-img.JPG"
         href="https://v1michigan.com/ship-it"
       />
     </div>

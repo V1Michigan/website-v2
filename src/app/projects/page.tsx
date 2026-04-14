@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation"
 import Header from "@/components/shared/header"
 import Footer from "@/components/shared/footer"
 import ProjectModal from "@/components/projects/project-modal"
-import ProjectDirectoryLayout from "./components/ProjectDirectoryLayout"
+import ProjectDirectoryLayout from "@/components/projects/detailed/project-directory-layout"
 import type { Project } from "@/types/project"
 import { useProjects } from "@/hooks/useProjects"
 

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     "V1 is the premier student-run entrepreneurship organization at Michigan dedicated to empowering builders and innovators of tomorrow.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/ui/miscellaneous/favicon.png",
   },
 };
 

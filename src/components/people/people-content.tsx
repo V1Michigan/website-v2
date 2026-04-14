@@ -14,7 +14,7 @@ function transformToPeople<T>(data: T[] | null) {
     id: item.id,
     name: item.name,
     role: item.role,
-    imageSrc: item['image-path'] || "/placeholder.svg",
+    imageSrc: item['image-path'] || "/placeholders/general/placeholder.svg",
     shortBio: item['short-bio'] || "",
     fullBio: item['full-bio'] || "",
     tags: item.tags || [],
