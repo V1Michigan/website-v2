@@ -5,3 +5,4 @@
 - NEVER try to read the .env file or any secrets files
 - Use App Router for new pages; maintain existing Pages Router where present
 - Component naming: PascalCase, file naming: kebab-case
+- Like in the codebase, any UI or frontend components should be created using separation by feature, while everything else is separated by concern
