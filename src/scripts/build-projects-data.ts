@@ -5,7 +5,7 @@ import {
   extractFilterOptions,
   extractLogoUrl,
   sanitizeProjectName,
-} from "@/lib/notion"
+} from "@/libs/notion"
 import { writeFileSync, mkdirSync, existsSync, createWriteStream, unlinkSync } from "fs"
 import { dirname, join } from "path"
 import { fileURLToPath } from "url"

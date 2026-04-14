@@ -1,7 +1,7 @@
 import type React from "react";
 import "./globals.css";
 import { Inter, Playfair_Display, Instrument_Serif } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { CSPostHogProvider } from "@/components/shared/posthog-provider";
 import { AuthProvider } from "@/components/auth/auth-provider";
 import { FlagsProvider } from "@/components/shared/flags-provider";

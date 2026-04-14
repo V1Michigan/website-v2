@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server"
 import type { Project } from "@/types/project"
-import { filterProjects } from "@/lib/notion"
+import { filterProjects } from "@/libs/notion"
 
 export async function GET(_request: NextRequest) {
   try {

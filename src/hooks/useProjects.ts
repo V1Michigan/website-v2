@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import type { Project } from "@/types/project";
-import { filterProjects } from "@/lib/notion";
+import { filterProjects } from "@/libs/notion";
 
 interface ProjectsResponse {
   projects: Project[];
