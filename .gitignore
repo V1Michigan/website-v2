@@ -29,3 +29,8 @@ next-env.d.ts
 # mac
 **/.DS_Store
 .DS_Store
+
+# build script outputs
+public/projects-data.json
+public/projects/
+public/founders/
