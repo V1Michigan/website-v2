@@ -83,6 +83,12 @@ export default function Header() {
         >
           Store
         </Link>
+        <Link
+          href="/projects"
+          className="text-sm text-gray-700 hover:text-black"
+        >
+          Projects
+        </Link>
         {/* <Link
           href="/people"
           className="text-sm text-gray-700 hover:text-black"
@@ -235,6 +241,13 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Store
+            </Link>
+            <Link
+              href="/projects"
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}
+            >
+              Projects
             </Link>
             {/* <Link
               href="/people"
