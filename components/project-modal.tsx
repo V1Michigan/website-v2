@@ -78,8 +78,8 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           )}
 
           <div className="mt-4 flex flex-wrap gap-2">
-            {project.categories.map((category, index) => (
-              <span key={index} className="rounded-full bg-[#E9B872] px-3 py-1 text-xs font-medium text-gray-800">
+            {project.categories.map((category) => (
+              <span key={category} className="rounded-full bg-[#E9B872] px-3 py-1 text-xs font-medium text-gray-800">
                 {category}
               </span>
             ))}

@@ -76,6 +76,7 @@ function TeamMember({
             src={image || "/placeholder.svg"}
             alt={name}
             fill
+            sizes="(max-width: 640px) 50px, (max-width: 1024px) 64px, 64px"
             className="rounded-full object-cover border-2 border-white shadow-sm cursor-pointer"
           />
         </div>
@@ -102,7 +103,7 @@ export default function V1TeamRoster() {
       <div className="flex justify-center -space-x-3 mb-8">
         {startupWeekTeam.map((member, index) => (
           <TeamMember
-            key={index}
+            key={member.name}
             image={member.image}
             name={member.name}
             linkedinUrl={member.linkedinUrl}

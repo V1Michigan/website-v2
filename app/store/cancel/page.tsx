@@ -4,6 +4,11 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 
+export const metadata = {
+  title: "Checkout Cancelled - V1 Store",
+  description: "Your checkout was cancelled. You can return to the store to complete your purchase.",
+};
+
 export default function CancelPage() {
   return (
     <div className="min-h-screen bg-[#FAF7F2] flex flex-col">

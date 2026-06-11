@@ -3,6 +3,7 @@
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
 import { useEffect } from 'react';
+import type React from 'react';
 
 export function CSPostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {

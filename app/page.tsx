@@ -5,6 +5,11 @@ import WhatWeDoSection from "@/components/what-we-do-section";
 import ProgramSection from "@/components/program-section";
 import Footer from "@/components/footer";
 
+export const metadata = {
+  title: "V1 at Michigan - Building the Future of Innovation",
+  description: "V1 is a student-run venture fund and accelerator building the next generation of Michigan entrepreneurs. Join our community of builders.",
+};
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#FEF9F5] snap-y snap-mandatory">

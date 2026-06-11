@@ -31,6 +31,7 @@ export default function TeamMember({
             src={image || "/placeholder.svg"}
             alt={name}
             fill
+            sizes="(max-width: 640px) 48px, (max-width: 1024px) 64px, 64px"
             className="rounded-full object-cover border-2 border-white shadow-sm cursor-pointer"
           />
         </div>
