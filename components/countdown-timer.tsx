@@ -20,8 +20,8 @@ interface CountdownTimerProps {
 
 // Function to get September 29th, 2025
 function getStartupWeekDate(): Date {
-  // September 29th, 2025 at 9:00 AM
-  return new Date(2025, 8, 29, 9, 0, 0); // Month is 0-indexed, so 8 = September
+  // October 5th, 2026 at 9:00 AM
+  return new Date(2026, 9, 5, 9, 0, 0); // Month is 0-indexed, so 9 = October
 }
 
 export default function CountdownTimer({
