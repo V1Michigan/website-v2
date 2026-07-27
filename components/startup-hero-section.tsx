@@ -22,6 +22,27 @@ export default function HeroSection() {
             >
               Startup Week
             </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+              className="flex items-center justify-center mb-4"
+            >
+              <span className="font-inter font-light italic text-[0.85rem] sm:text-sm md:text-base text-[#444444] mr-2">
+                in collaboration with
+              </span>
+              <Image
+              src="/yc.png"
+              alt="YC Logo"
+              width={32}
+              height={32}
+              className="inline-block align-middle"
+              priority
+              />
+            </motion.div>
+
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -31,6 +52,8 @@ export default function HeroSection() {
             >
               Where the best startups hire the best builders.
             </motion.p>
+
+
 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -52,7 +75,7 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
-              className="flex justify-center mb-3"
+              className="flex flex-col items-center mb-3 space-y-2"
             >
               <a
                 href="https://tally.so/r/mJ4r1R"
@@ -64,6 +87,16 @@ export default function HeroSection() {
                   Apply Now!
                 </button>
               </a>
+
+              <a
+                href="#startup-directory"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 text-[#191919] font-small border border-white/30 shadow-xs hover:bg-yellow-400 hover:text-white transition-colors duration-300"
+              >
+                Learn more about participating startups!
+              </a>
+
             </motion.div>
 
             <motion.div

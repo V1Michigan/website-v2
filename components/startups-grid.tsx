@@ -10,72 +10,72 @@ export default function StartupsGrid() {
     {
       name: "Ramp",
       domain: "Fintech",
-      image: "/ramp.png",
+      image: "/ramp.png?height=32&width=32&text=R",
     },
     {
       name: "Watershed",
       domain: "ClimateOS",
-      image: "/watershed.png",
+      image: "/watershed.png?height=32&width=32&text=W",
     },
     {
       name: "Courier Health",
       domain: "Patient CRM",
-      image: "/courierhealth.png",
+      image: "/courierhealth.png?height=32&width=32&text=CH",
     },
     {
       name: "Applied Intuition",
       domain: "Motion AI",
-      image: "/app-intuition.png",
+      image: "/app-intuition.png?height=32&width=32&text=AI",
     },
     {
       name: "Authentic",
       domain: "Insurance",
-      image: "/authenticinsurance.png",
+      image: "/authenticinsurance.png?height=32&width=32&text=A",
     },
     {
       name: "Pylon",
-      domain: "B2B Support",
-      image: "/pylon.png",
+      domain: "Customer Support",
+      image: "/pylon.png?height=32&width=32&text=P",
     },
     {
       name: "Windsurf",
       domain: "AI Agents",
-      image: "/codeium.png",
+      image: "/codeium.png?height=32&width=32&text=C",
     },
     {
       name: "Lumos",
       domain: "Autonomy",
-      image: "/lumos.png",
+      image: "/lumos.png?height=32&width=32&text=L",
     },
     {
       name: "Pallet",
       domain: "Logistics",
-      image: "/pallet.png",
+      image: "/pallet.png?height=32&width=32&text=P",
     },
     {
       name: "Thatch",
       domain: "Healthcare",
-      image: "/thatch.png",
+      image: "/thatch.png?height=32&width=32&text=T",
     },
     {
       name: "Comulate",
       domain: "Insurance",
-      image: "/comulate.png",
+      image: "/comulate.png?height=32&width=32&text=C",
     },
     {
       name: "Wave RF",
       domain: "Communication",
-      image: "/waverf.png",
+      image: "/waverf.png?height=32&width=32&text=W",
     },
     {
       name: "MeetYourClass",
       domain: "Social",
-      image: "/meetyourclass.png",
+      image: "/meetyourclass.png?height=32&width=32&text=M",
     },
     {
       name: "random",
       domain: "random",
-      image: "/random.png",
+      image: "/random.png?height=32&width=32&text=M",
     },
   ];
 
@@ -83,30 +83,114 @@ export default function StartupsGrid() {
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholder.svg?height=32&width=32&text=?",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholder.svg?height=32&width=32&text=?",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholder.svg?height=32&width=32&text=?",
     },
     {
       name: "Company",
       domain: "Description",
-      image: "/placeholder.svg",
+      image: "/placeholder.svg?height=32&width=32&text=?",
     },
   ];
 
-  const fall2025PlaceholderCompanies = Array.from({ length: 20 }, () => ({
+  const fall2025PlaceholderCompanies = [
+    {
+      name: "Kodiak Robotics",
+      domain: "Robotics",
+      image: "/kodiak.jpeg?height=32&width=32",
+    },
+    {
+      name: "Harmonic.ai",
+      domain: "Information",
+      image: "/harmonic_logo.svg?height=32&width=32",
+    },
+    {
+      name: "Tandem",
+      domain: "Healthcare",
+      image: "/tandem.png?height=32&width=32",
+    },
+    {
+      name: "Pylon",
+      domain: "Customer Support",
+      image: "/pylon.jpeg?height=32&width=32",
+    },
+    {
+      name: "Tavus",
+      domain: "AI Research",
+      image: "/tavus.png?height=32&width=32",
+    },
+    {
+      name: "Usul",
+      domain: "Defense",
+      image: "/Usul.png?height=32&width=32",
+    },
+    {
+      name: "Embedder (YC S25)",
+      domain: "Developer Tools",
+      image: "/embedder.png?height=32&width=32",
+    },
+    {
+      name: "Probook",
+      domain: "Contracting",
+      image: "/probook.png?height=32&width=32",
+    },
+    {
+      name: "Rox",
+      domain: "Productivity",
+      image: "/rox.jpg?height=32&width=32",
+    },
+    {
+      name: "Dirac",
+      domain: "Assembly",
+      image: "/dirac.png?height=32&width=32",
+    },
+    {
+      name: "OpenYield",
+      domain: "Financial Services",
+      image: "/openyield.jpeg?height=32&width=32",
+    },
+    {
+      name: "Footprint",
+      domain: "Identity",
+      image: "/fp_logo.png?height=32&width=32",
+    },
+    {
+      name: "Thrive",
+      domain: "Artifical Intelligence",
+      image: "/thrive.jpg?height=32&width=32",
+    },
+    {
+      name: "Wave RF",
+      domain: "Communication",
+      image: "/wave-rf.png?height=32&width=32",
+    },
+    {
+      name: "OnDesk",
+      domain: "Content",
+      image: "/ondesk_logo.jpeg?height=32&width=32",
+    },
+    {
+      name: "Pursuit",
+      domain: "Government Contracts",
+      image: "/pursuit.jpeg?height=32&width=32",
+    },
+
+  ]
+
+  Array.from({ length: 20 }, () => ({
     name: "Company",
     domain: "Description",
     image: "",
-    isComingSoon: true,
+    isComingSoon: false,
   }));
 
   const extendedCompanies = [
@@ -139,7 +223,7 @@ export default function StartupsGrid() {
   };
 
   // 0 = Fall 2024, 1 = Fall 2025
-  const [pageIndex, setPageIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(1);
   const [direction, setDirection] = useState(0);
 
   function paginate(newIndex: number) {
@@ -154,7 +238,7 @@ export default function StartupsGrid() {
   ];
 
   return (
-    <div className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
+    <div id="startup-directory" className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
       <svg
         className="absolute -top-[15%] left-0"
         width="180"
@@ -245,20 +329,22 @@ export default function StartupsGrid() {
           <div className="flex items-center justify-center space-x-12 mb-4">
             <div className="text-center">
               <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                12
+          {pageIndex === 1 ? "30+" : "12"}
               </div>
               <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
-                Top startups
+                  Top startups
               </div>
             </div>
-            <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                250+
+            {pageIndex !== 1 && (
+              <div className="text-center">
+                <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
+                  250+
+                </div>
+                <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
+                  Top students
+                </div>
               </div>
-              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
-                Top students
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
@@ -277,44 +363,32 @@ export default function StartupsGrid() {
       {/* Company Grid with animation */}
       <div className="flex justify-center relative z-10">
         <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
-          <div className="max-h-[75vh] overflow-hidden">
+          <div >
             <div className="relative">
-              <motion.div
-                key={pageIndex}
-                custom={direction}
-                variants={containerVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.4 }}
-                className="grid grid-cols-4 gap-4 mb-6"
-              >
-                {years[pageIndex].companies
-                  .slice(0, 3 * 4)
-                  .map((company, index) => (
-                    <motion.div key={index} variants={itemVariants}>
-                      <StartupCard
-                        image={company.image}
-                        name={company.name}
-                        domain={company.domain}
-                      />
-                    </motion.div>
-                  ))}
-              </motion.div>
-
-              {/* Coming Soon Overlay for Fall 2025 */}
-              {pageIndex === 1 && (
-                <div className="absolute inset-x-0 top-0 flex justify-center pt-8 pointer-events-none z-10">
-                  <div className="bg-black/70 backdrop-blur-md rounded-2xl px-6 py-4 text-center border border-white/10">
-                    <div className="text-xl sm:text-2xl font-instrument text-[#FEF9F5] mb-1">
-                      Coming Soon
-                    </div>
-                    <div className="text-xs sm:text-sm font-inter text-[#CEC9C5]">
-                      Amazing startups will be announced soon
-                    </div>
-                  </div>
-                </div>
-              )}
+              <div className="relative">
+                <motion.div
+                  key={`companies-${pageIndex}`}
+                  custom={direction}
+                  variants={containerVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.4 }}
+                  className="grid grid-cols-4 gap-4 mb-6"
+                >
+                  {years[pageIndex].companies
+                    .slice(0, pageIndex === 1 ? 16 : 12)
+                    .map((company) => (
+                      <motion.div key={`${pageIndex}-${company.name}`} variants={itemVariants}>
+                        <StartupCard
+                          image={company.image}
+                          name={company.name}
+                          domain={company.domain}
+                        />
+                      </motion.div>
+                    ))}
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
