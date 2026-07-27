@@ -60,12 +60,12 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 
   return (
     <div
-      className="group cursor-pointer rounded-lg border border-gray-300 bg-white p-6 transition-all hover:shadow-md hover:border-gray-400"
+      className="group cursor-pointer rounded-lg border border-gray-300 bg-white p-4 transition-all hover:border-gray-400 hover:shadow-md"
       onClick={onClick}
     >
       <div className="flex items-start gap-4">
         {/* Company Logo/Image */}
-        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+        <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
           <Image
             src={project.imageSrc}
             alt={project.companyName}
@@ -76,13 +76,10 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 
         {/* Project Info */}
         <div className="min-w-0 flex-1">
-          <h3 className="font-instrument text-lg font-semibold text-gray-900 group-hover:text-gray-700">
+          <h3 className="text-base font-semibold leading-tight text-gray-900 group-hover:text-gray-700">
             {project.companyName}
           </h3>
-          <p className="mt-1 text-sm font-medium text-gray-700">
-            {project.title}
-          </p>
-          <p className="mt-2 line-clamp-2 text-sm text-gray-600">
+          <p className="mt-0 line-clamp-2 text-sm text-gray-600">
             {project.description}
           </p>
 
