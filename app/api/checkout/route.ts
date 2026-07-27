@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { CartItem } from "@/types/merch";
+import { checkoutSchema } from "@/lib/validations";
+import { checkoutRateLimiter, getClientIdentifier } from "@/lib/rate-limit";
+import { ZodError } from "zod";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-12-15.clover",
@@ -8,11 +10,29 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(request: NextRequest) {
   try {
-    const { items } = (await request.json()) as { items: CartItem[] };
-
-    if (!items || items.length === 0) {
-      return NextResponse.json({ error: "No items in cart" }, { status: 400 });
+    const identifier = getClientIdentifier(request);
+    const rateLimit = checkoutRateLimiter.check(identifier);
+    
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { 
+          error: "Rate limit exceeded. Please try again later.",
+          retryAfter: Math.ceil((rateLimit.resetTime - Date.now()) / 1000)
+        },
+        { 
+          status: 429,
+          headers: {
+            "X-RateLimit-Limit": "10",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+          }
+        }
+      );
     }
+
+    const body = await request.json();
+    const validatedData = checkoutSchema.parse(body);
+    const { items } = validatedData;
 
     const origin = request.headers.get("origin") || "http://localhost:3000";
 
@@ -68,6 +88,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        { error: "Invalid cart data", details: error.errors },
+        { status: 400 }
+      );
+    }
     console.error("Stripe checkout error:", error);
     return NextResponse.json(
       { error: "Failed to create checkout session" },

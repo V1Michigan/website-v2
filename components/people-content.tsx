@@ -34,7 +34,10 @@ async function getPeople(searchQuery?: string) {
     .select('id, name, short-bio, full-bio, tags, linkedin, twitter, instagram, website, role, image-path');
 
   if (searchQuery?.trim()) {
-    query = query.ilike('name', `%${searchQuery.trim()}%`);
+    const sanitized = searchQuery.trim().slice(0, 100);
+    if (sanitized.length > 0) {
+      query = query.ilike('name', `%${sanitized}%`);
+    }
   }
 
   const { data, error } = await query;
