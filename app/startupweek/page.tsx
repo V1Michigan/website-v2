@@ -8,46 +8,9 @@ import EventSections from "@/components/events-sections";
 import FAQSection from "@/components/faq-section";
 import TeamSection from "@/components/team-section";
 import { PostHogPageView } from "@/components/posthog-provider";
+import { startupWeekEvents, startupWeekTeam } from "@/data/startup-week";
 
 export default function StartupWeekPage() {
-  const events = [
-    {
-      title: "Tech Talks",
-      description: "Attend tech talks on engineering at a startup, founding a company, career advice, and more.",
-      image: "/tech-talks.png",
-    },
-    {
-      title: "1:1 Chats",
-      description: "Get the opportunity to be matched with startups for 1:1 chats with founders and recruiters.",
-      image: "/recruiters.png",
-    },
-    {
-      title: "Interactive Activities",
-      description: "Participate in hands-on workshops, coding challenges, and collaborative problem-solving sessions.",
-      image: "/acts.png",
-    },
-  ];
-
-  const teamMembers = [
-    { image: "/headshots/anant.jpeg", name: "Anant Garg", linkedinUrl: "https://www.linkedin.com/in/anant-g/" },
-    { image: "/headshots/maya.jpg", name: "Maya Malik", linkedinUrl: "https://www.linkedin.com/in/maya-malik-umich/" },
-    { image: "/headshots/arhan.jpg", name: "Arhan Kaul", linkedinUrl: "https://www.linkedin.com/in/arhan-kaul-162884210/" },
-    { image: "/headshots/vador.jpg", name: "Mihir Vador", linkedinUrl: "https://www.linkedin.com/in/mihirvador/" },
-    { image: "/headshots/lance.jpg", name: "Lance Fuchia", linkedinUrl: "https://www.linkedin.com/in/lancefuchia/" },
-    { image: "/headshots/leo.jpg", name: "Leo Liu", linkedinUrl: "https://www.linkedin.com/in/leoliu12/" },
-    { image: "/headshots/toan.jpeg", name: "Toan Bui", linkedinUrl: "https://www.linkedin.com/in/toanmbui" },
-    { image: "/headshots/diego.png", name: "Diego Paredes", linkedinUrl: "https://www.linkedin.com/in/diegokaipareades/" },
-    { image: "/headshots/phoenix.jpg", name: "Phoenix Sheppard", linkedinUrl: "https://www.linkedin.com/in/phoenixsheppard/" },
-    { image: "/headshots/sri.jpeg", name: "Sri MK", linkedinUrl: "https://www.linkedin.com/in/mksriram/" },
-    { image: "/headshots/alison.jpg", name: "Alison Roeda", linkedinUrl: "https://www.linkedin.com/in/alison-roeda/" },
-    { image: "/headshots/amy.jpg", name: "Amy Liu", linkedinUrl: "https://www.linkedin.com/in/amyliiu/" },
-    { image: "/headshots/alexis.jpeg", name: "Alexis Gu", linkedinUrl: "https://www.linkedin.com/in/alexis-gu-7bb77129a/" },
-    { image: "/headshots/joshua.jpg", name: "Joshua Lee", linkedinUrl: "https://www.linkedin.com/in/mildjosh" },
-    { image: "/headshots/casey.jpg", name: "Casey Feng", linkedinUrl: "https://www.linkedin.com/in/caseyfeng" },
-    { image: "/headshots/mihir.jpg", name: "Mihir Arya", linkedinUrl: "https://www.linkedin.com/in/mihir-s-arya/" },
-    { image: "/headshots/daniel.jpeg", name: "Daniel Liu", linkedinUrl: "https://www.linkedin.com/in/daniel-lliu/" },
-  ];
-
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
       <PostHogPageView />
@@ -57,7 +20,7 @@ export default function StartupWeekPage() {
 
       <div className="relative mx-auto bg-[#FAF7F2]">
         <div className="pointer-events-none absolute -top-[80px] left-0 right-0 z-40 h-[120px] bg-gradient-to-b from-transparent via-[#FAF7F2]/60 to-[#FAF7F2]" />
-        <EventSections events={events} />
+        <EventSections events={startupWeekEvents} />
       </div>
 
       <section className="mt-10 w-full bg-[#FAF7F2]">
@@ -66,7 +29,7 @@ export default function StartupWeekPage() {
 
       <section className="w-full bg-[#FAF7F2]">
         <div className="w-full px-6">
-          <TeamSection teamMembers={teamMembers} />
+          <TeamSection teamMembers={startupWeekTeam} />
         </div>
       </section>
 

@@ -1,228 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import StartupCard from "./startup-card";
+import StartupCompanyGrid from "./startup-company-grid";
+import { startupWeekYears } from "@/data/startup-week";
 
 export default function StartupsGrid() {
-  const companies = [
-    {
-      name: "Ramp",
-      domain: "Fintech",
-      image: "/ramp.png?height=32&width=32&text=R",
-    },
-    {
-      name: "Watershed",
-      domain: "ClimateOS",
-      image: "/watershed.png?height=32&width=32&text=W",
-    },
-    {
-      name: "Courier Health",
-      domain: "Patient CRM",
-      image: "/courierhealth.png?height=32&width=32&text=CH",
-    },
-    {
-      name: "Applied Intuition",
-      domain: "Motion AI",
-      image: "/app-intuition.png?height=32&width=32&text=AI",
-    },
-    {
-      name: "Authentic",
-      domain: "Insurance",
-      image: "/authenticinsurance.png?height=32&width=32&text=A",
-    },
-    {
-      name: "Pylon",
-      domain: "Customer Support",
-      image: "/pylon.png?height=32&width=32&text=P",
-    },
-    {
-      name: "Windsurf",
-      domain: "AI Agents",
-      image: "/codeium.png?height=32&width=32&text=C",
-    },
-    {
-      name: "Lumos",
-      domain: "Autonomy",
-      image: "/lumos.png?height=32&width=32&text=L",
-    },
-    {
-      name: "Pallet",
-      domain: "Logistics",
-      image: "/pallet.png?height=32&width=32&text=P",
-    },
-    {
-      name: "Thatch",
-      domain: "Healthcare",
-      image: "/thatch.png?height=32&width=32&text=T",
-    },
-    {
-      name: "Comulate",
-      domain: "Insurance",
-      image: "/comulate.png?height=32&width=32&text=C",
-    },
-    {
-      name: "Wave RF",
-      domain: "Communication",
-      image: "/waverf.png?height=32&width=32&text=W",
-    },
-    {
-      name: "MeetYourClass",
-      domain: "Social",
-      image: "/meetyourclass.png?height=32&width=32&text=M",
-    },
-    {
-      name: "random",
-      domain: "random",
-      image: "/random.png?height=32&width=32&text=M",
-    },
-  ];
-
-  const placeholderCompanies = [
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
-    },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
-    },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
-    },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg?height=32&width=32&text=?",
-    },
-  ];
-
-  const fall2025PlaceholderCompanies = [
-    {
-      name: "Kodiak Robotics",
-      domain: "Robotics",
-      image: "/kodiak.jpeg?height=32&width=32",
-    },
-    {
-      name: "Harmonic.ai",
-      domain: "Information",
-      image: "/harmonic_logo.svg?height=32&width=32",
-    },
-    {
-      name: "Tandem",
-      domain: "Healthcare",
-      image: "/tandem.png?height=32&width=32",
-    },
-    {
-      name: "Pylon",
-      domain: "Customer Support",
-      image: "/pylon.jpeg?height=32&width=32",
-    },
-    {
-      name: "Tavus",
-      domain: "AI Research",
-      image: "/tavus.png?height=32&width=32",
-    },
-    {
-      name: "Usul",
-      domain: "Defense",
-      image: "/Usul.png?height=32&width=32",
-    },
-    {
-      name: "Embedder (YC S25)",
-      domain: "Developer Tools",
-      image: "/embedder.png?height=32&width=32",
-    },
-    {
-      name: "Probook",
-      domain: "Contracting",
-      image: "/probook.png?height=32&width=32",
-    },
-    {
-      name: "Rox",
-      domain: "Productivity",
-      image: "/rox.jpg?height=32&width=32",
-    },
-    {
-      name: "Dirac",
-      domain: "Assembly",
-      image: "/dirac.png?height=32&width=32",
-    },
-    {
-      name: "OpenYield",
-      domain: "Financial Services",
-      image: "/openyield.jpeg?height=32&width=32",
-    },
-    {
-      name: "Footprint",
-      domain: "Identity",
-      image: "/fp_logo.png?height=32&width=32",
-    },
-    {
-      name: "Thrive",
-      domain: "Artifical Intelligence",
-      image: "/thrive.jpg?height=32&width=32",
-    },
-    {
-      name: "Wave RF",
-      domain: "Communication",
-      image: "/wave-rf.png?height=32&width=32",
-    },
-    {
-      name: "OnDesk",
-      domain: "Content",
-      image: "/ondesk_logo.jpeg?height=32&width=32",
-    },
-    {
-      name: "Pursuit",
-      domain: "Government Contracts",
-      image: "/pursuit.jpeg?height=32&width=32",
-    },
-
-  ]
-
-  Array.from({ length: 20 }, () => ({
-    name: "Company",
-    domain: "Description",
-    image: "",
-    isComingSoon: false,
-  }));
-
-  const extendedCompanies = [
-    ...companies,
-    ...placeholderCompanies,
-    ...placeholderCompanies,
-    ...placeholderCompanies,
-    ...placeholderCompanies,
-  ];
-
-  const containerVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: { x: 0, opacity: 1 },
-    exit: (direction: number) => ({
-      x: direction > 0 ? -300 : 300,
-      opacity: 0,
-    }),
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 8 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3 },
-    },
-  };
-
-  // 0 = Fall 2024, 1 = Fall 2025
   const [pageIndex, setPageIndex] = useState(1);
   const [direction, setDirection] = useState(0);
 
@@ -232,10 +15,7 @@ export default function StartupsGrid() {
     setPageIndex(newIndex);
   }
 
-  const years = [
-    { year: "FALL 2024", companies: extendedCompanies },
-    { year: "FALL 2025", companies: fall2025PlaceholderCompanies },
-  ];
+  const currentYear = startupWeekYears[pageIndex];
 
   return (
     <div id="startup-directory" className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
@@ -324,21 +104,21 @@ export default function StartupsGrid() {
 
         <div className="flex flex-col items-center">
           <p className="text-sm text-[#FEF9F5] font-inter mb-2">
-            {years[pageIndex].year}
+            {currentYear.year}
           </p>
           <div className="flex items-center justify-center space-x-12 mb-4">
             <div className="text-center">
               <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-          {pageIndex === 1 ? "30+" : "12"}
+                {currentYear.topStartups}
               </div>
               <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
                   Top startups
               </div>
             </div>
-            {pageIndex !== 1 && (
+            {currentYear.topStudents && (
               <div className="text-center">
                 <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                  250+
+                  {currentYear.topStudents}
                 </div>
                 <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
                   Top students
@@ -366,28 +146,11 @@ export default function StartupsGrid() {
           <div >
             <div className="relative">
               <div className="relative">
-                <motion.div
-                  key={`companies-${pageIndex}`}
-                  custom={direction}
-                  variants={containerVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.4 }}
-                  className="grid grid-cols-4 gap-4 mb-6"
-                >
-                  {years[pageIndex].companies
-                    .slice(0, pageIndex === 1 ? 16 : 12)
-                    .map((company) => (
-                      <motion.div key={`${pageIndex}-${company.name}`} variants={itemVariants}>
-                        <StartupCard
-                          image={company.image}
-                          name={company.name}
-                          domain={company.domain}
-                        />
-                      </motion.div>
-                    ))}
-                </motion.div>
+                <StartupCompanyGrid
+                  companies={currentYear.companies}
+                  direction={direction}
+                  pageIndex={pageIndex}
+                />
               </div>
             </div>
           </div>
