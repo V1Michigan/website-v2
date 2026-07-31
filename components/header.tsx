@@ -57,7 +57,7 @@ export default function Header() {
           Product Studio
         </Link>
         <Link
-          href="http://startupweek.v1michigan.com/"
+          href="/startupweek"
           prefetch={false}
           className="text-sm text-gray-700 hover:text-black"
         >
@@ -212,7 +212,7 @@ export default function Header() {
             {/*   North Star */}
             {/* </Link> */}
             <Link
-              href="/"
+              href="/startupweek"
               className="block py-2 text-sm text-gray-700 hover:text-black"
               onClick={closeMobileMenu}
             >
