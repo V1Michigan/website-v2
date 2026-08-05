@@ -89,6 +89,12 @@ export default function Header() {
         >
           Projects
         </Link>
+        <Link
+          href="https://v1michigan.com/recruiting?utm_source=website"
+          prefetch={false}
+          className="text-sm text-gray-700 hover:text-black">
+          Resources
+        </Link>
         {/* <Link
           href="/people"
           className="text-sm text-gray-700 hover:text-black"
@@ -248,6 +254,13 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Projects
+            </Link>
+            <Link
+              href="https://v1michigan.com/recruiting?utm_source=website"
+              prefetch={false}
+              className="block py-2 text-sm text-gray-700 hover:text-black"
+              onClick={closeMobileMenu}>
+              Resources
             </Link>
             {/* <Link
               href="/people"
