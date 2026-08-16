@@ -78,7 +78,7 @@ export default function HeroSection() {
               className="flex flex-col items-center mb-3 space-y-2"
             >
               <a
-                href="https://tally.so/r/mJ4r1R"
+                href="https://tally.so/r/WOb4VR"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block"
