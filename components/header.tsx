@@ -153,7 +153,7 @@ export default function Header() {
                     <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
                   </Link>
                   <Link
-                    href="https://v1michigan.com/join"
+                    href="https://tally.so/r/WOb4VR"
                     prefetch={false}
                     className="flex items-center px-4 py-2 text-sm text-white bg-gray-800 hover:bg-gray-700 rounded-md mx-2 my-1"
                     onClick={closeDropdown}
@@ -310,7 +310,7 @@ export default function Header() {
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
                   </Link>
                   <Link
-                    href="https://v1michigan.com/join"
+                    href="https://tally.so/r/WOb4VR"
                     prefetch={false}
                     className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
                     onClick={closeMobileMenu}
