@@ -12,7 +12,7 @@ export default function StartupCard({ image, name, domain }: StartupCardProps) {
           <img
             src={image}
             alt={`${name} logo`}
-            className="w-full h-full object-contain"
+            className={`w-full h-full object-contain ${name === "Forus" ? "p-1" : ""}`}
           />
         ) : (
           <div className="w-full h-full bg-gray-400 rounded-lg"></div>
