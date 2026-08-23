@@ -77,21 +77,12 @@ export default function HeroSection() {
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
               className="flex flex-col items-center mb-3 space-y-2"
             >
-              {/*
-                Re-enable with https://tally.so/r/mJ4r1R when applications reopen.
-                Active color scheme:
-                text-[#191919] bg-yellow-400 border-yellow-400 shadow-lg
-                shadow-yellow-400/25 hover:bg-yellow-300
-                hover:shadow-yellow-400/30 focus-visible:ring-yellow-300
-              */}
-              <button
-                type="button"
-                disabled
-                aria-disabled="true"
-                className="px-8 py-3 sm:px-10 sm:py-3.5 min-w-[200px] sm:min-w-[240px] font-inter font-medium text-gray-500 bg-gray-200 border border-gray-300 rounded-md shadow-sm cursor-not-allowed"
+              <a
+                href="https://v1michigan.com/startupweek/apply?utm_source=website"
+                className="px-8 py-3 sm:px-10 sm:py-3.5 min-w-[200px] sm:min-w-[240px] font-inter font-medium text-[#191919] bg-yellow-400 border border-yellow-400 rounded-md shadow-lg shadow-yellow-400/25 hover:bg-yellow-300 hover:shadow-yellow-400/30 focus-visible:ring-yellow-300"
               >
                 Apply Now!
-              </button>
+              </a>
 
               <a
                 href="#startup-directory"
