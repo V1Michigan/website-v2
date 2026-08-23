@@ -87,7 +87,7 @@ export const startupWeekYears: StartupWeekYear[] = [
     companies: [
       { name: "Kodiak Robotics", domain: "Robotics", image: "/kodiak.jpeg?height=32&width=32" },
       { name: "Harmonic.ai", domain: "Information", image: "/harmonic_logo.svg?height=32&width=32" },
-      { name: "Tandem", domain: "Healthcare", image: "/tandem.png?height=32&width=32" },
+      { name: "Forus", domain: "Healthcare", image: "/forus-logo.svg?height=32&width=32" },
       { name: "Pylon", domain: "Customer Support", image: "/pylon.jpeg?height=32&width=32" },
       { name: "Tavus", domain: "AI Research", image: "/tavus.png?height=32&width=32" },
       { name: "Usul", domain: "Defense", image: "/Usul.png?height=32&width=32" },
