@@ -33,13 +33,13 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/sweek',
-        destination: '/startupweek',
+        source: '/sweek/:path*',
+        destination: '/startupweek/:path*',
         permanent: true,
       },
       {
-        source: '/startup-week',
-        destination: '/startupweek',
+        source: '/startup-week/:path*',
+        destination: '/startupweek/:path*',
         permanent: true,
       },
     ]
