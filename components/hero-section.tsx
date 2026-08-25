@@ -12,9 +12,7 @@ export default function HeroSection() {
   return (
     <>
       {/* Promotional Banner */}
-      <ScheduledToggle flag="SHOW_PS_BANNER">
-        <PSBanner />
-      </ScheduledToggle>
+      <PSBanner />
 
       <ScheduledToggle flag="SHOW_YC_BANNER">
         <YCBanner />
