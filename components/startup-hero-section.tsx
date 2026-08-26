@@ -23,6 +23,7 @@ export default function HeroSection() {
               Startup Week
             </motion.h1>
 
+            {/* Temporarily hidden pending YC confirmation.
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -34,14 +35,15 @@ export default function HeroSection() {
                 in collaboration with
               </span>
               <Image
-              src="/yc.png"
-              alt="YC Logo"
-              width={32}
-              height={32}
-              className="inline-block align-middle"
-              priority
+                src="/yc.png"
+                alt="YC Logo"
+                width={32}
+                height={32}
+                className="inline-block align-middle"
+                priority
               />
             </motion.div>
+            */}
 
             <motion.p
               initial={{ opacity: 0, y: 12 }}
