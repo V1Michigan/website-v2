@@ -282,7 +282,7 @@ export default function Header() {
                   <Link
                     href="https://tally.so/r/WOb4VR"
                     prefetch={false}
-                    className="inline-flex w-fit items-center rounded-md bg-gray-800 hover:bg-gray-700"
+                    className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
                     onClick={closeMobileMenu}
                   >
                     Join us!
