@@ -144,7 +144,7 @@ export default function Header() {
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
                 <div className="py-1">
                   <Link
-                    href="https://v1michigan.com/slack"
+                    href="https://v1michigan.com/slack?utm_source=website"
                     prefetch={false}
                     className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1"
                     onClick={closeDropdown}
@@ -161,14 +161,6 @@ export default function Header() {
                     Join us!
                     <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
                   </Link>
-                  {/* <Link
-                    href="/auth"
-                    className="flex items-center px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-md mx-2 my-1"
-                    onClick={closeDropdown}
-                  >
-                    Sign In
-                    <ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" />
-                  </Link> */}
                 </div>
               </div>
             )}
@@ -195,13 +187,6 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden z-40">
           <div className="px-4 py-2 space-y-2">
-            {/* <Link
-              href="/valentines"
-              className="flex items-center gap-1 py-2 text-sm text-rose-500 hover:text-rose-600 font-medium"
-              onClick={closeMobileMenu}
-            >
-              Valentines
-            </Link> */}
             <Link
               href="https://v1michigan.com/apply?utm_source=website"
               prefetch={false}
@@ -210,13 +195,6 @@ export default function Header() {
             >
               Product Studio
             </Link>
-            {/* <Link */}
-            {/*   href="/north-star" */}
-            {/*   className="block py-2 text-sm text-gray-700 hover:text-black" */}
-            {/*   onClick={closeMobileMenu} */}
-            {/* > */}
-            {/*   North Star */}
-            {/* </Link> */}
             <Link
               href="/startupweek"
               className="block py-2 text-sm text-gray-700 hover:text-black"
@@ -224,7 +202,6 @@ export default function Header() {
             >
               Startup Week
             </Link>
-
             <Link
               href="https://v1michigan.com/ship-it"
               prefetch={false}
@@ -262,13 +239,6 @@ export default function Header() {
               onClick={closeMobileMenu}>
               Resources
             </Link>
-            {/* <Link
-              href="/people"
-              className="block py-2 text-sm text-gray-700 hover:text-black"
-              onClick={closeMobileMenu}
-            >
-              People
-            </Link> */}
             {user ? (
               <div className="py-2 border-t">
                 <div className="flex items-center space-x-2 mb-2">
@@ -301,7 +271,7 @@ export default function Header() {
                 <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
                 <div className="flex flex-col space-y-2">
                   <Link
-                    href="https://v1michigan.com/slack"
+                    href="https://v1michigan.com/slack?utm_source=website"
                     prefetch={false}
                     className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
                     onClick={closeMobileMenu}
@@ -312,24 +282,15 @@ export default function Header() {
                   <Link
                     href="https://tally.so/r/WOb4VR"
                     prefetch={false}
-                    className="inline-flex w-fit items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700"
+                    className="inline-flex w-fit items-center rounded-md bg-gray-800 hover:bg-gray-700"
                     onClick={closeMobileMenu}
                   >
                     Join us!
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
                   </Link>
-                  {/* <Link
-                    href="/auth"
-                    className="inline-flex w-fit items-center rounded-md bg-blue-600 hover:bg-blue-700"
-                    onClick={closeMobileMenu}
-                  >
-                    Sign In
-                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" />
-                  </Link> */}
                 </div>
               </div>
             )}
-
           </div>
         </div>
       )}
