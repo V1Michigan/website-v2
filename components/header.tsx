@@ -31,13 +31,7 @@ export default function Header() {
     <nav className="sticky top-0 z-50 flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-[#FAF7F2]">
       <div className="flex-shrink-0">
         <Link href="/" className="font-medium">
-          <Image
-            src="/v1-logo.png"
-            alt="V1 Logo"
-            width={32}
-            height={32}
-            className="h-8 w-auto"
-          />
+          <Image src="/v1-logo.png" alt="V1 Logo" width={32} height={32} className="h-8 w-auto" />
         </Link>
       </div>
       <div className="hidden md:flex items-center justify-end space-x-6">
@@ -57,8 +51,8 @@ export default function Header() {
           <div className="relative">
             <button onClick={toggleDropdown} className="inline-flex items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700">Get Involved<ChevronDown className="ml-1.5 h-3.5 w-3.5" /></button>
             {isDropdownOpen && <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50"><div className="py-1">
-              <Link href="https://v1michigan.com/slack?utm_source=website" prefetch={false} className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1" onClick={closeDropdown}>Join Slack!<ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" /></Link>
-              <Link href="https://tally.so/r/WOb4VR" prefetch={false} className="flex items-center px-4 py-2 text-sm text-white bg-gray-800 hover:bg-gray-700 rounded-md mx-2 my-1" onClick={closeDropdown}>Join us!<ArrowRight className="ml-auto h-3.5 w-3.5 -rotate-45" /></Link>
+              <Link href="https://v1michigan.com/slack?utm_source=website" prefetch={false} className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1" onClick={closeDropdown}>Join Slack!<ArrowRight className="ml-auto self-center h-3.5 w-3.5 -rotate-45" /></Link>
+              <Link href="https://tally.so/r/WOb4VR" prefetch={false} className="flex items-center px-4 py-2 text-sm text-white bg-gray-800 hover:bg-gray-700 rounded-md mx-2 my-1" onClick={closeDropdown}>Join us!<ArrowRight className="ml-auto self-center h-3.5 w-3.5 -rotate-45" /></Link>
             </div></div>}
           </div>
         )}
@@ -89,8 +83,8 @@ export default function Header() {
               <div className="py-2 border-t">
                 <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
                 <div className="inline-flex flex-col space-y-2">
-                  <Link href="https://v1michigan.com/slack?utm_source=website" prefetch={false} className="inline-flex w-full items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]" onClick={closeMobileMenu}>Join Slack!<ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" /></Link>
-                  <Link href="https://tally.so/r/WOb4VR" prefetch={false} className="inline-flex w-full items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700" onClick={closeMobileMenu}>Join us!<ArrowRight className="ml-1.5 h-3.5 w-3.5 -rotate-45" /></Link>
+                  <Link href="https://v1michigan.com/slack?utm_source=website" prefetch={false} className="inline-flex w-full items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]" onClick={closeMobileMenu}>Join Slack!<ArrowRight className="ml-1.5 self-center h-3.5 w-3.5 -rotate-45" /></Link>
+                  <Link href="https://tally.so/r/WOb4VR" prefetch={false} className="inline-flex w-full items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700" onClick={closeMobileMenu}>Join us!<ArrowRight className="ml-1.5 self-center h-3.5 w-3.5 -rotate-45" /></Link>
                 </div>
               </div>
             )}
