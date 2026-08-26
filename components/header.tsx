@@ -83,8 +83,8 @@ export default function Header() {
               <div className="py-2 border-t">
                 <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
                 <div className="inline-flex flex-col space-y-2">
-                  <Link href="https://v1michigan.com/slack?utm_source=website" prefetch={false} className="inline-flex w-full items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]" onClick={closeMobileMenu}>Join Slack!<ArrowRight className="ml-1.5 self-center h-3.5 w-3.5 -rotate-45" /></Link>
-                  <Link href="https://tally.so/r/WOb4VR" prefetch={false} className="inline-flex w-full items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700" onClick={closeMobileMenu}>Join us!<ArrowRight className="ml-1.5 self-center h-3.5 w-3.5 -rotate-45" /></Link>
+                  <Link href="https://v1michigan.com/slack?utm_source=website" prefetch={false} className="inline-flex w-full items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]" onClick={closeMobileMenu}>Join Slack!<ArrowRight className="ml-auto self-center h-3.5 w-3.5 -rotate-45" /></Link>
+                  <Link href="https://tally.so/r/WOb4VR" prefetch={false} className="inline-flex w-full items-center rounded-md bg-gray-800 px-3 py-1.5 text-xs text-white hover:bg-gray-700" onClick={closeMobileMenu}>Join us!<ArrowRight className="ml-auto self-center h-3.5 w-3.5 -rotate-45" /></Link>
                 </div>
               </div>
             )}
