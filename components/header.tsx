@@ -144,7 +144,7 @@ export default function Header() {
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
                 <div className="py-1">
                   <Link
-                    href="https://v1michigan.com/community?utm_source=website"
+                    href="https://v1michigan.com/slack"
                     prefetch={false}
                     className="flex items-center px-4 py-2 text-sm text-white bg-[#4A154B] hover:bg-[#3a0f3c] rounded-md mx-2 my-1"
                     onClick={closeDropdown}
@@ -301,7 +301,7 @@ export default function Header() {
                 <div className="text-sm font-medium text-gray-700 mb-2">Get Involved</div>
                 <div className="flex flex-col space-y-2">
                   <Link
-                    href="https://v1michigan.com/community?utm_source=website"
+                    href="https://v1michigan.com/slack"
                     prefetch={false}
                     className="inline-flex w-fit items-center rounded-md bg-[#4A154B] px-3 py-1.5 text-xs text-white hover:bg-[#3a0f3c]"
                     onClick={closeMobileMenu}
@@ -320,7 +320,7 @@ export default function Header() {
                   </Link>
                   {/* <Link
                     href="/auth"
-                    className="inline-flex w-fit items-center rounded-md bg-blue-600 px-3 py-1.5 text-xs text-white hover:bg-blue-700"
+                    className="inline-flex w-fit items-center rounded-md bg-blue-600 hover:bg-blue-700"
                     onClick={closeMobileMenu}
                   >
                     Sign In
