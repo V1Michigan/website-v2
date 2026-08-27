@@ -63,6 +63,12 @@ const config: Config = {
         serif: ["var(--font-serif)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         instrument: ["var(--font-instrument)", "serif"],
+        mona: [
+          '"Mona Sans Variable"',
+          "Mona Sans",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       borderRadius: {
         lg: "0.75rem",
