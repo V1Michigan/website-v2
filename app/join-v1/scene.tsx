@@ -62,8 +62,8 @@ type LayerProps = {
    * Negative = opposite direction (moves down as you scroll).
    */
   distance?: number;
-  /** Match the layer's visual endpoint to its -55vw flow overlap. */
-  alignEndToFlow?: boolean;
+  /** Responsive endpoint used to align a layer with document flow. */
+  flowEndVw?: number;
   className?: string;
   style?: CSSProperties;
 };
@@ -71,7 +71,7 @@ type LayerProps = {
 export function Layer({
   children,
   distance = 80,
-  alignEndToFlow = false,
+  flowEndVw,
   className = "",
   style,
 }: LayerProps) {
@@ -93,21 +93,19 @@ export function Layer({
     ([progress, flowProgress]) => {
       const originalY = distance * (1 - 2 * progress);
 
-      // Ease into the final alignment gradually so the foreground photo and
-      // curved transition stay locked without accelerating near the footer.
-      if (flowProgress <= 0.7) return `${originalY}px`;
+      if (flowProgress <= 0.8 || flowEndVw === undefined) {
+        return `${originalY}px`;
+      }
 
-      const alignmentProgress = (flowProgress - 0.7) / 0.3;
-      const blend =
-        alignmentProgress * alignmentProgress * (3 - 2 * alignmentProgress);
-      return `calc(${originalY * (1 - blend)}px - ${55 * blend}vw)`;
+      const blend = (flowProgress - 0.8) / 0.2;
+      return `calc(${originalY * (1 - blend)}px + ${flowEndVw * blend}vw)`;
     }
   );
   const resolvedY = reduce
-    ? alignEndToFlow
-      ? "-55vw"
+    ? flowEndVw !== undefined
+      ? `${flowEndVw}vw`
       : 0
-    : alignEndToFlow
+    : flowEndVw !== undefined
       ? flowAlignedY
       : y;
 

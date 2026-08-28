@@ -80,7 +80,7 @@ export default function LayerStack() {
 
         <Layer
           distance={750}
-          alignEndToFlow
+          flowEndVw={-48}
           className="relative -mt-[158vw]"
         >
           <LayerImage
@@ -89,10 +89,10 @@ export default function LayerStack() {
           />
         </Layer>
 
-        {/* Same distance as 4people so the curve doesn’t slip and flash lime. */}
+        {/* Keep the original pace while the photo settles slightly lower. */}
         <Layer
           distance={750}
-          alignEndToFlow
+          flowEndVw={-55}
           className="relative z-[6] -mt-[47vw] -mb-[55vw]"
         >
           <LayerImage src="/join-v1/layers/05-how-to-join-bg.png" />
@@ -141,7 +141,6 @@ export default function LayerStack() {
       </div>
 
       <JoinSocialBar />
-      <div aria-hidden className="h-6 w-full bg-[#E5FF00] sm:h-8" />
     </ParallaxRoot>
   );
 }
