@@ -86,10 +86,7 @@ export default function LayerStack() {
           />
         </Layer>
 
-        {/*
-          Same distance as 4people so the curve doesn’t slip and flash lime.
-          Text + footer ride with it.
-        */}
+        {/* Same distance as 4people so the curve doesn’t slip and flash lime. */}
         <Layer distance={750} className="relative z-[6] -mt-[47vw] -mb-[55vw]">
           <LayerImage src="/join-v1/layers/05-how-to-join-bg.png" />
 
@@ -131,11 +128,12 @@ export default function LayerStack() {
               </button>
             </form>
           </div>
-
-          <JoinFooter className="-mb-[min(65vh,40rem)]" />
         </Layer>
       </div>
-    </ParallaxRoot>
+      </ParallaxRoot>
+
+      {/* Keep the footer out of transformed layers so it defines the page's true end. */}
+      <JoinFooter className="-mt-[min(65vh,40rem)]" />
     </>
   );
 }
