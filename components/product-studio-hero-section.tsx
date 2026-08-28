@@ -111,7 +111,7 @@ export default function ProductStudioHeroSection() {
           />
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF7F2]/75 via-[#FAF7F2]/20 to-[#FAF7F2]/45" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF7F2]/75 via-[#FAF7F2]/20 to-[#FAF7F2]" />
 
         <div className="absolute inset-x-0 bottom-0 z-30">
           <ProductStudioTimeline />
