@@ -1,30 +1,15 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import StartupCompanyGrid from "@/components/startup-company-grid";
 
 const cohorts = [
-  {
-    name: "Winter 2026 Product Studio Cohort",
-    shortName: "W26",
-    label: "Winter 2026",
-  },
-  {
-    name: "Fall 2025 Product Studio Cohort",
-    shortName: "F25",
-    label: "Fall 2025",
-  },
-  {
-    name: "Winter 2025 Product Studio Cohort",
-    shortName: "W25",
-    label: "Winter 2025",
-  },
-  {
-    name: "Fall 2024 Product Studio Cohort",
-    shortName: "F24",
-    label: "Fall 2024",
-  },
+  { name: "Fall 2024 Product Studio Cohort", label: "FALL 2024" },
+  { name: "Winter 2025 Product Studio Cohort", label: "WINTER 2025" },
+  { name: "Fall 2025 Product Studio Cohort", label: "FALL 2025" },
+  { name: "Winter 2026 Product Studio Cohort", label: "WINTER 2026" },
 ] as const;
 
 type CohortName = (typeof cohorts)[number]["name"];
@@ -47,7 +32,9 @@ async function fetchProductStudioProjects() {
 }
 
 export default function ProductStudioProjectsSection() {
-  const [activeCohort, setActiveCohort] = useState<CohortName>(cohorts[0].name);
+  const [pageIndex, setPageIndex] = useState(cohorts.length - 1);
+  const [direction, setDirection] = useState(0);
+  const hasSelectedInitialCohort = useRef(false);
   const { data, isPending, error } = useQuery({
     queryKey: ["product-studio-projects"],
     queryFn: fetchProductStudioProjects,
@@ -69,128 +56,166 @@ export default function ProductStudioProjectsSection() {
   }, [data]);
 
   useEffect(() => {
-    if (!data || (projectsByCohort.get(activeCohort)?.length ?? 0) > 0) {
+    if (!data || hasSelectedInitialCohort.current) {
       return;
     }
 
-    const firstPopulatedCohort = cohorts.find(
-      (cohort) => (projectsByCohort.get(cohort.name)?.length ?? 0) > 0,
-    );
+    hasSelectedInitialCohort.current = true;
 
-    if (firstPopulatedCohort) {
-      setActiveCohort(firstPopulatedCohort.name);
+    if ((projectsByCohort.get(cohorts[pageIndex].name)?.length ?? 0) > 0) {
+      return;
     }
-  }, [activeCohort, data, projectsByCohort]);
 
-  const activeProjects = projectsByCohort.get(activeCohort) ?? [];
-  const activeCohortDetails = cohorts.find(
-    (cohort) => cohort.name === activeCohort,
-  );
+    const newestPopulatedIndex = [...cohorts]
+      .map((cohort, index) => ({
+        index,
+        count: projectsByCohort.get(cohort.name)?.length ?? 0,
+      }))
+      .reverse()
+      .find((cohort) => cohort.count > 0)?.index;
+
+    if (newestPopulatedIndex !== undefined) {
+      setPageIndex(newestPopulatedIndex);
+    }
+  }, [data, pageIndex, projectsByCohort]);
+
+  function paginate(newIndex: number) {
+    if (newIndex < 0 || newIndex >= cohorts.length) return;
+    setDirection(newIndex > pageIndex ? 1 : -1);
+    setPageIndex(newIndex);
+  }
+
+  const currentCohort = cohorts[pageIndex];
+  const currentProjects = projectsByCohort.get(currentCohort.name) ?? [];
+  const companies = currentProjects.map((project) => ({
+    name: project.name,
+    image: project.logo,
+    domain: "",
+  }));
 
   return (
-    <section className="relative overflow-hidden bg-[#191919] px-5 py-16 text-[#FAF7F2] sm:px-8 md:py-20 lg:px-12">
-      <div className="pointer-events-none absolute -left-24 top-16 h-80 w-80 rounded-full border-2 border-dashed border-[#E5AC61]/65" />
-      <div className="pointer-events-none absolute -right-28 bottom-10 h-96 w-96 rounded-full border border-[#E5AC61]/55" />
+    <div
+      id="project-directory"
+      className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden"
+    >
+      <svg
+        className="absolute -top-[15%] left-0"
+        width="180"
+        height="280"
+        viewBox="0 0 180 280"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="-20"
+          cy="80"
+          r="198"
+          stroke="#E5AC61"
+          strokeWidth="4"
+          strokeDasharray="16 16"
+        />
+      </svg>
+      <svg
+        className="absolute -top-[28%] right-0"
+        width="135"
+        height="423"
+        viewBox="0 0 135 423"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="211.5"
+          cy="211.5"
+          r="210.5"
+          stroke="#E5AC61"
+          strokeWidth="2"
+        />
+      </svg>
+      <svg
+        className="absolute top-[42%] right-0 -translate-y-1/2"
+        width="551"
+        height="752"
+        viewBox="0 0 551 752"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="376"
+          cy="376"
+          r="235"
+          stroke="#E5AC61"
+          strokeWidth="4"
+          strokeDasharray="16 16"
+        />
+      </svg>
+      <svg
+        className="absolute top-[55%] left-0"
+        width="584"
+        height="762"
+        viewBox="0 0 584 762"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="203" cy="381" r="320" stroke="#E5AC61" strokeWidth="2" />
+      </svg>
 
-      <div className="relative z-10 mx-auto max-w-6xl">
-        <div className="mx-auto mb-10 max-w-2xl text-center">
-          <p className="mb-3 font-inter text-xs font-semibold uppercase tracking-[0.24em] text-yellow-400">
-            Made at Michigan
+      <div className="text-center pt-8 pb-6 relative z-10 flex items-center justify-center space-x-8">
+        <button
+          className={`p-2 ${pageIndex === 0 ? "opacity-30 cursor-not-allowed" : ""}`}
+          onClick={() => paginate(pageIndex - 1)}
+          aria-label="Previous cohort"
+          disabled={pageIndex === 0}
+        >
+          <ChevronLeft className="w-5 h-5 text-gray-400" />
+        </button>
+
+        <div className="flex flex-col items-center">
+          <p className="text-sm text-[#FEF9F5] font-inter mb-2">
+            {currentCohort.label}
           </p>
-          <h2 className="font-instrument text-5xl font-normal leading-none sm:text-6xl md:text-7xl">
-            Built in Product Studio
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl font-inter text-sm leading-6 text-[#CEC9C5] sm:text-base">
-            Products imagined, designed, and shipped by V1 student builders.
-          </p>
+          <div className="flex items-center justify-center space-x-12 mb-4">
+            <div className="text-center">
+              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
+                {isPending ? "—" : currentProjects.length}
+              </div>
+              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
+                Past projects
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="mb-10 flex flex-wrap justify-center gap-2" aria-label="Product Studio cohorts">
-          {cohorts.map((cohort) => {
-            const isActive = cohort.name === activeCohort;
-            const count = projectsByCohort.get(cohort.name)?.length ?? 0;
+        <button
+          className={`p-2 ${
+            pageIndex === cohorts.length - 1 ? "opacity-30 cursor-not-allowed" : ""
+          }`}
+          onClick={() => paginate(pageIndex + 1)}
+          aria-label="Next cohort"
+          disabled={pageIndex === cohorts.length - 1}
+        >
+          <ChevronRight className="w-5 h-5 text-gray-400" />
+        </button>
+      </div>
 
-            return (
-              <button
-                key={cohort.name}
-                type="button"
-                onClick={() => setActiveCohort(cohort.name)}
-                className={`rounded-full border px-4 py-2 font-inter text-sm font-semibold transition-colors ${
-                  isActive
-                    ? "border-yellow-400 bg-yellow-400 text-[#191919]"
-                    : "border-white/20 bg-white/5 text-[#FAF7F2] hover:border-yellow-400/70 hover:bg-white/10"
-                }`}
-                aria-pressed={isActive}
-              >
-                {cohort.shortName}
-                {!isPending && count > 0 && (
-                  <span className={`ml-2 ${isActive ? "text-[#191919]/60" : "text-[#CEC9C5]"}`}>
-                    {count}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="mb-6 flex items-end justify-between border-b border-white/15 pb-4">
-          <p className="font-inter text-sm font-medium text-[#CEC9C5]">
-            {activeCohortDetails?.label}
-          </p>
-          {!isPending && !error && (
-            <p className="font-inter text-xs uppercase tracking-[0.16em] text-[#8F8B88]">
-              {activeProjects.length} {activeProjects.length === 1 ? "project" : "projects"}
+      <div className="flex justify-center relative z-10">
+        <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
+          {error ? (
+            <p className="py-12 text-center font-inter text-sm text-[#CEC9C5]">
+              Projects could not be loaded right now.
             </p>
+          ) : !isPending && companies.length === 0 ? (
+            <p className="py-12 text-center font-inter text-sm text-[#CEC9C5]">
+              No projects have been published for this cohort yet.
+            </p>
+          ) : (
+            <StartupCompanyGrid
+              companies={companies}
+              direction={direction}
+              pageIndex={pageIndex}
+            />
           )}
         </div>
-
-        {isPending && (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            {Array.from({ length: 12 }).map((_, index) => (
-              <div
-                key={index}
-                className="aspect-square animate-pulse rounded-2xl border border-white/10 bg-white/5"
-              />
-            ))}
-          </div>
-        )}
-
-        {error && (
-          <div className="rounded-2xl border border-red-300/20 bg-red-950/20 px-6 py-12 text-center font-inter text-sm text-red-100">
-            Projects could not be loaded right now.
-          </div>
-        )}
-
-        {!isPending && !error && activeProjects.length === 0 && (
-          <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-12 text-center font-inter text-sm text-[#CEC9C5]">
-            No projects have been published for this cohort yet.
-          </div>
-        )}
-
-        {!isPending && !error && activeProjects.length > 0 && (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            {activeProjects.map((project) => (
-              <article
-                key={project.id}
-                className="group flex min-h-44 flex-col items-center justify-center rounded-2xl border border-white/10 bg-[#242424] p-5 text-center transition-transform duration-300 hover:-translate-y-1 hover:border-yellow-400/60"
-              >
-                <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-2xl bg-white p-2 shadow-lg shadow-black/20">
-                  <Image
-                    src={project.logo}
-                    alt=""
-                    fill
-                    className="object-contain p-2"
-                    sizes="80px"
-                  />
-                </div>
-                <h3 className="font-inter text-sm font-semibold leading-snug text-[#FAF7F2]">
-                  {project.name}
-                </h3>
-              </article>
-            ))}
-          </div>
-        )}
       </div>
-    </section>
+    </div>
   );
 }
