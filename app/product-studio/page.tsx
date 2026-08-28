@@ -2,7 +2,7 @@
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import HeroSection from "@/components/startup-hero-section";
+import ProductStudioHeroSection from "@/components/product-studio-hero-section";
 import StartupsGrid from "@/components/startups-grid";
 import EventSections from "@/components/events-sections";
 import FAQSection from "@/components/faq-section";
@@ -15,10 +15,7 @@ export default function ProductStudioPage() {
     <div className="min-h-screen bg-[#FAF7F2]">
       <PostHogPageView />
       <Header />
-      <HeroSection
-        backgroundImageSrc="/join-v1/layers/02-people-1.png"
-        backgroundImageAlt="V1 Product Studio members"
-      />
+      <ProductStudioHeroSection />
       <StartupsGrid />
 
       <div className="relative mx-auto bg-[#FAF7F2]">
