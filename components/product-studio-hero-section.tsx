@@ -9,7 +9,7 @@ import ProductStudioTimeline from "@/components/product-studio-timeline";
 export default function ProductStudioHeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#FAF7F2]">
-      <div className="relative min-h-[680px] w-full md:min-h-[740px] lg:min-h-[780px]">
+      <div className="relative min-h-[calc(100svh-57px)] w-full md:min-h-[calc(100svh-49px)]">
         <div className="relative z-10 p-6 md:p-8 lg:p-12">
           <div className="mx-auto mt-8 max-w-7xl text-center md:mt-12 lg:mt-16">
             <motion.h1

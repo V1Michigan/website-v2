@@ -84,10 +84,10 @@ export default function ProductStudioTimeline() {
               <p className="mb-0.5 font-inter text-[10px] font-bold tracking-[0.12em] text-[#6B6865]">
                 {event.date}
               </p>
-              <h3 className="min-h-8 font-inter text-[11px] font-bold leading-3.5 text-[#191919]">
+              <h3 className="font-inter text-[11px] font-bold leading-3.5 text-[#191919]">
                 {event.title}
               </h3>
-              <p className="mt-0.5 min-h-3 font-inter text-[10px] leading-3 text-[#444444]">
+              <p className="mt-0.5 font-inter text-[10px] leading-3 text-[#444444]">
                 {event.location}
               </p>
               <p className="font-inter text-[10px] font-semibold leading-3 text-[#444444]">
