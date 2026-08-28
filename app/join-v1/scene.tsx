@@ -31,7 +31,9 @@ export function ParallaxRoot({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    // Finish before the following footer enters the viewport. This keeps the
+    // parallax stack and the document-flow boundary in sync at the page end.
+    offset: ["start end", "end end"],
   });
 
   return (
@@ -51,6 +53,8 @@ type LayerProps = {
    * Negative = opposite direction (moves down as you scroll).
    */
   distance?: number;
+  /** Final vertical offset. Defaults to the mirrored parallax position. */
+  endOffset?: number;
   className?: string;
   style?: CSSProperties;
 };
@@ -58,6 +62,7 @@ type LayerProps = {
 export function Layer({
   children,
   distance = 80,
+  endOffset = -distance,
   className = "",
   style,
 }: LayerProps) {
@@ -72,7 +77,7 @@ export function Layer({
   });
 
   const source = progress ?? localProgress;
-  const y = useTransform(source, [0, 1], [distance, -distance]);
+  const y = useTransform(source, [0, 1], [distance, endOffset]);
 
   return (
     <motion.div
@@ -101,7 +106,6 @@ export function LayerImage({
   seeThrough?: boolean;
 }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
       alt={alt}
