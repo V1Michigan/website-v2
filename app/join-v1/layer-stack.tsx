@@ -57,12 +57,12 @@ export default function LayerStack() {
 
       {/* ═══════════ WHO ARE WE ═══════════ */}
       <div className="relative z-[4] mt-[3vw]">
-        <Layer distance={500} className="mt-[4vw]">
+        <Layer distance={140} className="mt-[4vw]">
           <LayerImage src="/join-v1/layers/03-who-are-we-bg.png" />
         </Layer>
 
         <div className="pointer-events-none absolute inset-x-0 top-[clamp(1.5rem,6vw,3.5rem)] z-[2] px-5 sm:px-6">
-          <Layer distance={500}>
+          <Layer distance={140}>
             <div className="ml-auto max-w-[min(90%,20rem)] text-right">
               <h2 className="font-mona text-[clamp(2.75rem,12vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-black">
                 WHO
@@ -79,7 +79,7 @@ export default function LayerStack() {
         </div>
 
         <Layer
-          distance={140}
+          distance={240}
           flowEndVw={-40}
           className="relative -mt-[158vw]"
         >
