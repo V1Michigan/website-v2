@@ -128,11 +128,11 @@ export default function LayerStack() {
                 </button>
               </form>
             </div>
-
-            <JoinSocialBar />
           </div>
         </Layer>
       </div>
+
+      <JoinSocialBar />
     </ParallaxRoot>
   );
 }
