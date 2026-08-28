@@ -10,7 +10,7 @@ const tickerText =
 
 export default function ProductStudioHeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-white">
+    <section className="relative w-full overflow-hidden bg-[#FAF7F2]">
       <div className="relative min-h-[600px] w-full md:min-h-[750px] lg:min-h-[810px]">
         <div className="relative z-10 p-6 md:p-8 lg:p-12">
           <div className="mx-auto mt-8 max-w-3xl text-center md:mt-12 lg:mt-16">
@@ -114,7 +114,7 @@ export default function ProductStudioHeroSection() {
           />
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-white/75 via-white/20 to-white" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF7F2]/75 via-[#FAF7F2]/20 to-[#FAF7F2]" />
 
         <div className="absolute inset-x-0 bottom-0 z-30 overflow-hidden bg-yellow-400 py-3">
           <div className="animate-scroll whitespace-nowrap">
