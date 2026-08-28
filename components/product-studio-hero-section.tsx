@@ -6,9 +6,6 @@ import Link from "next/link";
 import { Lightbulb } from "lucide-react";
 import ProductStudioTimeline from "@/components/product-studio-timeline";
 
-const tickerText =
-  "IDEATE • VALIDATE • DESIGN • BUILD • SHIP • ITERATE • PRODUCT • ENGINEERING • DESIGN • STRATEGY";
-
 export default function ProductStudioHeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#FAF7F2]">
@@ -34,15 +31,6 @@ export default function ProductStudioHeroSection() {
             >
               Turn an ambitious idea into a real product.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-            >
-              <ProductStudioTimeline />
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -125,12 +113,8 @@ export default function ProductStudioHeroSection() {
 
         <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF7F2]/75 via-[#FAF7F2]/20 to-[#FAF7F2]" />
 
-        <div className="absolute inset-x-0 bottom-0 z-30 overflow-hidden bg-yellow-400 py-3">
-          <div className="animate-scroll whitespace-nowrap">
-            <span className="inline-block px-8 font-inter text-sm font-bold leading-normal text-[#191919]">
-              {tickerText} • {tickerText}
-            </span>
-          </div>
+        <div className="absolute inset-x-0 bottom-0 z-30">
+          <ProductStudioTimeline />
         </div>
       </div>
     </section>
