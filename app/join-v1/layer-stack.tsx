@@ -79,7 +79,7 @@ export default function LayerStack() {
         </div>
 
         <Layer
-          distance={420}
+          distance={140}
           flowEndVw={-40}
           className="relative -mt-[158vw]"
         >
@@ -91,7 +91,7 @@ export default function LayerStack() {
 
         {/* The form layer still aligns with the page boundary at the end. */}
         <Layer
-          distance={420}
+          distance={140}
           flowEndVw={-55}
           className="relative z-[6] -mt-[47vw] -mb-[55vw]"
         >
