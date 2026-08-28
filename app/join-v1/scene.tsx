@@ -40,7 +40,7 @@ export function ParallaxRoot({
   });
   const { scrollYProgress: flowProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end end"],
+    offset: ["start 150%", "end end"],
   });
 
   return (
@@ -89,17 +89,9 @@ export function Layer({
   const flowSource = parallax?.flowProgress ?? localProgress;
   const y = useTransform(source, [0, 1], [distance, -distance]);
   const flowAlignedY = useTransform<number, string>(
-    [source, flowSource],
-    ([progress, flowProgress]) => {
-      const originalY = distance * (1 - 2 * progress);
-
-      if (flowProgress <= 0.8 || flowEndVw === undefined) {
-        return `${originalY}px`;
-      }
-
-      const blend = (flowProgress - 0.8) / 0.2;
-      return `calc(${originalY * (1 - blend)}px + ${flowEndVw * blend}vw)`;
-    }
+    flowSource,
+    (progress) =>
+      `calc(${distance * (1 - progress)}px + ${(flowEndVw ?? 0) * progress}vw)`
   );
   const resolvedY = reduce
     ? flowEndVw !== undefined

@@ -61,7 +61,7 @@ export default function LayerStack() {
           <LayerImage src="/join-v1/layers/03-who-are-we-bg.png" />
         </Layer>
 
-        <div className="pointer-events-none absolute inset-x-0 top-[clamp(3rem,10vw,5.5rem)] z-[2] px-5 sm:px-6">
+        <div className="pointer-events-none absolute inset-x-0 top-[clamp(1.5rem,6vw,3.5rem)] z-[2] px-5 sm:px-6">
           <Layer distance={500}>
             <div className="ml-auto max-w-[min(90%,20rem)] text-right">
               <h2 className="font-mona text-[clamp(2.75rem,12vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-black">
@@ -79,8 +79,8 @@ export default function LayerStack() {
         </div>
 
         <Layer
-          distance={750}
-          flowEndVw={-48}
+          distance={420}
+          flowEndVw={-40}
           className="relative -mt-[158vw]"
         >
           <LayerImage
@@ -89,9 +89,9 @@ export default function LayerStack() {
           />
         </Layer>
 
-        {/* Keep the original pace while the photo settles slightly lower. */}
+        {/* The form layer still aligns with the page boundary at the end. */}
         <Layer
-          distance={750}
+          distance={420}
           flowEndVw={-55}
           className="relative z-[6] -mt-[47vw] -mb-[55vw]"
         >
@@ -140,6 +140,7 @@ export default function LayerStack() {
         </Layer>
       </div>
 
+      <div aria-hidden className="h-6 w-full bg-[#E5FF00] sm:h-8" />
       <JoinSocialBar />
     </ParallaxRoot>
   );
