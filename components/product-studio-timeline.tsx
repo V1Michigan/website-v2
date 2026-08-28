@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const timelineEvents = [
   {
@@ -67,12 +68,42 @@ export default function ProductStudioTimeline() {
 
   return (
     <div className="w-full overflow-x-auto border-y border-[#444444]/15 bg-[#FAF7F2]/95 px-4 py-2.5 shadow-[0_-10px_30px_rgba(25,25,25,0.08)] backdrop-blur-md sm:px-6">
-      <ol className="relative mx-auto grid min-w-[1050px] max-w-7xl grid-cols-7 before:absolute before:left-[7.14%] before:right-[7.14%] before:top-[7px] before:h-0.5 before:bg-[#444444]/25">
+      <div className="relative mx-auto min-w-[1050px] max-w-7xl">
+        <motion.div
+          aria-hidden
+          className="absolute left-[7.14%] right-[7.14%] top-[7px] h-0.5 origin-left bg-[#444444]/25"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        />
+
+        <motion.ol
+          className="relative grid grid-cols-7"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+            },
+          }}
+        >
         {timelineEvents.map((event) => {
           const hasPassed = now !== null && now > new Date(event.endsAt).getTime();
 
           return (
-            <li key={event.title} className="relative flex flex-col items-center px-2 text-center">
+            <motion.li
+              key={event.title}
+              className="relative flex flex-col items-center px-2 text-center"
+              variants={{
+                hidden: { opacity: 0, x: -14 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.45, ease: "easeOut" },
+                },
+              }}
+            >
               <span
                 className={`relative z-10 mb-2 h-4 w-4 rounded-full border-2 transition-colors ${
                   hasPassed
@@ -93,10 +124,11 @@ export default function ProductStudioTimeline() {
               <p className="font-inter text-[10px] font-semibold leading-3 text-[#444444]">
                 {event.time}
               </p>
-            </li>
+            </motion.li>
           );
         })}
-      </ol>
+        </motion.ol>
+      </div>
     </div>
   );
 }

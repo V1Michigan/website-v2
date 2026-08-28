@@ -79,8 +79,8 @@ export default function ProductStudioHeroSection() {
 
         <motion.div
           aria-hidden
-          initial={{ opacity: 0.85 }}
-          animate={{ opacity: 1 }}
+          initial={{ scale: 1.05, opacity: 0.85 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-y-0 left-0 w-full overflow-hidden md:left-auto md:right-0 md:w-1/2"
         >
@@ -96,9 +96,9 @@ export default function ProductStudioHeroSection() {
 
         <motion.div
           aria-hidden
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ scale: 1.05, opacity: 0.85 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-y-0 left-0 hidden w-1/2 overflow-hidden md:block"
         >
           <Image
