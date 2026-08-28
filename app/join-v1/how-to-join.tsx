@@ -27,14 +27,17 @@ export default function HowToJoin() {
             className="pointer-events-auto relative mt-10 w-full max-w-xl rounded-full border-[3px] border-black sm:border-4"
             onSubmit={(e) => e.preventDefault()}
           >
-            <label htmlFor="join-email" className="sr-only">
-              Email
+            <label htmlFor="join-uniqname" className="sr-only">
+              Uniqname
             </label>
             <input
-              id="join-email"
-              type="email"
-              name="email"
-              placeholder="Email"
+              id="join-uniqname"
+              type="text"
+              name="uniqname"
+              placeholder="Uniqname"
+              autoComplete="username"
+              autoCapitalize="none"
+              spellCheck={false}
               className="w-full rounded-full bg-[#E5FF00] px-8 py-5 font-mona text-[clamp(1.5rem,6.5vw,3.5rem)] font-bold leading-none text-black placeholder:text-black focus:outline-none sm:px-10 sm:py-6"
             />
           </form>

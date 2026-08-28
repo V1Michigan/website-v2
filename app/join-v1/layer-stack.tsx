@@ -109,14 +109,17 @@ export default function LayerStack() {
               className="pointer-events-auto relative mt-7 flex w-full max-w-sm items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
               onSubmit={(e) => e.preventDefault()}
             >
-              <label htmlFor="join-email" className="sr-only">
-                Email
+              <label htmlFor="join-uniqname" className="sr-only">
+                Uniqname
               </label>
               <input
-                id="join-email"
-                type="email"
-                name="email"
-                placeholder="Email"
+                id="join-uniqname"
+                type="text"
+                name="uniqname"
+                placeholder="Uniqname"
+                autoComplete="username"
+                autoCapitalize="none"
+                spellCheck={false}
                 required
                 className="min-w-0 flex-1 rounded-full bg-white px-4 py-2.5 font-mona text-[clamp(1rem,3.5vw,1.35rem)] font-bold leading-none text-black placeholder:text-black/70 focus:outline-none sm:px-5"
               />

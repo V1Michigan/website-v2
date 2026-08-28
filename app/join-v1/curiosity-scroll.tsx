@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import {
   motion,
   useScroll,
@@ -12,6 +12,12 @@ import {
 
 const LINE_ONE = "So you were curious enough to find this link and follow it..";
 const LINE_TWO = "Where will your curiosity take you next?";
+const LINE_ONE_WORDS = LINE_ONE.split(" ").map((word, wordIndex, words) => ({
+  word,
+  startIndex: words
+    .slice(0, wordIndex)
+    .reduce((offset, previousWord) => offset + previousWord.length + 1, 0),
+}));
 
 function SmokeLetter({
   char,
@@ -145,15 +151,22 @@ export default function CuriosityIntro() {
 
         <div className="relative z-10 flex h-48 w-full max-w-md items-center justify-center text-center">
           <p className="absolute inset-x-0 font-mona text-[clamp(1.25rem,5.5vw,1.85rem)] font-light leading-snug tracking-tight text-[#E5FF00]">
-            {LINE_ONE.split("").map((char, index) => (
-              <SmokeLetter
-                key={`one-${index}`}
-                char={char}
-                index={index}
-                total={LINE_ONE.length}
-                progress={progress}
-                range={[0.08, 0.22]}
-              />
+            {LINE_ONE_WORDS.map(({ word, startIndex }, wordIndex) => (
+              <Fragment key={`${word}-${startIndex}`}>
+                <span className="inline-block whitespace-nowrap">
+                  {word.split("").map((char, charIndex) => (
+                    <SmokeLetter
+                      key={`one-${startIndex + charIndex}`}
+                      char={char}
+                      index={startIndex + charIndex}
+                      total={LINE_ONE.length}
+                      progress={progress}
+                      range={[0.08, 0.22]}
+                    />
+                  ))}
+                </span>
+                {wordIndex < LINE_ONE_WORDS.length - 1 ? " " : null}
+              </Fragment>
             ))}
           </p>
 

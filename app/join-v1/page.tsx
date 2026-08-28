@@ -9,7 +9,7 @@ export const metadata = {
 export default function JoinV1Page() {
   return (
     // overflow-x-hidden breaks position:sticky — keep it off this main
-    <main className="relative w-full bg-[#E5FF00] text-[#E5FF00]">
+    <main className="join-v1-page relative w-full bg-[#E5FF00] text-[#E5FF00]">
       <CuriosityIntro />
       {/* Whole stack pulled up so WHO ARE WE FOR covers the sticky intro sooner */}
       <div className="relative z-10 -mt-[55vh] -mb-[min(30vh,18rem)]">
