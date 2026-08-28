@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { ArrowRight, X } from "lucide-react"
+import Image from "next/image"
+import { ArrowUpRight, X } from "lucide-react"
 import FounderCard from "./founder-card"
 import type { Project } from "@/types/project"
 
@@ -55,27 +56,29 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
         <div className="mb-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-800 text-white">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
-                  fill="currentColor"
-                />
-              </svg>
+            <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
+              <Image
+                src={project.imageSrc || "/placeholder.svg"}
+                alt={`${project.companyName} logo`}
+                fill
+                sizes="48px"
+                className="object-cover"
+              />
             </div>
-            <h1 className="text-2xl font-medium text-gray-800">{project.companyName}</h1>
+            {project.companyWebsite ? (
+              <a
+                href={project.companyWebsite}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-3xl font-medium text-gray-800 underline decoration-gray-800 underline-offset-4 transition-colors hover:text-gray-600 hover:decoration-gray-600"
+              >
+                {project.title}
+                <ArrowUpRight className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+              </a>
+            ) : (
+              <h1 className="text-3xl font-medium text-gray-800">{project.title}</h1>
+            )}
           </div>
-
-          {project.companyWebsite && (
-            <a
-              href={project.companyWebsite}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-1 inline-flex items-center text-xs text-gray-600 hover:underline"
-            >
-              Company website <ArrowRight className="ml-1 h-3 w-3" />
-            </a>
-          )}
 
           <div className="mt-4 flex flex-wrap gap-2">
             {project.categories.map((category, index) => (

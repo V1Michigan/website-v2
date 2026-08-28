@@ -1,145 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import StartupCard from "./startup-card";
+import StartupCompanyGrid from "./startup-company-grid";
+import { startupWeekYears } from "@/data/startup-week";
 
 export default function StartupsGrid() {
-  const companies = [
-    {
-      name: "Ramp",
-      domain: "Fintech",
-      image: "/ramp.png",
-    },
-    {
-      name: "Watershed",
-      domain: "ClimateOS",
-      image: "/watershed.png",
-    },
-    {
-      name: "Courier Health",
-      domain: "Patient CRM",
-      image: "/courierhealth.png",
-    },
-    {
-      name: "Applied Intuition",
-      domain: "Motion AI",
-      image: "/app-intuition.png",
-    },
-    {
-      name: "Authentic",
-      domain: "Insurance",
-      image: "/authenticinsurance.png",
-    },
-    {
-      name: "Pylon",
-      domain: "B2B Support",
-      image: "/pylon.png",
-    },
-    {
-      name: "Windsurf",
-      domain: "AI Agents",
-      image: "/codeium.png",
-    },
-    {
-      name: "Lumos",
-      domain: "Autonomy",
-      image: "/lumos.png",
-    },
-    {
-      name: "Pallet",
-      domain: "Logistics",
-      image: "/pallet.png",
-    },
-    {
-      name: "Thatch",
-      domain: "Healthcare",
-      image: "/thatch.png",
-    },
-    {
-      name: "Comulate",
-      domain: "Insurance",
-      image: "/comulate.png",
-    },
-    {
-      name: "Wave RF",
-      domain: "Communication",
-      image: "/waverf.png",
-    },
-    {
-      name: "MeetYourClass",
-      domain: "Social",
-      image: "/meetyourclass.png",
-    },
-    {
-      name: "random",
-      domain: "random",
-      image: "/random.png",
-    },
-  ];
-
-  const placeholderCompanies = [
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg",
-    },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg",
-    },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg",
-    },
-    {
-      name: "Company",
-      domain: "Description",
-      image: "/placeholder.svg",
-    },
-  ];
-
-  const fall2025PlaceholderCompanies = Array.from({ length: 20 }, () => ({
-    name: "Company",
-    domain: "Description",
-    image: "",
-    isComingSoon: true,
-  }));
-
-  const extendedCompanies = [
-    ...companies,
-    ...placeholderCompanies,
-    ...placeholderCompanies,
-    ...placeholderCompanies,
-    ...placeholderCompanies,
-  ];
-
-  const containerVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: { x: 0, opacity: 1 },
-    exit: (direction: number) => ({
-      x: direction > 0 ? -300 : 300,
-      opacity: 0,
-    }),
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 8 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3 },
-    },
-  };
-
-  // 0 = Fall 2024, 1 = Fall 2025
-  const [pageIndex, setPageIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(1);
   const [direction, setDirection] = useState(0);
 
   function paginate(newIndex: number) {
@@ -148,13 +15,10 @@ export default function StartupsGrid() {
     setPageIndex(newIndex);
   }
 
-  const years = [
-    { year: "FALL 2024", companies: extendedCompanies },
-    { year: "FALL 2025", companies: fall2025PlaceholderCompanies },
-  ];
+  const currentYear = startupWeekYears[pageIndex];
 
   return (
-    <div className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
+    <div id="startup-directory" className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
       <svg
         className="absolute -top-[15%] left-0"
         width="180"
@@ -240,25 +104,27 @@ export default function StartupsGrid() {
 
         <div className="flex flex-col items-center">
           <p className="text-sm text-[#FEF9F5] font-inter mb-2">
-            {years[pageIndex].year}
+            {currentYear.year}
           </p>
           <div className="flex items-center justify-center space-x-12 mb-4">
             <div className="text-center">
               <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                12
+                {currentYear.topStartups}
               </div>
               <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
-                Top startups
+                  Top startups
               </div>
             </div>
-            <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                250+
+            {currentYear.topStudents && (
+              <div className="text-center">
+                <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
+                  {currentYear.topStudents}
+                </div>
+                <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
+                  Top students
+                </div>
               </div>
-              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
-                Top students
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
@@ -277,44 +143,15 @@ export default function StartupsGrid() {
       {/* Company Grid with animation */}
       <div className="flex justify-center relative z-10">
         <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
-          <div className="max-h-[75vh] overflow-hidden">
+          <div >
             <div className="relative">
-              <motion.div
-                key={pageIndex}
-                custom={direction}
-                variants={containerVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.4 }}
-                className="grid grid-cols-4 gap-4 mb-6"
-              >
-                {years[pageIndex].companies
-                  .slice(0, 3 * 4)
-                  .map((company, index) => (
-                    <motion.div key={index} variants={itemVariants}>
-                      <StartupCard
-                        image={company.image}
-                        name={company.name}
-                        domain={company.domain}
-                      />
-                    </motion.div>
-                  ))}
-              </motion.div>
-
-              {/* Coming Soon Overlay for Fall 2025 */}
-              {pageIndex === 1 && (
-                <div className="absolute inset-x-0 top-0 flex justify-center pt-8 pointer-events-none z-10">
-                  <div className="bg-black/70 backdrop-blur-md rounded-2xl px-6 py-4 text-center border border-white/10">
-                    <div className="text-xl sm:text-2xl font-instrument text-[#FEF9F5] mb-1">
-                      Coming Soon
-                    </div>
-                    <div className="text-xs sm:text-sm font-inter text-[#CEC9C5]">
-                      Amazing startups will be announced soon
-                    </div>
-                  </div>
-                </div>
-              )}
+              <div className="relative">
+                <StartupCompanyGrid
+                  companies={currentYear.companies}
+                  direction={direction}
+                  pageIndex={pageIndex}
+                />
+              </div>
             </div>
           </div>
         </div>

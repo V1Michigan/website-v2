@@ -30,6 +30,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/sweek/:path*',
+        destination: '/startupweek/:path*',
+        permanent: true,
+      },
+      {
+        source: '/startup-week/:path*',
+        destination: '/startupweek/:path*',
+        permanent: true,
+      },
+    ]
+  },
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,

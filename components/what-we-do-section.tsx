@@ -14,7 +14,7 @@ export default function WhatWeDoSection() {
         title="Startup Week"
         description="Where the best startups hire the best talent."
         imageSrc="/startup-week.png"
-        href="http://startupweek.v1michigan.com/"
+        href="/startupweek"
       />
 
       {/* <ProgramCard */}
