@@ -1,5 +1,4 @@
 import CuriosityIntro from "./curiosity-scroll";
-import JoinSocialBar from "./join-social-bar";
 import LayerStack from "./layer-stack";
 
 export const metadata = {
@@ -16,7 +15,6 @@ export default function JoinV1Page() {
       <div className="relative z-10 -mt-[55vh] -mb-[min(30vh,18rem)]">
         <LayerStack />
       </div>
-      <JoinSocialBar />
     </main>
   );
 }
