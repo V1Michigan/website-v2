@@ -1,6 +1,5 @@
 "use client";
 
-import JoinFooter from "./join-footer";
 import { Layer, LayerImage, ParallaxRoot } from "./scene";
 
 /**
@@ -9,8 +8,7 @@ import { Layer, LayerImage, ParallaxRoot } from "./scene";
  */
 export default function LayerStack() {
   return (
-    <>
-      <ParallaxRoot className="bg-transparent">
+    <ParallaxRoot className="bg-transparent">
       {/* ═══════════ WHO ARE WE FOR ═══════════ */}
       <div className="relative z-[1]">
         {/* Background — slow */}
@@ -130,10 +128,6 @@ export default function LayerStack() {
           </div>
         </Layer>
       </div>
-      </ParallaxRoot>
-
-      {/* Keep the footer out of transformed layers so it defines the page's true end. */}
-      <JoinFooter className="-mt-[min(65vh,40rem)]" />
-    </>
+    </ParallaxRoot>
   );
 }
