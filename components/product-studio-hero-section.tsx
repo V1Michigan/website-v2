@@ -39,12 +39,13 @@ export default function ProductStudioHeroSection() {
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
               className="mb-3 flex flex-col items-center gap-2"
             >
-              <a
-                href="https://v1michigan.com/apply?utm_source=website"
-                className="min-w-[240px] rounded-md border border-yellow-400 bg-yellow-400 px-8 py-3 font-inter font-medium text-[#191919] shadow-lg shadow-yellow-400/25 transition-colors hover:bg-yellow-300 hover:shadow-yellow-400/30 focus-visible:ring-yellow-300 sm:px-10 sm:py-3.5"
+              <button
+                type="button"
+                disabled
+                className="min-w-[240px] cursor-not-allowed rounded-md border border-gray-300 bg-gray-300 px-8 py-3 font-inter font-medium text-gray-500 shadow-sm sm:px-10 sm:py-3.5"
               >
-                Apply to Product Studio
-              </a>
+                Apply Now!
+              </button>
 
               <Link
                 href="/projects"
