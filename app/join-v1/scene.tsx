@@ -55,6 +55,8 @@ type LayerProps = {
   distance?: number;
   /** Final vertical offset. Defaults to the mirrored parallax position. */
   endOffset?: number;
+  /** Move at the original parallax rate, then stop at normal document flow. */
+  settleInFlow?: boolean;
   className?: string;
   style?: CSSProperties;
 };
@@ -63,6 +65,7 @@ export function Layer({
   children,
   distance = 80,
   endOffset = -distance,
+  settleInFlow = false,
   className = "",
   style,
 }: LayerProps) {
@@ -77,7 +80,11 @@ export function Layer({
   });
 
   const source = progress ?? localProgress;
-  const y = useTransform(source, [0, 1], [distance, endOffset]);
+  const y = useTransform(
+    source,
+    settleInFlow ? [0, 0.5, 1] : [0, 1],
+    settleInFlow ? [distance, 0, 0] : [distance, endOffset]
+  );
 
   return (
     <motion.div

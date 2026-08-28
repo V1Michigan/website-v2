@@ -1,7 +1,5 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-
 import { Layer, LayerImage, ParallaxRoot } from "./scene";
 
 /**
@@ -9,8 +7,6 @@ import { Layer, LayerImage, ParallaxRoot } from "./scene";
  * Bigger `distance` = moves more = feels closer (foreground).
  */
 export default function LayerStack() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <ParallaxRoot className="bg-transparent">
       {/* ═══════════ WHO ARE WE FOR ═══════════ */}
@@ -81,78 +77,69 @@ export default function LayerStack() {
           </Layer>
         </div>
 
-        {/*
-          Preserve the original 750 → -750 foreground path while ending at
-          translateY(0): shift layout up 750px, then animate 1500 → 0.
-          Both layers share that math so the curve stays locked to the people.
-        */}
-        <div
-          className="relative"
-          style={{
-            marginTop: reduceMotion
-              ? "-158vw"
-              : "calc(-158vw - 750px)",
-          }}
+        <Layer
+          distance={750}
+          settleInFlow
+          className="relative -mt-[158vw]"
         >
-          <Layer distance={1500} endOffset={0}>
+          <LayerImage
+            src="/join-v1/layers/04-people-2.png"
+            alt="V1 members at an event"
+          />
+        </Layer>
+
+        {/* Same motion keeps the curve locked to the people layer. */}
+        <Layer
+          distance={750}
+          settleInFlow
+          className="relative z-[6] -mt-[47vw]"
+        >
+          <div className="grid">
             <LayerImage
-              src="/join-v1/layers/04-people-2.png"
-              alt="V1 members at an event"
+              src="/join-v1/layers/05-how-to-join-bg.png"
+              className="col-start-1 row-start-1"
             />
-          </Layer>
 
-          <Layer
-            distance={1500}
-            endOffset={0}
-            className="relative z-[6] -mt-[47vw]"
-          >
-            <div className="grid">
-              <LayerImage
-                src="/join-v1/layers/05-how-to-join-bg.png"
-                className="col-start-1 row-start-1"
-              />
+            <div className="relative z-10 col-start-1 row-start-1 px-5 pb-10 pt-[12vw] font-mona sm:px-6">
+              <h2 className="font-mona text-[clamp(2.75rem,12vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-black">
+                HOW
+                <br />
+                TO JOIN
+              </h2>
 
-              <div className="relative z-10 col-start-1 row-start-1 px-5 pb-10 pt-[12vw] font-mona sm:px-6">
-                <h2 className="font-mona text-[clamp(2.75rem,12vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-black">
-                  HOW
-                  <br />
-                  TO JOIN
-                </h2>
+              <p className="mt-5 max-w-md font-mona text-[clamp(0.95rem,3vw,1.75rem)] font-light leading-snug text-black">
+                Sign Up to learn more about how you can join Michigan&apos;s
+                Leading Student Org for Founders and Entrepreneurship
+              </p>
 
-                <p className="mt-5 max-w-md font-mona text-[clamp(0.95rem,3vw,1.75rem)] font-light leading-snug text-black">
-                  Sign Up to learn more about how you can join Michigan&apos;s
-                  Leading Student Org for Founders and Entrepreneurship
-                </p>
-
-                <form
-                  className="pointer-events-auto relative mt-7 flex w-full max-w-sm items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
-                  onSubmit={(e) => e.preventDefault()}
+              <form
+                className="pointer-events-auto relative mt-7 flex w-full max-w-sm items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <label htmlFor="join-uniqname" className="sr-only">
+                  Uniqname
+                </label>
+                <input
+                  id="join-uniqname"
+                  type="text"
+                  name="uniqname"
+                  placeholder="Uniqname"
+                  autoComplete="username"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  required
+                  className="min-w-0 flex-1 rounded-full bg-white px-4 py-2.5 font-mona text-[clamp(1rem,3.5vw,1.35rem)] font-bold leading-none text-black placeholder:text-black/70 focus:outline-none sm:px-5"
+                />
+                <button
+                  type="submit"
+                  className="shrink-0 rounded-full bg-black px-5 py-2.5 font-mona text-[clamp(0.85rem,2.8vw,1rem)] font-bold uppercase tracking-wide text-[#E5FF00] transition-opacity hover:opacity-90 active:opacity-80"
                 >
-                  <label htmlFor="join-uniqname" className="sr-only">
-                    Uniqname
-                  </label>
-                  <input
-                    id="join-uniqname"
-                    type="text"
-                    name="uniqname"
-                    placeholder="Uniqname"
-                    autoComplete="username"
-                    autoCapitalize="none"
-                    spellCheck={false}
-                    required
-                    className="min-w-0 flex-1 rounded-full bg-white px-4 py-2.5 font-mona text-[clamp(1rem,3.5vw,1.35rem)] font-bold leading-none text-black placeholder:text-black/70 focus:outline-none sm:px-5"
-                  />
-                  <button
-                    type="submit"
-                    className="shrink-0 rounded-full bg-black px-5 py-2.5 font-mona text-[clamp(0.85rem,2.8vw,1rem)] font-bold uppercase tracking-wide text-[#E5FF00] transition-opacity hover:opacity-90 active:opacity-80"
-                  >
-                    Submit
-                  </button>
-                </form>
-              </div>
+                  Submit
+                </button>
+              </form>
             </div>
-          </Layer>
-        </div>
+          </div>
+        </Layer>
       </div>
     </ParallaxRoot>
   );
