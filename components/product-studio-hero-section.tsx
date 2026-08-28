@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Lightbulb } from "lucide-react";
+import ProductStudioTimeline from "@/components/product-studio-timeline";
 
 const tickerText =
   "IDEATE • VALIDATE • DESIGN • BUILD • SHIP • ITERATE • PRODUCT • ENGINEERING • DESIGN • STRATEGY";
@@ -11,9 +12,9 @@ const tickerText =
 export default function ProductStudioHeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#FAF7F2]">
-      <div className="relative min-h-[600px] w-full md:min-h-[750px] lg:min-h-[810px]">
+      <div className="relative min-h-[780px] w-full md:min-h-[880px] lg:min-h-[920px]">
         <div className="relative z-10 p-6 md:p-8 lg:p-12">
-          <div className="mx-auto mt-8 max-w-3xl text-center md:mt-12 lg:mt-16">
+          <div className="mx-auto mt-8 max-w-7xl text-center md:mt-12 lg:mt-16">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -31,9 +32,17 @@ export default function ProductStudioHeroSection() {
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
               className="mx-auto mb-10 max-w-2xl text-base font-normal text-[#444444] sm:text-lg md:text-xl"
             >
-              Turn an ambitious idea into a real product alongside Michigan&apos;s
-              strongest student builders.
+              Turn an ambitious idea into a real product.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+            >
+              <ProductStudioTimeline />
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 8 }}
