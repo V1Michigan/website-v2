@@ -10,7 +10,7 @@ const tickerText =
 
 export default function ProductStudioHeroSection() {
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden bg-[#191919]">
       <div className="relative min-h-[600px] w-full md:min-h-[750px] lg:min-h-[810px]">
         <div className="relative z-10 p-6 md:p-8 lg:p-12">
           <div className="mx-auto mt-8 max-w-3xl text-center md:mt-12 lg:mt-16">
@@ -19,7 +19,7 @@ export default function ProductStudioHeroSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-6 text-5xl font-instrument font-normal leading-tight text-[#444444] sm:text-6xl md:text-7xl lg:text-[8rem]"
+              className="mb-6 text-5xl font-instrument font-normal leading-tight text-[#FAF7F2] sm:text-6xl md:text-7xl lg:text-[8rem]"
             >
               Product Studio
             </motion.h1>
@@ -29,7 +29,7 @@ export default function ProductStudioHeroSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-              className="mx-auto mb-10 max-w-2xl text-base font-normal text-[#444444] sm:text-lg md:text-xl"
+              className="mx-auto mb-10 max-w-2xl text-base font-normal text-[#FAF7F2] sm:text-lg md:text-xl"
             >
               Turn an ambitious idea into a real product alongside Michigan&apos;s
               strongest student builders.
@@ -85,17 +85,19 @@ export default function ProductStudioHeroSection() {
           initial={{ opacity: 0.85 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 overflow-hidden"
+          className="absolute inset-y-0 left-1/2 w-full max-w-[1100px] -translate-x-1/2 overflow-hidden"
         >
           <Image
             src="/join-v1/layers/02-people-1.png"
             alt=""
             fill
-            className="object-cover object-center grayscale"
+            className="object-cover object-[center_18%] grayscale opacity-80"
             sizes="100vw"
             priority
           />
         </motion.div>
+
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#191919]/75 via-[#191919]/20 to-[#191919]" />
 
         <div className="absolute inset-x-0 bottom-0 z-30 overflow-hidden bg-yellow-400 py-3">
           <div className="animate-scroll whitespace-nowrap">
