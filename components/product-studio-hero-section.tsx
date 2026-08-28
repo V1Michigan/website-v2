@@ -85,7 +85,7 @@ export default function ProductStudioHeroSection() {
           initial={{ opacity: 0.85 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-y-0 left-1/2 w-full max-w-[1100px] -translate-x-1/2 overflow-hidden"
+          className="absolute inset-y-0 left-0 w-full overflow-hidden md:w-[68%] md:max-w-[850px]"
         >
           <Image
             src="/join-v1/layers/02-people-1.png"
@@ -93,6 +93,23 @@ export default function ProductStudioHeroSection() {
             fill
             className="object-cover object-[center_18%] grayscale opacity-80"
             sizes="100vw"
+            priority
+          />
+        </motion.div>
+
+        <motion.div
+          aria-hidden
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-y-0 right-0 hidden w-[42%] max-w-[520px] overflow-hidden md:block"
+        >
+          <Image
+            src="/join-v1/layers/04-people-2.png"
+            alt=""
+            fill
+            className="object-cover object-[center_18%] grayscale opacity-75"
+            sizes="(min-width: 768px) 42vw, 0px"
             priority
           />
         </motion.div>
