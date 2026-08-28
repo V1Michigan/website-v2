@@ -93,11 +93,13 @@ export function Layer({
     ([progress, flowProgress]) => {
       const originalY = distance * (1 - 2 * progress);
 
-      // Preserve the original path until the final fifth of the stack, then
-      // meet the flow overlap exactly so following content cannot drift.
-      if (flowProgress <= 0.8) return `${originalY}px`;
+      // Ease into the final alignment gradually so the foreground photo and
+      // curved transition stay locked without accelerating near the footer.
+      if (flowProgress <= 0.7) return `${originalY}px`;
 
-      const blend = (flowProgress - 0.8) / 0.2;
+      const alignmentProgress = (flowProgress - 0.7) / 0.3;
+      const blend =
+        alignmentProgress * alignmentProgress * (3 - 2 * alignmentProgress);
       return `calc(${originalY * (1 - blend)}px - ${55 * blend}vw)`;
     }
   );
