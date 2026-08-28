@@ -135,6 +135,10 @@ export default function LayerStack() {
 
       </ParallaxRoot>
 
+      <div
+        aria-hidden
+        className="h-[max(0px,calc(25vw-2.625rem))] w-full bg-[#E5FF00]"
+      />
       <div aria-hidden className="h-6 w-full bg-[#E5FF00] sm:h-8" />
       <JoinSocialBar />
     </>
