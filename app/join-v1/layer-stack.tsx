@@ -78,7 +78,11 @@ export default function LayerStack() {
           </Layer>
         </div>
 
-        <Layer distance={750} className="relative -mt-[158vw]">
+        <Layer
+          distance={750}
+          alignEndToFlow
+          className="relative -mt-[158vw]"
+        >
           <LayerImage
             src="/join-v1/layers/04-people-2.png"
             alt="V1 members at an event"
@@ -86,7 +90,11 @@ export default function LayerStack() {
         </Layer>
 
         {/* Same distance as 4people so the curve doesn’t slip and flash lime. */}
-        <Layer distance={750} className="relative z-[6] -mt-[47vw] -mb-[55vw]">
+        <Layer
+          distance={750}
+          alignEndToFlow
+          className="relative z-[6] -mt-[47vw] -mb-[55vw]"
+        >
           <LayerImage src="/join-v1/layers/05-how-to-join-bg.png" />
 
           <div className="relative z-10 -mt-[105vw] pt-2 font-mona">
