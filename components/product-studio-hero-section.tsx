@@ -9,7 +9,7 @@ import ProductStudioTimeline from "@/components/product-studio-timeline";
 export default function ProductStudioHeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#FAF7F2]">
-      <div className="relative min-h-[calc(100svh-57px)] w-full md:min-h-[calc(100svh-49px)]">
+      <div className="relative min-h-[calc(100svh-125px)] w-full md:min-h-[calc(100svh-121px)]">
         <div className="relative z-10 p-6 md:p-8 lg:p-12">
           <div className="mx-auto mt-8 max-w-7xl text-center md:mt-12 lg:mt-16">
             <motion.h1
@@ -111,7 +111,7 @@ export default function ProductStudioHeroSection() {
           />
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF7F2]/75 via-[#FAF7F2]/20 to-[#FAF7F2]" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF7F2]/75 via-[#FAF7F2]/20 to-[#FAF7F2]/45" />
 
         <div className="absolute inset-x-0 bottom-0 z-30">
           <ProductStudioTimeline />

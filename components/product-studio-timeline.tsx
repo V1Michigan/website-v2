@@ -66,8 +66,8 @@ export default function ProductStudioTimeline() {
   }, []);
 
   return (
-    <div className="w-full overflow-x-auto border-y border-[#444444]/15 bg-[#FAF7F2]/95 px-4 py-2.5 shadow-[0_-10px_30px_rgba(25,25,25,0.08)] backdrop-blur-md sm:px-6">
-      <ol className="relative mx-auto grid min-w-[1050px] max-w-7xl grid-cols-7 before:absolute before:left-[7.14%] before:right-[7.14%] before:top-[7px] before:h-0.5 before:bg-[#444444]/25">
+    <div className="w-full overflow-x-auto border-t border-[#444444]/15 bg-transparent px-4 py-2.5 sm:px-6">
+      <ol className="relative mx-auto grid min-w-[1050px] max-w-7xl grid-cols-7 drop-shadow-[0_1px_1px_rgba(250,247,242,0.95)] before:absolute before:left-[7.14%] before:right-[7.14%] before:top-[7px] before:h-0.5 before:bg-[#444444]/30">
         {timelineEvents.map((event) => {
           const hasPassed = now !== null && now > new Date(event.endsAt).getTime();
 
