@@ -55,6 +55,8 @@ type LayerProps = {
   distance?: number;
   /** Final vertical offset. Defaults to the mirrored parallax position. */
   endOffset?: number;
+  /** Keep following document-flow content attached to this layer at its end. */
+  alignEndWithFlow?: boolean;
   className?: string;
   style?: CSSProperties;
 };
@@ -63,6 +65,7 @@ export function Layer({
   children,
   distance = 80,
   endOffset = -distance,
+  alignEndWithFlow = false,
   className = "",
   style,
 }: LayerProps) {
@@ -78,12 +81,15 @@ export function Layer({
 
   const source = progress ?? localProgress;
   const y = useTransform(source, [0, 1], [distance, endOffset]);
+  const flowAlignment = alignEndWithFlow
+    ? { marginBottom: reduce ? 0 : endOffset }
+    : undefined;
 
   return (
     <motion.div
       ref={localRef}
       className={`will-change-transform ${className}`}
-      style={{ y: reduce ? 0 : y, ...style }}
+      style={{ y: reduce ? 0 : y, ...flowAlignment, ...style }}
     >
       {children}
     </motion.div>
