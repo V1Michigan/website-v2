@@ -57,12 +57,12 @@ export default function LayerStack() {
 
       {/* ═══════════ WHO ARE WE ═══════════ */}
       <div className="relative z-[4] mt-[3vw]">
-        <Layer distance={140} className="mt-[4vw]">
+        <Layer distance={500} className="mt-[4vw]">
           <LayerImage src="/join-v1/layers/03-who-are-we-bg.png" />
         </Layer>
 
-        <div className="pointer-events-none absolute inset-x-0 top-[clamp(1.5rem,6vw,3.5rem)] z-[2] px-5 sm:px-6">
-          <Layer distance={140}>
+        <div className="pointer-events-none absolute inset-x-0 top-[clamp(3rem,10vw,5.5rem)] z-[2] px-5 sm:px-6">
+          <Layer distance={500}>
             <div className="ml-auto max-w-[min(90%,20rem)] text-right">
               <h2 className="font-mona text-[clamp(2.75rem,12vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-black">
                 WHO
@@ -78,23 +78,15 @@ export default function LayerStack() {
           </Layer>
         </div>
 
-        <Layer
-          distance={240}
-          flowEndVw={-40}
-          className="relative -mt-[158vw]"
-        >
+        <Layer distance={750} className="relative -mt-[158vw]">
           <LayerImage
             src="/join-v1/layers/04-people-2.png"
             alt="V1 members at an event"
           />
         </Layer>
 
-        {/* The form layer still aligns with the page boundary at the end. */}
-        <Layer
-          distance={140}
-          flowEndVw={-55}
-          className="relative z-[6] -mt-[47vw] -mb-[55vw]"
-        >
+        {/* Same distance as 4people so the curve doesn’t slip and flash lime. */}
+        <Layer distance={750} className="relative z-[6] -mt-[47vw] -mb-[55vw]">
           <LayerImage src="/join-v1/layers/05-how-to-join-bg.png" />
 
           <div className="relative z-10 -mt-[105vw] pt-2 font-mona">

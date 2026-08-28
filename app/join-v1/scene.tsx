@@ -15,12 +15,7 @@ import {
   type ReactNode,
 } from "react";
 
-type ParallaxContextValue = {
-  progress: MotionValue<number>;
-  flowProgress: MotionValue<number>;
-};
-
-const ParallaxContext = createContext<ParallaxContextValue | null>(null);
+const ParallaxContext = createContext<MotionValue<number> | null>(null);
 
 /**
  * One scroll driver for the whole stack — layers share progress
@@ -38,15 +33,9 @@ export function ParallaxRoot({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const { scrollYProgress: flowProgress } = useScroll({
-    target: ref,
-    offset: ["start 150%", "end end"],
-  });
 
   return (
-    <ParallaxContext.Provider
-      value={{ progress: scrollYProgress, flowProgress }}
-    >
+    <ParallaxContext.Provider value={scrollYProgress}>
       <div ref={ref} className={`relative w-full ${className}`}>
         {children}
       </div>
@@ -62,8 +51,6 @@ type LayerProps = {
    * Negative = opposite direction (moves down as you scroll).
    */
   distance?: number;
-  /** Responsive endpoint used to align a layer with document flow. */
-  flowEndVw?: number;
   className?: string;
   style?: CSSProperties;
 };
@@ -71,11 +58,10 @@ type LayerProps = {
 export function Layer({
   children,
   distance = 80,
-  flowEndVw,
   className = "",
   style,
 }: LayerProps) {
-  const parallax = useContext(ParallaxContext);
+  const progress = useContext(ParallaxContext);
   const reduce = useReducedMotion();
   const localRef = useRef<HTMLDivElement>(null);
 
@@ -85,27 +71,14 @@ export function Layer({
     offset: ["start end", "end start"],
   });
 
-  const source = parallax?.progress ?? localProgress;
-  const flowSource = parallax?.flowProgress ?? localProgress;
+  const source = progress ?? localProgress;
   const y = useTransform(source, [0, 1], [distance, -distance]);
-  const flowAlignedY = useTransform<number, string>(
-    flowSource,
-    (progress) =>
-      `calc(${distance * (1 - progress)}px + ${(flowEndVw ?? 0) * progress}vw)`
-  );
-  const resolvedY = reduce
-    ? flowEndVw !== undefined
-      ? `${flowEndVw}vw`
-      : 0
-    : flowEndVw !== undefined
-      ? flowAlignedY
-      : y;
 
   return (
     <motion.div
       ref={localRef}
       className={`will-change-transform ${className}`}
-      style={{ y: resolvedY, ...style }}
+      style={{ y: reduce ? 0 : y, ...style }}
     >
       {children}
     </motion.div>
