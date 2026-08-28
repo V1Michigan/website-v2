@@ -85,7 +85,7 @@ export default function ProductStudioHeroSection() {
           initial={{ opacity: 0.85 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-y-0 left-0 w-full overflow-hidden md:left-auto md:right-0 md:w-1/2"
+          className="absolute inset-y-0 left-0 w-full overflow-hidden md:left-auto md:right-[10%] md:w-[40%]"
         >
           <Image
             src="/join-v1/layers/02-people-1.png"
@@ -102,7 +102,7 @@ export default function ProductStudioHeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-y-0 left-0 hidden w-1/2 overflow-hidden md:block"
+          className="absolute inset-y-0 left-[10%] hidden w-[40%] overflow-hidden md:block"
         >
           <Image
             src="/join-v1/layers/04-people-2.png"
