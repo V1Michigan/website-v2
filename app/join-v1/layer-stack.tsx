@@ -9,7 +9,8 @@ import { Layer, LayerImage, ParallaxRoot } from "./scene";
  */
 export default function LayerStack() {
   return (
-    <ParallaxRoot className="bg-transparent">
+    <>
+      <ParallaxRoot className="bg-transparent">
       {/* ═══════════ WHO ARE WE FOR ═══════════ */}
       <div className="relative z-[1]">
         {/* Background — slow */}
@@ -132,8 +133,10 @@ export default function LayerStack() {
         </Layer>
       </div>
 
+      </ParallaxRoot>
+
       <div aria-hidden className="h-6 w-full bg-[#E5FF00] sm:h-8" />
       <JoinSocialBar />
-    </ParallaxRoot>
+    </>
   );
 }
