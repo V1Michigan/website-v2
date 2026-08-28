@@ -66,31 +66,31 @@ export default function ProductStudioTimeline() {
   }, []);
 
   return (
-    <div className="w-full overflow-x-auto border-y border-[#444444]/15 bg-[#FAF7F2]/95 px-4 py-4 shadow-[0_-10px_30px_rgba(25,25,25,0.08)] backdrop-blur-md sm:px-6">
-      <ol className="relative mx-auto grid min-w-[1050px] max-w-7xl grid-cols-7 before:absolute before:left-[7.14%] before:right-[7.14%] before:top-[9px] before:h-0.5 before:bg-[#444444]/25">
+    <div className="w-full overflow-x-auto border-y border-[#444444]/15 bg-[#FAF7F2]/95 px-4 py-2.5 shadow-[0_-10px_30px_rgba(25,25,25,0.08)] backdrop-blur-md sm:px-6">
+      <ol className="relative mx-auto grid min-w-[1050px] max-w-7xl grid-cols-7 before:absolute before:left-[7.14%] before:right-[7.14%] before:top-[7px] before:h-0.5 before:bg-[#444444]/25">
         {timelineEvents.map((event) => {
           const hasPassed = now !== null && now > new Date(event.endsAt).getTime();
 
           return (
             <li key={event.title} className="relative flex flex-col items-center px-2 text-center">
               <span
-                className={`relative z-10 mb-3 h-5 w-5 rounded-full border-2 transition-colors ${
+                className={`relative z-10 mb-2 h-4 w-4 rounded-full border-2 transition-colors ${
                   hasPassed
                     ? "border-yellow-400 bg-yellow-400"
                     : "border-[#444444] bg-[#FAF7F2]"
                 }`}
                 aria-label={hasPassed ? "Event completed" : "Upcoming event"}
               />
-              <p className="mb-1 font-inter text-[10px] font-bold tracking-[0.12em] text-[#6B6865]">
+              <p className="mb-0.5 font-inter text-[10px] font-bold tracking-[0.12em] text-[#6B6865]">
                 {event.date}
               </p>
-              <h3 className="min-h-10 font-inter text-xs font-bold leading-4 text-[#191919]">
+              <h3 className="min-h-8 font-inter text-[11px] font-bold leading-3.5 text-[#191919]">
                 {event.title}
               </h3>
-              <p className="mt-1 min-h-4 font-inter text-[10px] leading-4 text-[#444444]">
+              <p className="mt-0.5 min-h-3 font-inter text-[10px] leading-3 text-[#444444]">
                 {event.location}
               </p>
-              <p className="font-inter text-[10px] font-semibold leading-4 text-[#444444]">
+              <p className="font-inter text-[10px] font-semibold leading-3 text-[#444444]">
                 {event.time}
               </p>
             </li>
