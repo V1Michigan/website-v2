@@ -5,7 +5,15 @@ import Image from "next/image";
 import CountdownTimer from "@/components/countdown-timer";
 import { Lightbulb } from "lucide-react";
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  backgroundImageSrc?: string;
+  backgroundImageAlt?: string;
+};
+
+export default function HeroSection({
+  backgroundImageSrc = "/excluded.png",
+  backgroundImageAlt = "People networking at startup event",
+}: HeroSectionProps) {
   return (
     <section className="relative w-full overflow-hidden">
       <div className="relative w-full min-h-[600px] md:min-h-[750px] lg:min-h-[810px]">
@@ -128,8 +136,8 @@ export default function HeroSection() {
           className="absolute inset-0 overflow-hidden"
         >
           <Image
-            src="/excluded.png"
-            alt="People networking at startup event"
+            src={backgroundImageSrc}
+            alt={backgroundImageAlt}
             fill
             className="object-cover grayscale transform-gpu origin-center scale-150 translate-x-[25%] -translate-y-[1%] md:translate-x-[25%] md:-translate-y-[-6%]"
             sizes="100vw"
