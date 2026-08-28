@@ -3,7 +3,7 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ProductStudioHeroSection from "@/components/product-studio-hero-section";
-import StartupsGrid from "@/components/startups-grid";
+import ProductStudioProjectsSection from "@/components/product-studio-projects-section";
 import EventSections from "@/components/events-sections";
 import FAQSection from "@/components/faq-section";
 import TeamSection from "@/components/team-section";
@@ -16,7 +16,7 @@ export default function ProductStudioPage() {
       <PostHogPageView />
       <Header />
       <ProductStudioHeroSection />
-      <StartupsGrid />
+      <ProductStudioProjectsSection />
 
       <div className="relative mx-auto bg-[#FAF7F2]">
         <div className="pointer-events-none absolute -top-[80px] left-0 right-0 z-40 h-[120px] bg-gradient-to-b from-transparent via-[#FAF7F2]/60 to-[#FAF7F2]" />
