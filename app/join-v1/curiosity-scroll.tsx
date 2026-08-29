@@ -10,7 +10,7 @@ import {
   MotionValue,
 } from "framer-motion";
 
-const LINE_ONE = "So you were curious enough to find this link and follow it..";
+const LINE_ONE = "So, you were curious enough to find this link…";
 const LINE_TWO = "Where will your curiosity take you next?";
 const LINE_ONE_WORDS = LINE_ONE.split(" ").map((word, wordIndex, words) => ({
   word,

@@ -25,8 +25,11 @@ export default function LayerStack() {
               WHO ARE WE FOR?
             </h2>
             <p className="mx-auto mt-5 max-w-md font-sans text-[clamp(1rem,3.8vw,1.75rem)] font-normal leading-snug text-black">
-              Self-starters. Risk-takers. People who turn their ideas into real
-              things.
+              <span className="block">Self-starters</span>
+              <span className="block">Risk-takers</span>
+              <span className="block">
+                People who want to turn their ideas into real things.
+              </span>
             </p>
           </Layer>
         </div>
@@ -50,7 +53,7 @@ export default function LayerStack() {
             />
             <p className="text-left font-mona text-[clamp(1.25rem,4vw,2.25rem)] font-extralight leading-[1.25] tracking-tight text-[#E5FF00]">
               We look for the hardest problems, and bet on ourselves to solve
-              them
+              them.
             </p>
           </div>
         </Layer>
@@ -71,15 +74,18 @@ export default function LayerStack() {
                 ARE WE?
               </h2>
               <p className="mt-4 font-sans text-[clamp(0.875rem,2.8vw,1.25rem)] font-normal leading-snug text-black">
-                V1 is the premier builder community at the University of Michigan
-                dedicated to supporting hackers and creators every step of the
-                way.
+                V1 is the University of Michigan&apos;s startup and entrepreneurship
+                community, supporting builders, creators, and founders every step
+                of the way.
               </p>
             </div>
           </Layer>
         </div>
 
-        <Layer distance={750} className="relative -mt-[158vw]">
+        <Layer
+          distance={750}
+          className="relative -top-[16vw] z-[3] -mt-[158vw] sm:-top-[5vw]"
+        >
           <LayerImage
             src="/join-v1/layers/04-people-2.png"
             alt="V1 members at an event"
@@ -99,8 +105,7 @@ export default function LayerStack() {
               </h2>
 
               <p className="mt-5 max-w-md font-mona text-[clamp(0.95rem,3vw,1.75rem)] font-light leading-snug text-black">
-                Sign Up to learn more about how you can join Michigan&apos;s
-                Leading Student Org for Founders and Entrepreneurship
+                Drop your uniqname and we’ll send you our event schedule.
               </p>
 
               <form

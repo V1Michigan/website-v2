@@ -4,7 +4,7 @@ import LayerStack from "./layer-stack";
 
 export const metadata = {
   title: "Join V1 | V1 @ Michigan",
-  description: "So you were curious enough to find this link and follow it..",
+  description: "So, you were curious enough to find this link…",
 };
 
 export default function JoinV1Page() {
