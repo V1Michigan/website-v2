@@ -52,7 +52,7 @@ function SmokeLetter({
 
   return (
     <motion.span
-      className="inline-block will-change-[opacity,transform,filter]"
+      className="inline-block will-change-auto sm:will-change-[opacity,transform,filter]"
       style={{ opacity, x, y, filter }}
     >
       {char}
@@ -100,6 +100,13 @@ export default function CuriosityIntro() {
     damping: 30,
     restDelta: 0.001,
   });
+
+  const mobileLineOneOpacity = useTransform(
+    progress,
+    [0.08, 0.16, 0.22],
+    [1, 1, 0]
+  );
+  const mobileLineOneY = useTransform(progress, [0.08, 0.22], [0, -12]);
 
   const lineTwoOpacity = useTransform(
     progress,
@@ -159,7 +166,14 @@ export default function CuriosityIntro() {
         />
 
         <div className="relative z-10 flex h-48 w-full max-w-md items-center justify-center text-center">
-          <p className="absolute inset-x-0 font-mona text-[clamp(1.25rem,5.5vw,1.85rem)] font-light leading-snug tracking-tight text-[#E5FF00]">
+          <motion.p
+            className="absolute inset-x-0 font-mona text-[clamp(1.25rem,5.5vw,1.85rem)] font-light leading-snug tracking-tight text-[#E5FF00] sm:hidden"
+            style={{ opacity: mobileLineOneOpacity, y: mobileLineOneY }}
+          >
+            {LINE_ONE}
+          </motion.p>
+
+          <p className="absolute inset-x-0 hidden font-mona text-[clamp(1.25rem,5.5vw,1.85rem)] font-light leading-snug tracking-tight text-[#E5FF00] sm:block">
             {LINE_ONE_WORDS.map(({ word, startIndex }, wordIndex) => (
               <Fragment key={`${word}-${startIndex}`}>
                 <span className="inline-block whitespace-nowrap">
@@ -180,7 +194,14 @@ export default function CuriosityIntro() {
           </p>
 
           <motion.p
-            className="absolute inset-x-0 font-mona text-[clamp(1.25rem,5.5vw,1.85rem)] font-bold leading-snug tracking-tight text-[#E5FF00]"
+            className="absolute inset-x-0 font-mona text-[clamp(1.25rem,5.5vw,1.85rem)] font-bold leading-snug tracking-tight text-[#E5FF00] sm:hidden"
+            style={{ opacity: lineTwoOpacity, y: lineTwoY }}
+          >
+            {LINE_TWO}
+          </motion.p>
+
+          <motion.p
+            className="absolute inset-x-0 hidden font-mona text-[clamp(1.25rem,5.5vw,1.85rem)] font-bold leading-snug tracking-tight text-[#E5FF00] sm:block"
             style={{
               opacity: lineTwoOpacity,
               y: lineTwoY,
@@ -193,17 +214,17 @@ export default function CuriosityIntro() {
           <div className="absolute inset-0 flex items-center justify-center">
             <VectorSmoke
               progress={progress}
-              className="pointer-events-none absolute h-36 w-36 rounded-full bg-[#E5FF00]/35 blur-3xl"
+              className="pointer-events-none absolute hidden h-36 w-36 rounded-full bg-[#E5FF00]/35 blur-3xl sm:block"
               drift={{ x: [-30, -50], y: [0, -80], scale: [0.5, 2.1] }}
             />
             <VectorSmoke
               progress={progress}
-              className="pointer-events-none absolute h-40 w-40 rounded-full bg-[#E5FF00]/30 blur-3xl"
+              className="pointer-events-none absolute hidden h-40 w-40 rounded-full bg-[#E5FF00]/30 blur-3xl sm:block"
               drift={{ x: [30, 55], y: [0, -95], scale: [0.4, 2.4] }}
             />
             <VectorSmoke
               progress={progress}
-              className="pointer-events-none absolute h-44 w-28 rounded-full bg-white/15 blur-3xl"
+              className="pointer-events-none absolute hidden h-44 w-28 rounded-full bg-white/15 blur-3xl sm:block"
               drift={{ x: [0, 8], y: [0, -110], scale: [0.6, 2.8] }}
             />
 
@@ -216,7 +237,7 @@ export default function CuriosityIntro() {
               <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2">
                 <motion.div
                   aria-hidden
-                  className="h-[min(55vw,16rem)] w-[min(55vw,16rem)] rounded-full bg-[#E5FF00] blur-2xl"
+                  className="h-[min(55vw,16rem)] w-[min(55vw,16rem)] rounded-full bg-[#E5FF00] blur-xl sm:blur-2xl"
                   style={{ scale: bloomScale, opacity: bloomOpacity }}
                 />
               </div>
@@ -227,7 +248,17 @@ export default function CuriosityIntro() {
                 height={661}
                 loading="eager"
                 fetchPriority="high"
-                className="relative z-10 h-auto w-[42vw] max-w-[180px]"
+                className="relative z-10 h-auto w-[42vw] max-w-[180px] sm:hidden"
+                style={{ opacity: vectorOpacity }}
+              />
+              <motion.img
+                src="/join-v1/vector.svg"
+                alt=""
+                width={491}
+                height={661}
+                loading="eager"
+                fetchPriority="high"
+                className="relative z-10 hidden h-auto w-[42vw] max-w-[180px] sm:block"
                 style={{
                   opacity: vectorOpacity,
                   filter: vectorFilter,

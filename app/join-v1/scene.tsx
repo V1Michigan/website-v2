@@ -19,12 +19,35 @@ import {
 
 const ParallaxContext = createContext<MotionValue<number> | null>(null);
 
-const LAYER_DIMENSIONS: Record<string, { width: number; height: number }> = {
-  "/join-v1/layers/01-who-are-we-for-bg.png": { width: 1280, height: 2312 },
-  "/join-v1/layers/02-people-1.png": { width: 1280, height: 3739 },
-  "/join-v1/layers/03-who-are-we-bg.png": { width: 1280, height: 2285 },
-  "/join-v1/layers/04-people-2.png": { width: 720, height: 1280 },
-  "/join-v1/layers/05-how-to-join-bg.png": { width: 1280, height: 1499 },
+const LAYER_ASSETS: Record<
+  string,
+  { width: number; height: number; mobileSrc: string }
+> = {
+  "/join-v1/layers/01-who-are-we-for-bg.png": {
+    width: 1280,
+    height: 2312,
+    mobileSrc: "/join-v1/layers/01-who-are-we-for-bg-mobile.webp",
+  },
+  "/join-v1/layers/02-people-1.png": {
+    width: 1280,
+    height: 3739,
+    mobileSrc: "/join-v1/layers/02-people-1-mobile.webp",
+  },
+  "/join-v1/layers/03-who-are-we-bg.png": {
+    width: 1280,
+    height: 2285,
+    mobileSrc: "/join-v1/layers/03-who-are-we-bg-mobile.webp",
+  },
+  "/join-v1/layers/04-people-2.png": {
+    width: 720,
+    height: 1280,
+    mobileSrc: "/join-v1/layers/04-people-2-mobile.webp",
+  },
+  "/join-v1/layers/05-how-to-join-bg.png": {
+    width: 1280,
+    height: 1499,
+    mobileSrc: "/join-v1/layers/05-how-to-join-bg-mobile.webp",
+  },
 };
 
 /**
@@ -109,7 +132,7 @@ export function Layer({
 
   return (
     <motion.div
-      className={`will-change-transform ${className}`}
+      className={`will-change-auto sm:will-change-transform ${className}`}
       style={{ y: reduce ? 0 : y, ...style }}
     >
       {children}
@@ -132,21 +155,30 @@ export function LayerImage({
   className?: string;
   seeThrough?: boolean;
 }) {
-  const dimensions = LAYER_DIMENSIONS[src];
+  const asset = LAYER_ASSETS[src];
 
   return (
-    <img
-      src={src}
-      alt={alt}
-      width={dimensions?.width}
-      height={dimensions?.height}
-      loading="eager"
-      decoding="async"
-      fetchPriority="high"
-      draggable={false}
-      className={`pointer-events-none block h-auto w-full max-w-none select-none ${
-        seeThrough ? "mix-blend-lighten" : ""
-      } ${className}`}
-    />
+    <picture className="block w-full">
+      {asset?.mobileSrc ? (
+        <source
+          media="(max-width: 639px)"
+          srcSet={asset.mobileSrc}
+          type="image/webp"
+        />
+      ) : null}
+      <img
+        src={src}
+        alt={alt}
+        width={asset?.width}
+        height={asset?.height}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        draggable={false}
+        className={`pointer-events-none block h-auto w-full max-w-none select-none ${
+          seeThrough ? "mix-blend-lighten" : ""
+        } ${className}`}
+      />
+    </picture>
   );
 }
