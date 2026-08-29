@@ -140,8 +140,17 @@ export default function CuriosityIntro() {
 
   return (
     // Tall runway = scroll length. Sticky child never leaves center until runway ends.
-    <section ref={runwayRef} className="relative z-0 h-[260vh] w-full bg-black">
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden px-5">
+    <section
+      ref={runwayRef}
+      className="relative z-0 w-full bg-black"
+      style={{
+        height: "calc(var(--join-v1-viewport-height, 100svh) * 2.6)",
+      }}
+    >
+      <div
+        className="sticky top-0 flex w-full items-center justify-center overflow-hidden px-5"
+        style={{ height: "var(--join-v1-viewport-height, 100svh)" }}
+      >
         {/* Solid wash kicks in once bloom has filled the frame */}
         <motion.div
           aria-hidden
@@ -214,6 +223,10 @@ export default function CuriosityIntro() {
               <motion.img
                 src="/join-v1/vector.svg"
                 alt=""
+                width={491}
+                height={661}
+                loading="eager"
+                fetchPriority="high"
                 className="relative z-10 h-auto w-[42vw] max-w-[180px]"
                 style={{
                   opacity: vectorOpacity,

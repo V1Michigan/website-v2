@@ -104,7 +104,7 @@ export default function LayerStack() {
               </p>
 
               <form
-                className="pointer-events-auto relative mt-7 flex w-full max-w-sm items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
+                className="join-v1-form pointer-events-auto relative mt-7 flex w-full max-w-sm scroll-mt-6 items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
                 onSubmit={(e) => e.preventDefault()}
               >
                 <label htmlFor="join-uniqname" className="sr-only">
@@ -117,6 +117,8 @@ export default function LayerStack() {
                   placeholder="Uniqname"
                   autoComplete="username"
                   autoCapitalize="none"
+                  autoCorrect="off"
+                  enterKeyHint="send"
                   spellCheck={false}
                   required
                   className="min-w-0 flex-1 rounded-full bg-white px-4 py-2.5 font-mona text-[clamp(1rem,3.5vw,1.35rem)] font-bold leading-none text-black placeholder:text-black/70 focus:outline-none sm:px-5"
