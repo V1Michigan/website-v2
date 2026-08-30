@@ -24,7 +24,7 @@ export default function HeroSection() {
         <DevBanner />
       </ScheduledToggle>
 
-      <section className="relative my-4 w-full overflow-hidden">
+      <section className="relative my-4 mx-auto max-w-6xl overflow-hidden rounded-lg px-4 md:px-6 lg:px-8">
         <div className="relative aspect-[16/9] w-full">
           <motion.video
             src="/landing-video-v1.mp4"
@@ -33,14 +33,14 @@ export default function HeroSection() {
             muted
             playsInline
             preload="metadata"
-            className="h-full w-full object-cover"
+            className="rounded-lg object-cover w-full h-full"
             poster="/landing-video-img.png"
             initial={{ scale: 1.04, opacity: 0.9 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           />
           <motion.div
-            className="absolute inset-0 bg-black/20"
+            className="absolute inset-0 bg-black/20 rounded-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
