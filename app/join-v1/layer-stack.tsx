@@ -1,5 +1,10 @@
 "use client";
 
+import { FormEvent, useState } from "react";
+
+import supabase from "@/utils/supabaseClient";
+
+import { saveJoinV1Signup } from "./join-v1-signup";
 import JoinSocialBar from "./join-social-bar";
 import { Layer, LayerImage, ParallaxRoot } from "./scene";
 
@@ -8,6 +13,36 @@ import { Layer, LayerImage, ParallaxRoot } from "./scene";
  * Bigger `distance` = moves more = feels closer (foreground).
  */
 export default function LayerStack() {
+  const [submissionState, setSubmissionState] = useState<
+    "idle" | "saving" | "success" | "error"
+  >("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (submissionState === "saving") {
+      return;
+    }
+
+    const form = event.currentTarget;
+    const uniqname = new FormData(form).get("uniqname");
+
+    if (typeof uniqname !== "string") {
+      setSubmissionState("error");
+      return;
+    }
+
+    setSubmissionState("saving");
+
+    try {
+      await saveJoinV1Signup(supabase, uniqname);
+      form.reset();
+      setSubmissionState("success");
+    } catch {
+      setSubmissionState("error");
+    }
+  }
+
   return (
     <>
       <ParallaxRoot className="bg-transparent">
@@ -110,7 +145,8 @@ export default function LayerStack() {
 
               <form
                 className="join-v1-form pointer-events-auto relative mt-7 flex w-full max-w-sm scroll-mt-6 items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSubmit}
+                aria-describedby="join-uniqname-status"
               >
                 <label htmlFor="join-uniqname" className="sr-only">
                   Uniqname
@@ -126,15 +162,29 @@ export default function LayerStack() {
                   enterKeyHint="send"
                   spellCheck={false}
                   required
+                  disabled={submissionState === "saving"}
                   className="min-w-0 flex-1 rounded-full bg-white px-4 py-2.5 font-mona text-[clamp(1rem,3.5vw,1.35rem)] font-bold leading-none text-black placeholder:text-black/70 focus:outline-none sm:px-5"
                 />
                 <button
                   type="submit"
-                  className="shrink-0 rounded-full bg-black px-5 py-2.5 font-mona text-[clamp(0.85rem,2.8vw,1rem)] font-bold uppercase tracking-wide text-[#E5FF00] transition-opacity hover:opacity-90 active:opacity-80"
+                  disabled={submissionState === "saving"}
+                  className="shrink-0 rounded-full bg-black px-5 py-2.5 font-mona text-[clamp(0.85rem,2.8vw,1rem)] font-bold uppercase tracking-wide text-[#E5FF00] transition-opacity hover:opacity-90 active:opacity-80 disabled:cursor-wait disabled:opacity-60"
                 >
-                  Submit
+                  {submissionState === "saving" ? "Saving…" : "Submit"}
                 </button>
               </form>
+
+              <p
+                id="join-uniqname-status"
+                role="status"
+                aria-live="polite"
+                className="mt-3 min-h-6 font-mona text-sm font-bold text-black"
+              >
+                {submissionState === "success" &&
+                  "You’re in! We saved your uniqname."}
+                {submissionState === "error" &&
+                  "We couldn’t save your uniqname. Please try again."}
+              </p>
             </div>
           </div>
         </Layer>
