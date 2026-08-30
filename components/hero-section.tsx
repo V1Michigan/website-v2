@@ -71,7 +71,7 @@ export default function HeroSection() {
               way.
             </motion.p>
             <motion.div
-              className="mt-6 flex space-x-6"
+              className="mt-6 flex items-center space-x-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.6 }}
@@ -122,24 +122,16 @@ export default function HeroSection() {
                   />
                 </motion.div>
               </Link>
+              <Link
+                href="https://v1michigan.com/join"
+                aria-label="Join us"
+                className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+              >
+                Join us
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </motion.div>
           </div>
-          <motion.div
-            className="absolute bottom-6 right-6 md:bottom-8 md:right-8 lg:bottom-10 lg:right-10"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
-            <Link
-              href="https://tally.so/r/WOb4VR"
-              aria-label="Join us"
-              className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
-            >
-              Join us
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </motion.div>
         </div>
       </section>
     </>
