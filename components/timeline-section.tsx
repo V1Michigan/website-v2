@@ -56,7 +56,7 @@ export default function TimelineSection({
       <div ref={containerRef} className="relative">
         <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200">
           <motion.div
-            className="absolute left-1/2 -translate-x-1/2 h-4 w-4 rounded-full bg-[#F5A623]"
+            className="absolute left-1/2 -translate-x-1/2 h-4 w-4 rounded-full bg-accent"
             style={{ top: dotTopPx }}
             animate={{
               boxShadow: [
