@@ -60,8 +60,8 @@ export default function TimelineSection({
             style={{ top: dotTopPx }}
             animate={{
               boxShadow: [
-                "0 0 0 0 rgba(245,166,35,0.6)",
-                "0 0 0 8px rgba(245,166,35,0)",
+                "0 0 0 0 rgba(253,224,71,0.6)",
+                "0 0 0 8px rgba(253,224,71,0)",
               ],
             }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
