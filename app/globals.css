@@ -141,3 +141,33 @@ body {
 .animate-scroll-reverse {
   animation: scroll-reverse 30s linear infinite;
 }
+
+@keyframes button-sheen {
+  0%,
+  55% {
+    transform: translateX(-180%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+.button-sheen {
+  position: absolute;
+  inset: 0 auto 0 -35%;
+  width: 28%;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgb(255 255 255 / 0.45),
+    transparent
+  );
+  animation: button-sheen 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-sheen {
+    animation: none;
+  }
+}
