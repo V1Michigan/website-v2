@@ -66,8 +66,7 @@ body {
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted: 0 0% 63.9%;
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -171,6 +170,34 @@ body {
 .group:focus-visible .button-sheen {
   opacity: 1;
   animation: button-sheen 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes button-sheen-mobile {
+  0%,
+  68% {
+    opacity: 0;
+    transform: translateX(-220%) skewX(-18deg);
+  }
+  74% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+    transform: translateX(620%) skewX(-18deg);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: translateX(620%) skewX(-18deg);
+  }
+}
+
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  .button-sheen,
+  .group:hover .button-sheen,
+  .group:focus-visible .button-sheen {
+    animation: button-sheen-mobile 5s ease-in-out infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
