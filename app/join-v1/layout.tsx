@@ -9,6 +9,7 @@ export default function JoinV1Layout({ children }: { children: ReactNode }) {
         html,
         body {
           background-color: #000 !important;
+          position: relative;
         }
         .join-v1-page :where(h1, h2, h3) {
           overflow-wrap: normal;

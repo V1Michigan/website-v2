@@ -2,6 +2,7 @@
 
 import {
   motion,
+  useMotionValue,
   useReducedMotion,
   useScroll,
   useTransform,
@@ -10,12 +11,44 @@ import {
 import {
   createContext,
   useContext,
+  useEffect,
   useRef,
   type CSSProperties,
   type ReactNode,
 } from "react";
 
 const ParallaxContext = createContext<MotionValue<number> | null>(null);
+
+const LAYER_ASSETS: Record<
+  string,
+  { width: number; height: number; mobileSrc: string }
+> = {
+  "/join-v1/layers/01-who-are-we-for-bg.png": {
+    width: 1280,
+    height: 2312,
+    mobileSrc: "/join-v1/layers/01-who-are-we-for-bg-mobile.webp",
+  },
+  "/join-v1/layers/02-people-1.png": {
+    width: 1280,
+    height: 3739,
+    mobileSrc: "/join-v1/layers/02-people-1-mobile.webp",
+  },
+  "/join-v1/layers/03-who-are-we-bg.png": {
+    width: 1280,
+    height: 2285,
+    mobileSrc: "/join-v1/layers/03-who-are-we-bg-mobile.webp",
+  },
+  "/join-v1/layers/04-people-2.png": {
+    width: 720,
+    height: 1280,
+    mobileSrc: "/join-v1/layers/04-people-2-mobile.webp",
+  },
+  "/join-v1/layers/05-how-to-join-bg.png": {
+    width: 1280,
+    height: 1499,
+    mobileSrc: "/join-v1/layers/05-how-to-join-bg-mobile.webp",
+  },
+};
 
 /**
  * One scroll driver for the whole stack — layers share progress
@@ -33,9 +66,38 @@ export function ParallaxRoot({
     target: ref,
     offset: ["start end", "end start"],
   });
+  const stableProgress = useMotionValue(scrollYProgress.get());
+
+  useEffect(() => {
+    stableProgress.set(scrollYProgress.get());
+
+    const stopSyncing = scrollYProgress.on("change", (latest) => {
+      const activeElement = document.activeElement;
+      const isJoinFormFocused = activeElement?.closest(".join-v1-form");
+
+      if (!isJoinFormFocused) {
+        stableProgress.set(latest);
+      }
+    });
+
+    const resumeAfterFocus = () => {
+      requestAnimationFrame(() => {
+        if (!document.activeElement?.closest(".join-v1-form")) {
+          stableProgress.set(scrollYProgress.get());
+        }
+      });
+    };
+
+    document.addEventListener("focusout", resumeAfterFocus);
+
+    return () => {
+      stopSyncing();
+      document.removeEventListener("focusout", resumeAfterFocus);
+    };
+  }, [scrollYProgress, stableProgress]);
 
   return (
-    <ParallaxContext.Provider value={scrollYProgress}>
+    <ParallaxContext.Provider value={stableProgress}>
       <div ref={ref} className={`relative w-full ${className}`}>
         {children}
       </div>
@@ -63,21 +125,14 @@ export function Layer({
 }: LayerProps) {
   const progress = useContext(ParallaxContext);
   const reduce = useReducedMotion();
-  const localRef = useRef<HTMLDivElement>(null);
+  const fallbackProgress = useMotionValue(0);
 
-  // Fallback if used outside ParallaxRoot
-  const { scrollYProgress: localProgress } = useScroll({
-    target: localRef,
-    offset: ["start end", "end start"],
-  });
-
-  const source = progress ?? localProgress;
+  const source = progress ?? fallbackProgress;
   const y = useTransform(source, [0, 1], [distance, -distance]);
 
   return (
     <motion.div
-      ref={localRef}
-      className={`will-change-transform ${className}`}
+      className={`will-change-auto sm:will-change-transform ${className}`}
       style={{ y: reduce ? 0 : y, ...style }}
     >
       {children}
@@ -100,14 +155,30 @@ export function LayerImage({
   className?: string;
   seeThrough?: boolean;
 }) {
+  const asset = LAYER_ASSETS[src];
+
   return (
-    <img
-      src={src}
-      alt={alt}
-      draggable={false}
-      className={`pointer-events-none block h-auto w-full max-w-none select-none ${
-        seeThrough ? "mix-blend-lighten" : ""
-      } ${className}`}
-    />
+    <picture className="block w-full">
+      {asset?.mobileSrc ? (
+        <source
+          media="(max-width: 639px)"
+          srcSet={asset.mobileSrc}
+          type="image/webp"
+        />
+      ) : null}
+      <img
+        src={src}
+        alt={alt}
+        width={asset?.width}
+        height={asset?.height}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        draggable={false}
+        className={`pointer-events-none block h-auto w-full max-w-none select-none ${
+          seeThrough ? "mix-blend-lighten" : ""
+        } ${className}`}
+      />
+    </picture>
   );
 }

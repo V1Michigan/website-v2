@@ -1,5 +1,10 @@
 "use client";
 
+import { FormEvent, useState } from "react";
+
+import supabase from "@/utils/supabaseClient";
+
+import { saveJoinV1Signup } from "./join-v1-signup";
 import JoinSocialBar from "./join-social-bar";
 import { Layer, LayerImage, ParallaxRoot } from "./scene";
 
@@ -8,6 +13,36 @@ import { Layer, LayerImage, ParallaxRoot } from "./scene";
  * Bigger `distance` = moves more = feels closer (foreground).
  */
 export default function LayerStack() {
+  const [submissionState, setSubmissionState] = useState<
+    "idle" | "saving" | "success" | "error"
+  >("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (submissionState === "saving") {
+      return;
+    }
+
+    const form = event.currentTarget;
+    const uniqname = new FormData(form).get("uniqname");
+
+    if (typeof uniqname !== "string") {
+      setSubmissionState("error");
+      return;
+    }
+
+    setSubmissionState("saving");
+
+    try {
+      await saveJoinV1Signup(supabase, uniqname);
+      form.reset();
+      setSubmissionState("success");
+    } catch {
+      setSubmissionState("error");
+    }
+  }
+
   return (
     <>
       <ParallaxRoot className="bg-transparent">
@@ -25,8 +60,11 @@ export default function LayerStack() {
               WHO ARE WE FOR?
             </h2>
             <p className="mx-auto mt-5 max-w-md font-sans text-[clamp(1rem,3.8vw,1.75rem)] font-normal leading-snug text-black">
-              Self-starters. Risk-takers. People who turn their ideas into real
-              things.
+              <span className="block">Self-starters</span>
+              <span className="block">Risk-takers</span>
+              <span className="block">
+                People who want to turn their ideas into real things.
+              </span>
             </p>
           </Layer>
         </div>
@@ -50,7 +88,7 @@ export default function LayerStack() {
             />
             <p className="text-left font-mona text-[clamp(1.25rem,4vw,2.25rem)] font-extralight leading-[1.25] tracking-tight text-[#E5FF00]">
               We look for the hardest problems, and bet on ourselves to solve
-              them
+              them.
             </p>
           </div>
         </Layer>
@@ -71,15 +109,18 @@ export default function LayerStack() {
                 ARE WE?
               </h2>
               <p className="mt-4 font-sans text-[clamp(0.875rem,2.8vw,1.25rem)] font-normal leading-snug text-black">
-                V1 is the premier builder community at the University of Michigan
-                dedicated to supporting hackers and creators every step of the
-                way.
+                V1 is the University of Michigan&apos;s startup and entrepreneurship
+                community, supporting builders, creators, and founders every step
+                of the way.
               </p>
             </div>
           </Layer>
         </div>
 
-        <Layer distance={750} className="relative -mt-[158vw]">
+        <Layer
+          distance={750}
+          className="relative -top-[16vw] z-[3] -mt-[158vw] sm:-top-[5vw]"
+        >
           <LayerImage
             src="/join-v1/layers/04-people-2.png"
             alt="V1 members at an event"
@@ -99,13 +140,13 @@ export default function LayerStack() {
               </h2>
 
               <p className="mt-5 max-w-md font-mona text-[clamp(0.95rem,3vw,1.75rem)] font-light leading-snug text-black">
-                Sign Up to learn more about how you can join Michigan&apos;s
-                Leading Student Org for Founders and Entrepreneurship
+                Drop your uniqname and we’ll send you our event schedule.
               </p>
 
               <form
-                className="pointer-events-auto relative mt-7 flex w-full max-w-sm items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
-                onSubmit={(e) => e.preventDefault()}
+                className="join-v1-form pointer-events-auto relative mt-7 flex w-full max-w-sm scroll-mt-6 items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 sm:max-w-md"
+                onSubmit={handleSubmit}
+                aria-describedby="join-uniqname-status"
               >
                 <label htmlFor="join-uniqname" className="sr-only">
                   Uniqname
@@ -117,17 +158,33 @@ export default function LayerStack() {
                   placeholder="Uniqname"
                   autoComplete="username"
                   autoCapitalize="none"
+                  autoCorrect="off"
+                  enterKeyHint="send"
                   spellCheck={false}
                   required
+                  disabled={submissionState === "saving"}
                   className="min-w-0 flex-1 rounded-full bg-white px-4 py-2.5 font-mona text-[clamp(1rem,3.5vw,1.35rem)] font-bold leading-none text-black placeholder:text-black/70 focus:outline-none sm:px-5"
                 />
                 <button
                   type="submit"
-                  className="shrink-0 rounded-full bg-black px-5 py-2.5 font-mona text-[clamp(0.85rem,2.8vw,1rem)] font-bold uppercase tracking-wide text-[#E5FF00] transition-opacity hover:opacity-90 active:opacity-80"
+                  disabled={submissionState === "saving"}
+                  className="shrink-0 rounded-full bg-black px-5 py-2.5 font-mona text-[clamp(0.85rem,2.8vw,1rem)] font-bold uppercase tracking-wide text-[#E5FF00] transition-opacity hover:opacity-90 active:opacity-80 disabled:cursor-wait disabled:opacity-60"
                 >
-                  Submit
+                  {submissionState === "saving" ? "Saving…" : "Submit"}
                 </button>
               </form>
+
+              <p
+                id="join-uniqname-status"
+                role="status"
+                aria-live="polite"
+                className="mt-3 min-h-6 font-mona text-sm font-bold text-black"
+              >
+                {submissionState === "success" &&
+                  "You’re in! We saved your uniqname."}
+                {submissionState === "error" &&
+                  "We couldn’t save your uniqname. Please try again."}
+              </p>
             </div>
           </div>
         </Layer>

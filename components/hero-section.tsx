@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import PSBanner from "./ps-banner";
 import YCBanner from "./yc-banner";
@@ -70,7 +71,7 @@ export default function HeroSection() {
               way.
             </motion.p>
             <motion.div
-              className="mt-6 flex space-x-6"
+              className="mt-6 flex items-center space-x-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.6 }}
@@ -120,6 +121,14 @@ export default function HeroSection() {
                     className="h-6 w-6"
                   />
                 </motion.div>
+              </Link>
+              <Link
+                href="https://v1michigan.com/join"
+                aria-label="Join us"
+                className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-[#e09a1a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+              >
+                Join us
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </motion.div>
           </div>
