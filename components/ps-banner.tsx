@@ -1,11 +1,7 @@
 export default function PSBanner() {
   return (
     <div
-      className="bg-gradient-to-r from-yellow-400 to-yellow-300 py-2 px-6 text-center shadow-lg border-b border-yellow-500/20"
-      style={{
-        background:
-          "linear-gradient(to right, rgb(250 204 21), rgb(253 224 71))",
-      }}
+      className="bg-accent py-2 px-6 text-center shadow-lg border-b border-accent/20"
     >
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
         <div className="flex items-center gap-2">
@@ -16,7 +12,7 @@ export default function PSBanner() {
         <div className="flex items-center gap-3">
           <a
             href="https://v1michigan.com/apply?utm_source=website"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#191919] text-yellow-300 rounded-full text-sm font-inter font-bold hover:bg-[#000000] transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#191919] text-accent rounded-full text-sm font-inter font-bold hover:bg-[#000000] transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
           >
             <span>Apply now</span>
             <svg
