@@ -1,3 +1,4 @@
+import { PostHogPageView } from "@/components/posthog-provider";
 import Header from "@/components/header";
 import HeroSection from "@/components/hero-section";
 import TimelineSection from "@/components/timeline-section";
@@ -8,6 +9,7 @@ import Footer from "@/components/footer";
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#FEF9F5] snap-y snap-mandatory">
+      <PostHogPageView />
       <Header />
       <HeroSection />
 
