@@ -28,11 +28,14 @@ export function PostHogPageView(): null {
       const params = new URLSearchParams(window.location.search);
       const utmProperties = Object.fromEntries(
         ['source', 'medium', 'campaign', 'term', 'content']
-          .map((key) => [`$utm_${key}`, params.get(`utm_${key}`)])
+          .map((key) => [`utm_${key}`, params.get(`utm_${key}`)])
           .filter(([, value]) => value !== null)
       );
 
-      posthog.capture('$pageview', utmProperties);
+      posthog.capture('$pageview', {
+        ...utmProperties,
+        '$pathname': window.location.pathname,
+      });
     }
   }, []);
 
