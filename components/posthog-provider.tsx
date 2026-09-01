@@ -25,7 +25,14 @@ export function CSPostHogProvider({ children }: { children: React.ReactNode }) {
 export function PostHogPageView(): null {
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      posthog?.capture('$pageview');
+      const params = new URLSearchParams(window.location.search);
+      const utmProperties = Object.fromEntries(
+        ['source', 'medium', 'campaign', 'term', 'content']
+          .map((key) => [`$utm_${key}`, params.get(`utm_${key}`)])
+          .filter(([, value]) => value !== null)
+      );
+
+      posthog.capture('$pageview', utmProperties);
     }
   }, []);
 

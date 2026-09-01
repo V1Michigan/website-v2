@@ -8,6 +8,7 @@ import ProjectModal from "@/components/project-modal"
 import ProjectDirectoryLayout from "./components/ProjectDirectoryLayout"
 import type { Project } from "@/types/project"
 import { useProjects } from "@/hooks/useProjects"
+import { PostHogPageView } from "@/components/posthog-provider"
 
 export default function ProjectDirectoryPage() {
   const searchParams = useSearchParams()
@@ -29,13 +30,6 @@ export default function ProjectDirectoryPage() {
     categories: searchParams?.getAll("category") || [],
   })
 
-  const [isRefetching, setIsRefetching] = useState(false)
-  const [cachedFilterOptions, setCachedFilterOptions] = useState({
-    fundingSources: [] as string[],
-    cohorts: [] as string[],
-    categories: [] as string[],
-  })
-
   useEffect(() => {
     setLocalFilters({
       searchQuery: urlSearchQuery,
@@ -44,6 +38,13 @@ export default function ProjectDirectoryPage() {
       categories: searchParams?.getAll("category") || [],
     })
   }, [urlSearchQuery, searchParams])
+
+  const [isRefetching, setIsRefetching] = useState(false)
+  const [cachedFilterOptions, setCachedFilterOptions] = useState({
+    fundingSources: [] as string[],
+    cohorts: [] as string[],
+    categories: [] as string[],
+  })
 
   const { projects, filterOptions, isLoading, error } = useProjects(localFilters)
 
@@ -164,6 +165,7 @@ export default function ProjectDirectoryPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
+      <PostHogPageView />
       <Header />
 
       <main className="mx-auto px-4 py-8 md:px-6 lg:px-8">
