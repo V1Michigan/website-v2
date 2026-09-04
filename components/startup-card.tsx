@@ -21,9 +21,11 @@ export default function StartupCard({ image, name, domain }: StartupCardProps) {
       <div className="text-[11px] md:text-xs font-medium font-inter text-[#FEF9F5] mb-1 leading-tight">
         {name}
       </div>
-      <div className="text-[9px] md:text-[10px] font-medium font-inter text-[#CEC9C5] leading-tight">
-        {domain}
-      </div>
+      {domain && (
+        <div className="text-[9px] md:text-[10px] font-medium font-inter text-[#CEC9C5] leading-tight">
+          {domain}
+        </div>
+      )}
     </div>
   );
 }
