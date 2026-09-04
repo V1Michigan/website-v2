@@ -7,7 +7,7 @@ const faqData = [
   {
     question: "When and where is this?",
     answer:
-      "Startup Week takes place over 5 days in Ann Arbor from September 29 - October 3. Expect a combination of virtual and in-person events!",
+      "Startup Week takes place over 5 days in Ann Arbor from October 5th - 9th. Expect a combination of virtual and in-person events!",
   },
   {
     question: "What will I need to do?",
