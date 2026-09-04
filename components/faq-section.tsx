@@ -7,7 +7,7 @@ const faqData = [
   {
     question: "When and where is this?",
     answer:
-      "Startup Week takes place over 5 days in Ann Arbor from September 29 - October 3. Expect a combination of virtual and in-person events!",
+      "Startup Week takes place over 5 days in Ann Arbor from October 5th - 9th. Expect a combination of virtual and in-person events!",
   },
   {
     question: "What will I need to do?",
@@ -30,7 +30,7 @@ const faqData = [
       "V1 is the community for ambitious student builders — engineers, artists, designers, founders, scientists, and more. Our goal is to support ambitious, curious, and dirven students to do their best work.",
   },
   {
-    question: "Can my company recruit at Startup Fair?",
+    question: "Can my company recruit at Startup Week?",
     answer:
       "Yes! We welcome startups and growing companies to participate as recruiters. Please reach out to v1startupweek@umich.edu.",
   },
