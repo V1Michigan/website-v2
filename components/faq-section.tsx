@@ -30,7 +30,7 @@ const faqData = [
       "V1 is the community for ambitious student builders — engineers, artists, designers, founders, scientists, and more. Our goal is to support ambitious, curious, and dirven students to do their best work.",
   },
   {
-    question: "Can my company recruit at Startup Fair?",
+    question: "Can my company recruit at Startup Week?",
     answer:
       "Yes! We welcome startups and growing companies to participate as recruiters. Please reach out to v1startupweek@umich.edu.",
   },
