@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import PSBanner from "./ps-banner";
 import YCBanner from "./yc-banner";
 import DevBanner from "./dev-banner";
 import ScheduledToggle from "./scheduled-toggle";
@@ -12,11 +11,6 @@ import ScheduledToggle from "./scheduled-toggle";
 export default function HeroSection() {
   return (
     <>
-      {/* Promotional Banner */}
-      <ScheduledToggle flag="SHOW_PS_BANNER">
-        <PSBanner />
-      </ScheduledToggle>
-
       <ScheduledToggle flag="SHOW_YC_BANNER">
         <YCBanner />
       </ScheduledToggle>
