@@ -103,4 +103,24 @@ export const startupWeekYears: StartupWeekYear[] = [
       { name: "Pursuit", domain: "Government Contracts", image: "/pursuit.jpeg?height=32&width=32" },
     ],
   },
+  {
+    year: "FALL 2026",
+    topStartups: "30+",
+    // Editorial order by public scale, backing, and reputation; not a revenue ranking.
+    companies: [
+      { name: "Khosla Ventures", domain: "Venture Capital", image: "/startupweek/2026/khosla-ventures.webp" },
+      { name: "Air Space Intelligence", domain: "Aerospace", image: "/startupweek/2026/asi.webp" },
+      { name: "Monaco", domain: "Sales & CRM", image: "/startupweek/2026/monaco.webp" },
+      { name: "Miter", domain: "Construction", image: "/startupweek/2026/miter.webp" },
+      { name: "Ambrook", domain: "Financial", image: "/startupweek/2026/ambrook.webp" },
+      { name: "Authentic Insurance", domain: "Insurance", image: "/startupweek/2026/authentic.webp" },
+      { name: "Phoebe", domain: "Home Care", image: "/startupweek/2026/phoebe.webp" },
+      { name: "Dryft", domain: "Manufacturing", image: "/startupweek/2026/dryft.webp" },
+      { name: "Lumaril Corporation", domain: "Industrial", image: "/startupweek/2026/lumaril.webp" },
+      { name: "Scope", domain: "Clinical", image: "/startupweek/2026/scope.webp" },
+      { name: "Rational", domain: "Accounting", image: "/startupweek/2026/rational.webp" },
+      { name: "Latent Variables", domain: "Applied AI Research", image: "/startupweek/2026/latent-variables.webp" },
+    ],
+  },
+
 ]

@@ -41,7 +41,7 @@ export default function StartupCompanyGrid({ companies, direction, pageIndex }: 
       animate="center"
       exit="exit"
       transition={{ duration: 0.4 }}
-      className="grid grid-cols-4 gap-4 mb-6"
+      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6"
     >
       {companies.map((company) => (
         <motion.div key={`${pageIndex}-${company.name}`} variants={itemVariants}>

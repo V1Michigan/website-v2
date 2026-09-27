@@ -6,11 +6,11 @@ import StartupCompanyGrid from "./startup-company-grid";
 import { startupWeekYears } from "@/data/startup-week";
 
 export default function StartupsGrid() {
-  const [pageIndex, setPageIndex] = useState(1);
+  const [pageIndex, setPageIndex] = useState(startupWeekYears.length - 1);
   const [direction, setDirection] = useState(0);
 
   function paginate(newIndex: number) {
-    if (newIndex < 0 || newIndex > 1) return;
+    if (newIndex < 0 || newIndex >= startupWeekYears.length) return;
     setDirection(newIndex > pageIndex ? 1 : -1);
     setPageIndex(newIndex);
   }
@@ -130,11 +130,11 @@ export default function StartupsGrid() {
 
         <button
           className={`p-2 ${
-            pageIndex === 1 ? "opacity-30 cursor-not-allowed" : ""
+            pageIndex === startupWeekYears.length - 1 ? "opacity-30 cursor-not-allowed" : ""
           }`}
           onClick={() => paginate(pageIndex + 1)}
           aria-label="Next year"
-          disabled={pageIndex === 1}
+          disabled={pageIndex === startupWeekYears.length - 1}
         >
           <ChevronRight className="w-5 h-5 text-gray-400" />
         </button>
@@ -142,7 +142,7 @@ export default function StartupsGrid() {
 
       {/* Company Grid with animation */}
       <div className="flex justify-center relative z-10">
-        <div className="min-w-[28rem] px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
+        <div className="w-full max-w-4xl px-3 sm:px-4 md:px-6 lg:px-8 mb-10">
           <div >
             <div className="relative">
               <div className="relative">
