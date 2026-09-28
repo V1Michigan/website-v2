@@ -35,7 +35,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="hidden md:flex items-center justify-end space-x-6">
-        <Link href="https://v1michigan.com/apply?utm_source=website" prefetch={false} className="text-sm text-gray-700 hover:text-black">Product Studio</Link>
+        <Link href="/product-studio" className="text-sm text-gray-700 hover:text-black">Product Studio</Link>
         <Link href="/startupweek" prefetch={false} className="text-sm text-gray-700 hover:text-black">Startup Week</Link>
         <Link href="https://v1michigan.com/ship-it" prefetch={false} className="text-sm text-gray-700 hover:text-black">Ship-it</Link>
         <Link href="https://v1michigan.com/events" prefetch={false} className="text-sm text-gray-700 hover:text-black">Events</Link>
@@ -65,7 +65,7 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-[#FAF7F2] border-b border-gray-200 md:hidden z-40">
           <div className="px-4 py-2 space-y-2">
-            <Link href="https://v1michigan.com/apply?utm_source=website" prefetch={false} className="block py-2 text-sm text-gray-700 hover:text-black" onClick={closeMobileMenu}>Product Studio</Link>
+            <Link href="/product-studio" className="block py-2 text-sm text-gray-700 hover:text-black" onClick={closeMobileMenu}>Product Studio</Link>
             <Link href="/startupweek" className="block py-2 text-sm text-gray-700 hover:text-black" onClick={closeMobileMenu}>Startup Week</Link>
             <Link href="https://v1michigan.com/ship-it" prefetch={false} className="block py-2 text-sm text-gray-700 hover:text-black" onClick={closeMobileMenu}>Ship-it</Link>
             <Link href="https://v1michigan.com/events" className="block py-2 text-sm text-gray-700 hover:text-black" onClick={closeMobileMenu}>Events</Link>
