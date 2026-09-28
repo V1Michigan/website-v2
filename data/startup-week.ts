@@ -108,6 +108,7 @@ export const startupWeekYears: StartupWeekYear[] = [
     topStartups: "30+",
     // Editorial order by public scale, backing, and reputation; not a revenue ranking.
     companies: [
+      { name: "SpaceXAI", domain: "Frontier AI Lab", image: "/startupweek/2026/spacexai.webp" },
       { name: "Khosla Ventures", domain: "Venture Capital", image: "/startupweek/2026/khosla-ventures.webp" },
       { name: "Air Space Intelligence", domain: "Aerospace", image: "/startupweek/2026/asi.webp" },
       { name: "Monaco", domain: "Sales & CRM", image: "/startupweek/2026/monaco.webp" },
@@ -119,7 +120,6 @@ export const startupWeekYears: StartupWeekYear[] = [
       { name: "Lumaril Corporation", domain: "Industrial", image: "/startupweek/2026/lumaril.webp" },
       { name: "Scope", domain: "Clinical", image: "/startupweek/2026/scope.webp" },
       { name: "Rational", domain: "Accounting", image: "/startupweek/2026/rational.webp" },
-      { name: "Latent Variables", domain: "Applied AI Research", image: "/startupweek/2026/latent-variables.webp" },
     ],
   },
 
