@@ -27,7 +27,7 @@ const faqData = [
   {
     question: "What is V1?",
     answer:
-      "V1 is the community for ambitious student builders — engineers, artists, designers, founders, scientists, and more. Our goal is to support ambitious, curious, and dirven students to do their best work.",
+      "V1 is the community for ambitious student builders — engineers, artists, designers, founders, scientists, and more. Our goal is to support ambitious, curious, and driven students to do their best work.",
   },
   {
     question: "Can my company recruit at Startup Week?",
