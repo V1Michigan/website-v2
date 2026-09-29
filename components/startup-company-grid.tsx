@@ -45,7 +45,7 @@ export default function StartupCompanyGrid({ companies, direction, pageIndex }: 
     >
       {companies.map((company) => (
         <motion.div key={`${pageIndex}-${company.name}`} variants={itemVariants}>
-          <StartupCard image={company.image} name={company.name} domain={company.domain} />
+          <StartupCard image={company.image} name={company.name} domain={company.domain} website={company.website} />
         </motion.div>
       ))}
     </motion.div>

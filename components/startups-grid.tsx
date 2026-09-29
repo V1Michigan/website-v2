@@ -18,7 +18,7 @@ export default function StartupsGrid() {
   const currentYear = startupWeekYears[pageIndex];
 
   return (
-    <div id="startup-directory" className="w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
+    <div id="startup-directory" className="scroll-mt-16 w-full bg-[#191919] min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] text-white relative overflow-hidden">
       <svg
         className="absolute -top-[15%] left-0"
         width="180"
@@ -102,31 +102,9 @@ export default function StartupsGrid() {
           <ChevronLeft className="w-5 h-5 text-gray-400" />
         </button>
 
-        <div className="flex flex-col items-center">
-          <p className="text-sm text-[#FEF9F5] font-inter mb-2">
-            {currentYear.year}
-          </p>
-          <div className="flex items-center justify-center space-x-12 mb-4">
-            <div className="text-center">
-              <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                {currentYear.topStartups}
-              </div>
-              <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
-                  Top startups
-              </div>
-            </div>
-            {currentYear.topStudents && (
-              <div className="text-center">
-                <div className="text-6xl text-[#FEF9F5] font-instrument font-light mb-1">
-                  {currentYear.topStudents}
-                </div>
-                <div className="text-xs font-inter font-normal text-[#CEC9C5] leading-normal">
-                  Top students
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        <h2 className="text-4xl sm:text-6xl text-[#FEF9F5] font-instrument font-light" aria-live="polite">
+          {currentYear.year}
+        </h2>
 
         <button
           className={`p-2 ${
