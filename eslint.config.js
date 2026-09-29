@@ -9,6 +9,10 @@ export default [
   },
   js.configs.recommended,
   {
+    files: ["components/startup-week/**/*.jsx"],
+    languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
+  },
+  {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       parser: tsParser,
