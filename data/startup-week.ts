@@ -1,12 +1,13 @@
 export interface StartupCompany {
   name: string
   domain: string
-  website: string
   image: string
 }
 
 export interface StartupWeekYear {
   year: string
+  topStartups: string
+  topStudents?: string
   companies: StartupCompany[]
 }
 
@@ -62,63 +63,67 @@ export const startupWeekTeam: StartupWeekTeamMember[] = [
 
 export const startupWeekYears: StartupWeekYear[] = [
   {
-    year: "2024",
+    year: "FALL 2024",
+    topStartups: "12",
+    topStudents: "250+",
     companies: [
-      { name: "Ramp", domain: "Fintech", image: "/ramp.png?height=32&width=32&text=R", website: "https://ramp.com/" },
-      { name: "Watershed", domain: "ClimateOS", image: "/watershed.png?height=32&width=32&text=W", website: "https://watershed.com/" },
-      { name: "Courier Health", domain: "Patient CRM", image: "/courierhealth.png?height=32&width=32&text=CH", website: "https://www.courierhealth.com/" },
-      { name: "Applied Intuition", domain: "Motion AI", image: "/app-intuition.png?height=32&width=32&text=AI", website: "https://www.appliedintuition.com/" },
-      { name: "Authentic", domain: "Insurance", image: "/authenticinsurance.png?height=32&width=32&text=A", website: "https://authenticinsurance.com/" },
-      { name: "Pylon", domain: "Customer Support", image: "/pylon.png?height=32&width=32&text=P", website: "https://usepylon.com/" },
-      { name: "Windsurf", domain: "AI Agents", image: "/codeium.png?height=32&width=32&text=C", website: "https://windsurf.com/" },
-      { name: "Lumos", domain: "Autonomy", image: "/lumos.png?height=32&width=32&text=L", website: "https://www.lumos.com/" },
-      { name: "Pallet", domain: "Logistics", image: "/pallet.png?height=32&width=32&text=P", website: "https://www.trypallet.com/" },
-      { name: "Thatch", domain: "Healthcare", image: "/thatch.png?height=32&width=32&text=T", website: "https://thatch.ai/" },
-      { name: "Comulate", domain: "Insurance", image: "/comulate.png?height=32&width=32&text=C", website: "https://www.comulate.com/" },
-      { name: "Wave RF", domain: "Communication", image: "/waverf.png?height=32&width=32&text=W", website: "https://www.wave-rf.com/" },
+      { name: "Ramp", domain: "Fintech", image: "/ramp.png?height=32&width=32&text=R" },
+      { name: "Watershed", domain: "ClimateOS", image: "/watershed.png?height=32&width=32&text=W" },
+      { name: "Courier Health", domain: "Patient CRM", image: "/courierhealth.png?height=32&width=32&text=CH" },
+      { name: "Applied Intuition", domain: "Motion AI", image: "/app-intuition.png?height=32&width=32&text=AI" },
+      { name: "Authentic", domain: "Insurance", image: "/authenticinsurance.png?height=32&width=32&text=A" },
+      { name: "Pylon", domain: "Customer Support", image: "/pylon.png?height=32&width=32&text=P" },
+      { name: "Windsurf", domain: "AI Agents", image: "/codeium.png?height=32&width=32&text=C" },
+      { name: "Lumos", domain: "Autonomy", image: "/lumos.png?height=32&width=32&text=L" },
+      { name: "Pallet", domain: "Logistics", image: "/pallet.png?height=32&width=32&text=P" },
+      { name: "Thatch", domain: "Healthcare", image: "/thatch.png?height=32&width=32&text=T" },
+      { name: "Comulate", domain: "Insurance", image: "/comulate.png?height=32&width=32&text=C" },
+      { name: "Wave RF", domain: "Communication", image: "/waverf.png?height=32&width=32&text=W" },
     ],
   },
   {
-    year: "2025",
+    year: "FALL 2025",
+    topStartups: "30+",
     companies: [
-      { name: "Kodiak Robotics", domain: "Robotics", image: "/kodiak.jpeg?height=32&width=32", website: "https://kodiak.ai/" },
-      { name: "Harmonic.ai", domain: "Information", image: "/harmonic_logo.svg?height=32&width=32", website: "https://harmonic.ai/" },
-      { name: "Forus", domain: "Healthcare", image: "/forus.png?height=32&width=32", website: "https://forus.com/" },
-      { name: "Pylon", domain: "Customer Support", image: "/pylon.jpeg?height=32&width=32", website: "https://usepylon.com/" },
-      { name: "Tavus", domain: "AI Research", image: "/tavus.png?height=32&width=32", website: "https://www.tavus.io/" },
-      { name: "Usul", domain: "Defense", image: "/Usul.png?height=32&width=32", website: "https://usul.com/" },
-      { name: "Embedder (YC S25)", domain: "Developer Tools", image: "/embedder.png?height=32&width=32", website: "https://www.embedder.com/" },
-      { name: "Probook", domain: "Contracting", image: "/probook.png?height=32&width=32", website: "https://www.probook.ai/" },
-      { name: "Rox", domain: "Productivity", image: "/rox.jpg?height=32&width=32", website: "https://www.rox.com/" },
-      { name: "Dirac", domain: "Assembly", image: "/dirac.png?height=32&width=32", website: "https://www.diracinc.com/" },
-      { name: "OpenYield", domain: "Financial Services", image: "/openyield.jpeg?height=32&width=32", website: "https://www.openyld.com/" },
-      { name: "Footprint", domain: "Identity", image: "/fp_logo.png?height=32&width=32", website: "https://onefootprint.com/" },
-      { name: "Thrive", domain: "Artificial Intelligence", image: "/thrive.jpg?height=32&width=32", website: "https://www.thriveholdings.com/" },
-      { name: "Wave RF", domain: "Communication", image: "/wave-rf.png?height=32&width=32", website: "https://www.wave-rf.com/" },
-      { name: "OnDesk", domain: "Content", image: "/ondesk_logo.jpeg?height=32&width=32", website: "https://www.itsondesk.com/" },
-      { name: "Pursuit", domain: "Government Contracts", image: "/pursuit.jpeg?height=32&width=32", website: "https://www.pursuit.us/" },
+      { name: "Kodiak Robotics", domain: "Robotics", image: "/kodiak.jpeg?height=32&width=32" },
+      { name: "Harmonic.ai", domain: "Information", image: "/harmonic_logo.svg?height=32&width=32" },
+      { name: "Forus", domain: "Healthcare", image: "/forus.png?height=32&width=32" },
+      { name: "Pylon", domain: "Customer Support", image: "/pylon.jpeg?height=32&width=32" },
+      { name: "Tavus", domain: "AI Research", image: "/tavus.png?height=32&width=32" },
+      { name: "Usul", domain: "Defense", image: "/Usul.png?height=32&width=32" },
+      { name: "Embedder (YC S25)", domain: "Developer Tools", image: "/embedder.png?height=32&width=32" },
+      { name: "Probook", domain: "Contracting", image: "/probook.png?height=32&width=32" },
+      { name: "Rox", domain: "Productivity", image: "/rox.jpg?height=32&width=32" },
+      { name: "Dirac", domain: "Assembly", image: "/dirac.png?height=32&width=32" },
+      { name: "OpenYield", domain: "Financial Services", image: "/openyield.jpeg?height=32&width=32" },
+      { name: "Footprint", domain: "Identity", image: "/fp_logo.png?height=32&width=32" },
+      { name: "Thrive", domain: "Artificial Intelligence", image: "/thrive.jpg?height=32&width=32" },
+      { name: "Wave RF", domain: "Communication", image: "/wave-rf.png?height=32&width=32" },
+      { name: "OnDesk", domain: "Content", image: "/ondesk_logo.jpeg?height=32&width=32" },
+      { name: "Pursuit", domain: "Government Contracts", image: "/pursuit.jpeg?height=32&width=32" },
     ],
   },
   {
-    year: "2026",
-    // Editorial order balances name recognition with relevance to student builders.
+    year: "FALL 2026",
+    topStartups: "30+",
+    // Editorial order by public scale, backing, and reputation; not a revenue ranking.
     companies: [
-      { name: "SpaceXAI", domain: "Frontier AI Lab", image: "/startupweek/2026/spacexai.webp", website: "https://x.ai/" },
-      { name: "Khosla Ventures", domain: "Venture Capital", image: "/startupweek/2026/khosla-ventures.webp", website: "https://www.khoslaventures.com/" },
-      { name: "Air Space Intelligence", domain: "Aerospace", image: "/startupweek/2026/asi.webp", website: "https://www.airspace-intelligence.com/" },
-      { name: "Tavus", domain: "Human Computing", image: "/startupweek/2026/tavus.webp", website: "https://www.tavus.io/" },
-      { name: "AgentMail", domain: "Email Infrastructure", image: "/startupweek/2026/agentmail.webp", website: "https://www.agentmail.to/" },
-      { name: "Embedder (YC S25)", domain: "Developer Tools", image: "/embedder.png?height=32&width=32", website: "https://www.embedder.com/" },
-      { name: "Advanced Space Company", domain: "Space Exploration", image: "/startupweek/2026/advanced-space.webp", website: "https://advancedspace.com/" },
-      { name: "Monaco", domain: "Sales & CRM", image: "/startupweek/2026/monaco.webp", website: "https://www.monaco.com/" },
-      { name: "Miter", domain: "Construction", image: "/startupweek/2026/miter.webp", website: "https://www.miter.com/" },
-      { name: "Authentic Insurance", domain: "Insurance", image: "/startupweek/2026/authentic.webp", website: "https://authenticinsurance.com/" },
-      { name: "Phoebe", domain: "Home Care", image: "/startupweek/2026/phoebe.webp", website: "https://www.phoebe.work/" },
-      { name: "Dryft", domain: "Manufacturing", image: "/startupweek/2026/dryft.webp", website: "https://dryft.ai/" },
-      { name: "Lumaril Corporation", domain: "Industrial", image: "/startupweek/2026/lumaril.webp", website: "https://lumaril.com/" },
-      { name: "Scope", domain: "Clinical", image: "/startupweek/2026/scope.webp", website: "https://scopehealth.com/" },
-      { name: "Rational", domain: "Accounting", image: "/startupweek/2026/rational.webp", website: "https://rational.to/" },
-      { name: "Latent Variables", domain: "Applied AI Research", image: "/startupweek/2026/latent-variables.webp", website: "https://latentvariables.com/" },
+      { name: "SpaceXAI", domain: "Frontier AI Lab", image: "/startupweek/2026/spacexai.webp" },
+      { name: "Khosla Ventures", domain: "Venture Capital", image: "/startupweek/2026/khosla-ventures.webp" },
+      { name: "Air Space Intelligence", domain: "Aerospace", image: "/startupweek/2026/asi.webp" },
+      { name: "Tavus", domain: "Human Computing", image: "/startupweek/2026/tavus.webp" },
+      { name: "Advanced Space Company", domain: "Space Exploration", image: "/startupweek/2026/advanced-space.webp" },
+      { name: "Monaco", domain: "Sales & CRM", image: "/startupweek/2026/monaco.webp" },
+      { name: "Ambrook", domain: "Financial", image: "/startupweek/2026/ambrook.webp" },
+      { name: "AgentMail", domain: "Email Infrastructure", image: "/startupweek/2026/agentmail.webp" },
+      { name: "Miter", domain: "Construction", image: "/startupweek/2026/miter.webp" },
+      { name: "Authentic Insurance", domain: "Insurance", image: "/startupweek/2026/authentic.webp" },
+      { name: "Phoebe", domain: "Home Care", image: "/startupweek/2026/phoebe.webp" },
+      { name: "Dryft", domain: "Manufacturing", image: "/startupweek/2026/dryft.webp" },
+      { name: "Lumaril Corporation", domain: "Industrial", image: "/startupweek/2026/lumaril.webp" },
+      { name: "Scope", domain: "Clinical", image: "/startupweek/2026/scope.webp" },
+      { name: "Rational", domain: "Accounting", image: "/startupweek/2026/rational.webp" },
+      { name: "Latent Variables", domain: "Applied AI Research", image: "/startupweek/2026/latent-variables.webp" },
     ],
   },
 
