@@ -112,7 +112,7 @@ export const startupWeekYears: StartupWeekYear[] = [
       { name: "Khosla Ventures", domain: "Venture Capital", image: "/startupweek/2026/khosla-ventures.webp" },
       { name: "Air Space Intelligence", domain: "Aerospace", image: "/startupweek/2026/asi.webp" },
       { name: "Tavus", domain: "Human Computing", image: "/startupweek/2026/tavus.webp" },
-      { name: "Advanced Space Company", domain: "Space Exploration", image: "/startupweek/2026/advanced-space.webp" },
+      { name: "Advanced Spade Company", domain: "Underground Utilities", image: "/startupweek/2026/advanced-spade.svg" },
       { name: "Monaco", domain: "Sales & CRM", image: "/startupweek/2026/monaco.webp" },
       { name: "Ambrook", domain: "Financial", image: "/startupweek/2026/ambrook.webp" },
       { name: "AgentMail", domain: "Email Infrastructure", image: "/startupweek/2026/agentmail.webp" },
