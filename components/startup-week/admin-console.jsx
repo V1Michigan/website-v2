@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Star } from "lucide-react";
+import { CandidateBrowser, StudentProfile } from "./candidate-browser";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/startup-week/use-auth";
 
@@ -10,13 +13,14 @@ import { useAuth } from "@/lib/startup-week/use-auth";
 // server-side, and every protected action rechecks membership.
 
 export default function AdminConsole() {
-  const { user, token, loading: authLoading, signIn, signOut, authError, signingIn } = useAuth();
+  const { user, token, loading: authLoading, signIn, signOut, authError, signingIn, signingOut } = useAuth();
   if (authLoading) return <CenterMessage>Loading…</CenterMessage>;
   if (!user || !token) return <LoginScreen onSignIn={signIn} error={authError} signingIn={signingIn} />;
-  return <AuthenticatedAdmin key={`${user.id}:${user.email}`} user={user} token={token} signOut={signOut} />;
+  return <AuthenticatedAdmin key={`${user.id}:${user.email}`} user={user} token={token} signOut={signOut} signOutError={authError} signingOut={signingOut} />;
 }
 
-function AuthenticatedAdmin({ user, token, signOut }) {
+function AuthenticatedAdmin({ user, token, signOut, signOutError, signingOut }) {
+  const [view, setView] = useState("Overview");
   const [me, setMe] = useState(null);
   const [meLoading, setMeLoading] = useState(true);
   const [accessError, setAccessError] = useState("");
@@ -42,6 +46,7 @@ function AuthenticatedAdmin({ user, token, signOut }) {
     return (
       <CenterMessage>
         <p role="alert" className="mb-4">{accessError}</p>
+        {signOutError && <p role="alert" className="mb-4 text-red-700">{signOutError}</p>}
         <Button onClick={() => window.location.reload()} className="underline mr-4">Retry</Button>
         <Button onClick={signOut} className="underline">Sign out</Button>
       </CenterMessage>
@@ -65,37 +70,61 @@ function AuthenticatedAdmin({ user, token, signOut }) {
   }
 
   return (
-    <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 md:px-6 md:pt-16 lg:px-8">
-      <header className="mb-10 border-b border-gray-200 pb-10 md:mb-12">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-          <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-gray-600">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
-            Administration
-          </p>
-          <p className="break-all text-xs text-gray-500">{user.email}</p>
-        </div>
-        <h1 className="font-instrument text-5xl font-normal leading-tight text-[#444444] sm:text-6xl md:text-7xl">
-          Startup Week
-        </h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
-          Connect the best startups with the best builders.
-          Manage company profiles, recommend students, and make introductions.
-        </p>
+    <main className="mx-auto max-w-7xl px-4 py-7 md:px-6 lg:px-8">
+      <header className="mb-5">
+        {signOutError && <p role="alert" className="mb-2 text-sm text-red-700">{signOutError}</p>}
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500"><p className="uppercase tracking-[0.16em]">Administration</p><div className="flex flex-wrap items-center gap-3"><p className="break-all">{user.email}</p><Button variant="outline" disabled={signingOut} onClick={signOut} className="h-8 border-gray-300 bg-transparent text-xs">{signingOut ? "Signing out…" : "Sign out"}</Button></div></div>
+        <h1 className="mt-3 font-instrument text-5xl sm:text-6xl font-normal leading-tight">Startup Week</h1>
+        <p className="mt-2 text-sm text-gray-600">Manage companies, review students, and coordinate introductions.</p>
       </header>
-      <div className="space-y-6 md:space-y-8">
-        <CompanyProfilesCard token={token} />
-        <RecommendationsCard token={token} />
-        <div className="grid items-start gap-6 md:grid-cols-2 md:gap-8">
-          <RunMatchingCard token={token} />
-          <NotifyCard token={token} />
-        </div>
+      <nav aria-label="Dashboard sections" className="mb-6 flex gap-6 overflow-x-auto border-b border-gray-200">
+        {["Overview", "Companies", "Students", "Matching", "Email"].map(item => <button key={item} aria-pressed={view === item} onClick={() => setView(item)} className={`shrink-0 border-b-2 py-3 text-sm font-medium ${view === item ? "border-[#E5AC61] text-gray-900" : "border-transparent text-gray-500 hover:text-gray-900"}`}>{item}</button>)}
+      </nav>
+      <DashboardMetrics token={token} view={view} />
+      <div className="divide-y divide-gray-200">
+        <div hidden={!["Overview", "Companies"].includes(view)}><CompanyProfilesCard token={token} /></div>
+        <div hidden={!["Overview", "Students"].includes(view)}><RecommendationsCard token={token} /></div>
+        <div hidden={!["Overview", "Matching"].includes(view)}><RunMatchingCard token={token} /></div>
+        <div hidden={!["Overview", "Email"].includes(view)}><NotifyCard token={token} /></div>
       </div>
     </main>
   );
 }
 
+function DashboardMetrics({ token, view }) {
+  const [totals, setTotals] = useState({});
+  const [error, setError] = useState("");
+  useEffect(() => {
+    let cancelled = false;
+    const auth = {headers: {Authorization: `Bearer ${token}`}};
+    (async () => {
+      try {
+        const [c, s] = await Promise.all([axios.get("/api/startup-week/companies", auth), axios.get("/api/startup-week/students", auth)]);
+        const companies = c.data.companies || [];
+        const students = s.data.students || [];
+        if (cancelled) return;
+        setTotals({companies: companies.length, students: students.length});
+        const responses = await Promise.all(companies.map(company => axios.get(`/api/startup-week/companies/${company.slug}/preferences`, auth)));
+        if (cancelled) return;
+        const lists = responses.map(r => r.data.preferences || []);
+        const currentStudents = new Set(students.map(student => student.id));
+        setTotals({companies: companies.length, students: students.length, submitted: lists.filter(list => list.length > 0).length, ready: new Set(lists.flat().map(p => p.student_id).filter(id => currentStudents.has(id))).size});
+      } catch { if (!cancelled) setError("Some totals could not be loaded."); }
+    })();
+    return () => {cancelled = true;};
+  }, [token]);
+  if (!["Overview", "Matching", "Email"].includes(view)) return null;
+  const items = view === "Email" ? [["Introductions ready", null], ["Scheduled", null], ["Sent", null], ["Failed", null]] : view === "Matching" ? [["Students with picks", totals.ready], ["Companies", totals.companies], ["Existing matches", null], ["Unmatched students", null]] : [["Companies", totals.companies], ["Students", totals.students], ["Companies with picks", totals.submitted], ["Completed matches", null], ["Pending introductions", null]];
+  return <div className="mb-5 border-b border-gray-200 pb-4">
+    <dl className="grid grid-cols-2 gap-x-6 gap-y-4 sm:flex sm:flex-wrap sm:gap-x-10">{items.map(([label, value]) => <div key={label}><dt className="text-xs text-gray-500">{label}</dt><dd className="mt-1 text-2xl font-semibold tabular-nums">{value ?? "—"}</dd></div>)}</dl>
+    <p className="mt-3 text-xs text-gray-500">Match and email delivery totals are unavailable in this view. “—” does not mean zero.</p>
+    {error && <p role="alert" className="mt-2 text-xs text-amber-800">{error}</p>}
+  </div>;
+}
+
 export function CompanyProfilesCard({ token }) {
   const [companies, setCompanies] = useState([]);
+  const [editing, setEditing] = useState(null);
   const [descriptions, setDescriptions] = useState({}); // slug -> description
   const [dirty, setDirty] = useState(() => new Set());
   const [loading, setLoading] = useState(true);
@@ -149,68 +178,42 @@ export function CompanyProfilesCard({ token }) {
   };
 
   return (
-    <fieldset disabled={saveState === "saving"} className="min-w-0 rounded-lg border border-gray-200 bg-white/60 p-5 sm:p-7">
-      <div className="flex flex-wrap items-center justify-between mb-3 gap-3">
-        <h2 className="font-instrument text-3xl font-normal leading-tight text-[#444444]">Company profiles</h2>
-        <div className="flex flex-wrap items-center gap-3">
-          {saveState === "saved" && dirty.size === 0 && (
-            <span className="text-green-600 text-sm">Saved ✓</span>
-          )}
-          {dirty.size > 0 && (
-            <span className="text-amber-800 text-sm">{dirty.size} unsaved</span>
-          )}
-          {saveState === "error" && (
-            <span className="text-red-600 text-sm">Save failed</span>
-          )}
-          <Button
-            onClick={save}
-            disabled={saveState === "saving" || dirty.size === 0}
-            className="bg-gray-900 text-white hover:bg-gray-800"
-          >
-            {saveState === "saving" ? "Saving…" : "Save descriptions"}
-          </Button>
+    <fieldset disabled={saveState === "saving"} className="min-w-0 py-5">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <div><h2 className="text-base font-semibold">Company profiles</h2><p className="mt-1 text-xs text-gray-500">Descriptions guide student recommendations.</p></div>
+        <div className="flex items-center gap-3 text-xs">
+          {dirty.size > 0 && <span className="text-amber-800">{dirty.size} unsaved</span>}
+          {saveState === "saved" && !dirty.size && <span className="text-green-700">Saved</span>}
+          {saveState === "error" && <span role="alert" className="text-red-700">Save failed</span>}
+          <Button onClick={save} disabled={!dirty.size || saveState === "saving"} className="h-9 bg-gray-900 text-white hover:bg-gray-800">{saveState === "saving" ? "Saving…" : "Save descriptions"}</Button>
         </div>
       </div>
-      <p className="max-w-2xl text-sm leading-relaxed text-gray-600 mb-5">
-        What each company does and who they want to meet. This is what{" "}
-        <strong>Auto-pair with AI</strong> matches students against — the more
-        specific, the better the suggestions.
-      </p>
-
-      {loading && <p className="text-gray-500 text-sm">Loading…</p>}
-      {loadError && <p className="text-red-600 text-sm">{loadError}</p>}
-
-      {!loading && !loadError && companies.length === 0 && (
-        <div className="rounded-md border border-dashed border-gray-300 px-5 py-8 text-center"><p className="text-sm font-medium text-[#444444]">No companies yet</p><p className="mt-1 text-sm text-gray-500">Company profiles will appear here once participating startups are added.</p></div>
-      )}
-
-      <div className="space-y-4">
-        {companies.map((c) => (
-          <div key={c.id}>
-            <label htmlFor={`company-${c.id}`} className="block text-sm font-medium text-gray-900 mb-1">
-              {c.name}
-            </label>
-            <textarea
-              id={`company-${c.id}`}
-              value={descriptions[c.slug] ?? ""}
-              onChange={(e) => edit(c.slug, e.target.value)}
-              rows={2}
-              placeholder="e.g. Seed-stage fintech building payments infra; hiring backend and ML engineers."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm bg-white outline-none focus-visible:border-gray-500 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-            />
-          </div>
-        ))}
-      </div>
+      {loading && <p className="py-3 text-sm text-gray-500">Loading companies…</p>}
+      {loadError && <p role="alert" className="text-sm text-red-700">{loadError}</p>}
+      {!loading && !loadError && <div className="overflow-x-auto"><table className="w-full min-w-[620px] text-left text-sm">
+        <thead className="border-y border-gray-200 text-xs text-gray-500"><tr><th className="py-2 pr-4 font-medium">Company</th><th className="py-2 pr-4 font-medium">Description</th><th className="py-2 pr-4 font-medium">Profile status</th><th className="py-2 font-medium">Actions</th></tr></thead>
+        <tbody className="divide-y divide-gray-200">{companies.map(c => <tr key={c.id}>
+          <td className="w-1/5 py-3 pr-4 align-top font-medium">{c.name}</td>
+          <td className="w-1/2 py-3 pr-4 text-gray-600">{editing === c.id ? <textarea aria-label={`Description for ${c.name}`} value={descriptions[c.slug] ?? ""} onChange={e => edit(c.slug, e.target.value)} rows={3} className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm" /> : <p className="line-clamp-2">{descriptions[c.slug] || "No description yet"}</p>}</td>
+          <td className="py-3 pr-4 align-top"><StatusBadge>{dirty.has(c.slug) ? "Unsaved" : descriptions[c.slug]?.trim() ? "Description added" : "Needs description"}</StatusBadge></td>
+          <td className="py-3 align-top"><button aria-expanded={editing === c.id} onClick={() => setEditing(editing === c.id ? null : c.id)} className="text-xs underline underline-offset-4">{editing === c.id ? "Close editor" : "Edit"}</button><a href={`/startupweek/company/${c.slug}`} target="_blank" rel="noopener noreferrer" className="ml-3 text-xs text-gray-500 underline underline-offset-4">Portal ↗</a></td>
+        </tr>)}</tbody>
+      </table>{!companies.length && <p className="py-4 text-sm text-gray-500">No companies yet. Add participating companies in Supabase to get started.</p>}</div>}
     </fieldset>
   );
+}
+
+function StatusBadge({children}) {
+  return <span className="inline-block whitespace-nowrap rounded border border-gray-200 bg-white/60 px-2 py-0.5 text-[11px] font-medium text-gray-600">{children}</span>;
 }
 
 export function RecommendationsCard({ token }) {
   const [students, setStudents] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [profileSchemaReady, setProfileSchemaReady] = useState(true);
   const [recs, setRecs] = useState({}); // studentId -> Set(companyId)
   const [dirty, setDirty] = useState(() => new Set());
-  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
   const [saveState, setSaveState] = useState("idle"); // idle | saving | saved | error
@@ -229,6 +232,7 @@ export function RecommendationsCard({ token }) {
       .then(([s, c, r]) => {
         if (cancelled) return;
         setStudents(s.data.students || []);
+        setProfileSchemaReady(s.data.profile_schema_ready !== false);
         setCompanies(c.data.companies || []);
         const map = {};
         for (const row of r.data.recommendations || []) {
@@ -307,122 +311,35 @@ export function RecommendationsCard({ token }) {
     }
   };
 
-  const visible = students.filter((s) => {
-    const q = search.trim().toLowerCase();
-    if (!q) return true;
-    return [s.name, s.school, s.major].filter(Boolean).some((f) =>
-      f.toLowerCase().includes(q)
-    );
-  });
-
   return (
-    <fieldset disabled={saveState === "saving" || autoState === "running"} className="min-w-0 rounded-lg border border-gray-200 bg-white/60 p-5 sm:p-7">
-      <h2 className="font-instrument text-3xl font-normal leading-tight text-[#444444]">Student recommendations</h2>
-      <p className="max-w-2xl text-sm leading-relaxed text-gray-600 mt-3 mb-5">
-        Check the companies each student is a good fit for. Use{" "}
-        <strong>Auto-pair with AI</strong> for a first pass, then adjust and save.
-        These show up in each company&apos;s{" "}
-        <strong>Recommended for you</strong> tab.
-      </p>
-
-      {loading && <p className="text-gray-500 text-sm">Loading…</p>}
-      {loadError && <p className="text-red-600 text-sm">{loadError}</p>}
-
-      {!loading && !loadError && (
-        <>
-          {companies.length === 0 || students.length === 0 ? (
-            <div className="rounded-md border border-dashed border-gray-300 px-5 py-8 text-center"><p className="text-sm font-medium text-[#444444]">Ready for your first recommendations</p><p className="mt-1 text-sm text-gray-500">Add at least one company and one student to start pairing them.</p></div>
-          ) : (
-            <>
-              <div className="flex flex-wrap items-center justify-between mb-3 gap-3">
-                <input
-                  type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search students…"
-                  aria-label="Search students"
-                  className="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white outline-none focus-visible:border-gray-500 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 w-full sm:w-56"
-                />
-                <div className="flex flex-wrap items-center gap-3">
-                  {autoState === "error" && (
-                    <span className="text-red-600 text-sm">AI failed</span>
-                  )}
-                  <Button
-                    onClick={autoPair}
-                    disabled={autoState === "running"}
-                    className="bg-yellow-400 text-[#191919] hover:bg-yellow-300"
-                  >
-                    {autoState === "running" ? "Pairing…" : "Auto-pair with AI"}
-                  </Button>
-                  {saveState === "saved" && dirty.size === 0 && (
-                    <span className="text-green-600 text-sm">Saved ✓</span>
-                  )}
-                  {dirty.size > 0 && (
-                    <span className="text-amber-800 text-sm">
-                      {dirty.size} unsaved
-                    </span>
-                  )}
-                  {saveState === "error" && (
-                    <span className="text-red-600 text-sm">Save failed</span>
-                  )}
-                  <Button
-                    onClick={save}
-                    disabled={saveState === "saving" || dirty.size === 0}
-                    className="bg-gray-900 text-white hover:bg-gray-800"
-                  >
-                    {saveState === "saving" ? "Saving…" : "Save recommendations"}
-                  </Button>
-                </div>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="text-left font-semibold text-gray-700 p-2 sticky left-0 bg-white">
-                        Student
-                      </th>
-                      {companies.map((c) => (
-                        <th
-                          key={c.id}
-                          className="font-semibold text-gray-700 p-2 whitespace-nowrap"
-                        >
-                          {c.name}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {visible.map((s) => (
-                      <tr key={s.id} className="border-t border-gray-100">
-                        <td className="p-2 sticky left-0 bg-white whitespace-nowrap">
-                          <span className="font-medium text-gray-900">
-                            {s.name}
-                          </span>
-                          {s.major && (
-                            <span className="text-gray-500"> · {s.major}</span>
-                          )}
-                        </td>
-                        {companies.map((c) => (
-                          <td key={c.id} className="p-2 text-center">
-                            <input
-                              type="checkbox"
-                              aria-label={`Recommend ${s.name} to ${c.name}`}
-                              checked={!!recs[s.id]?.has(c.id)}
-                              onChange={() => toggle(s.id, c.id)}
-                              className="h-4 w-4 accent-yellow-500 cursor-pointer"
-                            />
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )}
-        </>
-      )}
+    <fieldset disabled={saveState === "saving" || autoState === "running"} className="min-w-0 py-5">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <h2 className="text-base font-semibold">Student recommendations</h2>
+        <div className="flex flex-wrap items-center gap-3 text-xs">
+          {autoState === "error" && <span role="alert" className="text-red-700">AI pairing failed</span>}
+          {saveState === "error" && <span role="alert" className="text-red-700">Save failed</span>}
+          {dirty.size > 0 && <span className="text-amber-800">{dirty.size} unsaved</span>}
+          {saveState === "saved" && !dirty.size && <span className="text-green-700">Saved</span>}
+          <Button onClick={autoPair} disabled={loading || !!loadError || !students.length || !companies.length || autoState === "running"} variant="outline" className="h-9 border-gray-300 bg-transparent">{autoState === "running" ? "Pairing…" : "Auto-pair with AI"}</Button>
+          <Button onClick={save} disabled={!dirty.size || saveState === "saving"} className="h-9 bg-gray-900 text-white hover:bg-gray-800">{saveState === "saving" ? "Saving…" : "Save recommendations"}</Button>
+        </div>
+      </div>
+      {loading && <p className="py-3 text-sm text-gray-500">Loading students…</p>}
+      {loadError && <p role="alert" className="text-sm text-red-700">{loadError}</p>}
+      {!loading && !loadError && <>
+        <p className="mb-3 text-xs text-gray-500">Use the star to recommend candidates to companies. Company rankings are managed in each company portal.</p>
+        <CandidateBrowser students={students} profileSchemaReady={profileSchemaReady} onOpen={setSelectedStudent} renderShortlist={student => <Popover>
+          <PopoverTrigger asChild><button type="button" aria-label={`Review company recommendations for ${student.name}${dirty.has(student.id) ? "; unsaved changes" : ""}`} title={`Recommend to companies${recs[student.id]?.size ? ` (${recs[student.id].size} selected)` : ""}`} className="relative flex h-8 w-8 items-center justify-center rounded-md text-[#B57D30] hover:bg-[#E5AC61]/15"><Star aria-hidden="true" size={18} fill={recs[student.id]?.size ? "currentColor" : "none"} />{dirty.has(student.id) && <span aria-hidden="true" className="absolute right-0 top-0 h-1.5 w-1.5 rounded-full bg-amber-700" />}</button></PopoverTrigger>
+          <PopoverContent align="start" className="max-h-80 overflow-y-auto bg-[#FAF7F2] text-[#444444]">
+            <fieldset disabled={saveState === "saving" || autoState === "running"}><legend className="mb-2 text-sm font-semibold">Recommend {student.name}</legend>
+              {companies.map(company => <label key={company.id} className="flex items-start gap-2 py-1.5 text-sm"><input type="checkbox" checked={!!recs[student.id]?.has(company.id)} onChange={() => toggle(student.id, company.id)} className="mt-1 accent-[#444444]" />{company.name}</label>)}
+              {!companies.length && <p className="text-xs text-gray-500">Add a company first.</p>}
+              <p className="mt-3 text-xs text-gray-500">Use Save recommendations above to apply your changes.</p>
+            </fieldset>
+          </PopoverContent>
+        </Popover>} />
+        <StudentProfile student={selectedStudent} onClose={() => setSelectedStudent(null)} />
+      </>}
     </fieldset>
   );
 }
@@ -438,14 +355,14 @@ function RunMatchingCard({ token }) {
 
   return (
     <ActionCard
-      title="Run matching"
-      description="Match students to companies from submitted preferences. Existing matches are preserved; re-running adds missing pairings and does not remove old ones."
+      title="Matching"
+      description="Match from company picks. Existing matches are preserved; this does not send emails."
       state={state}
       onRun={run}
       runLabel="Run matching"
       result={state === "error" ? result?.error : result && `Selected ${result.matches} pairing(s), including existing matches.`}
     >
-      <label className="block text-sm text-gray-700">
+      <label className="flex flex-wrap items-center gap-2 text-sm text-gray-700">
         Capacity per company (optional)
         <input
           type="number"
@@ -453,7 +370,7 @@ function RunMatchingCard({ token }) {
           value={capacity}
           onChange={(e) => setCapacity(e.target.value)}
           placeholder="No limit"
-          className="mt-1 block w-40 px-2 py-1 border border-gray-300 rounded text-sm bg-white outline-none focus-visible:border-gray-500 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+          className="w-28 px-3 py-2 border border-gray-300 rounded text-sm bg-white outline-none focus-visible:border-gray-500 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         />
       </label>
     </ActionCard>
@@ -471,8 +388,9 @@ function NotifyCard({ token }) {
 
   return (
     <ActionCard
-      title="Send match emails"
-      description="Send outreach emails for matches that are due (pending/scheduled with a send time now or in the past). Processes up to 10 emails per run. Failed or interrupted deliveries are held for review before retrying."
+      title="Email delivery"
+      warning={Boolean(result?.failed || result?.reviewRequired)}
+      description="Send up to 10 due introductions. Failed or interrupted deliveries are held for review."
       state={state}
       onRun={run}
       runLabel="Send due emails"
@@ -510,27 +428,20 @@ function ActionCard({
   onRun,
   runLabel,
   result,
+  warning = false,
 }) {
   return (
-    <section className="min-w-0 rounded-lg border border-gray-200 bg-white/60 p-5 sm:p-7">
-      <h2 className="font-instrument text-3xl font-normal leading-tight text-[#444444]">{title}</h2>
-      <p className="max-w-2xl text-sm leading-relaxed text-gray-600 mt-3 mb-5">{description}</p>
-      {children && <div className="mb-4">{children}</div>}
+    <section className="py-5">
+      <h2 className="mb-3 text-base font-semibold">{title}</h2>
       <div className="flex flex-wrap items-center gap-3">
-        <Button
-          onClick={onRun}
-          disabled={state === "running"}
-          className="bg-gray-900 text-white hover:bg-gray-800"
-        >
-          {state === "running" ? "Working…" : runLabel}
-        </Button>
-        {state === "done" && (
-          <span className="text-green-600 text-sm">{result}</span>
-        )}
-        {state === "error" && (
-          <span className="text-red-600 text-sm">{result || "Failed. Try again."}</span>
-        )}
+        <fieldset disabled={state === "running"} className="flex flex-wrap items-center gap-3">
+          {children}
+          <Button onClick={onRun} disabled={state === "running"} className="h-9 bg-gray-900 text-white hover:bg-gray-800">{state === "running" ? "Working…" : runLabel}</Button>
+        </fieldset>
+        {state === "done" && <span role={warning ? "alert" : "status"} className={`text-sm ${warning ? "text-amber-800" : "text-gray-600"}`}>{result}</span>}
+        {state === "error" && <span role="alert" className="text-sm text-red-700">{result || "Failed. Try again."}</span>}
       </div>
+      <p className="mt-2 text-xs text-gray-500">{description}</p>
     </section>
   );
 }

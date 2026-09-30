@@ -1,9 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useShortlistAutosave } from "@/lib/startup-week/use-shortlist-autosave";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import { Maximize2, Minimize2 } from "lucide-react";
+import styles from "./company-portal.module.css";
+import { motion, useReducedMotion } from "framer-motion";
+import { CandidateBrowser, StudentProfile } from "./candidate-browser";
 import { useAuth } from "@/lib/startup-week/use-auth";
+
+const CompanyPortalHelp = dynamic(() => import("./company-portal-help"), {ssr: false});
 
 // Company portal for Startup Week.
 //   /startupweek/company/:slug
@@ -12,26 +21,37 @@ import { useAuth } from "@/lib/startup-week/use-auth";
 
 export default function CompanyPortal() {
   const { slug } = useParams();
-  const { user, token, loading: authLoading, signIn, signOut, authError, signingIn } = useAuth();
+  const { user, token, loading: authLoading, signIn, signOut, authError, signingIn, signingOut } = useAuth();
 
-  if (authLoading) return <CenterMessage>Checking sign-in…</CenterMessage>;
+  if (authLoading) return <TalentLoading />;
   if (!user || !token) return <LoginScreen onSignIn={signIn} error={authError} signingIn={signingIn} />;
-  if (!slug) return <CenterMessage>Loading portal…</CenterMessage>;
-  return <CompanyEditor key={`${slug}:${user.id}:${user.email}`} slug={slug} user={user} token={token} signOut={signOut} />;
+  if (!slug) return <TalentLoading />;
+  return <CompanyEditor key={`${slug}:${user.id}:${user.email}`} slug={slug} user={user} token={token} signOut={signOut} signOutError={authError} signingOut={signingOut} />;
 }
 
-export function CompanyEditor({ slug, user, token, signOut }) {
+export function CompanyEditor({ slug, user, token, signOut, signOutError, signingOut }) {
+  const tabIndicatorId = useId();
+  const reduceMotion = useReducedMotion();
   const [students, setStudents] = useState([]);
+  const [profileSchemaReady, setProfileSchemaReady] = useState(true);
   const [recommended, setRecommended] = useState([]); // admin-curated fits
-  const [tab, setTab] = useState("recommended"); // recommended | all
-  const [picks, setPicks] = useState([]); // ordered array of { student_id, note }
+  const [expanded, setExpanded] = useState(false);
+  const [view, setView] = useState("recommended");
+  const {picks, dirty, status: saveState, error: saveError, initialize, edit: editPicks, flush} = useShortlistAutosave(slug, token);
+  const [leaving, setLeaving] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
-  const [search, setSearch] = useState("");
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [touring, setTouring] = useState(false);
+  const closeProfile = useCallback(() => setSelectedStudent(null), []);
+  const openFirstProfile = useCallback(() => setSelectedStudent(students[0] || null), [students]);
   const [loading, setLoading] = useState(true);
+  const [minimumLoadingElapsed, setMinimumLoadingElapsed] = useState(false);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setMinimumLoadingElapsed(true), 3000);
+    return () => window.clearTimeout(timer);
+  }, []);
   const [error, setError] = useState("");
-  const [saveState, setSaveState] = useState("idle"); // idle | saving | saved | error
-  const [dirty, setDirty] = useState(false); // unsaved edits to the pick list?
 
   // Load students + this company's existing picks once we have a slug + token.
   useEffect(() => {
@@ -50,23 +70,25 @@ export function CompanyEditor({ slug, user, token, signOut }) {
         ]);
         if (cancelled) return;
         setStudents(studentsRes.data.students || []);
+        setProfileSchemaReady(studentsRes.data.profile_schema_ready !== false);
         setRecommended(recRes.data.students || []);
         setCompanyName(prefsRes.data.company || "");
         setCompanyDescription(prefsRes.data.description || "");
         // preferences come back rank-ordered; drop rank and keep order + note
-        setPicks(
+        initialize(
           (prefsRes.data.preferences || []).map((p) => ({
             student_id: p.student_id,
             note: p.note || "",
           }))
         );
-        setDirty(false);
       } catch (err) {
         if (cancelled) return;
         const status = err.response?.status;
         if (status === 404) {
           setError("Company not found. Check your portal link.");
-        } else if (status === 401 || status === 403) {
+        } else if (status === 401) {
+          setError("Your sign-in session is no longer valid. Please sign out and sign in again.");
+        } else if (status === 403) {
           setError(
             `${user?.email || "This account"} isn't authorized for this portal. ` +
               "Sign in with the email your company registered with."
@@ -84,346 +106,126 @@ export function CompanyEditor({ slug, user, token, signOut }) {
     };
   }, []); // Identity changes remount this editor; token refresh must preserve drafts.
 
+  useEffect(() => {
+    if (!expanded) return undefined;
+    const collapse = event => {
+      if (event.key === "Escape" && !event.defaultPrevented && !document.querySelector('[role="dialog"]')) setExpanded(false);
+    };
+    window.addEventListener("keydown", collapse);
+    return () => window.removeEventListener("keydown", collapse);
+  }, [expanded]);
+
   const pickedIds = useMemo(
     () => new Set(picks.map((p) => p.student_id)),
     [picks]
   );
 
-  const studentsById = useMemo(() => {
-    const m = new Map();
-    students.forEach((s) => m.set(s.id, s));
-    return m;
-  }, [students]);
-
-  const visibleStudents = useMemo(() => {
-    const source = tab === "recommended" ? recommended : students;
-    const q = search.trim().toLowerCase();
-    return source.filter((s) => {
-      if (pickedIds.has(s.id)) return false;
-      if (!q) return true;
-      return [s.name, s.school, s.major, s.grad_year]
-        .filter(Boolean)
-        .some((f) => f.toLowerCase().includes(q));
-    });
-  }, [tab, recommended, students, pickedIds, search]);
-
-  // Warn before leaving the tab with unsaved picks.
-  useEffect(() => {
-    if (!dirty) return undefined;
-    const warn = (e) => {
-      e.preventDefault();
-      e.returnValue = "";
-    };
-    window.addEventListener("beforeunload", warn);
-    return () => window.removeEventListener("beforeunload", warn);
-  }, [dirty]);
-
-  // Any edit to the pick list marks it dirty so the UI can prompt a save.
-  const editPicks = (updater) => {
-    if (saveState === "saving") return;
-    setSaveState("idle");
-    setPicks(updater);
-    setDirty(true);
-  };
   const addPick = (id) =>
-    editPicks((prev) => [...prev, { student_id: id, note: "" }]);
+    editPicks((prev) => prev.some(p => p.student_id === id) ? prev : [...prev, { student_id: id, note: "" }]);
   const removePick = (id) =>
     editPicks((prev) => prev.filter((p) => p.student_id !== id));
   const setNote = (id, note) =>
     editPicks((prev) =>
       prev.map((p) => (p.student_id === id ? { ...p, note } : p))
     );
-  const move = (index, delta) =>
-    editPicks((prev) => {
+  const reorderPicks = (activeId, overId) =>
+    editPicks(prev => {
+      const from = prev.findIndex(pick => pick.student_id === activeId);
+      const to = prev.findIndex(pick => pick.student_id === overId);
+      if (from < 0 || to < 0 || from === to) return prev;
       const next = [...prev];
-      const target = index + delta;
-      if (target < 0 || target >= next.length) return prev;
-      [next[index], next[target]] = [next[target], next[index]];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
       return next;
     });
 
-  const save = async () => {
-    if (saveState === "saving") return;
-    setSaveState("saving");
+  const handleSignOut = async () => {
+    if (leaving) return;
+    setLeaving(true);
     try {
-      const preferences = picks.map((p, i) => ({
-        student_id: p.student_id,
-        rank: i + 1,
-        note: p.note || null,
-      }));
-      await axios.post(
-        `/api/startup-week/companies/${slug}/preferences`,
-        { preferences },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setSaveState("saved");
-      setDirty(false);
-    } catch (err) {
-      setSaveState("error");
-    }
+      if (dirty && !(await flush()) && !window.confirm("Your latest shortlist changes could not be saved. Sign out and discard those changes?")) return;
+      await signOut();
+    } finally { setLeaving(false); }
   };
 
-  if (loading) {
-    return <CenterMessage>Loading resumes…</CenterMessage>;
+  if (loading || !minimumLoadingElapsed) {
+    return <TalentLoading />;
   }
   if (error) {
     return (
       <CenterMessage>
         <span className="block mb-4">{error}</span>
+        {signOutError && <p role="alert" className="mb-4 text-sm text-red-700">{signOutError}</p>}
         <button
-          onClick={() => { if (!dirty || window.confirm("Discard unsaved picks and sign out?")) signOut(); }}
+          disabled={signingOut || leaving}
+          onClick={handleSignOut}
           className="text-sm font-bold text-black bg-accent py-2 px-4 rounded-md"
         >
-          Sign in with a different account
+          {signingOut ? "Signing out…" : "Sign out and sign in again"}
         </button>
       </CenterMessage>
     );
   }
 
   return (
-    <>
-      <div className="min-h-screen bg-background">
-        <header className="bg-gray-800 border-b-4 border-yellow-400 px-4 py-6">
-          <div className="max-w-6xl mx-auto flex justify-between items-start gap-4">
-            <div>
-              <p className="text-yellow-400 text-xs font-bold uppercase tracking-widest">
-                V1 Startup Week
-              </p>
-              <h1 className="text-white text-2xl md:text-3xl font-bold tracking-tight mt-1">
-                {companyName || "Company"}{" "}
-                <span className="text-gray-400 font-medium">Portal</span>
-              </h1>
-              <p className="text-gray-300 mt-1 text-sm">
-                Browse student resumes and build your ranked pick list — rank 1 is
-                your top choice.
-              </p>
-            </div>
-            <div className="text-right shrink-0">
-              <p className="text-gray-400 text-xs">{user.email}</p>
-              <button
-                onClick={() => { if (!dirty || window.confirm("Discard unsaved picks and sign out?")) signOut(); }}
-                className="text-gray-300 text-xs underline mt-1 hover:text-white"
-              >
-                Sign out
-              </button>
-            </div>
-          </div>
-        </header>
-
-        {companyDescription && (
-          <div className="max-w-6xl mx-auto px-4 pt-6">
-            <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">
-                Your company profile
-              </p>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                {companyDescription}
-              </p>
-              <p className="text-xs text-gray-400 mt-2">
-                This is what the V1 team has on file. Contact them to update it.
-              </p>
-            </div>
-          </div>
-        )}
-
-        <main className="max-w-6xl mx-auto px-4 py-8">
-          <fieldset disabled={saveState === "saving"} className="grid md:grid-cols-2 gap-8 min-w-0">
-          {/* Resume browser */}
-          <section>
-            <div className="flex gap-4 border-b border-gray-200 mb-4">
-              <TabButton
-                active={tab === "recommended"}
-                onClick={() => setTab("recommended")}
-              >
-                Recommended for you ({recommended.length})
-              </TabButton>
-              <TabButton active={tab === "all"} onClick={() => setTab("all")}>
-                All resumes ({students.length})
-              </TabButton>
-            </div>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search name, school, major…"
-              className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md text-sm outline-none focus:border-yellow-400"
-            />
-            <ul className="space-y-3">
-              {tab === "recommended" && recommended.length === 0 && (
-                <li className="text-gray-500 text-sm">
-                  No recommendations yet — check the <strong>All resumes</strong>{" "}
-                  tab, or ask the V1 team to add recommendations.
-                </li>
-              )}
-              {visibleStudents.map((s) => (
-                <StudentCard key={s.id} student={s}>
-                  <button
-                    onClick={() => addPick(s.id)}
-                    className="text-sm font-bold text-black bg-accent py-1 px-3 rounded-md hover:bg-yellow-500 transition-colors"
-                  >
-                    + Add
-                  </button>
-                </StudentCard>
-              ))}
-              {visibleStudents.length === 0 &&
-                !(tab === "recommended" && recommended.length === 0) && (
-                  <li className="text-gray-500 text-sm">No matching resumes.</li>
-                )}
-            </ul>
-          </section>
-
-          {/* Ranked pick list */}
-          <section>
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-bold text-gray-900">
-                Your picks ({picks.length})
-              </h2>
-              <div className="flex flex-wrap items-center gap-3">
-                {!dirty && saveState === "saved" && (
-                  <span className="text-green-600 text-sm">All changes saved ✓</span>
-                )}
-                {dirty && saveState !== "saving" && (
-                  <span className="text-yellow-600 text-sm">Unsaved changes</span>
-                )}
-                {saveState === "error" && (
-                  <span className="text-red-600 text-sm">Save failed</span>
-                )}
-                <button
-                  onClick={save}
-                  disabled={saveState === "saving" || !dirty}
-                  className="text-sm font-bold text-white bg-gray-800 py-2 px-4 rounded-md disabled:opacity-50"
-                >
-                  {saveState === "saving" ? "Saving…" : "Save picks"}
-                </button>
-              </div>
-            </div>
-            <ol className="space-y-3">
-              {picks.map((p, i) => {
-                const s = studentsById.get(p.student_id);
-                if (!s) return null;
-                return (
-                  <StudentCard key={p.student_id} student={s} rank={i + 1}>
-                    <div className="flex flex-col items-end gap-1">
-                      <div className="flex gap-1">
-                        <MoveBtn onClick={() => move(i, -1)} disabled={i === 0}>
-                          ↑
-                        </MoveBtn>
-                        <MoveBtn
-                          onClick={() => move(i, 1)}
-                          disabled={i === picks.length - 1}
-                        >
-                          ↓
-                        </MoveBtn>
-                        <button
-                          onClick={() => removePick(p.student_id)}
-                          className="text-sm text-red-600 px-2"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                    <input
-                      type="text"
-                      value={p.note}
-                      onChange={(e) => setNote(p.student_id, e.target.value)}
-                      placeholder="Add a note (optional)"
-                      className="mt-2 w-full px-2 py-1 border border-gray-200 rounded text-xs outline-none focus:border-yellow-400"
-                    />
-                  </StudentCard>
-                );
-              })}
-              {picks.length === 0 && (
-                <li className="text-gray-500 text-sm">
-                  No picks yet — add resumes from the left.
-                </li>
-              )}
-            </ol>
-          </section>
-          </fieldset>
-        </main>
-      </div>
-    </>
-  );
-}
-
-function initials(name) {
-  return (name || "?")
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0].toUpperCase())
-    .join("");
-}
-
-function StudentCard({ student, rank, children }) {
-  return (
-    <li className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md hover:border-gray-300 transition-shadow">
-      <div className="flex justify-between gap-3">
-        <div className="flex gap-3 min-w-0">
-          {rank ? (
-            <span className="shrink-0 h-9 w-9 rounded-full bg-accent text-gray-900 text-sm font-bold flex items-center justify-center">
-              {rank}
-            </span>
-          ) : (
-            <span className="shrink-0 h-9 w-9 rounded-full bg-gray-100 text-gray-500 text-xs font-bold flex items-center justify-center">
-              {initials(student.name)}
-            </span>
-          )}
-          <div className="min-w-0">
-            <p className="font-bold text-gray-900 truncate">{student.name}</p>
-            <p className="text-sm text-gray-600 truncate">
-              {[student.school, student.major, student.grad_year]
-                .filter(Boolean)
-                .join(" · ")}
-            </p>
-            {student.resume_url && (
-              <a
-                href={student.resume_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-1 text-sm font-medium text-blue-600 hover:underline"
-              >
-                View resume ↗
-              </a>
-            )}
-          </div>
+    <main data-expanded={expanded} className={`mx-auto flex min-h-0 w-full flex-1 flex-col overflow-hidden px-4 py-4 md:px-6 ${expanded ? styles.expanded : "max-w-7xl lg:px-8"}`}>
+      <header hidden={expanded} className="mb-3 shrink-0">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500">
+          <p className="uppercase tracking-[0.16em]">Startup Week · Company portal</p>
+          <div className="flex flex-wrap items-center gap-3"><span>{user.email}</span><button disabled={signingOut || leaving} onClick={handleSignOut} className="rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-[#444444] hover:bg-white disabled:opacity-50">{signingOut || leaving ? "Signing out…" : "Sign out"}</button></div>
         </div>
-        <div className="shrink-0">{children}</div>
+        <h1 className="mt-3 font-instrument text-5xl sm:text-6xl font-normal leading-tight">{companyName || "Company"}</h1>
+        {signOutError && <p role="alert" className="mt-2 text-sm text-red-700">{signOutError}</p>}
+      </header>
+      <div className="mb-3 flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-gray-200">
+        {expanded && <h1 className="py-3 text-sm font-semibold">{{recommended: "Recommended", all: "All Candidates", shortlist: "Shortlist", profile: "Company Profile"}[view]}</h1>}
+        <nav aria-label="Company portal sections" className={expanded ? "hidden" : "flex max-w-full gap-5 overflow-x-auto"}>
+          {[["recommended", "Recommended", recommended.length], ["all", "All Candidates", students.length], ["shortlist", "Shortlist", picks.length], ["profile", "Company Profile", null]].map(([key, label, count]) => <button type="button" key={key} data-tour={`portal-tab-${key}`} onClick={() => setView(key)} aria-pressed={view === key} className={`relative shrink-0 border-b-2 border-transparent py-3 text-sm font-medium ${view === key ? "text-[#444444]" : "text-gray-500 hover:text-gray-900"}`}>{label}{count !== null && <span className="ml-1.5 text-xs text-gray-500">{count}</span>}{view === key && <motion.span aria-hidden="true" layoutId={tabIndicatorId} initial={false} transition={{duration: reduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1]}} className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#E5AC61]" />}</button>)}
+        </nav>
+        <div className="mb-2 flex items-center gap-3">
+      <div data-tour="autosave-status" role="status" aria-live="polite" className="max-w-sm text-xs">
+        {saveState === "error" ? <span className="text-red-700">{saveError} <button type="button" onClick={() => void flush()} className="ml-1 underline underline-offset-4">Retry</button></span> : <span className="text-gray-500">{dirty ? "Saving shortlist…" : saveState === "saved" ? "All changes saved" : "Shortlist saves automatically"}</span>}
       </div>
-    </li>
+          {!expanded && <CompanyPortalHelp companyName={companyName} view={view} setView={setView} closeProfile={closeProfile} openFirstProfile={openFirstProfile} hasCandidates={students.length > 0} onRunChange={setTouring} />}
+          <button data-tour="expand-view" type="button" aria-pressed={expanded} aria-label={expanded ? "Exit expanded view" : "Expand current tab"} onClick={() => setExpanded(value => !value)} className="inline-flex shrink-0 items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-white">{expanded ? <Minimize2 size={16} aria-hidden="true" /> : <Maximize2 size={16} aria-hidden="true" />}{expanded ? "Collapse" : "Expand"}</button>
+        </div>
+      </div>
+
+      <fieldset disabled={leaving} className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+        <div className={view === "profile" ? "hidden" : "flex min-h-0 flex-1 flex-col"}>
+          <CandidateBrowser onReorder={reorderPicks} expanded={expanded} fillHeight hideHeading view={view} onBrowseAll={() => setView("all")} profileSchemaReady={profileSchemaReady} students={students} recommended={recommended} pickedIds={pickedIds} shortlistOrder={picks.map(pick => pick.student_id)} onAdd={addPick} onRemove={removePick} onOpen={setSelectedStudent} />
+        </div>
+        <section aria-label="Company profile" className={view !== "profile" ? "hidden" : "min-h-0 flex-1 overflow-y-auto overscroll-contain py-2"}>
+          <h2 className="mb-5 text-base font-semibold">Company Profile</h2>
+          <dl className="space-y-6"><div><dt className="mb-2 text-xs font-medium text-gray-500">Company name</dt><dd className="text-lg font-medium">{companyName || "Company"}</dd></div><div><dt className="mb-2 text-xs font-medium text-gray-500">Description</dt><dd className="whitespace-pre-wrap text-sm leading-relaxed">{companyDescription || "No company description on file."}</dd></div></dl>
+        </section>
+      </fieldset>
+      <StudentProfile touring={touring} student={selectedStudent} onClose={() => setSelectedStudent(null)} onAdd={addPick} onRemove={removePick} picked={!!selectedStudent && pickedIds.has(selectedStudent.id)} saving={leaving}>
+        <section aria-label="Notes" className="border-t border-gray-200 pt-4">
+          <h3 className="mb-2 text-sm font-semibold">Notes</h3>
+          {selectedStudent && pickedIds.has(selectedStudent.id) ? <>
+            <textarea aria-label={`Notes for ${selectedStudent.name}`} disabled={leaving} maxLength={10000} value={picks.find(pick => pick.student_id === selectedStudent.id)?.note || ""} onChange={event => setNote(selectedStudent.id, event.target.value)} placeholder="Add a note (optional)" className="block min-h-24 w-full rounded-md border border-gray-300 bg-white/60 p-3 text-sm font-normal text-[#444444]" />
+            <p className="mt-1 text-xs text-gray-500">Notes save automatically.</p>
+          </> : <p className="text-sm text-gray-500">Add to shortlist to add a note</p>}
+        </section>
+      </StudentProfile>
+    </main>
   );
 }
 
-function TabButton({ active, onClick, children }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`pb-2 -mb-px text-sm font-semibold border-b-2 ${
-        active
-          ? "border-yellow-400 text-gray-900"
-          : "border-transparent text-gray-500 hover:text-gray-700"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
-function MoveBtn({ onClick, disabled, children }) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className="text-sm px-2 border border-gray-300 rounded hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent"
-    >
-      {children}
-    </button>
-  );
+function TalentLoading() {
+  return <div role="status" aria-live="polite" className="flex min-h-0 flex-1 flex-col items-center justify-center gap-6 px-4 py-6">
+    <Image src="/brand/v1-login-logo.png" width={128} height={124} alt="V1" priority className="h-auto w-32 rounded-xl" />
+    <p className="text-center text-lg font-medium text-[#444444] sm:text-xl">
+      <span className="sr-only">Loading top Michigan talent…</span>
+      <span aria-hidden="true">Loading top Michigan talent<span className="ml-0.5 inline-flex">{[0, 1, 2].map(index => <span key={index} className={styles.loadingDot} style={{animationDelay: `${index * 150}ms`}}>.</span>)}</span></span>
+    </p>
+  </div>;
 }
 
 function CenterMessage({ children }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="flex min-h-0 flex-1 items-center justify-center overflow-y-auto px-4 py-6">
       <div className="text-gray-600 text-center">{children}</div>
     </div>
   );
@@ -432,19 +234,20 @@ function CenterMessage({ children }) {
 function LoginScreen({ onSignIn, error, signingIn }) {
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-background px-4">
-        <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-8 max-w-sm w-full text-center">
-          <h1 className="text-xl font-bold text-gray-900">
-            Startup Week <span className="text-yellow-700">Portal</span>
+      <div className="flex min-h-0 flex-1 items-center justify-center overflow-y-auto px-4 py-6">
+        <div className="max-w-lg w-full text-center">
+          <p className="mb-5 text-xs font-medium uppercase tracking-[0.16em] text-gray-500">V1 Michigan · Company portal</p>
+          <h1 className="font-instrument text-5xl sm:text-6xl font-normal leading-tight text-[#444444]">
+            Startup Week
           </h1>
-          <p className="text-gray-600 text-sm mt-2 mb-6">
+          <p className="mx-auto max-w-sm text-gray-600 text-base leading-relaxed mt-5 mb-8">
             Sign in with the Google account your company registered with to
             review resumes and submit your picks.
           </p>
           <button
             onClick={onSignIn}
             disabled={signingIn}
-            className="w-full text-base font-bold text-black bg-accent py-2 px-4 rounded-md"
+            className="text-sm font-medium text-[#191919] bg-yellow-400 hover:bg-yellow-300 py-3 px-8 rounded-md disabled:opacity-50"
           >
             {signingIn ? "Redirecting…" : "Sign in with Google"}
           </button>

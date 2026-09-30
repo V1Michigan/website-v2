@@ -7,4 +7,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error("Missing Supabase URL or Anon Key");
 }
 
-export default createClient(supabaseUrl, supabaseAnonKey);
+export const authStorageKey = `sb-${new URL(supabaseUrl).hostname.split(".")[0]}-auth-token`;
+
+export default createClient(supabaseUrl, supabaseAnonKey, {
+  auth: { storageKey: authStorageKey },
+});
