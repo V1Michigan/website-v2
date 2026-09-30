@@ -121,7 +121,7 @@ export const startupWeekYears: StartupWeekYear[] = [
       { name: "Phoebe", domain: "Home Care", image: "/startupweek/2026/phoebe.webp" },
       { name: "Dryft", domain: "Manufacturing", image: "/startupweek/2026/dryft.webp" },
       { name: "Lumaril Corporation", domain: "Industrial", image: "/startupweek/2026/lumaril.webp" },
-      { name: "Scope", domain: "Clinical", image: "/startupweek/2026/scope.webp" },
+      { name: "Scope Health", domain: "Clinical", image: "/startupweek/2026/scope.webp" },
       { name: "Rational", domain: "Accounting", image: "/startupweek/2026/rational.webp" },
       { name: "Latent Variables", domain: "Applied AI Research", image: "/startupweek/2026/latent-variables.webp" },
     ],
