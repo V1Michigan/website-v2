@@ -105,7 +105,7 @@ export const startupWeekYears: StartupWeekYear[] = [
   },
   {
     year: "FALL 2026",
-    topStartups: "30+",
+    topStartups: "20",
     // Editorial order by public scale, backing, and reputation; not a revenue ranking.
     companies: [
       { name: "SpaceXAI", domain: "Frontier AI Lab", image: "/startupweek/2026/spacexai.webp" },
