@@ -92,7 +92,11 @@ export function CandidateBrowser({profileSchemaReady = true, students, recommend
     if (view === "shortlist") return pickedIds.has(student.id);
     const q = search.trim().toLowerCase();
     if (q && ![student.name, ...fields.map(field => profileValue(student, field))].some(value => String(value ?? "").toLowerCase().includes(q))) return false;
-    return options.every(field => !filters[field.key]?.length || fieldSelections(student, field).some(value => filters[field.key].includes(value.toLowerCase())));
+    return options.every(field => {
+      if (!filters[field.key]?.length) return true;
+      const values = fieldSelections(student, field);
+      return (field.filterFirstChoice ? values.slice(0, 1) : values).some(value => filters[field.key].includes(value.toLowerCase()));
+    });
   });
   if (view === "shortlist") {
     const ranks = new Map(shortlistOrder.map((id, index) => [id, index]));
@@ -101,16 +105,16 @@ export function CandidateBrowser({profileSchemaReady = true, students, recommend
     visible.sort((a, b) => compareCandidates(a, b, sort.key, sort.direction));
   }
   const activeCount = Object.values(filters).reduce((count, values) => count + values.length, 0);
-  function toggle(key, value) {
+  function toggle(key, value, single = false) {
     const normalized = value.toLowerCase();
-    setFilters(current => ({...current, [key]: current[key]?.includes(normalized) ? current[key].filter(v => v !== normalized) : [...(current[key] || []), normalized]}));
+    setFilters(current => ({...current, [key]: current[key]?.includes(normalized) ? current[key].filter(v => v !== normalized) : single ? [normalized] : [...(current[key] || []), normalized]}));
   }
   return <section className={fillHeight ? "flex min-h-0 min-w-0 flex-1 flex-col" : "min-w-0"} aria-label="Candidate discovery">
     {!hideHeading && <div className="mb-3 flex items-center justify-between gap-2"><h2 className="text-base font-semibold">Candidates</h2><span aria-live="polite" className="text-xs text-gray-500">{visible.length} candidate{visible.length === 1 ? "" : "s"}</span></div>}
     {!profileSchemaReady && <p role="status" className="mb-3 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">Expanded profiles are not available yet. Existing candidate information remains available.</p>}
     {view !== "shortlist" && <>
     <input data-tour="candidate-search" type="search" value={search} onChange={event => setSearch(event.target.value)} aria-label="Search candidates" placeholder="Search candidates, interests, or expertise…" className="mb-3 w-full shrink-0 rounded-md border border-gray-300 bg-white/70 px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#E5AC61]/40 sm:text-sm" />
-    <div className={fillHeight ? "mb-3 flex shrink-0 gap-2 overflow-x-auto pb-1" : "mb-3 flex flex-wrap gap-2"}>{options.map(field => <Popover key={field.key}><PopoverTrigger asChild><button type="button" className={`inline-flex shrink-0 items-center justify-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs leading-4 ${filters[field.key]?.length ? "border-[#E5AC61] bg-[#E5AC61]/10" : "border-gray-300"}`}>{field.label}{filters[field.key]?.length ? ` (${filters[field.key].length})` : ""} <ChevronDown aria-hidden="true" size={14} className="shrink-0" /></button></PopoverTrigger><PopoverContent align="start" className="max-h-72 overflow-y-auto bg-[#FAF7F2] text-[#444444]"><fieldset><legend className="mb-2 text-sm font-semibold">{field.label}</legend>{field.options.map(value => <label key={value} className="flex cursor-pointer items-start gap-2 py-1.5 text-sm"><input type="checkbox" checked={!!filters[field.key]?.includes(value.toLowerCase())} onChange={() => toggle(field.key, value)} className="mt-1 accent-[#444444]" /><span>{value}</span></label>)}</fieldset></PopoverContent></Popover>)}
+    <div className={fillHeight ? "mb-3 flex shrink-0 gap-2 overflow-x-auto pb-1" : "mb-3 flex flex-wrap gap-2"}>{options.map(field => <Popover key={field.key}><PopoverTrigger asChild><button type="button" className={`inline-flex shrink-0 items-center justify-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs leading-4 ${filters[field.key]?.length ? "border-[#E5AC61] bg-[#E5AC61]/10" : "border-gray-300"}`}>{field.filterLabel || field.label}{filters[field.key]?.length ? ` (${filters[field.key].length})` : ""} <ChevronDown aria-hidden="true" size={14} className="shrink-0" /></button></PopoverTrigger><PopoverContent align="start" className="max-h-72 overflow-y-auto bg-[#FAF7F2] text-[#444444]"><fieldset><legend className="mb-2 text-sm font-semibold">{field.filterLabel || field.label}</legend>{field.options.map(value => field.filterFirstChoice ? <button key={value} type="button" aria-pressed={!!filters[field.key]?.includes(value.toLowerCase())} onClick={() => toggle(field.key, value, true)} className="flex w-full items-center gap-2 rounded-md px-1 py-2 text-left text-sm hover:bg-[#E5AC61]/10"><span aria-hidden="true" className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${filters[field.key]?.includes(value.toLowerCase()) ? "border-[#444444]" : "border-gray-400"}`}>{filters[field.key]?.includes(value.toLowerCase()) && <span className="h-2 w-2 rounded-full bg-[#444444]" />}</span><span>{value}</span></button> : <label key={value} className="flex cursor-pointer items-start gap-2 py-1.5 text-sm"><input type="checkbox" checked={!!filters[field.key]?.includes(value.toLowerCase())} onChange={() => toggle(field.key, value)} className="mt-1 accent-[#444444]" /><span>{value}</span></label>)}</fieldset></PopoverContent></Popover>)}
       {(search || activeCount > 0) && <button type="button" onClick={() => {setSearch(""); setFilters({});}} className="shrink-0 px-1 text-xs underline underline-offset-4">Clear filters</button>}
     </div>
     </>}
