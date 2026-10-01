@@ -33,7 +33,7 @@ export default function CompanyPortalHelp({companyName, view, setView, closeProf
     {target: '[data-tour="portal-tab-recommended"]', title: "Recommended", content: "Start with candidates the V1 team has recommended for your company.", before: () => activate("recommended")},
     {target: '[data-tour="portal-tab-all"]', title: "All Candidates", content: "Browse every candidate. Use search and filters to narrow by interest, expertise, and availability.", before: () => activate("all")},
     {target: '[data-tour="portal-tab-shortlist"]', title: "Your shortlist", content: "Click and drag anywhere on a candidate’s row to reorder your shortlist. A regular click opens their profile.", before: () => activate("shortlist")},
-    {target: '[data-tour="portal-tab-profile"]', title: "Company Profile", content: "View your company’s name and description here.", before: () => activate("profile")},
+    {target: '[data-tour="portal-tab-profile"]', title: "Company Profile", content: "View your company’s name, description, and optional question for students here.", before: () => activate("profile")},
     {target: '[data-tour="candidate-search"]', title: "Find the right candidates", content: "Search names, interests, or expertise. Filters support multiple selections, and stay with you as you switch candidate tabs.", before: () => activate("all")},
     {target: '[data-tour="candidate-table"]', title: "Scroll down to see more", content: "Scroll down inside the table to browse more candidates. Click a name or row to open their full profile.", before: () => activate("all"), blockTargetInteraction: false},
     {target: () => {

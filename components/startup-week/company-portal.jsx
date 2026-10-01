@@ -41,6 +41,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
   const [leaving, setLeaving] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
+  const [companyQuestion, setCompanyQuestion] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [touring, setTouring] = useState(false);
   const closeProfile = useCallback(() => setSelectedStudent(null), []);
@@ -74,6 +75,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
         setRecommended(recRes.data.students || []);
         setCompanyName(prefsRes.data.company || "");
         setCompanyDescription(prefsRes.data.description || "");
+        setCompanyQuestion(prefsRes.data.company_question || "");
         // preferences come back rank-ordered; drop rank and keep order + note
         initialize(
           (prefsRes.data.preferences || []).map((p) => ({
@@ -197,7 +199,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
         </div>
         <section aria-label="Company profile" className={view !== "profile" ? "hidden" : "min-h-0 flex-1 overflow-y-auto overscroll-contain py-2"}>
           <h2 className="mb-5 text-base font-semibold">Company Profile</h2>
-          <dl className="space-y-6"><div><dt className="mb-2 text-xs font-medium text-gray-500">Company name</dt><dd className="text-lg font-medium">{companyName || "Company"}</dd></div><div><dt className="mb-2 text-xs font-medium text-gray-500">Description</dt><dd className="whitespace-pre-wrap text-sm leading-relaxed">{companyDescription || "No company description on file."}</dd></div></dl>
+          <dl className="space-y-6"><div><dt className="mb-2 text-xs font-medium text-gray-500">Company name</dt><dd className="text-lg font-medium">{companyName || "Company"}</dd></div><div><dt className="mb-2 text-xs font-medium text-gray-500">Description</dt><dd className="whitespace-pre-wrap text-sm leading-relaxed">{companyDescription || "No company description on file."}</dd></div><div><dt className="mb-2 text-xs font-medium text-gray-500">Company question</dt><dd className="whitespace-pre-wrap break-words text-sm leading-relaxed">{companyQuestion.trim() || "No company question provided."}</dd></div></dl>
         </section>
       </fieldset>
       <StudentProfile touring={touring} student={selectedStudent} onClose={() => setSelectedStudent(null)} onAdd={addPick} onRemove={removePick} picked={!!selectedStudent && pickedIds.has(selectedStudent.id)} saving={leaving}>
