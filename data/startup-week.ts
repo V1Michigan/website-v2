@@ -122,7 +122,7 @@ export const startupWeekYears: StartupWeekYear[] = [
       { name: "Monaco", domain: "Sales & CRM", image: "/startupweek/2026/monaco.webp", website: "https://www.monaco.com/" },
       { name: "Phoebe", domain: "Home Care Scheduling", image: "/startupweek/2026/phoebe.webp", website: "https://www.phoebe.work/" },
       { name: "Rational", domain: "AI Accounting", image: "/startupweek/2026/rational.webp", website: "https://rational.to/" },
-      { name: "Scope Health", domain: "Clinical AI", image: "/startupweek/2026/scope.webp", website: "https://scopehealth.com/" },
+      { name: "Scope Health", domain: "Clinical AI", image: "https://raw.githubusercontent.com/penrose-labs/brand-assets/main/logos/scope-avatar-256.webp", website: "https://scopehealth.com/" },
       { name: "SpaceXAI", domain: "Frontier AI Lab", image: "/startupweek/2026/spacexai.webp", website: "https://x.ai/" },
       { name: "Tavus", domain: "Conversational Video AI", image: "/startupweek/2026/tavus.webp", website: "https://www.tavus.io/" },
     ],
