@@ -211,7 +211,13 @@ export function RecommendationsCard({ token }) {
   const [students, setStudents] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [candidateOrder, setCandidateOrder] = useState([]);
+  const openCandidate = (student, order) => {
+    setCandidateOrder(order || []);
+    setSelectedStudent(student);
+  };
   const [profileSchemaReady, setProfileSchemaReady] = useState(true);
+  const [studentDetailsReady, setStudentDetailsReady] = useState(true);
   const [recs, setRecs] = useState({}); // studentId -> Set(companyId)
   const [dirty, setDirty] = useState(() => new Set());
   const [loading, setLoading] = useState(true);
@@ -233,6 +239,7 @@ export function RecommendationsCard({ token }) {
         if (cancelled) return;
         setStudents(s.data.students || []);
         setProfileSchemaReady(s.data.profile_schema_ready !== false);
+        setStudentDetailsReady(s.data.student_details_ready !== false);
         setCompanies(c.data.companies || []);
         const map = {};
         for (const row of r.data.recommendations || []) {
@@ -328,7 +335,7 @@ export function RecommendationsCard({ token }) {
       {loadError && <p role="alert" className="text-sm text-red-700">{loadError}</p>}
       {!loading && !loadError && <>
         <p className="mb-3 text-xs text-gray-500">Use the star to recommend candidates to companies. Company rankings are managed in each company portal.</p>
-        <CandidateBrowser students={students} profileSchemaReady={profileSchemaReady} onOpen={setSelectedStudent} renderShortlist={student => <Popover>
+        <CandidateBrowser studentDetailsReady={studentDetailsReady} students={students} profileSchemaReady={profileSchemaReady} onOpen={openCandidate} renderShortlist={student => <Popover>
           <PopoverTrigger asChild><button type="button" aria-label={`Review company recommendations for ${student.name}${dirty.has(student.id) ? "; unsaved changes" : ""}`} title={`Recommend to companies${recs[student.id]?.size ? ` (${recs[student.id].size} selected)` : ""}`} className="relative flex h-8 w-8 items-center justify-center rounded-md text-[#B57D30] hover:bg-[#E5AC61]/15"><Star aria-hidden="true" size={18} fill={recs[student.id]?.size ? "currentColor" : "none"} />{dirty.has(student.id) && <span aria-hidden="true" className="absolute right-0 top-0 h-1.5 w-1.5 rounded-full bg-amber-700" />}</button></PopoverTrigger>
           <PopoverContent align="start" className="max-h-80 overflow-y-auto bg-[#FAF7F2] text-[#444444]">
             <fieldset disabled={saveState === "saving" || autoState === "running"}><legend className="mb-2 text-sm font-semibold">Recommend {student.name}</legend>
@@ -338,7 +345,7 @@ export function RecommendationsCard({ token }) {
             </fieldset>
           </PopoverContent>
         </Popover>} />
-        <StudentProfile student={selectedStudent} onClose={() => setSelectedStudent(null)} />
+        <StudentProfile candidateOrder={candidateOrder} onNavigate={setSelectedStudent} student={selectedStudent} onClose={() => setSelectedStudent(null)} />
       </>}
     </fieldset>
   );

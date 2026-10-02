@@ -2,7 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { Joyride, EVENTS } from "react-joyride";
-import { CircleHelp, Star } from "lucide-react";
+import { CircleHelp, Bookmark } from "lucide-react";
 
 /** @param {import("react").SyntheticEvent} event */
 function suppressButtonHint(event) {
@@ -30,17 +30,23 @@ export default function CompanyPortalHelp({companyName, view, setView, closeProf
   }, [setView, closeProfile]);
   const steps = useMemo(/** @returns {import("react-joyride").Step[]} */ () => [
     {target: "body", placement: "center", skipScroll: true, title: `Welcome${companyName ? ` ${companyName}` : ""}!`, content: "We’re so glad you could join us for Startup Week 2026! Let’s help you find the top Michigan talent.", locale: {next: "Let’s get started", nextWithProgress: "Let’s get started"}},
-    {target: '[data-tour="portal-tab-recommended"]', title: "Recommended", content: "Start with candidates the V1 team has recommended for your company.", before: () => activate("recommended")},
+    {target: '[data-tour="portal-tab-interested"]', title: "Interested", content: "These candidates explicitly selected your company. Underlined names indicate interest in your company in any tab.", before: () => activate("interested")},
     {target: '[data-tour="portal-tab-all"]', title: "All Candidates", content: "Browse every candidate. Use search and filters to narrow by interest, expertise, and availability.", before: () => activate("all")},
     {target: '[data-tour="portal-tab-shortlist"]', title: "Your shortlist", content: "Click and drag anywhere on a candidate’s row to reorder your shortlist. A regular click opens their profile.", before: () => activate("shortlist")},
     {target: '[data-tour="portal-tab-profile"]', title: "Company Profile", content: "View your company’s name, description, and optional question for students here.", before: () => activate("profile")},
     {target: '[data-tour="candidate-search"]', title: "Find the right candidates", content: "Search names, interests, or expertise. Filters support multiple selections, and stay with you as you switch candidate tabs.", before: () => activate("all")},
     {target: '[data-tour="candidate-table"]', title: "Scroll down to see more", content: "Scroll down inside the table to browse more candidates. Click a name or row to open their full profile.", before: () => activate("all"), blockTargetInteraction: false},
     {target: () => {
-      const target = document.querySelector('[data-tour="shortlist-star"]') || document.querySelector('[data-tour="shortlist-column"]');
+      const target = document.querySelector('[data-tour="shortlist-bookmark"]') || document.querySelector('[data-tour="shortlist-column"]');
       return target instanceof HTMLElement ? target : null;
-    }, title: "Star a candidate", content: <div><Star aria-hidden="true" size={24} className="mx-auto mb-3 text-[#B57D30]" />Click an outlined star to add a candidate. A filled star means they’re shortlisted; click it again to remove them. No save button needed.</div>, skipScroll: true, before: () => activate("all", true)},
-    ...(hasCandidates ? [{target: '[data-tour="candidate-profile"]', title: "Get to know a candidate", content: "Click any candidate’s name or row to open this profile. Review their interests, expertise, availability, and project. The icons beside their name open LinkedIn, their resume, website, and GitHub. At the bottom, add or remove them from your shortlist and write a note once they’re shortlisted. Notes save automatically.", placement: /** @type {const} */ ("right"), skipScroll: true, before: async () => {
+    }, title: "Bookmark a candidate", content: <div><Bookmark aria-hidden="true" size={24} className="mx-auto mb-3 text-[#B57D30]" />Click an outlined bookmark to add a candidate. A filled bookmark means they’re shortlisted; click it again to remove them. No save button needed.</div>, skipScroll: true, before: () => activate("all", true)},
+    ...(hasCandidates ? [{target: '[data-tour="candidate-profile"]', title: "Get to know a candidate", content: "Click any candidate’s name or row to open this profile. Review their year, work authorization, interests, expertise, availability, project, and response to your company’s question. The icons beside their name open LinkedIn, their resume, website, and GitHub. At the bottom, add or remove them from your shortlist and write a note once they’re shortlisted. Notes save automatically.", placement: /** @type {const} */ ("right"), isFixed: true,
+      floatingOptions: {hideArrow: true, shiftOptions: {mainAxis: true, crossAxis: true, boundary: [], rootBoundary: /** @type {const} */ ("viewport"), padding: 16}},
+      styles: {
+        tooltip: {width: 380, maxWidth: "calc(100vw - 32px)", maxHeight: "calc(100dvh - 32px)", display: /** @type {const} */ ("flex"), flexDirection: /** @type {const} */ ("column"), overflow: "hidden"},
+        tooltipContainer: {minHeight: 0, overflowY: /** @type {const} */ ("auto"), overscrollBehavior: /** @type {const} */ ("contain")},
+        tooltipFooter: {flexShrink: 0, paddingTop: 12},
+      }, skipScroll: true, before: async () => {
       await activate("all", true);
       const firstRow = document.querySelector('[data-tour="candidate-profile-open"]');
       if (firstRow instanceof HTMLElement) firstRow.click();
@@ -53,7 +59,7 @@ export default function CompanyPortalHelp({companyName, view, setView, closeProf
       }
     }}] : []),
     {target: '[data-tour="expand-view"]', title: "More room to explore", content: "Expand the current tab to fill the screen. The table gets more room, and Interest, Expertise, and availability columns widen evenly. Use Collapse or press Esc to return. You can expand Company Profile too.", before: () => activate("all")},
-    {target: '[data-tour="autosave-status"]', title: "Saved automatically", content: "Stars, rankings, and notes save automatically. This status confirms when they’re saved. If a save fails, your edits stay on screen and you can retry here.", before: () => activate("all")},
+    {target: '[data-tour="autosave-status"]', title: "Saved automatically", content: "Bookmarks, rankings, and notes save automatically. This status confirms when they’re saved. If a save fails, your edits stay on screen and you can retry here.", before: () => activate("all")},
   ], [activate, companyName, hasCandidates, openFirstProfile]);
   return <div className="contents" onMouseOverCapture={suppressButtonHint} onFocusCapture={suppressButtonHint}>
     <button type="button" disabled={run} onClick={() => {previousView.current = view; closeProfile(); setSession(value => value + 1); onRunChange(true); setRun(true);}} className="inline-flex shrink-0 items-center gap-2 rounded-md border border-yellow-400 bg-yellow-400 px-4 py-2 text-sm font-medium text-[#191919] hover:border-yellow-300 hover:bg-yellow-300 disabled:opacity-50"><CircleHelp aria-hidden="true" size={16} />Tutorial</button>

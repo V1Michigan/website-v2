@@ -34,15 +34,20 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
   const reduceMotion = useReducedMotion();
   const [students, setStudents] = useState([]);
   const [profileSchemaReady, setProfileSchemaReady] = useState(true);
-  const [recommended, setRecommended] = useState([]); // admin-curated fits
+  const [studentDetailsReady, setStudentDetailsReady] = useState(true);
   const [expanded, setExpanded] = useState(false);
-  const [view, setView] = useState("recommended");
+  const [view, setView] = useState("interested");
   const {picks, dirty, status: saveState, error: saveError, initialize, edit: editPicks, flush} = useShortlistAutosave(slug, token);
   const [leaving, setLeaving] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
   const [companyQuestion, setCompanyQuestion] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [candidateOrder, setCandidateOrder] = useState([]);
+  const openCandidate = (student, order) => {
+    setCandidateOrder(order || []);
+    setSelectedStudent(student);
+  };
   const [touring, setTouring] = useState(false);
   const closeProfile = useCallback(() => setSelectedStudent(null), []);
   const openFirstProfile = useCallback(() => setSelectedStudent(students[0] || null), [students]);
@@ -64,15 +69,14 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
       setLoading(true);
       setError("");
       try {
-        const [studentsRes, prefsRes, recRes] = await Promise.all([
-          axios.get("/api/startup-week/students", authHeader),
+        const [studentsRes, prefsRes] = await Promise.all([
+          axios.get("/api/startup-week/students", {...authHeader, params: {company_slug: slug}}),
           axios.get(`/api/startup-week/companies/${slug}/preferences`, authHeader),
-          axios.get(`/api/startup-week/companies/${slug}/recommended`, authHeader),
         ]);
         if (cancelled) return;
         setStudents(studentsRes.data.students || []);
         setProfileSchemaReady(studentsRes.data.profile_schema_ready !== false);
-        setRecommended(recRes.data.students || []);
+        setStudentDetailsReady(studentsRes.data.student_details_ready !== false);
         setCompanyName(prefsRes.data.company || "");
         setCompanyDescription(prefsRes.data.description || "");
         setCompanyQuestion(prefsRes.data.company_question || "");
@@ -180,9 +184,9 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
         {signOutError && <p role="alert" className="mt-2 text-sm text-red-700">{signOutError}</p>}
       </header>
       <div className="mb-3 flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-gray-200">
-        {expanded && <h1 className="py-3 text-sm font-semibold">{{recommended: "Recommended", all: "All Candidates", shortlist: "Shortlist", profile: "Company Profile"}[view]}</h1>}
+        {expanded && <h1 className="py-3 text-sm font-semibold">{{interested: "Interested", all: "All Candidates", shortlist: "Shortlist", profile: "Company Profile"}[view]}</h1>}
         <nav aria-label="Company portal sections" className={expanded ? "hidden" : "flex max-w-full gap-5 overflow-x-auto"}>
-          {[["recommended", "Recommended", recommended.length], ["all", "All Candidates", students.length], ["shortlist", "Shortlist", picks.length], ["profile", "Company Profile", null]].map(([key, label, count]) => <button type="button" key={key} data-tour={`portal-tab-${key}`} onClick={() => setView(key)} aria-pressed={view === key} className={`relative shrink-0 border-b-2 border-transparent py-3 text-sm font-medium ${view === key ? "text-[#444444]" : "text-gray-500 hover:text-gray-900"}`}>{label}{count !== null && <span className="ml-1.5 text-xs text-gray-500">{count}</span>}{view === key && <motion.span aria-hidden="true" layoutId={tabIndicatorId} initial={false} transition={{duration: reduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1]}} className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#E5AC61]" />}</button>)}
+          {[["interested", "Interested", students.filter(student => student.is_interested).length], ["all", "All Candidates", students.length], ["shortlist", "Shortlist", picks.length], ["profile", "Company Profile", null]].map(([key, label, count]) => <button type="button" key={key} data-tour={`portal-tab-${key}`} onClick={() => setView(key)} aria-pressed={view === key} className={`relative shrink-0 border-b-2 border-transparent py-3 text-sm font-medium ${view === key ? "text-[#444444]" : "text-gray-500 hover:text-gray-900"}`}>{label}{count !== null && <span className="ml-1.5 text-xs text-gray-500">{count}</span>}{view === key && <motion.span aria-hidden="true" layoutId={tabIndicatorId} initial={false} transition={{duration: reduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1]}} className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#E5AC61]" />}</button>)}
         </nav>
         <div className="mb-2 flex items-center gap-3">
       <div data-tour="autosave-status" role="status" aria-live="polite" className="max-w-sm text-xs">
@@ -195,14 +199,14 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
 
       <fieldset disabled={leaving} className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
         <div className={view === "profile" ? "hidden" : "flex min-h-0 flex-1 flex-col"}>
-          <CandidateBrowser onReorder={reorderPicks} expanded={expanded} fillHeight hideHeading view={view} onBrowseAll={() => setView("all")} profileSchemaReady={profileSchemaReady} students={students} recommended={recommended} pickedIds={pickedIds} shortlistOrder={picks.map(pick => pick.student_id)} onAdd={addPick} onRemove={removePick} onOpen={setSelectedStudent} />
+          <CandidateBrowser onReorder={reorderPicks} expanded={expanded} fillHeight hideHeading view={view} onBrowseAll={() => setView("all")} profileSchemaReady={profileSchemaReady} students={students} studentDetailsReady={studentDetailsReady} pickedIds={pickedIds} shortlistOrder={picks.map(pick => pick.student_id)} onAdd={addPick} onRemove={removePick} onOpen={openCandidate} />
         </div>
         <section aria-label="Company profile" className={view !== "profile" ? "hidden" : "min-h-0 flex-1 overflow-y-auto overscroll-contain py-2"}>
           <h2 className="mb-5 text-base font-semibold">Company Profile</h2>
           <dl className="space-y-6"><div><dt className="mb-2 text-xs font-medium text-gray-500">Company name</dt><dd className="text-lg font-medium">{companyName || "Company"}</dd></div><div><dt className="mb-2 text-xs font-medium text-gray-500">Description</dt><dd className="whitespace-pre-wrap text-sm leading-relaxed">{companyDescription || "No company description on file."}</dd></div><div><dt className="mb-2 text-xs font-medium text-gray-500">Company question</dt><dd className="whitespace-pre-wrap break-words text-sm leading-relaxed">{companyQuestion.trim() || "No company question provided."}</dd></div></dl>
         </section>
       </fieldset>
-      <StudentProfile touring={touring} student={selectedStudent} onClose={() => setSelectedStudent(null)} onAdd={addPick} onRemove={removePick} picked={!!selectedStudent && pickedIds.has(selectedStudent.id)} saving={leaving}>
+      <StudentProfile candidateOrder={candidateOrder} onNavigate={setSelectedStudent} companyQuestion={companyQuestion} touring={touring} student={selectedStudent} onClose={() => setSelectedStudent(null)} onAdd={addPick} onRemove={removePick} picked={!!selectedStudent && pickedIds.has(selectedStudent.id)} saving={leaving}>
         <section aria-label="Notes" className="border-t border-gray-200 pt-4">
           <h3 className="mb-2 text-sm font-semibold">Notes</h3>
           {selectedStudent && pickedIds.has(selectedStudent.id) ? <>

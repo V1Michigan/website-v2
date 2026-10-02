@@ -74,7 +74,7 @@ async function dispatch(request, context) {
     return await handler({
       method: request.method,
       headers: Object.fromEntries(request.headers),
-      query: { slug: pathname.match(pattern)?.[1] },
+      query: { slug: pathname.match(pattern)?.[1], company_slug: new URL(request.url).searchParams.get("company_slug") },
       body, rawBody,
     }, res);
   } catch (error) {

@@ -1,28 +1,29 @@
 "use client";
 
-import { ChevronDown, FileText, Github, Globe, Linkedin, Star } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { ChevronDown, FileText, Github, Globe, Linkedin, Bookmark } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, useSortable, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useReducedMotion } from "framer-motion";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { profileFields, profileValue, fieldSelections, safeProfileUrl, compareTier, compareCandidates } from "@/lib/startup-week/student-profile-fields";
+import { profileFields, profileValue, fieldSelections, safeProfileUrl, compareFilterOptions, compareCandidates } from "@/lib/startup-week/student-profile-fields";
 
 function projectFieldOrder(field) {
   return field.key === "project_url" ? 1 : field.key === "project_description" ? 2 : 0;
 }
 
 const tableFields = [
-  ["tier", "Tier"], ["links", "Links"], ["roles", "Interest"],
+  ["tier", "Tier"], ["year", "Year"], ["work_authorization", "Work Authorization"], ["links", "Links"], ["roles", "Interest"],
   ["expertise", "Expertise"], ["full_time_seasons", "Full-time availability"],
   ["part_time_seasons", "Part-time availability"],
 ].map(([key, label]) => ({...profileFields.find(field => field.key === key), key, label}));
 
 function tableColumnWidth(field, expanded) {
   if (field.key === "tier") return "w-16 min-w-16 max-w-16";
-  if (field.key === "links" || !expanded) return "w-44 min-w-44 max-w-44";
+  if (field.key === "year") return "w-32 min-w-32 max-w-32";
+  if (["links", "work_authorization"].includes(field.key) || !expanded) return "w-44 min-w-44 max-w-44";
   return "";
 }
 
@@ -66,11 +67,11 @@ function CandidateRow({student, rank, reorderable, onOpen, children}) {
   </tr>;
 }
 
-export function CandidateBrowser({profileSchemaReady = true, students, recommended, pickedIds = new Set(), onAdd, onRemove, onOpen, renderShortlist, view = "all", onBrowseAll, hideHeading = false, shortlistOrder = [], fillHeight = false, expanded = false, onReorder}) {
+export function CandidateBrowser({profileSchemaReady = true, studentDetailsReady = true, students, pickedIds = new Set(), onAdd, onRemove, onOpen, renderShortlist, view = "all", onBrowseAll, hideHeading = false, shortlistOrder = [], fillHeight = false, expanded = false, onReorder}) {
   const sensors = useSensors(useSensor(MouseSensor, {activationConstraint: {distance: 6}}), useSensor(TouchSensor, {activationConstraint: {delay: 200, tolerance: 8}}), useSensor(KeyboardSensor, {coordinateGetter: sortableKeyboardCoordinates}));
   const reorderable = view === "shortlist" && !!onReorder;
   const shortlistWidth = reorderable ? 68 : 56;
-  const tableWidth = 1120 + shortlistWidth;
+  const tableWidth = 1424 + shortlistWidth;
   const [sort, setSort] = useState({key: "tier", direction: "asc"});
   const toggleSort = key => setSort(current => ({key, direction: current.key === key && current.direction === "asc" ? "desc" : "asc"}));
   const sortDirection = key => view !== "shortlist" && sort.key === key ? (sort.direction === "asc" ? "ascending" : "descending") : "none";
@@ -84,11 +85,10 @@ export function CandidateBrowser({profileSchemaReady = true, students, recommend
   const options = useMemo(() => fields.filter(field => field.filter).map(field => {
     const values = new Map();
     students.forEach(student => fieldSelections(student, field).forEach(value => values.set(value.toLowerCase(), value)));
-    return {...field, options: [...values.values()].sort(field.key === "tier" ? compareTier : (a, b) => a.localeCompare(b))};
+    return {...field, options: [...values.values()].sort((a, b) => compareFilterOptions(field.key, a, b))};
   }).filter(field => field.options.length), [students, fields]);
-  const recommendedIds = useMemo(() => new Set((recommended || []).map(student => student.id)), [recommended]);
   const visible = students.filter(student => {
-    if (view === "recommended" && !recommendedIds.has(student.id)) return false;
+    if (view === "interested" && !student.is_interested) return false;
     if (view === "shortlist") return pickedIds.has(student.id);
     const q = search.trim().toLowerCase();
     if (q && ![student.name, ...fields.map(field => profileValue(student, field))].some(value => String(value ?? "").toLowerCase().includes(q))) return false;
@@ -111,6 +111,7 @@ export function CandidateBrowser({profileSchemaReady = true, students, recommend
   }
   return <section className={fillHeight ? "flex min-h-0 min-w-0 flex-1 flex-col" : "min-w-0"} aria-label="Candidate discovery">
     {!hideHeading && <div className="mb-3 flex items-center justify-between gap-2"><h2 className="text-base font-semibold">Candidates</h2><span aria-live="polite" className="text-xs text-gray-500">{visible.length} candidate{visible.length === 1 ? "" : "s"}</span></div>}
+    {!studentDetailsReady && <p role="status" className="mb-3 shrink-0 text-xs text-amber-900">Student interest, year, work authorization, and company responses will appear after the supplemental student table is set up.</p>}
     {!profileSchemaReady && <p role="status" className="mb-3 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">Expanded profiles are not available yet. Existing candidate information remains available.</p>}
     {view !== "shortlist" && <>
     <input data-tour="candidate-search" type="search" value={search} onChange={event => setSearch(event.target.value)} aria-label="Search candidates" placeholder="Search candidates, interests, or expertise…" className="mb-3 w-full shrink-0 rounded-md border border-gray-300 bg-white/70 px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#E5AC61]/40 sm:text-sm" />
@@ -126,39 +127,55 @@ export function CandidateBrowser({profileSchemaReady = true, students, recommend
         <caption className="sr-only">Candidates. Select a name or row to view the complete profile. Shortlist and Name stay visible while scrolling.</caption>
         <colgroup>
           <col style={{width: shortlistWidth}} /><col style={{width: 176}} />
-          {tableFields.map(field => <col key={field.key} style={{width: field.key === "tier" ? 64 : field.key === "links" || !expanded ? 176 : undefined}} />)}
+          {tableFields.map(field => <col key={field.key} style={{width: field.key === "tier" ? 64 : field.key === "year" ? 128 : ["links", "work_authorization"].includes(field.key) || !expanded ? 176 : undefined}} />)}
         </colgroup>
         <thead className="text-xs text-gray-500"><tr>
           <th data-tour="shortlist-column" scope="col" style={{width: shortlistWidth}} className="sticky left-0 top-0 z-30 border-b border-gray-200 bg-[#FAF7F2] px-3 py-3 font-medium"><span className="sr-only">Shortlist</span></th>
           <th scope="col" aria-sort={sortDirection("name")} style={{left: shortlistWidth}} className="sticky top-0 z-30 w-44 min-w-44 max-w-44 border-b border-r border-gray-200 bg-[#FAF7F2] px-3 py-3 font-medium">{view === "shortlist" ? "Name" : <button type="button" onClick={() => toggleSort("name")} className="inline-flex items-center gap-1" aria-label="Sort by name: A–Z or Z–A">Name <span aria-hidden="true">{sortArrow("name")}</span></button>}</th>
-          {tableFields.map(field => <th scope="col" key={field.key} aria-sort={field.key === "tier" ? sortDirection("tier") : undefined} className={`sticky top-0 z-20 ${tableColumnWidth(field, expanded)} border-b border-gray-200 bg-[#FAF7F2] px-3 py-3 font-medium`}>{field.key === "tier" && view !== "shortlist" ? <button type="button" onClick={() => toggleSort("tier")} className="inline-flex items-center gap-1" aria-label="Sort by tier: S–C or C–S">Tier <span aria-hidden="true">{sortArrow("tier")}</span></button> : <span className="block truncate" title={field.label}>{field.label}</span>}</th>)}
+          {tableFields.map(field => <th scope="col" key={field.key} aria-sort={["tier", "year"].includes(field.key) ? sortDirection(field.key) : undefined} className={`sticky top-0 z-20 ${tableColumnWidth(field, expanded)} border-b border-gray-200 bg-[#FAF7F2] px-3 py-3 font-medium`}>{["tier", "year"].includes(field.key) && view !== "shortlist" ? <button type="button" onClick={() => toggleSort(field.key)} className="inline-flex items-center gap-1" aria-label={field.key === "year" ? "Sort by year: Freshman–New Grad or New Grad–Freshman" : "Sort by tier: S–C or C–S"}>{field.label} <span aria-hidden="true">{sortArrow(field.key)}</span></button> : <span className="block truncate" title={field.label}>{field.label}</span>}</th>)}
         </tr></thead>
-        <SortableContext items={visible.map(student => student.id)} strategy={verticalListSortingStrategy}><tbody>{visible.map(student => <CandidateRow key={student.id} student={student} rank={shortlistOrder.indexOf(student.id) + 1} reorderable={reorderable} onOpen={onOpen}>{handle => <>
-          <td onClick={event => {if (!reorderable) event.stopPropagation();}} style={{width: shortlistWidth}} className={`sticky left-0 z-10 border-b border-gray-200 bg-[#FAF7F2] ${reorderable ? "pl-0 pr-1" : "px-3"} py-3 align-top group-hover:bg-[#FDFBF8]`}><div className="flex items-center">{handle}{renderShortlist ? renderShortlist(student) : <button data-tour="shortlist-star" type="button" aria-pressed={pickedIds.has(student.id)} aria-label={`${pickedIds.has(student.id) ? "Remove" : "Add"} ${student.name} ${pickedIds.has(student.id) ? "from" : "to"} shortlist`} onClick={event => {event.stopPropagation(); if (pickedIds.has(student.id)) onRemove?.(student.id); else onAdd(student.id);}} className="flex h-8 w-8 items-center justify-center rounded-md text-[#B57D30] hover:bg-[#E5AC61]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#E5AC61]"><Star aria-hidden="true" size={18} fill={pickedIds.has(student.id) ? "currentColor" : "none"} /></button>}</div></td>
-          <th scope="row" style={{left: shortlistWidth}} className="sticky z-10 w-44 min-w-44 max-w-44 border-b border-r border-gray-200 bg-[#FAF7F2] px-3 py-3 align-middle font-medium group-hover:bg-[#FDFBF8]"><button type="button" onClick={event => {event.stopPropagation(); onOpen(student);}} data-tour="candidate-profile-open" className="break-words text-left underline decoration-[#E5AC61] underline-offset-4" aria-label={`View profile for ${student.name}`}>{student.name}</button></th>
-          {tableFields.map(field => <td key={field.key} className={`${tableColumnWidth(field, expanded)} overflow-hidden border-b border-gray-200 px-3 py-3 align-top text-xs text-gray-600`}>{field.key === "links" ? <CandidateLinks student={student} /> : <ProfileValue student={student} field={field} compact />}</td>)}
+        <SortableContext items={visible.map(student => student.id)} strategy={verticalListSortingStrategy}><tbody>{visible.map(student => <CandidateRow key={student.id} student={student} rank={shortlistOrder.indexOf(student.id) + 1} reorderable={reorderable} onOpen={student => onOpen(student, visible)}>{handle => <>
+          <td onClick={event => {if (!reorderable) event.stopPropagation();}} style={{width: shortlistWidth}} className={`sticky left-0 z-10 border-b border-gray-200 bg-[#FAF7F2] ${reorderable ? "pl-0 pr-1" : "px-3"} py-3 align-top group-hover:bg-[#FDFBF8]`}><div className="flex items-center">{handle}{renderShortlist ? renderShortlist(student) : <button data-tour="shortlist-bookmark" type="button" aria-pressed={pickedIds.has(student.id)} aria-label={`${pickedIds.has(student.id) ? "Remove" : "Add"} ${student.name} ${pickedIds.has(student.id) ? "from" : "to"} shortlist`} onClick={event => {event.stopPropagation(); if (pickedIds.has(student.id)) onRemove?.(student.id); else onAdd(student.id);}} className="flex h-8 w-8 items-center justify-center rounded-md text-[#B57D30] hover:bg-[#E5AC61]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#E5AC61]"><Bookmark aria-hidden="true" size={18} fill={pickedIds.has(student.id) ? "currentColor" : "none"} /></button>}</div></td>
+          <th scope="row" style={{left: shortlistWidth}} className="sticky z-10 w-44 min-w-44 max-w-44 border-b border-r border-gray-200 bg-[#FAF7F2] px-3 py-3 align-middle font-medium group-hover:bg-[#FDFBF8]"><button type="button" onClick={event => {event.stopPropagation(); onOpen(student, visible);}} data-tour="candidate-profile-open" className={`break-words text-left ${student.is_interested ? "underline decoration-[#E5AC61] underline-offset-4" : ""}`} aria-label={`View profile for ${student.name}${student.is_interested ? "; interested in your company" : ""}`}>{student.name}</button></th>
+          {tableFields.map(field => <td key={field.key} className={`${tableColumnWidth(field, expanded)} overflow-hidden border-b border-gray-200 px-3 py-3 align-middle text-xs text-gray-600`}>{field.key === "links" ? <CandidateLinks student={student} /> : <ProfileValue student={student} field={field} compact />}</td>)}
         </>}</CandidateRow>)}</tbody></SortableContext>
       </table>
-      {!visible.length && <p className="px-3 py-6 text-sm text-gray-500">{!students.length ? "No candidates have been imported yet." : view === "shortlist" && !pickedIds.size ? "Your shortlist is empty. Star candidates in Recommended or All Candidates to add them." : view === "recommended" && !recommended?.length ? <>No recommendations yet. {onBrowseAll && <button type="button" onClick={onBrowseAll} className="underline underline-offset-4">Browse all candidates</button>}</> : "No candidates match these filters. Try clearing a filter or changing your search."}</p>}
+      {!visible.length && <p className="px-3 py-6 text-sm text-gray-500">{!students.length ? "No candidates have been imported yet." : view === "shortlist" && !pickedIds.size ? "Your shortlist is empty. Bookmark candidates in Interested or All Candidates to add them." : view === "interested" && !students.some(student => student.is_interested) ? <>No candidates have indicated interest in your company yet. {onBrowseAll && <button type="button" onClick={onBrowseAll} className="underline underline-offset-4">Browse all candidates</button>}</> : "No candidates match these filters. Try clearing a filter or changing your search."}</p>}
     </div>
     </DndContext>
   </section>;
 }
 
-export function StudentProfile({student, onClose, onAdd, onRemove, picked, saving, children, touring = false}) {
+export function StudentProfile({student, onClose, onAdd, onRemove, picked, saving, children, touring = false, companyQuestion, candidateOrder = [], onNavigate}) {
   const returnFocus = useRef(null);
+  const bodyRef = useRef(null);
+  const currentIndex = candidateOrder.findIndex(candidate => candidate.id === student?.id);
+  const previous = currentIndex > 0 ? candidateOrder[currentIndex - 1] : null;
+  const next = currentIndex >= 0 ? candidateOrder[currentIndex + 1] : null;
+  useEffect(() => { if (bodyRef.current) bodyRef.current.scrollTop = 0; }, [student?.id]);
   const fields = student ? profileFields.filter(field => !candidateLinks.some(link => link.key === field.key) && (field.key in student || field.headers?.some(header => header in student))).sort((a, b) => projectFieldOrder(a) - projectFieldOrder(b)) : [];
-  return <Dialog modal={!touring} open={!!student} onOpenChange={open => {if (!open) onClose();}}><DialogContent data-tour="candidate-profile" onInteractOutside={event => {if (touring) event.preventDefault();}} onEscapeKeyDown={event => {if (touring) event.preventDefault();}} aria-describedby={undefined} onOpenAutoFocus={() => {returnFocus.current = document.activeElement;}} onCloseAutoFocus={event => {event.preventDefault(); if (touring) return; if (returnFocus.current?.isConnected) returnFocus.current.focus();}} className="max-h-[90dvh] w-[calc(100%_-_2rem)] max-w-3xl overflow-y-auto rounded-lg border-gray-200 bg-[#FAF7F2] text-[#444444]">
-    <div data-tour="candidate-profile-header" className="border-b border-gray-200 pb-4 pr-6"><p className="mb-2 text-xs uppercase tracking-[0.16em] text-gray-500">Candidate profile</p><div className="flex flex-wrap items-center justify-between gap-3"><DialogTitle className="min-w-0 flex-1 break-words font-sans text-3xl font-semibold leading-tight">{student?.name}</DialogTitle>{student && <div role="group" aria-label="Candidate links" className="shrink-0"><CandidateLinks student={student} large /></div>}</div></div>
+  return <Dialog modal={!touring} open={!!student} onOpenChange={open => {if (!open) onClose();}}><DialogContent data-tour="candidate-profile" onInteractOutside={event => {if (touring) event.preventDefault();}} onEscapeKeyDown={event => {if (touring) event.preventDefault();}} aria-describedby={undefined} onOpenAutoFocus={() => {returnFocus.current = document.activeElement;}} onCloseAutoFocus={event => {event.preventDefault(); if (touring) return; if (returnFocus.current?.isConnected) returnFocus.current.focus();}} className="flex max-h-[90dvh] w-[calc(100%_-_2rem)] max-w-3xl flex-col gap-0 overflow-hidden rounded-lg border-gray-200 bg-[#FAF7F2] p-0 text-[#444444] [&>button]:flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-md [&>button]:border [&>button]:border-gray-300 [&>button]:bg-white [&>button]:text-gray-800 [&>button]:opacity-100 [&>button]:shadow-sm [&>button:hover]:bg-gray-100 [&>button>svg]:h-5 [&>button>svg]:w-5 [&>button>svg]:stroke-[2.5]">
+    <div data-tour="candidate-profile-header" className="shrink-0 border-b border-gray-200 px-6 py-4 pr-16"><p className="mb-2 text-xs uppercase tracking-[0.16em] text-gray-500">Candidate profile</p><div className="flex flex-wrap items-center justify-between gap-3"><DialogTitle className="min-w-0 flex-1 break-words font-sans text-3xl font-semibold leading-tight">{student?.name}</DialogTitle>{student && <div role="group" aria-label="Candidate links" className="shrink-0"><CandidateLinks student={student} large /></div>}</div></div>
+    <div ref={bodyRef} className="min-h-0 space-y-4 overflow-y-auto overscroll-contain px-6 py-5">
     <dl className="grid gap-x-6 gap-y-5 sm:grid-cols-2">{fields.map(field => <div key={field.key} className={field.key === "project_description" ? "sm:col-span-2" : "min-w-0"}><dt className="mb-1.5 text-xs font-medium text-gray-500">{field.label}</dt><dd className="break-words text-sm leading-relaxed"><ProfileValue student={student} field={field} /></dd></div>)}</dl>
+    {student && Object.hasOwn(student, "question_response") && <section className="border-t border-gray-200 pt-4" aria-label="Company question response">
+      <h3 className="mb-2 text-sm font-semibold">Response to your company</h3>
+      {companyQuestion?.trim() && <p className="mb-3 whitespace-pre-wrap break-words text-sm text-gray-500">{companyQuestion}</p>}
+      <p className="whitespace-pre-wrap break-words text-sm leading-relaxed">{student.question_response?.trim() || "No response provided."}</p>
+    </section>}
     {children}
-    <div className="flex items-center justify-between gap-3 border-t border-gray-200 pt-4"><button type="button" onClick={onClose} className="text-sm underline underline-offset-4">Back to candidates</button>{onAdd && <button type="button" disabled={saving || (picked && !onRemove)} onClick={() => picked ? onRemove?.(student.id) : onAdd(student.id)} className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-40">{picked ? "Remove from shortlist" : "Add to shortlist"}</button>}</div>
+    </div>
+    <div className="grid shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-2 border-t border-gray-200 bg-[#FAF7F2] px-4 py-4 sm:px-6">
+      <div>{previous && onNavigate && <button type="button" onClick={() => onNavigate(previous)} className="rounded-md border border-gray-300 bg-white/80 px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm transition-colors hover:border-gray-400 hover:bg-[#E5AC61]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B57D30]" aria-label="Previous candidate">← Back</button>}</div>
+      <div>{onAdd && <button type="button" disabled={saving || (picked && !onRemove)} onClick={() => picked ? onRemove?.(student.id) : onAdd(student.id)} className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white disabled:opacity-40">{picked ? "Remove from shortlist" : "Add to shortlist"}</button>}</div>
+      <div className="text-right">{next && onNavigate && <button type="button" onClick={() => onNavigate(next)} className="rounded-md border border-gray-300 bg-white/80 px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm transition-colors hover:border-gray-400 hover:bg-[#E5AC61]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B57D30]" aria-label="Next candidate">Next →</button>}</div>
+    </div>
   </DialogContent></Dialog>;
 }
 
 function ProfileValue({student, field, compact = false}) {
   const value = profileValue(student, field);
-  if (!value || Array.isArray(value) && !value.length) return <span className="text-gray-400">{compact ? "—" : "Not provided"}</span>;
+  if (!value || (typeof value === "string" && !value.trim()) || (field.multi && !fieldSelections(student, field).length) || (Array.isArray(value) && !value.length)) return <span className={compact ? "block w-full text-left text-gray-400" : "text-gray-400"}>{compact ? "—" : "Not provided"}</span>;
   if (field.link) {
     const url = safeProfileUrl(value);
     return url ? <a href={url} target="_blank" rel="noopener noreferrer" onClick={event => event.stopPropagation()} className="underline decoration-[#E5AC61] underline-offset-4">{field.label} ↗</a> : <span className="text-gray-400">Link unavailable</span>;
