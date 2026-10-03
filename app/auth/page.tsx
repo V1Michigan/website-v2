@@ -1,4 +1,4 @@
-import GoogleAuth from "@/components/auth/google-auth";
+import EmailAuth from "@/components/auth/email-auth";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -8,7 +8,7 @@ export default function AuthPage() {
       <Header />
       <main className="container mx-auto px-4 py-16">
         <div className="flex justify-center">
-          <GoogleAuth />
+          <EmailAuth />
         </div>
       </main>
       <Footer />

@@ -6,6 +6,7 @@ import { Star } from "lucide-react";
 import { CandidateBrowser, StudentProfile } from "./candidate-browser";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import EmailOtpForm from "@/components/auth/email-otp-form";
 import { useAuth } from "@/lib/startup-week/use-auth";
 
 // V1 admin console for Startup Week: run the matching algorithm and send match
@@ -13,9 +14,9 @@ import { useAuth } from "@/lib/startup-week/use-auth";
 // server-side, and every protected action rechecks membership.
 
 export default function AdminConsole() {
-  const { user, token, loading: authLoading, signIn, signOut, authError, signingIn, signingOut } = useAuth();
+  const { user, token, loading: authLoading, signOut, authError, signingOut } = useAuth();
   if (authLoading) return <CenterMessage>Loading…</CenterMessage>;
-  if (!user || !token) return <LoginScreen onSignIn={signIn} error={authError} signingIn={signingIn} />;
+  if (!user || !token) return <LoginScreen error={authError} />;
   return <AuthenticatedAdmin key={`${user.id}:${user.email}`} user={user} token={token} signOut={signOut} signOutError={authError} signingOut={signingOut} />;
 }
 
@@ -461,7 +462,7 @@ function CenterMessage({ children }) {
   );
 }
 
-function LoginScreen({ onSignIn, error, signingIn }) {
+function LoginScreen({ error }) {
   return (
     <main className="flex min-h-[75vh] items-center justify-center px-4 py-20">
       <div className="w-full max-w-lg text-center">
@@ -469,11 +470,9 @@ function LoginScreen({ onSignIn, error, signingIn }) {
         <h1 className="font-instrument text-5xl font-normal leading-tight text-[#444444] sm:text-6xl">Startup Week</h1>
         <p className="mx-auto mb-8 mt-5 max-w-sm text-base leading-relaxed text-gray-600">
           A place to connect startups and student builders.
-          Sign in with your V1 Google account to get started.
+          Use your authorized email to receive a sign-in code.
         </p>
-        <Button onClick={onSignIn} disabled={signingIn} className="h-11 bg-yellow-400 px-8 text-[#191919] hover:bg-yellow-300">
-          {signingIn ? "Redirecting…" : "Sign in with Google"}
-        </Button>
+          <EmailOtpForm />
         {error && <p role="alert" className="mt-4 text-sm text-red-700">{error}</p>}
       </div>
     </main>

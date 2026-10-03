@@ -10,6 +10,7 @@ import { Maximize2, Minimize2 } from "lucide-react";
 import styles from "./company-portal.module.css";
 import { motion, useReducedMotion } from "framer-motion";
 import { CandidateBrowser, StudentProfile } from "./candidate-browser";
+import EmailOtpForm from "@/components/auth/email-otp-form";
 import { useAuth } from "@/lib/startup-week/use-auth";
 
 const CompanyPortalHelp = dynamic(() => import("./company-portal-help"), {ssr: false});
@@ -17,14 +18,14 @@ const CompanyPortalHelp = dynamic(() => import("./company-portal-help"), {ssr: f
 // Company portal for Startup Week.
 //   /startupweek/company/:slug
 // Lets a startup browse student resumes and build a ranked pick list, then
-// submit it to POST /api/startup-week/companies/:slug/preferences after Google sign-in.
+// submit it to POST /api/startup-week/companies/:slug/preferences after email sign-in.
 
 export default function CompanyPortal() {
   const { slug } = useParams();
-  const { user, token, loading: authLoading, signIn, signOut, authError, signingIn, signingOut } = useAuth();
+  const { user, token, loading: authLoading, signOut, authError, signingOut } = useAuth();
 
   if (authLoading) return <TalentLoading />;
-  if (!user || !token) return <LoginScreen onSignIn={signIn} error={authError} signingIn={signingIn} />;
+  if (!user || !token) return <LoginScreen error={authError} />;
   if (!slug) return <TalentLoading />;
   return <CompanyEditor key={`${slug}:${user.id}:${user.email}`} slug={slug} user={user} token={token} signOut={signOut} signOutError={authError} signingOut={signingOut} />;
 }
@@ -250,7 +251,7 @@ function CenterMessage({ children }) {
   );
 }
 
-function LoginScreen({ onSignIn, error, signingIn }) {
+function LoginScreen({ error }) {
   return (
     <>
       <div className="flex min-h-0 flex-1 items-center justify-center overflow-y-auto px-4 py-6">
@@ -260,16 +261,10 @@ function LoginScreen({ onSignIn, error, signingIn }) {
             Startup Week
           </h1>
           <p className="mx-auto max-w-sm text-gray-600 text-base leading-relaxed mt-5 mb-8">
-            Sign in with the Google account your company registered with to
+            Sign in with the email your company registered with to
             review resumes and submit your picks.
           </p>
-          <button
-            onClick={onSignIn}
-            disabled={signingIn}
-            className="text-sm font-medium text-[#191919] bg-yellow-400 hover:bg-yellow-300 py-3 px-8 rounded-md disabled:opacity-50"
-          >
-            {signingIn ? "Redirecting…" : "Sign in with Google"}
-          </button>
+          <EmailOtpForm />
           {error && <p role="alert" className="mt-4 text-sm text-red-700">{error}</p>}
         </div>
       </div>
