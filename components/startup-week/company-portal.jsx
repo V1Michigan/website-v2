@@ -54,7 +54,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
   const [loading, setLoading] = useState(true);
   const [minimumLoadingElapsed, setMinimumLoadingElapsed] = useState(false);
   useEffect(() => {
-    const timer = window.setTimeout(() => setMinimumLoadingElapsed(true), 3000);
+    const timer = window.setTimeout(() => setMinimumLoadingElapsed(true), 1000);
     return () => window.clearTimeout(timer);
   }, []);
   const [error, setError] = useState("");
