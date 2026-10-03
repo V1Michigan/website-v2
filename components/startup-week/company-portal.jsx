@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useShortlistAutosave } from "@/lib/startup-week/use-shortlist-autosave";
+import { useShortlistDraft } from "@/lib/startup-week/use-shortlist-draft";
 import { useParams } from "next/navigation";
 import axios from "axios";
 import { Maximize2, Minimize2 } from "lucide-react";
@@ -37,7 +37,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
   const [studentDetailsReady, setStudentDetailsReady] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const [view, setView] = useState("interested");
-  const {picks, dirty, status: saveState, error: saveError, initialize, edit: editPicks, flush} = useShortlistAutosave(slug, token);
+  const {picks, dirty, status: saveState, error: saveError, initialize, edit: editPicks, save} = useShortlistDraft(slug, token);
   const [leaving, setLeaving] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
@@ -85,7 +85,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
           (prefsRes.data.preferences || []).map((p) => ({
             student_id: p.student_id,
             note: p.note || "",
-          }))
+          })), prefsRes.data.version
         );
       } catch (err) {
         if (cancelled) return;
@@ -146,12 +146,23 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
     });
 
   const handleSignOut = async () => {
-    if (leaving) return;
+    if (leaving || saveState === "saving") return;
     setLeaving(true);
     try {
-      if (dirty && !(await flush()) && !window.confirm("Your latest shortlist changes could not be saved. Sign out and discard those changes?")) return;
+      if (dirty && !window.confirm("You have unsaved shortlist changes. Sign out and discard them?")) return;
       await signOut();
     } finally { setLeaving(false); }
+  };
+
+  const loadLatest = async () => {
+    if (saveState === "saving" || leaving) return;
+    if (dirty && !window.confirm("Discard your unsaved edits and load the latest saved shortlist?")) return;
+    setLeaving(true);
+    try {
+      const {data} = await axios.get(`/api/startup-week/companies/${slug}/preferences`, {headers: {Authorization: `Bearer ${token}`}});
+      initialize((data.preferences || []).map(p => ({student_id: p.student_id, note: p.note || ""})), data.version);
+    } catch { window.alert("Could not load the latest shortlist. Your edits are still here. Please try again."); }
+    finally { setLeaving(false); }
   };
 
   if (loading || !minimumLoadingElapsed) {
@@ -189,14 +200,16 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
           {[["interested", "Interested", students.filter(student => student.is_interested).length], ["all", "All Candidates", students.length], ["shortlist", "Shortlist", picks.length], ["profile", "Company Profile", null]].map(([key, label, count]) => <button type="button" key={key} data-tour={`portal-tab-${key}`} onClick={() => setView(key)} aria-pressed={view === key} className={`relative shrink-0 border-b-2 border-transparent py-3 text-sm font-medium ${view === key ? "text-[#444444]" : "text-gray-500 hover:text-gray-900"}`}>{label}{count !== null && <span className="ml-1.5 text-xs text-gray-500">{count}</span>}{view === key && <motion.span aria-hidden="true" layoutId={tabIndicatorId} initial={false} transition={{duration: reduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1]}} className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#E5AC61]" />}</button>)}
         </nav>
         <div className="mb-2 flex items-center gap-3">
-      <div data-tour="autosave-status" role="status" aria-live="polite" className="max-w-sm text-xs">
-        {saveState === "error" ? <span className="text-red-700">{saveError} <button type="button" onClick={() => void flush()} className="ml-1 underline underline-offset-4">Retry</button></span> : <span className="text-gray-500">{dirty ? "Saving shortlist…" : saveState === "saved" ? "All changes saved" : "Shortlist saves automatically"}</span>}
+      <div data-tour="shortlist-save" className="flex items-center gap-2">
+        <span role="status" aria-live="polite" className="text-xs text-gray-500">{saveState === "saving" ? "Saving…" : dirty ? "Unsaved changes" : saveState === "saved" ? "All changes saved" : "No unsaved changes"}</span>
+        <button type="button" disabled={!dirty || leaving || saveState === "saving" || saveState === "conflict"} onClick={() => void save()} className="rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white disabled:opacity-40">Save shortlist</button>
       </div>
           {!expanded && <CompanyPortalHelp companyName={companyName} view={view} setView={setView} closeProfile={closeProfile} openFirstProfile={openFirstProfile} hasCandidates={students.length > 0} onRunChange={setTouring} />}
           <button data-tour="expand-view" type="button" aria-pressed={expanded} aria-label={expanded ? "Exit expanded view" : "Expand current tab"} onClick={() => setExpanded(value => !value)} className="inline-flex shrink-0 items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-white">{expanded ? <Minimize2 size={16} aria-hidden="true" /> : <Maximize2 size={16} aria-hidden="true" />}{expanded ? "Collapse" : "Expand"}</button>
         </div>
       </div>
 
+      {saveError && <div role="alert" className="mb-3 shrink-0 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-950">{saveError} {saveState === "conflict" && <button type="button" disabled={leaving} onClick={() => void loadLatest()} className="ml-2 font-semibold underline underline-offset-4">Load latest (discard draft)</button>}</div>}
       <fieldset disabled={leaving} className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
         <div className={view === "profile" ? "hidden" : "flex min-h-0 flex-1 flex-col"}>
           <CandidateBrowser onReorder={reorderPicks} expanded={expanded} fillHeight hideHeading view={view} onBrowseAll={() => setView("all")} profileSchemaReady={profileSchemaReady} students={students} studentDetailsReady={studentDetailsReady} pickedIds={pickedIds} shortlistOrder={picks.map(pick => pick.student_id)} onAdd={addPick} onRemove={removePick} onOpen={openCandidate} />
@@ -211,7 +224,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
           <h3 className="mb-2 text-sm font-semibold">Notes</h3>
           {selectedStudent && pickedIds.has(selectedStudent.id) ? <>
             <textarea aria-label={`Notes for ${selectedStudent.name}`} disabled={leaving} maxLength={10000} value={picks.find(pick => pick.student_id === selectedStudent.id)?.note || ""} onChange={event => setNote(selectedStudent.id, event.target.value)} placeholder="Add a note (optional)" className="block min-h-24 w-full rounded-md border border-gray-300 bg-white/60 p-3 text-sm font-normal text-[#444444]" />
-            <p className="mt-1 text-xs text-gray-500">Notes save automatically.</p>
+            <p className="mt-1 text-xs text-gray-500">Notes are included when you click Save shortlist.</p>
           </> : <p className="text-sm text-gray-500">Add to shortlist to add a note</p>}
         </section>
       </StudentProfile>
