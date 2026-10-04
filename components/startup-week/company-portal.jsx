@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useShortlistDraft } from "@/lib/startup-week/use-shortlist-draft";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import { Maximize2, Minimize2 } from "lucide-react";
+import { Copy, Maximize2, Minimize2 } from "lucide-react";
 import styles from "./company-portal.module.css";
 import { motion, useReducedMotion } from "framer-motion";
 import { CandidateBrowser, StudentProfile } from "./candidate-browser";
@@ -40,6 +40,25 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
   const [view, setView] = useState("interested");
   const {picks, dirty, status: saveState, error: saveError, initialize, edit: editPicks, save} = useShortlistDraft(slug, token);
   const [leaving, setLeaving] = useState(false);
+  const [copyState, setCopyState] = useState({text: "", status: "idle"});
+  const shortlistEmails = useMemo(() => {
+    const byId = new Map(students.map(student => [student.id, student.email]));
+    return picks.map(pick => byId.get(pick.student_id)?.trim()).filter(Boolean).join(", ");
+  }, [students, picks]);
+  const copyEmails = async () => {
+    if (!shortlistEmails) return;
+    const text = shortlistEmails;
+    setCopyState({text, status: "copying"});
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyState({text, status: "copied"});
+    } catch {
+      setCopyState({text, status: "error"});
+    }
+  };
+  useEffect(() => {
+    setCopyState({text: "", status: "idle"});
+  }, [shortlistEmails, view]);
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
   const [companyQuestion, setCompanyQuestion] = useState("");
@@ -203,6 +222,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
         <div className="mb-2 flex items-center gap-3">
       <div data-tour="shortlist-save" className="flex items-center gap-2">
         <span role="status" aria-live="polite" className="text-xs text-gray-500">{saveState === "saving" ? "Saving…" : dirty ? "Unsaved changes" : saveState === "saved" ? "All changes saved" : "No unsaved changes"}</span>
+          {view === "shortlist" && <button type="button" onClick={() => void copyEmails()} disabled={!shortlistEmails || copyState.status === "copying"} className="inline-flex shrink-0 items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-white disabled:opacity-40"><Copy size={16} aria-hidden="true" /><span aria-live="polite">{copyState.text === shortlistEmails && copyState.status === "copied" ? "Copied!" : "Copy emails"}</span></button>}
         <button type="button" disabled={!dirty || leaving || saveState === "saving" || saveState === "conflict"} onClick={() => void save()} className="rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white disabled:opacity-40">Save shortlist</button>
       </div>
           {!expanded && <CompanyPortalHelp companyName={companyName} view={view} setView={setView} closeProfile={closeProfile} openFirstProfile={openFirstProfile} hasCandidates={students.length > 0} onRunChange={setTouring} />}
@@ -210,6 +230,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
         </div>
       </div>
 
+      {view === "shortlist" && copyState.status === "error" && <p role="alert" className="mb-3 shrink-0 text-sm text-red-700">Could not copy emails. Allow clipboard access in your browser and try again.</p>}
       {saveError && <div role="alert" className="mb-3 shrink-0 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-950">{saveError} {saveState === "conflict" && <button type="button" disabled={leaving} onClick={() => void loadLatest()} className="ml-2 font-semibold underline underline-offset-4">Load latest (discard draft)</button>}</div>}
       <fieldset disabled={leaving} className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
         <div className={view === "profile" ? "hidden" : "flex min-h-0 flex-1 flex-col"}>
