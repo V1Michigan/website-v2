@@ -29,6 +29,12 @@ export interface StartupWeekLiveEvent {
   lumaEventId: string
 }
 
+export interface StartupWeekTeamMember {
+  image: string
+  name: string
+  linkedinUrl: string
+}
+
 export const startupWeekLiveEvents: StartupWeekLiveEvent[] = [
   {
     title: "Startup Week Kickoff",
