@@ -29,7 +29,7 @@ export default function StartupWeekTimeline({ events }: StartupWeekTimelineProps
       <div className="mb-8">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#a16207]">Oct 5–9, 2026 · Ann Arbor</p>
         <h2 id="startup-week-schedule" className="mt-2 font-serif text-3xl font-light tracking-tight text-[#1a1a1a] md:text-4xl">
-          Live events schedule
+          Event Schedule
         </h2>
       </div>
 
