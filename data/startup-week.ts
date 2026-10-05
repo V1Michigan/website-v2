@@ -18,11 +18,89 @@ export interface StartupWeekEvent {
   image: string
 }
 
-export interface StartupWeekTeamMember {
-  image: string
-  name: string
-  linkedinUrl: string
+export interface StartupWeekLiveEvent {
+  title: string
+  description: string
+  date: string
+  startTime: string
+  time: string
+  location: string
+  slug: string
+  lumaEventId: string
 }
+
+export const startupWeekLiveEvents: StartupWeekLiveEvent[] = [
+  {
+    title: "Startup Week Kickoff",
+    description: "Meet the founders, early employees, and builders kicking off Startup Week with V1 @ Michigan.",
+    date: "2026-10-05",
+    startTime: "18:00",
+    time: "6:00–8:00 PM",
+    location: "Blau Colloquium, 5th Floor",
+    slug: "0ku8agev",
+    lumaEventId: "evt-yErucMXDGauhgjB",
+  },
+  {
+    title: "Miter x V1",
+    description: "Get career and resume advice from the Miter team and learn how they are building the future of construction operations.",
+    date: "2026-10-06",
+    startTime: "16:30",
+    time: "4:30–6:00 PM",
+    location: "CCCB 0460",
+    slug: "svyjpy1c",
+    lumaEventId: "evt-RluSPC8PU91CdME",
+  },
+  {
+    title: "Lumaril",
+    description: "Learn how Lumaril is building the AI layer for physical production and meet the team hiring for full-time roles and internships.",
+    date: "2026-10-06",
+    startTime: "19:00",
+    time: "7:00–9:00 PM",
+    location: "CCCB 3420",
+    slug: "1t4rjhrz",
+    lumaEventId: "evt-22xcgij9oxSHXpJ",
+  },
+  {
+    title: "Authentic Fireside",
+    description: "Hear from Authentic about building software for specialty insurance and what they look for when hiring.",
+    date: "2026-10-07",
+    startTime: "18:00",
+    time: "6:00–7:30 PM",
+    location: "CCCB 0420",
+    slug: "h3ldzjyw",
+    lumaEventId: "evt-jJgNYhUWKybAiQj",
+  },
+  {
+    title: "Air Space Intelligence (ASI)",
+    description: "Learn how ASI builds AI that keeps planes moving and how they build software for airlines and the FAA.",
+    date: "2026-10-08",
+    startTime: "18:00",
+    time: "6:00–8:00 PM",
+    location: "CCCB 3460",
+    slug: "qxno2kvk",
+    lumaEventId: "evt-0OLn6v5ibJSx25S",
+  },
+  {
+    title: "Dryft Fireside",
+    description: "Meet the Dryft team and learn how their AI agents help manufacturers spot problems and decide what to do next.",
+    date: "2026-10-09",
+    startTime: "17:00",
+    time: "5:00–6:30 PM",
+    location: "CCCB 3460",
+    slug: "etgn4d3s",
+    lumaEventId: "evt-RO8hRl58SURn2Sz",
+  },
+  {
+    title: "Scope Health",
+    description: "Hear what Scope Health is building, ask questions, and celebrate the winners of the computer-use capture-the-flag challenge.",
+    date: "2026-10-09",
+    startTime: "19:30",
+    time: "7:30–8:30 PM",
+    location: "CCCB 3460",
+    slug: "f100885s",
+    lumaEventId: "evt-nf3hVfwTawoPvTO",
+  },
+]
 
 export const startupWeekEvents: StartupWeekEvent[] = [
   {
