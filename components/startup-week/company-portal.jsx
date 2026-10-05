@@ -34,6 +34,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
   const tabIndicatorId = useId();
   const reduceMotion = useReducedMotion();
   const [students, setStudents] = useState([]);
+  const interestedCount = students.filter(student => student.is_interested).length;
   const [profileSchemaReady, setProfileSchemaReady] = useState(true);
   const [studentDetailsReady, setStudentDetailsReady] = useState(true);
   const [expanded, setExpanded] = useState(false);
@@ -94,7 +95,9 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
           axios.get(`/api/startup-week/companies/${slug}/preferences`, authHeader),
         ]);
         if (cancelled) return;
-        setStudents(studentsRes.data.students || []);
+        const loadedStudents = studentsRes.data.students || [];
+        setStudents(loadedStudents);
+        setView(loadedStudents.some(student => student.is_interested) ? "interested" : "all");
         setProfileSchemaReady(studentsRes.data.profile_schema_ready !== false);
         setStudentDetailsReady(studentsRes.data.student_details_ready !== false);
         setCompanyName(prefsRes.data.company || "");
@@ -217,7 +220,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
       <div className="mb-3 flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-gray-200">
         {expanded && <h1 className="py-3 text-sm font-semibold">{{interested: "Interested", all: "All Candidates", shortlist: "Shortlist", profile: "Company Profile"}[view]}</h1>}
         <nav aria-label="Company portal sections" className={expanded ? "hidden" : "flex max-w-full gap-5 overflow-x-auto"}>
-          {[["interested", "Interested", students.filter(student => student.is_interested).length], ["all", "All Candidates", students.length], ["shortlist", "Shortlist", picks.length], ["profile", "Company Profile", null]].map(([key, label, count]) => <button type="button" key={key} data-tour={`portal-tab-${key}`} onClick={() => setView(key)} aria-pressed={view === key} className={`relative shrink-0 border-b-2 border-transparent py-3 text-sm font-medium ${view === key ? "text-[#444444]" : "text-gray-500 hover:text-gray-900"}`}>{label}{count !== null && <span className="ml-1.5 text-xs text-gray-500">{count}</span>}{view === key && <motion.span aria-hidden="true" layoutId={tabIndicatorId} initial={false} transition={{duration: reduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1]}} className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#E5AC61]" />}</button>)}
+          {[["interested", "Interested", interestedCount], ["all", "All Candidates", students.length], ["shortlist", "Shortlist", picks.length], ["profile", "Company Profile", null]].filter(([key]) => key !== "interested" || interestedCount > 0).map(([key, label, count]) => <button type="button" key={key} data-tour={`portal-tab-${key}`} onClick={() => setView(key)} aria-pressed={view === key} className={`relative shrink-0 border-b-2 border-transparent py-3 text-sm font-medium ${view === key ? "text-[#444444]" : "text-gray-500 hover:text-gray-900"}`}>{label}{count !== null && <span className="ml-1.5 text-xs text-gray-500">{count}</span>}{view === key && <motion.span aria-hidden="true" layoutId={tabIndicatorId} initial={false} transition={{duration: reduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1]}} className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#E5AC61]" />}</button>)}
         </nav>
         <div className="mb-2 flex items-center gap-3">
       <div data-tour="shortlist-save" className="flex items-center gap-2">
@@ -225,7 +228,7 @@ export function CompanyEditor({ slug, user, token, signOut, signOutError, signin
           {view === "shortlist" && <button type="button" onClick={() => void copyEmails()} disabled={!shortlistEmails || copyState.status === "copying"} className="inline-flex shrink-0 items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-white disabled:opacity-40"><Copy size={16} aria-hidden="true" /><span aria-live="polite">{copyState.text === shortlistEmails && copyState.status === "copied" ? "Copied!" : "Copy emails"}</span></button>}
         <button type="button" disabled={!dirty || leaving || saveState === "saving" || saveState === "conflict"} onClick={() => void save()} className="rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white disabled:opacity-40">Save shortlist</button>
       </div>
-          {!expanded && <CompanyPortalHelp companyName={companyName} view={view} setView={setView} closeProfile={closeProfile} openFirstProfile={openFirstProfile} hasCandidates={students.length > 0} onRunChange={setTouring} />}
+          {!expanded && <CompanyPortalHelp companyName={companyName} view={view} setView={setView} closeProfile={closeProfile} openFirstProfile={openFirstProfile} hasCandidates={students.length > 0} hasInterested={interestedCount > 0} onRunChange={setTouring} />}
           <button data-tour="expand-view" type="button" aria-pressed={expanded} aria-label={expanded ? "Exit expanded view" : "Expand current tab"} onClick={() => setExpanded(value => !value)} className="inline-flex shrink-0 items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-white">{expanded ? <Minimize2 size={16} aria-hidden="true" /> : <Maximize2 size={16} aria-hidden="true" />}{expanded ? "Collapse" : "Expand"}</button>
         </div>
       </div>

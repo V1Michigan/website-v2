@@ -12,7 +12,7 @@ function suppressButtonHint(event) {
   }
 }
 
-export default function CompanyPortalHelp({companyName, view, setView, closeProfile, openFirstProfile, hasCandidates, onRunChange}) {
+export default function CompanyPortalHelp({companyName, view, setView, closeProfile, openFirstProfile, hasCandidates, hasInterested, onRunChange}) {
   const [run, setRun] = useState(false);
   const [session, setSession] = useState(0);
   const previousView = useRef(view);
@@ -30,7 +30,7 @@ export default function CompanyPortalHelp({companyName, view, setView, closeProf
   }, [setView, closeProfile]);
   const steps = useMemo(/** @returns {import("react-joyride").Step[]} */ () => [
     {target: "body", placement: "center", skipScroll: true, title: `Welcome${companyName ? ` ${companyName}` : ""}!`, content: "We’re so glad you could join us for Startup Week 2026! Let’s help you find the top Michigan talent.", locale: {next: "Let’s get started", nextWithProgress: "Let’s get started"}},
-    {target: '[data-tour="portal-tab-interested"]', title: "Interested", content: "These candidates explicitly selected your company. Underlined names indicate interest in your company in any tab.", before: () => activate("interested")},
+    ...(hasInterested ? [{target: '[data-tour="portal-tab-interested"]', title: "Interested", content: "These candidates explicitly selected your company. Underlined names indicate interest in your company in any tab.", before: () => activate("interested")}] : []),
     {target: '[data-tour="portal-tab-all"]', title: "All Candidates", content: "Browse every candidate. Use search and filters to narrow by interest, expertise, and availability.", before: () => activate("all")},
     {target: '[data-tour="portal-tab-shortlist"]', title: "Your shortlist", content: "Click and drag anywhere on a candidate’s row to reorder your shortlist. A regular click opens their profile.", before: () => activate("shortlist")},
     {target: '[data-tour="portal-tab-profile"]', title: "Company Profile", content: "View your company’s name, description, and optional question for students here.", before: () => activate("profile")},
@@ -60,7 +60,7 @@ export default function CompanyPortalHelp({companyName, view, setView, closeProf
     }}] : []),
     {target: '[data-tour="expand-view"]', title: "More room to explore", content: "Expand the current tab to fill the screen. The table gets more room, and Interest, Expertise, and availability columns widen evenly. Use Collapse or press Esc to return. You can expand Company Profile too.", before: () => activate("all")},
     {target: '[data-tour="shortlist-save"]', title: "Save your shortlist", content: "Click Save shortlist to save bookmarks, rankings, and notes. If someone else saved first, your edits stay visible and we block the save to protect their changes. Load the latest list before editing again.", before: () => activate("all")},
-  ], [activate, companyName, hasCandidates, openFirstProfile]);
+  ], [activate, companyName, hasCandidates, hasInterested, openFirstProfile]);
   return <div className="contents" onMouseOverCapture={suppressButtonHint} onFocusCapture={suppressButtonHint}>
     <button type="button" disabled={run} onClick={() => {previousView.current = view; closeProfile(); setSession(value => value + 1); onRunChange(true); setRun(true);}} className="inline-flex shrink-0 items-center gap-2 rounded-md border border-yellow-400 bg-yellow-400 px-4 py-2 text-sm font-medium text-[#191919] hover:border-yellow-300 hover:bg-yellow-300 disabled:opacity-50"><CircleHelp aria-hidden="true" size={16} />Tutorial</button>
     <Joyride key={session} run={run} continuous scrollToFirstStep steps={steps} options={{skipBeacon: true, showProgress: true, buttons: ["back", "close", "primary", "skip"], closeButtonAction: "skip", overlayClickAction: false, blockTargetInteraction: true, backgroundColor: "#FAF7F2", primaryColor: "#FACC15", textColor: "#444444", zIndex: 1000, targetWaitTimeout: 2000}} styles={{tooltip: {borderRadius: 12}, tooltipTitle: {fontSize: 24, lineHeight: 1.3}, tooltipContent: {fontSize: 17, lineHeight: 1.65}, buttonPrimary: {backgroundColor: "#FACC15", color: "#191919", fontSize: 16, fontWeight: 600, padding: "12px 18px", borderRadius: 6}, buttonBack: {color: "#444444", fontSize: 15}, buttonSkip: {color: "#666666", fontSize: 15}}} locale={{last: "Done", skip: "Skip tour"}} onEvent={event => {
