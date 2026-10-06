@@ -55,6 +55,7 @@ export default function StartupWeekTimeline({ events }: StartupWeekTimelineProps
               <h3 className="text-xl font-semibold tracking-tight text-[#1a1a1a] md:text-2xl">{event.title}</h3>
             </div>
             <p className="mt-1 text-sm text-[#57534e]">{event.location}</p>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#57534e]">{event.description}</p>
             <a
               href={`https://luma.com/${event.slug}`}
               target="_blank"
