@@ -1,0 +1,110 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import type { StartupWeekLiveEvent } from "@/data/startup-week";
+
+interface StartupWeekTimelineProps {
+  events: StartupWeekLiveEvent[];
+}
+
+const companyLogos: Record<string, string> = {
+  "Startup Week Kickoff": "/v1-logo.png",
+  Miter: "/startupweek/2026/miter.webp",
+  Lumaril: "/startupweek/2026/lumaril.webp",
+  Authentic: "/startupweek/2026/authentic.webp",
+  "Air Space Intelligence (ASI)": "/startupweek/2026/asi.webp",
+  Dryft: "/startupweek/2026/dryft.webp",
+  "Scope Health": "/startupweek/2026/scope.webp",
+};
+
+const displayTitles: Record<string, string> = {
+  "Miter x V1": "Miter",
+  "Authentic Fireside": "Authentic",
+  "Dryft Fireside": "Dryft",
+};
+
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${date}T00:00:00Z`));
+}
+
+function eventStart(event: StartupWeekLiveEvent) {
+  return new Date(`${event.date}T${event.startTime}:00-04:00`).getTime();
+}
+
+export default function StartupWeekTimeline({ events }: StartupWeekTimelineProps) {
+  const [now, setNow] = useState<number | null>(null);
+
+  useEffect(() => {
+    const updateNow = () => setNow(Date.now());
+    updateNow();
+    const interval = window.setInterval(updateNow, 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const nextEventId = now === null
+    ? null
+    : events.find((event) => eventStart(event) > now)?.lumaEventId ?? null;
+
+  return (
+    <section aria-labelledby="startup-week-schedule" className="mx-auto max-w-5xl px-6 py-12 lg:px-8">
+      <div className="mb-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#a16207]">Oct 5–9, 2026 · Ann Arbor</p>
+        <h2 id="startup-week-schedule" className="mt-2 font-serif text-3xl font-light tracking-tight text-[#1a1a1a] md:text-4xl">
+          Event Schedule
+        </h2>
+      </div>
+
+      <ol className="relative space-y-8 before:absolute before:bottom-0 before:left-[9px] before:top-2 before:w-px before:bg-[#d6d3d1] md:space-y-10">
+        {events.map((event) => {
+          const displayTitle = displayTitles[event.title] ?? event.title;
+          const isNextEvent = event.lumaEventId === nextEventId;
+
+          return (
+            <li key={event.lumaEventId} className="relative pl-8">
+              <span className="absolute left-0 top-1 h-[19px] w-[19px] rounded-full border-4 border-[#FAF7F2] bg-[#facc15] shadow-[0_0_0_1px_#a16207]" aria-hidden="true">
+                {isNextEvent && (
+                  <span
+                    className="absolute -inset-2 rounded-full border border-[#a16207]/60 animate-[pulse_3.5s_ease-in-out_infinite]"
+                    aria-label="Next event"
+                  />
+                )}
+              </span>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <time dateTime={`${event.date}T${event.startTime}:00-04:00`} className="w-full text-xs font-semibold uppercase tracking-[0.12em] text-[#a16207] sm:w-auto">
+                  {formatDate(event.date)}
+                </time>
+                <span className="hidden text-[#a8a29e] sm:inline" aria-hidden="true">·</span>
+                <span className="text-sm text-[#57534e]">{event.time}</span>
+              </div>
+              <div className="mt-2 flex items-center gap-3">
+                <img
+                  src={companyLogos[displayTitle]}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 rounded-lg border border-[#d6d3d1] bg-white object-contain p-1"
+                />
+                <h3 className="text-xl font-semibold tracking-tight text-[#1a1a1a] md:text-2xl">{displayTitle}</h3>
+              </div>
+              <p className="mt-1 text-sm text-[#57534e]">{event.location}</p>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#57534e]">{event.description}</p>
+              <a
+                href={`https://luma.com/${event.slug}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center rounded-full bg-[#1a1a1a] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3f3f46] focus:outline-none focus:ring-2 focus:ring-[#a16207] focus:ring-offset-2"
+              >
+                Register
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+}
