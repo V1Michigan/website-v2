@@ -8,10 +8,16 @@ const companyLogos: Record<string, string> = {
   "Startup Week Kickoff": "/v1-logo.png",
   Miter: "/startupweek/2026/miter.webp",
   Lumaril: "/startupweek/2026/lumaril.webp",
-  "Authentic Fireside": "/startupweek/2026/authentic.webp",
+  Authentic: "/startupweek/2026/authentic.webp",
   "Air Space Intelligence (ASI)": "/startupweek/2026/asi.webp",
-  "Dryft Fireside": "/startupweek/2026/dryft.webp",
+  Dryft: "/startupweek/2026/dryft.webp",
   "Scope Health": "/startupweek/2026/scope.webp",
+};
+
+const displayTitles: Record<string, string> = {
+  "Miter x V1": "Miter",
+  "Authentic Fireside": "Authentic",
+  "Dryft Fireside": "Dryft",
 };
 
 function formatDate(date: string) {
@@ -35,7 +41,7 @@ export default function StartupWeekTimeline({ events }: StartupWeekTimelineProps
 
       <ol className="relative space-y-8 before:absolute before:bottom-0 before:left-[9px] before:top-2 before:w-px before:bg-[#d6d3d1] md:space-y-10">
         {events.map((event) => {
-          const displayTitle = event.title === "Miter x V1" ? "Miter" : event.title;
+          const displayTitle = displayTitles[event.title] ?? event.title;
 
           return (
             <li key={event.lumaEventId} className="relative pl-8">
