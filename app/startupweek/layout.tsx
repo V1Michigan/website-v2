@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const startupWeekPreviewImage = "https://v1michigan.com/excluded.png";
+const startupWeekPreviewImage = "https://v1michigan.com/startup-week-preview.svg";
 
 export const metadata: Metadata = {
   title: "Startup Week | V1 @ Michigan",
