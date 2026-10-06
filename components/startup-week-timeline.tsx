@@ -5,7 +5,7 @@ interface StartupWeekTimelineProps {
 }
 
 const companyLogos: Record<string, string> = {
-  "Startup Week Kickoff": "/startupweek/2026/spacexai.webp",
+  "Startup Week Kickoff": "/v1-logo.png",
   Miter: "/startupweek/2026/miter.webp",
   Lumaril: "/startupweek/2026/lumaril.webp",
   "Authentic Fireside": "/startupweek/2026/authentic.webp",
