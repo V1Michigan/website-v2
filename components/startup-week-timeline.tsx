@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import type { StartupWeekLiveEvent } from "@/data/startup-week";
 
 interface StartupWeekTimelineProps {
@@ -29,7 +32,24 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T00:00:00Z`));
 }
 
+function eventStart(event: StartupWeekLiveEvent) {
+  return new Date(`${event.date}T${event.startTime}:00-04:00`).getTime();
+}
+
 export default function StartupWeekTimeline({ events }: StartupWeekTimelineProps) {
+  const [now, setNow] = useState<number | null>(null);
+
+  useEffect(() => {
+    const updateNow = () => setNow(Date.now());
+    updateNow();
+    const interval = window.setInterval(updateNow, 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const nextEventId = now === null
+    ? null
+    : events.find((event) => eventStart(event) > now)?.lumaEventId ?? null;
+
   return (
     <section aria-labelledby="startup-week-schedule" className="mx-auto max-w-5xl px-6 py-12 lg:px-8">
       <div className="mb-8">
@@ -42,10 +62,18 @@ export default function StartupWeekTimeline({ events }: StartupWeekTimelineProps
       <ol className="relative space-y-8 before:absolute before:bottom-0 before:left-[9px] before:top-2 before:w-px before:bg-[#d6d3d1] md:space-y-10">
         {events.map((event) => {
           const displayTitle = displayTitles[event.title] ?? event.title;
+          const isNextEvent = event.lumaEventId === nextEventId;
 
           return (
             <li key={event.lumaEventId} className="relative pl-8">
-              <span className="absolute left-0 top-1 h-[19px] w-[19px] rounded-full border-4 border-[#FAF7F2] bg-[#facc15] shadow-[0_0_0_1px_#a16207]" aria-hidden="true" />
+              <span className="absolute left-0 top-1 h-[19px] w-[19px] rounded-full border-4 border-[#FAF7F2] bg-[#facc15] shadow-[0_0_0_1px_#a16207]" aria-hidden="true">
+                {isNextEvent && (
+                  <span
+                    className="absolute -inset-2 rounded-full border border-[#a16207]/60 animate-[pulse_3.5s_ease-in-out_infinite]"
+                    aria-label="Next event"
+                  />
+                )}
+              </span>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                 <time dateTime={`${event.date}T${event.startTime}:00-04:00`} className="w-full text-xs font-semibold uppercase tracking-[0.12em] text-[#a16207] sm:w-auto">
                   {formatDate(event.date)}
