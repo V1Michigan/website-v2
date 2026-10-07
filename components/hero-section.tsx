@@ -125,10 +125,11 @@ export default function HeroSection() {
               <Link
                 href="https://v1michigan.com/join"
                 aria-label="Join us"
-                className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-[#e09a1a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md bg-accent px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-[#e09a1a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
               >
-                Join us
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <span aria-hidden="true" className="button-sheen" />
+                <span className="relative">Join us</span>
+                <ArrowRight className="relative h-4 w-4" aria-hidden="true" />
               </Link>
             </motion.div>
           </div>
