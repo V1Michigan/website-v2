@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
-const startupWeekPreviewImage = "https://v1michigan.com/startup-week-preview.svg";
+const startupWeekPreviewImage = "https://v1michigan.com/startup-week-v1-preview.png";
 
 export const metadata: Metadata = {
   title: "Startup Week | V1 @ Michigan",
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: startupWeekPreviewImage,
-        alt: "People networking at startup event",
+        alt: "V1 @ Michigan logo",
+        width: 1200,
+        height: 630,
+        type: "image/png",
       },
     ],
   },
@@ -27,7 +31,7 @@ export const metadata: Metadata = {
 export default function StartupWeekLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return children;
 }
